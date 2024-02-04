@@ -14,23 +14,23 @@ class EnterScreen extends StatelessWidget {
         children: [
           Container(
             height: 380,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage('lib/assets/images/enterbg.jpg'),
                     fit: BoxFit.cover)),
           ),
-          Container(
+          SizedBox(
             height: 250,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
-                Text('Gücümüz bilgimizdedir.'),
-                Text('Öğrenelim ve ödül kazanalım.'),
-                SizedBox(
+                const Text('Gücümüz bilgimizdedir.'),
+                const Text('Öğrenelim ve ödül kazanalım.'),
+                const SizedBox(
                   height: 20,
                 ),
                 InkWell(
@@ -48,26 +48,26 @@ class EnterScreen extends StatelessWidget {
                   child: Container(
                     height: 35,
                     width: 180,
-                    child: Center(
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(
+                                'lib/assets/images/enterbuttm.png'))),
+                    child: const Center(
                         child: Text(
                       'Üye ol',
                       style: TextStyle(
                           color: Colors.white, fontWeight: FontWeight.bold),
                     )),
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage(
-                                'lib/assets/images/enterbuttm.png'))),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 InkWell(
                   onTap: () {
                     Navigator.of(context).push(
                       PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => LoginScreen(),
+                          pageBuilder: (_, __, ___) => const LoginScreen(),
                           transitionDuration: const Duration(milliseconds: 500),
                           transitionsBuilder: (_, a, __, c) => FadeTransition(
                                 opacity: a,
@@ -78,16 +78,16 @@ class EnterScreen extends StatelessWidget {
                   child: Container(
                     height: 35,
                     width: 180,
-                    child: Center(
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('lib/assets/images/go.png'))),
+                    child: const Center(
                       child: Text(
                         'Giriş',
                         style: TextStyle(
                             color: Colors.black, fontWeight: FontWeight.bold),
                       ),
                     ),
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('lib/assets/images/go.png'))),
                   ),
                 ),
               ],

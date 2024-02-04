@@ -61,7 +61,7 @@ class RegisterScreen extends StatelessWidget {
                           prefixIcon: Padding(
                             padding: const EdgeInsets.only(right: 10),
                             child: Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                   border:
                                       Border(right: BorderSide(width: 0.2))),
                               child: const CountryCodePicker(
@@ -86,7 +86,7 @@ class RegisterScreen extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Row(
@@ -99,16 +99,16 @@ class RegisterScreen extends StatelessWidget {
                 child: Container(
                   width: 52,
                   height: 50,
-                  child: Icon(
-                    Icons.arrow_back,
-                    color: Colors.white,
-                  ),
                   decoration: BoxDecoration(
                       color: Colors.grey.shade400,
                       borderRadius: BorderRadius.circular(22)),
+                  child: const Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                  ),
                 ),
               ),
-              SizedBox(),
+              const SizedBox(),
               InkWell(
                 onTap: () {
                   Navigator.of(context).push(
@@ -124,15 +124,15 @@ class RegisterScreen extends StatelessWidget {
                 child: Container(
                   width: 90,
                   height: 50,
-                  child: Center(
+                  decoration: BoxDecoration(
+                      image: const DecorationImage(
+                          image: AssetImage('lib/assets/images/buttun.png')),
+                      borderRadius: BorderRadius.circular(22)),
+                  child: const Center(
                       child: Text(
                     'Next',
                     style: TextStyle(color: Colors.white),
                   )),
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('lib/assets/images/buttun.png')),
-                      borderRadius: BorderRadius.circular(22)),
                 ),
               )
             ],

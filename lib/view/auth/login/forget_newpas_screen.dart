@@ -83,11 +83,11 @@ class _ForgetNewPasScreenState extends State<ForgetNewPasScreen> {
                                 height: 1,
                                 decoration: BoxDecoration(
                                     image: _passwordVisible
-                                        ? DecorationImage(
+                                        ? const DecorationImage(
                                             image: AssetImage(
                                                 'lib/assets/images/show.png'),
                                           )
-                                        : DecorationImage(
+                                        : const DecorationImage(
                                             image: AssetImage(
                                                 'lib/assets/images/hide.png'),
                                           )),
@@ -100,7 +100,7 @@ class _ForgetNewPasScreenState extends State<ForgetNewPasScreen> {
                             filled: true,
                             fillColor: Colors.white)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   SizedBox(
@@ -123,7 +123,7 @@ class _ForgetNewPasScreenState extends State<ForgetNewPasScreen> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Row(
@@ -136,32 +136,32 @@ class _ForgetNewPasScreenState extends State<ForgetNewPasScreen> {
                   child: Container(
                     width: 52,
                     height: 50,
-                    child: Icon(
-                      Icons.arrow_back,
-                      color: Colors.white,
-                    ),
                     decoration: BoxDecoration(
                         color: Colors.grey.shade400,
                         borderRadius: BorderRadius.circular(22)),
+                    child: const Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-                SizedBox(),
+                const SizedBox(),
                 InkWell(
                   onTap: () {
                     if (_userPasswordController.text !=
                         _confirmPasswordController.text) {
                       showToastWidget(
                         position:
-                            StyledToastPosition(align: Alignment.bottomCenter),
+                            const StyledToastPosition(align: Alignment.bottomCenter),
                         Container(
                           width: 250,
                           height: 55,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               image: DecorationImage(
                                   image:
                                       AssetImage('lib/assets/images/toast.png'),
                                   fit: BoxFit.fill)),
-                          child: Center(
+                          child: const Center(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               mainAxisSize: MainAxisSize.min,
@@ -195,7 +195,7 @@ class _ForgetNewPasScreenState extends State<ForgetNewPasScreen> {
                     } else {
                       Navigator.of(context).push(
                         PageRouteBuilder(
-                            pageBuilder: (_, __, ___) => LoginScreen(),
+                            pageBuilder: (_, __, ___) => const LoginScreen(),
                             transitionDuration:
                                 const Duration(milliseconds: 500),
                             transitionsBuilder: (_, a, __, c) => FadeTransition(
@@ -208,15 +208,15 @@ class _ForgetNewPasScreenState extends State<ForgetNewPasScreen> {
                   child: Container(
                     width: 90,
                     height: 50,
-                    child: Center(
+                    decoration: BoxDecoration(
+                        image: const DecorationImage(
+                            image: AssetImage('lib/assets/images/buttun.png')),
+                        borderRadius: BorderRadius.circular(22)),
+                    child: const Center(
                         child: Text(
                       'Next',
                       style: TextStyle(color: Colors.white),
                     )),
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('lib/assets/images/buttun.png')),
-                        borderRadius: BorderRadius.circular(22)),
                   ),
                 )
               ],

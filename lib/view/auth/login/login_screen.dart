@@ -2,9 +2,10 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz/view/auth/login/forgetpw_screen.dart';
 import 'package:quiz/view/auth/register/register_screen.dart';
+import 'package:quiz/view/home/dashboard/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({super.key});
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -71,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             prefixIcon: Padding(
                               padding: const EdgeInsets.only(right: 10),
                               child: Container(
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                     border:
                                         Border(right: BorderSide(width: 0.2))),
                                 child: const CountryCodePicker(
@@ -90,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             filled: true,
                             fillColor: Colors.white)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   SizedBox(
@@ -113,11 +114,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                 height: 1,
                                 decoration: BoxDecoration(
                                     image: _passwordVisible
-                                        ? DecorationImage(
+                                        ? const DecorationImage(
                                             image: AssetImage(
                                                 'lib/assets/images/show.png'),
                                           )
-                                        : DecorationImage(
+                                        : const DecorationImage(
                                             image: AssetImage(
                                                 'lib/assets/images/hide.png'),
                                           )),
@@ -130,12 +131,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             filled: true,
                             fillColor: Colors.white)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 48,
                       ),
                       InkWell(
@@ -152,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     )),
                           );
                         },
-                        child: Text(
+                        child: const Text(
                           'Forget Password ?',
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
@@ -169,7 +170,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             InkWell(
@@ -184,7 +185,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           )),
                 );
               },
-              child: Text(
+              child: const Text(
                 'Create an account ?',
                 style: TextStyle(
                     fontSize: 13,
@@ -192,7 +193,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     fontWeight: FontWeight.w500),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Row(
@@ -205,40 +206,40 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Container(
                     width: 52,
                     height: 50,
-                    child: Icon(
-                      Icons.arrow_back,
-                      color: Colors.white,
-                    ),
                     decoration: BoxDecoration(
                         color: Colors.grey.shade400,
                         borderRadius: BorderRadius.circular(22)),
+                    child: const Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-                SizedBox(),
+                const SizedBox(),
                 InkWell(
                   onTap: () {
-                    // Navigator.of(context).push(
-                    //   PageRouteBuilder(
-                    //       pageBuilder: (_, __, ___) => PinCodeScreen(),
-                    //       transitionDuration: const Duration(milliseconds: 500),
-                    //       transitionsBuilder: (_, a, __, c) => FadeTransition(
-                    //             opacity: a,
-                    //             child: c,
-                    //           )),
-                    // );
+                    Navigator.of(context).push(
+                      PageRouteBuilder(
+                          pageBuilder: (_, __, ___) => const HomeScreen(),
+                          transitionDuration: const Duration(milliseconds: 500),
+                          transitionsBuilder: (_, a, __, c) => FadeTransition(
+                                opacity: a,
+                                child: c,
+                              )),
+                    );
                   },
                   child: Container(
                     width: 90,
                     height: 50,
-                    child: Center(
+                    decoration: BoxDecoration(
+                        image: const DecorationImage(
+                            image: AssetImage('lib/assets/images/buttun.png')),
+                        borderRadius: BorderRadius.circular(22)),
+                    child: const Center(
                         child: Text(
                       'Next',
                       style: TextStyle(color: Colors.white),
                     )),
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('lib/assets/images/buttun.png')),
-                        borderRadius: BorderRadius.circular(22)),
                   ),
                 )
               ],

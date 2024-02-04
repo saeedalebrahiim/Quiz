@@ -58,12 +58,12 @@ class ForgetPwPinCodeScreen extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 45,
                     ),
                     InkWell(
                       onTap: () {},
-                      child: Row(
+                      child: const Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Icon(
@@ -83,13 +83,13 @@ class ForgetPwPinCodeScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 )
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Row(
@@ -102,21 +102,21 @@ class ForgetPwPinCodeScreen extends StatelessWidget {
                 child: Container(
                   width: 52,
                   height: 50,
-                  child: Icon(
-                    Icons.arrow_back,
-                    color: Colors.white,
-                  ),
                   decoration: BoxDecoration(
                       color: Colors.grey.shade400,
                       borderRadius: BorderRadius.circular(22)),
+                  child: const Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                  ),
                 ),
               ),
-              SizedBox(),
+              const SizedBox(),
               InkWell(
                 onTap: () {
                   Navigator.of(context).push(
                     PageRouteBuilder(
-                        pageBuilder: (_, __, ___) => ForgetNewPasScreen(),
+                        pageBuilder: (_, __, ___) => const ForgetNewPasScreen(),
                         transitionDuration: const Duration(milliseconds: 500),
                         transitionsBuilder: (_, a, __, c) => FadeTransition(
                               opacity: a,
@@ -127,15 +127,15 @@ class ForgetPwPinCodeScreen extends StatelessWidget {
                 child: Container(
                   width: 90,
                   height: 50,
-                  child: Center(
+                  decoration: BoxDecoration(
+                      image: const DecorationImage(
+                          image: AssetImage('lib/assets/images/buttun.png')),
+                      borderRadius: BorderRadius.circular(22)),
+                  child: const Center(
                       child: Text(
                     'Next',
                     style: TextStyle(color: Colors.white),
                   )),
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('lib/assets/images/buttun.png')),
-                      borderRadius: BorderRadius.circular(22)),
                 ),
               )
             ],
