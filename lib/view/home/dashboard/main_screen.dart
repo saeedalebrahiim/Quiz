@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:quiz/global.dart';
+import 'package:quiz/provider/drawer_state.dart';
+import 'package:quiz/view/home/quiz/quiz_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -46,7 +50,10 @@ class _MainScreenState extends State<MainScreen> {
                 ),
                 const Text(
                   '3012',
-                  style: TextStyle(fontSize: 14),
+                  style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600),
                 )
               ],
             ),
@@ -68,17 +75,21 @@ class _MainScreenState extends State<MainScreen> {
                             xOffset = 0;
                             yOffset = 0;
                             isDrawerOpen = false;
+                            drawerVisible = false;
                           });
+                          context.read<DrawerState>().changeVisibleTwo();
                         },
                       )
                     : GestureDetector(
                         child: Image.asset('lib/assets/images/appbaricon.png'),
                         onTap: () {
                           setState(() {
-                            xOffset = 290;
-                            yOffset = 80;
+                            xOffset = 220;
+                            yOffset = 0;
                             isDrawerOpen = true;
+                            drawerVisible = true;
                           });
+                          context.read<DrawerState>().changeVisible();
                         },
                       ),
               ),
@@ -100,23 +111,174 @@ class _MainScreenState extends State<MainScreen> {
               Container(
                 height: MediaQuery.of(context).size.height - 76,
                 width: MediaQuery.of(context).size.width,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: Colors.transparent,
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 150,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          image: const DecorationImage(
-                            image: AssetImage('lib/assets/images/mainbg.png'),
-                            fit: BoxFit.fitWidth,
-                          )),
-                    )
-                  ],
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 40,
+                          ),
+                          Text(
+                            'iyi haberler',
+                            style: TextStyle(color: Colors.grey.shade300),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Image(
+                            image:
+                                AssetImage('lib/assets/images/mainsticker.png'),
+                            width: 20,
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: Container(
+                          width: 300,
+                          height: 105,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                      'lib/assets/images/mainburger.png'),
+                                  fit: BoxFit.fill),
+                              borderRadius: BorderRadius.circular(30)),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Image(
+                              image:
+                                  AssetImage('lib/assets/images/mainstar.png'),
+                              width: 75,
+                              height: 75,
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  'Watch the video and get ',
+                                  style: TextStyle(color: Colors.orange),
+                                ),
+                                Text('points',
+                                    style: TextStyle(color: Colors.orange))
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: Container(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    'Yarışma',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  ),
+                                  Image(
+                                    image: AssetImage(
+                                        'lib/assets/images/coin.png'),
+                                    width: 20,
+                                    height: 20,
+                                  ),
+                                  Text(
+                                    '2',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    PageRouteBuilder(
+                                        pageBuilder: (_, __, ___) =>
+                                            QuizScreen(),
+                                        transitionDuration:
+                                            const Duration(milliseconds: 500),
+                                        transitionsBuilder: (_, a, __, c) =>
+                                            FadeTransition(
+                                              opacity: a,
+                                              child: c,
+                                            )),
+                                  );
+                                },
+                                child: Container(
+                                  width: 150,
+                                  child: Center(
+                                      child: Text(
+                                    'Başla',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                  )),
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                              'lib/assets/images/mainbuttun.png'),
+                                          fit: BoxFit.fill)),
+                                ),
+                              )
+                            ],
+                          ),
+                          width: 300,
+                          height: 115,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                      'lib/assets/images/questionbg.png'),
+                                  fit: BoxFit.fill),
+                              borderRadius: BorderRadius.circular(25)),
+                        ),
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 150,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: const DecorationImage(
+                              image: AssetImage('lib/assets/images/mainbg.png'),
+                              fit: BoxFit.fitWidth,
+                            )),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],
