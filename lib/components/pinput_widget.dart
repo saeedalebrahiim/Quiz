@@ -31,7 +31,7 @@ class _PinputWidgetState extends State<PinputWidget> {
         color: Color.fromRGBO(30, 60, 87, 1),
       ),
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 10, 21, 94),
+        color: const Color.fromARGB(255, 10, 21, 140),
         borderRadius: BorderRadius.circular(19),
       ),
     );
@@ -84,8 +84,8 @@ class _PinputWidgetState extends State<PinputWidget> {
                 ),
               ),
               submittedPinTheme: defaultPinTheme.copyWith(
-                textStyle:
-                    const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                textStyle: const TextStyle(
+                    color: Colors.white, fontWeight: FontWeight.bold),
                 decoration: defaultPinTheme.decoration!.copyWith(
                   borderRadius: BorderRadius.circular(19),
                   border: Border.all(color: Colors.white),

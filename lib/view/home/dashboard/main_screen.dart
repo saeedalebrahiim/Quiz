@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:quiz/global.dart';
 import 'package:quiz/provider/drawer_state.dart';
 import 'package:quiz/view/home/quiz/quiz_screen.dart';
+import 'package:quiz/view/profile/profile_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -28,14 +29,27 @@ class _MainScreenState extends State<MainScreen> {
               Padding(
                 padding:
                     const EdgeInsets.only(right: 5, left: 5, bottom: 5, top: 6),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 10, 21, 94),
-                      borderRadius: BorderRadius.circular(30)),
-                  child: const Center(
-                      child: Image(
-                    image: AssetImage('lib/assets/images/profile.png'),
-                  )),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      PageRouteBuilder(
+                          pageBuilder: (_, __, ___) => ProfileScreen(),
+                          transitionDuration: const Duration(milliseconds: 500),
+                          transitionsBuilder: (_, a, __, c) => FadeTransition(
+                                opacity: a,
+                                child: c,
+                              )),
+                    );
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 10, 21, 94),
+                        borderRadius: BorderRadius.circular(30)),
+                    child: const Center(
+                        child: Image(
+                      image: AssetImage('lib/assets/images/profile.png'),
+                    )),
+                  ),
                 ),
               ),
             ],
