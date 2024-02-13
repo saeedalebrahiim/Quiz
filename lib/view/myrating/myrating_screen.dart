@@ -9,6 +9,13 @@ class MyRatingScreen extends StatelessWidget {
     final _numberController = TextEditingController();
     return Scaffold(
       body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        decoration: const BoxDecoration(
+            color: Color.fromARGB(255, 10, 21, 94),
+            image: DecorationImage(
+                image: AssetImage('lib/assets/images/bg2.png'),
+                fit: BoxFit.fill)),
         child: Column(
           children: [
             Row(
@@ -20,7 +27,7 @@ class MyRatingScreen extends StatelessWidget {
                     onTap: () {
                       Navigator.of(context).push(
                         PageRouteBuilder(
-                            pageBuilder: (_, __, ___) => HomeScreen(),
+                            pageBuilder: (_, __, ___) => const HomeScreen(),
                             transitionDuration:
                                 const Duration(milliseconds: 500),
                             transitionsBuilder: (_, a, __, c) => FadeTransition(
@@ -33,7 +40,7 @@ class MyRatingScreen extends StatelessWidget {
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
-                          image: DecorationImage(
+                          image: const DecorationImage(
                             image:
                                 AssetImage('lib/assets/images/appbaricon.png'),
                           ),
@@ -68,7 +75,7 @@ class MyRatingScreen extends StatelessWidget {
                     onTap: () {
                       Navigator.of(context).push(
                         PageRouteBuilder(
-                            pageBuilder: (_, __, ___) => HomeScreen(),
+                            pageBuilder: (_, __, ___) => const HomeScreen(),
                             transitionDuration:
                                 const Duration(milliseconds: 500),
                             transitionsBuilder: (_, a, __, c) => FadeTransition(
@@ -81,7 +88,7 @@ class MyRatingScreen extends StatelessWidget {
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
-                          image: DecorationImage(
+                          image: const DecorationImage(
                             image:
                                 AssetImage('lib/assets/images/questions.png'),
                           ),
@@ -92,18 +99,11 @@ class MyRatingScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 150,
             ),
           ],
         ),
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-            color: Color.fromARGB(255, 10, 21, 94),
-            image: DecorationImage(
-                image: AssetImage('lib/assets/images/bg2.png'),
-                fit: BoxFit.fill)),
       ),
     );
   }

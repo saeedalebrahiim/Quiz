@@ -10,6 +10,13 @@ class ChangePwScreen extends StatelessWidget {
     final _numberController = TextEditingController();
     return Scaffold(
       body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        decoration: const BoxDecoration(
+            color: Color.fromARGB(255, 10, 21, 94),
+            image: DecorationImage(
+                image: AssetImage('lib/assets/images/bg2.png'),
+                fit: BoxFit.fill)),
         child: Column(
           children: [
             Row(
@@ -23,7 +30,7 @@ class ChangePwScreen extends StatelessWidget {
                     child: Container(
                       width: 50,
                       height: 50,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage('lib/assets/images/back.png'))),
                     ),
@@ -31,10 +38,10 @@ class ChangePwScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 150,
             ),
-            Row(
+            const Row(
               children: [
                 SizedBox(
                   width: 65,
@@ -57,7 +64,7 @@ class ChangePwScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Center(
@@ -89,7 +96,7 @@ class ChangePwScreen extends StatelessWidget {
                         fillColor: Colors.white)),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 130,
             ),
             Row(
@@ -143,13 +150,6 @@ class ChangePwScreen extends StatelessWidget {
             )
           ],
         ),
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-            color: Color.fromARGB(255, 10, 21, 94),
-            image: DecorationImage(
-                image: AssetImage('lib/assets/images/bg2.png'),
-                fit: BoxFit.fill)),
       ),
     );
   }

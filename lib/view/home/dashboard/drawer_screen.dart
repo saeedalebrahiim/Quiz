@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz/global.dart';
 import 'package:quiz/provider/drawer_state.dart';
+import 'package:quiz/view/faq/faq_screen.dart';
 import 'package:quiz/view/myrating/myrating_screen.dart';
 import 'package:quiz/view/profile/profile_screen.dart';
 
@@ -17,16 +18,16 @@ class _DrawerScreenState extends State<DrawerScreen> {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height,
-      decoration: const BoxDecoration(
-          color: Color.fromARGB(255, 0, 3, 66),
-          image: DecorationImage(
+      decoration: BoxDecoration(
+          color: primaryColor,
+          image: const DecorationImage(
               image: AssetImage('lib/assets/images/bg2.png'),
               fit: BoxFit.fill)),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             Consumer<DrawerState>(
@@ -37,12 +38,12 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 55,
                       ),
                       InkWell(
                         onTap: () {},
-                        child: Row(
+                        child: const Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Image(
@@ -60,7 +61,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       InkWell(
@@ -77,7 +78,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                     )),
                           );
                         },
-                        child: Row(
+                        child: const Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Image(
@@ -95,14 +96,15 @@ class _DrawerScreenState extends State<DrawerScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       InkWell(
                         onTap: () {
                           Navigator.of(context).push(
                             PageRouteBuilder(
-                                pageBuilder: (_, __, ___) => MyRatingScreen(),
+                                pageBuilder: (_, __, ___) =>
+                                    const MyRatingScreen(),
                                 transitionDuration:
                                     const Duration(milliseconds: 500),
                                 transitionsBuilder: (_, a, __, c) =>
@@ -112,7 +114,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                     )),
                           );
                         },
-                        child: Row(
+                        child: const Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Image(
@@ -130,12 +132,12 @@ class _DrawerScreenState extends State<DrawerScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       InkWell(
                         onTap: () {},
-                        child: Row(
+                        child: const Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Image(
@@ -154,12 +156,12 @@ class _DrawerScreenState extends State<DrawerScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       InkWell(
                         onTap: () {},
-                        child: Row(
+                        child: const Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Image(
@@ -177,12 +179,24 @@ class _DrawerScreenState extends State<DrawerScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       InkWell(
-                        onTap: () {},
-                        child: Row(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            PageRouteBuilder(
+                                pageBuilder: (_, __, ___) => const FaqScreen(),
+                                transitionDuration:
+                                    const Duration(milliseconds: 500),
+                                transitionsBuilder: (_, a, __, c) =>
+                                    FadeTransition(
+                                      opacity: a,
+                                      child: c,
+                                    )),
+                          );
+                        },
+                        child: const Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Image(
@@ -200,12 +214,12 @@ class _DrawerScreenState extends State<DrawerScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       InkWell(
                         onTap: () {},
-                        child: Row(
+                        child: const Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Image(
@@ -223,12 +237,12 @@ class _DrawerScreenState extends State<DrawerScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       InkWell(
                         onTap: () {},
-                        child: Row(
+                        child: const Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Image(
@@ -246,7 +260,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                     ],
@@ -254,7 +268,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 ),
               ),
             ),
-            Row(
+            const Row(
               children: <Widget>[
                 SizedBox(
                   width: 10,

@@ -125,36 +125,36 @@ class _MainScreenState extends State<MainScreen> {
               Container(
                 height: MediaQuery.of(context).size.height - 76,
                 width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.transparent,
                 ),
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      SizedBox(
+                      const SizedBox(
                         height: 30,
                       ),
                       Row(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             width: 40,
                           ),
                           Text(
                             'iyi haberler',
                             style: TextStyle(color: Colors.grey.shade300),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
-                          Image(
+                          const Image(
                             image:
                                 AssetImage('lib/assets/images/mainsticker.png'),
                             width: 20,
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Padding(
@@ -163,18 +163,18 @@ class _MainScreenState extends State<MainScreen> {
                           width: 300,
                           height: 105,
                           decoration: BoxDecoration(
-                              image: DecorationImage(
+                              image: const DecorationImage(
                                   image: AssetImage(
                                       'lib/assets/images/mainburger.png'),
                                   fit: BoxFit.fill),
                               borderRadius: BorderRadius.circular(30)),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -202,16 +202,24 @@ class _MainScreenState extends State<MainScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 40,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30),
                         child: Container(
+                          width: 300,
+                          height: 115,
+                          decoration: BoxDecoration(
+                              image: const DecorationImage(
+                                  image: AssetImage(
+                                      'lib/assets/images/questionbg.png'),
+                                  fit: BoxFit.fill),
+                              borderRadius: BorderRadius.circular(25)),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Row(
+                              const Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Text(
@@ -234,7 +242,7 @@ class _MainScreenState extends State<MainScreen> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               InkWell(
@@ -242,7 +250,7 @@ class _MainScreenState extends State<MainScreen> {
                                   Navigator.of(context).push(
                                     PageRouteBuilder(
                                         pageBuilder: (_, __, ___) =>
-                                            QuizScreen(),
+                                            const QuizScreen(),
                                         transitionDuration:
                                             const Duration(milliseconds: 500),
                                         transitionsBuilder: (_, a, __, c) =>
@@ -254,31 +262,23 @@ class _MainScreenState extends State<MainScreen> {
                                 },
                                 child: Container(
                                   width: 150,
-                                  child: Center(
+                                  height: 30,
+                                  decoration: const BoxDecoration(
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                              'lib/assets/images/mainbuttun.png'),
+                                          fit: BoxFit.fill)),
+                                  child: const Center(
                                       child: Text(
                                     'Başla',
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold),
                                   )),
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          image: AssetImage(
-                                              'lib/assets/images/mainbuttun.png'),
-                                          fit: BoxFit.fill)),
                                 ),
                               )
                             ],
                           ),
-                          width: 300,
-                          height: 115,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(
-                                      'lib/assets/images/questionbg.png'),
-                                  fit: BoxFit.fill),
-                              borderRadius: BorderRadius.circular(25)),
                         ),
                       ),
                       Container(

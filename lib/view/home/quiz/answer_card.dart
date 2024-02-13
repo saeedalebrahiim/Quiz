@@ -21,7 +21,7 @@ class AnswerCard extends StatelessWidget {
     return Container(
       width: 150,
       height: 70,
-      decoration: BoxDecoration(boxShadow: [
+      decoration: BoxDecoration(boxShadow: const [
         BoxShadow(
             color: Color.fromARGB(146, 0, 0, 0),
             blurRadius: 50,

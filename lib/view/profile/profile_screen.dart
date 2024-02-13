@@ -1,5 +1,6 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz/global.dart';
 import 'package:quiz/view/home/dashboard/home_screen.dart';
 import 'package:quiz/view/profile/edit_pw_screen.dart';
 
@@ -17,8 +18,8 @@ class ProfileScreen extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-            color: Color.fromARGB(255, 0, 3, 66),
-            image: DecorationImage(
+            color: primaryColor,
+            image: const DecorationImage(
                 image: AssetImage('lib/assets/images/bg1.png'),
                 fit: BoxFit.fill)),
         child: SingleChildScrollView(
@@ -32,7 +33,7 @@ class ProfileScreen extends StatelessWidget {
                       onTap: () {
                         Navigator.of(context).push(
                           PageRouteBuilder(
-                              pageBuilder: (_, __, ___) => HomeScreen(),
+                              pageBuilder: (_, __, ___) => const HomeScreen(),
                               transitionDuration:
                                   const Duration(milliseconds: 500),
                               transitionsBuilder: (_, a, __, c) =>
@@ -45,7 +46,7 @@ class ProfileScreen extends StatelessWidget {
                       child: Container(
                         width: 50,
                         height: 50,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             image: DecorationImage(
                                 image:
                                     AssetImage('lib/assets/images/back.png'))),
@@ -54,26 +55,26 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Row(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: 15,
                   ),
                   Container(
                     width: 80,
                     height: 80,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         image: DecorationImage(
                             image: AssetImage(
                                 'lib/assets/images/addprofilebg.png'))),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
-                  Column(
+                  const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
@@ -88,7 +89,7 @@ class ProfileScreen extends StatelessWidget {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
               SizedBox(
@@ -105,7 +106,7 @@ class ProfileScreen extends StatelessWidget {
                         filled: true,
                         fillColor: Colors.white)),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               SizedBox(
@@ -121,7 +122,7 @@ class ProfileScreen extends StatelessWidget {
                               Navigator.of(context).push(
                                 PageRouteBuilder(
                                     pageBuilder: (_, __, ___) =>
-                                        ChangePwScreen(),
+                                        const ChangePwScreen(),
                                     transitionDuration:
                                         const Duration(milliseconds: 500),
                                     transitionsBuilder: (_, a, __, c) =>
@@ -133,7 +134,7 @@ class ProfileScreen extends StatelessWidget {
                             },
                             child: Container(
                               width: 2,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                   image: DecorationImage(
                                       image: AssetImage(
                                           'lib/assets/images/numberedit.png'))),
@@ -161,7 +162,7 @@ class ProfileScreen extends StatelessWidget {
                         filled: true,
                         fillColor: Colors.white)),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               SizedBox(
@@ -178,10 +179,10 @@ class ProfileScreen extends StatelessWidget {
                         filled: true,
                         fillColor: Colors.white)),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
-              Row(
+              const Row(
                 children: [
                   SizedBox(
                     width: 40,
@@ -192,48 +193,48 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: 42,
                   ),
-                  Text(
+                  const Text(
                     'TR',
                     style: TextStyle(color: Colors.white),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   SizedBox(
-                    child: TextField(
-                        style: TextStyle(color: Colors.white),
-                        controller: _ibanController,
-                        decoration: InputDecoration()),
                     width: 220,
+                    child: TextField(
+                        style: const TextStyle(color: Colors.white),
+                        controller: _ibanController,
+                        decoration: const InputDecoration()),
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               Container(
                 width: 130,
                 height: 40,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage('lib/assets/images/addbank.png'),
                         fit: BoxFit.fill)),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Container(
                 width: 170,
                 height: 40,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage('lib/assets/images/save.png'),
                         fit: BoxFit.fill)),
