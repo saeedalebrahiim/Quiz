@@ -1,0 +1,2520 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API V1",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/v1/Auth/Token": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "grant_type": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "username": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "password": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "UserRole": {
+                    "$ref": "#/components/schemas/UsersRole"
+                  },
+                  "refresh_token": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "scope": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "client_id": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "client_secret": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                }
+              },
+              "encoding": {
+                "grant_type": {
+                  "style": "form"
+                },
+                "username": {
+                  "style": "form"
+                },
+                "password": {
+                  "style": "form"
+                },
+                "UserRole": {
+                  "style": "form"
+                },
+                "refresh_token": {
+                  "style": "form"
+                },
+                "scope": {
+                  "style": "form"
+                },
+                "client_id": {
+                  "style": "form"
+                },
+                "client_secret": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Auth/Register": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Register",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Auth/AccountVerification": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthConfirmDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthConfirmDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthConfirmDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthConfirmDto"
+              }
+            }
+          }
+          
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Auth/SelectPassword": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "ConfirmPassword",
+                  "Password"
+                ],
+                "type": "object",
+                "properties": {
+                  "Password": {
+                    "minLength": 6,
+                    "type": "string"
+                  },
+                  "ConfirmPassword": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "Password": {
+                  "style": "form"
+                },
+                "ConfirmPassword": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Auth/SendCode": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Send Code",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Auth/OAuth": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "OAuth",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthConfirmDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthConfirmDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthConfirmDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthConfirmDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Auth/ForgotPassword": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "select recovery type by PhoneNumber and GenerateCodeConfirmed",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "UserName"
+                ],
+                "type": "object",
+                "properties": {
+                  "UserName": {
+                    "type": "string"
+                  },
+                  "auto_code": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                }
+              },
+              "encoding": {
+                "UserName": {
+                  "style": "form"
+                },
+                "auto_code": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Auth/ChangePassword": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Change Password by Phonenumber",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "ConfirmPassword",
+                  "Password",
+                  "UserName",
+                  "VerificationCode"
+                ],
+                "type": "object",
+                "properties": {
+                  "UserName": {
+                    "type": "string"
+                  },
+                  "VerificationCode": {
+                    "type": "string"
+                  },
+                  "Password": {
+                    "minLength": 6,
+                    "type": "string"
+                  },
+                  "ConfirmPassword": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "UserName": {
+                  "style": "form"
+                },
+                "VerificationCode": {
+                  "style": "form"
+                },
+                "Password": {
+                  "style": "form"
+                },
+                "ConfirmPassword": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Auth/IsAuthenticated": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Baner/GetBanner": {
+      "get": {
+        "tags": [
+          "Baner"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/ContactUs": {
+      "post": {
+        "tags": [
+          "ContactUs"
+        ],
+        "summary": "Creates a ContactUs",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "FullName",
+                  "Id",
+                  "MessageText"
+                ],
+                "type": "object",
+                "properties": {
+                  "FullName": {
+                    "maxLength": 70,
+                    "type": "string"
+                  },
+                  "PhoneNumber": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "Email": {
+                    "maxLength": 100,
+                    "type": "string",
+                    "format": "email",
+                    "nullable": true
+                  },
+                  "MessageText": {
+                    "maxLength": 500,
+                    "type": "string"
+                  },
+                  "SubjectText": {
+                    "maxLength": 150,
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "Id": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              },
+              "encoding": {
+                "FullName": {
+                  "style": "form"
+                },
+                "PhoneNumber": {
+                  "style": "form"
+                },
+                "Email": {
+                  "style": "form"
+                },
+                "MessageText": {
+                  "style": "form"
+                },
+                "SubjectText": {
+                  "style": "form"
+                },
+                "Id": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContactusSelectDtoApiResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContactusSelectDtoApiResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContactusSelectDtoApiResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/FAQ/PagedList": {
+      "get": {
+        "tags": [
+          "FAQ"
+        ],
+        "parameters": [
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FAQSelectDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FAQSelectDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FAQSelectDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/ReportQuestion/SubmitReport": {
+      "post": {
+        "tags": [
+          "ReportQuestion"
+        ],
+        "parameters": [
+          {
+            "name": "QuestionId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Score/GetRewardList": {
+      "get": {
+        "tags": [
+          "Score"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Score/GetDailyRewardList": {
+      "get": {
+        "tags": [
+          "Score"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Score/GetUserChangeScoreDayList": {
+      "get": {
+        "tags": [
+          "Score"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Score/GetUserChangeScoreDayList_V0": {
+      "get": {
+        "tags": [
+          "Score"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Score/GetUserChangeScoreDay": {
+      "get": {
+        "tags": [
+          "Score"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Score/GetUserChangeScoreMonthList": {
+      "get": {
+        "tags": [
+          "Score"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Score/UserRankingisLowerThan50": {
+      "get": {
+        "tags": [
+          "Score"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Score/GetUserRank": {
+      "get": {
+        "tags": [
+          "Score"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Score/AddScore": {
+      "post": {
+        "tags": [
+          "Score"
+        ],
+        "parameters": [
+          {
+            "name": "IsWatchAds",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Score/MaxScoreOfMonthScore": {
+      "get": {
+        "tags": [
+          "Score"
+        ],
+        "parameters": [
+          {
+            "name": "dateTime",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Score/GetMyScoreInMonth": {
+      "get": {
+        "tags": [
+          "Score"
+        ],
+        "summary": "مشاهده امتیاز کسب شده من در ماه",
+        "parameters": [
+          {
+            "name": "dateTime",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string",
+              "description": "",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Score/GetUserBalance": {
+      "get": {
+        "tags": [
+          "Score"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Score/GetMyMonthState": {
+      "get": {
+        "tags": [
+          "Score"
+        ],
+        "parameters": [
+          {
+            "name": "dateTime",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Setting/GetBanks": {
+      "get": {
+        "tags": [
+          "Setting"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Setting/GetSetting": {
+      "get": {
+        "tags": [
+          "Setting"
+        ],
+        "summary": "Retrieves a Setting by unique id",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/StartQuiz/setStTa": {
+      "get": {
+        "tags": [
+          "StartQuiz"
+        ],
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/StartQuiz/deUDQQ": {
+      "get": {
+        "tags": [
+          "StartQuiz"
+        ],
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "cou",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/StartQuiz/deUQQ": {
+      "get": {
+        "tags": [
+          "StartQuiz"
+        ],
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "cou",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/StartQuiz/setStTa11": {
+      "get": {
+        "tags": [
+          "StartQuiz"
+        ],
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/StartQuiz/StartQuiz": {
+      "get": {
+        "tags": [
+          "StartQuiz"
+        ],
+        "summary": "شروع کوئیز و اختصاص سوال به کاربر",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/StartQuiz/AddAnswer": {
+      "post": {
+        "tags": [
+          "StartQuiz"
+        ],
+        "summary": "ثبت جواب کاربر",
+        "parameters": [
+          {
+            "name": "UserQuizId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "UserDQuizId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "QuestionId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "SelectedAnswer",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/StartQuiz/ShowPercentSelectedAnswer": {
+      "get": {
+        "tags": [
+          "StartQuiz"
+        ],
+        "summary": "کسر امتیاز و مشاهده درصد",
+        "parameters": [
+          {
+            "name": "QuestionId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/StartQuiz/ShowWrongAnswer": {
+      "get": {
+        "tags": [
+          "StartQuiz"
+        ],
+        "summary": "کسر امتیاز و مشاهده اشتباه",
+        "parameters": [
+          {
+            "name": "QuestionId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/StartQuiz/TodayMyQuizState": {
+      "get": {
+        "tags": [
+          "StartQuiz"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/StartQuiz/MonthMyQuizState": {
+      "get": {
+        "tags": [
+          "StartQuiz"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/StartQuiz/ShowUserByAnswerCount": {
+      "get": {
+        "tags": [
+          "StartQuiz"
+        ],
+        "summary": "فیلتر وضعیت کوئیز با تاریخ و تعداد جواب صحیح کوئیز",
+        "parameters": [
+          {
+            "name": "dateTime",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "CurrectAnswer",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/StartQuiz/ShowUserAnswerCount": {
+      "get": {
+        "tags": [
+          "StartQuiz"
+        ],
+        "summary": "وضعیت کوئیز با تاریخ و چند نفر چندتا رو درست گفتن",
+        "parameters": [
+          {
+            "name": "dateTime",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/StartQuiz/ShowUserWrongAnserCount": {
+      "get": {
+        "tags": [
+          "StartQuiz"
+        ],
+        "parameters": [
+          {
+            "name": "dateTime",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/StartQuiz/ViewUserQuizReportByQuizId": {
+      "get": {
+        "tags": [
+          "StartQuiz"
+        ],
+        "parameters": [
+          {
+            "name": "QuizId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/StartQuiz/AnsweredCountInMonthList": {
+      "get": {
+        "tags": [
+          "StartQuiz"
+        ],
+        "parameters": [
+          {
+            "name": "selecteddatetime",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Ticket/testUser": {
+      "get": {
+        "tags": [
+          "Ticket"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Ticket/testUserw": {
+      "post": {
+        "tags": [
+          "Ticket"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "Desc",
+                  "Id"
+                ],
+                "type": "object",
+                "properties": {
+                  "Subject": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "Priority": {
+                    "$ref": "#/components/schemas/Priority"
+                  },
+                  "Id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Desc": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "Subject": {
+                  "style": "form"
+                },
+                "Priority": {
+                  "style": "form"
+                },
+                "Id": {
+                  "style": "form"
+                },
+                "Desc": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Ticket/CreateTicketByUser": {
+      "post": {
+        "tags": [
+          "Ticket"
+        ],
+        "summary": "ارسال تیکت توسط کاربر",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "Desc",
+                  "Id"
+                ],
+                "type": "object",
+                "properties": {
+                  "Subject": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "Priority": {
+                    "$ref": "#/components/schemas/Priority"
+                  },
+                  "Id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Desc": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "Subject": {
+                  "style": "form"
+                },
+                "Priority": {
+                  "style": "form"
+                },
+                "Id": {
+                  "style": "form"
+                },
+                "Desc": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Ticket/AddTicketAnswerByUser": {
+      "post": {
+        "tags": [
+          "Ticket"
+        ],
+        "summary": "اضافه کردن جواب تیکت توسط کاربر",
+        "parameters": [
+          {
+            "name": "ticketId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "Desc",
+                  "Id"
+                ],
+                "type": "object",
+                "properties": {
+                  "Desc": {
+                    "type": "string"
+                  },
+                  "Id": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              },
+              "encoding": {
+                "Desc": {
+                  "style": "form"
+                },
+                "Id": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Ticket/UserTicketList": {
+      "get": {
+        "tags": [
+          "Ticket"
+        ],
+        "summary": "لیست تیکت های کابر با قابلیت فیلتر براساس وضعیت تیکت",
+        "parameters": [
+          {
+            "name": "ticketState",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/TicketState"
+            }
+          },
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TicketSelectDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TicketSelectDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TicketSelectDto"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Ticket/TicketDetail": {
+      "get": {
+        "tags": [
+          "Ticket"
+        ],
+        "summary": "جزئیات Ticket و لیست TicketAnswer",
+        "parameters": [
+          {
+            "name": "ticketId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Ticket/SeenTicket": {
+      "post": {
+        "tags": [
+          "Ticket"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "nullable": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "nullable": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "nullable": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "nullable": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Ticket/UnreadedTicketCount": {
+      "post": {
+        "tags": [
+          "Ticket"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/UserManager/ViewProfile": {
+      "get": {
+        "tags": [
+          "UserManager"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/UserManager/AddScore": {
+      "post": {
+        "tags": [
+          "UserManager"
+        ],
+        "parameters": [
+          {
+            "name": "count",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/UserManager/EditProfile": {
+      "post": {
+        "tags": [
+          "UserManager"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "FullName"
+                ],
+                "type": "object",
+                "properties": {
+                  "FullName": {
+                    "type": "string"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "nullable": true
+                  },
+                  "Education": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "BankId": {
+                    "type": "integer",
+                    "format": "int32",
+                    "nullable": true
+                  },
+                  "IBAN": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                }
+              },
+              "encoding": {
+                "FullName": {
+                  "style": "form"
+                },
+                "file": {
+                  "style": "form"
+                },
+                "Education": {
+                  "style": "form"
+                },
+                "BankId": {
+                  "style": "form"
+                },
+                "IBAN": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/UserManager/BlockUser": {
+      "get": {
+        "tags": [
+          "UserManager"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/UserManager/UpdatePhoneNumber": {
+      "get": {
+        "tags": [
+          "UserManager"
+        ],
+        "parameters": [
+          {
+            "name": "NewPhonenumber",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "auto_code",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "UserManager"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePhoneNumberDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePhoneNumberDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePhoneNumberDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePhoneNumberDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/UserManager/RemoveUserProfile": {
+      "post": {
+        "tags": [
+          "UserManager"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UsersRole": {
+        "enum": [
+          "admin",
+          "user"
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "AuthDto": {
+        "required": [
+          "userName"
+        ],
+        "type": "object",
+        "properties": {
+          "userName": {
+            "type": "string"
+          },
+          "auto_code": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AuthConfirmDto": {
+        "required": [
+          "userName",
+          "verificationCode"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userName": {
+            "type": "string"
+          },
+          "verificationCode": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ContactUsState": {
+        "enum": [
+          "seen",
+          "unseen"
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "ContactusSelectDto": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "messageText": {
+            "type": "string",
+            "nullable": true
+          },
+          "subjectText": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactUsState": {
+            "$ref": "#/components/schemas/ContactUsState"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApiResultStatusCode": {
+        "enum": [
+          "Success",
+          "ServerError",
+          "BadRequest",
+          "NotFound",
+          "ListEmpty",
+          "LogicError",
+          "UnAuthorized",
+          "PhoneNotConfirm",
+          "PasswordNotFound",
+          "Registered",
+          "TokenIsExpired"
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "ContactusSelectDtoApiResult": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/ContactusSelectDto"
+          },
+          "isSuccess": {
+            "type": "boolean"
+          },
+          "statusCode": {
+            "$ref": "#/components/schemas/ApiResultStatusCode"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FAQSelectDto": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string",
+            "nullable": true
+          },
+          "answer": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Priority": {
+        "enum": [
+          "Normal",
+          "immediate",
+          "urgent"
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "ApiResult": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean"
+          },
+          "statusCode": {
+            "$ref": "#/components/schemas/ApiResultStatusCode"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TicketState": {
+        "enum": [
+          "OnProgress",
+          "Answerd",
+          "closed"
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "TicketSelectDto": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "subject": {
+            "type": "string",
+            "nullable": true
+          },
+          "ticketState": {
+            "$ref": "#/components/schemas/TicketState"
+          },
+          "priority": {
+            "$ref": "#/components/schemas/Priority"
+          },
+          "trackingCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "desc": {
+            "type": "string",
+            "nullable": true
+          },
+          "applicationUserFullName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdatePhoneNumberDto": {
+        "required": [
+          "phoneNumber",
+          "verifyCode"
+        ],
+        "type": "object",
+        "properties": {
+          "phoneNumber": {
+            "type": "string"
+          },
+          "verifyCode": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "description": "<b>Token only</b> - without Bearer prefix  <b style='color:red'>❤</b>",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:quiz/view/auth/register/pincode_screen.dart';
+import 'package:quiz/controller/auth/auth_controller.dart';
 
 class RegisterScreen extends StatelessWidget {
   final _numberController = TextEditingController();
@@ -111,15 +111,8 @@ class RegisterScreen extends StatelessWidget {
               const SizedBox(),
               InkWell(
                 onTap: () {
-                  Navigator.of(context).push(
-                    PageRouteBuilder(
-                        pageBuilder: (_, __, ___) => PinCodeScreen(),
-                        transitionDuration: const Duration(milliseconds: 500),
-                        transitionsBuilder: (_, a, __, c) => FadeTransition(
-                              opacity: a,
-                              child: c,
-                            )),
-                  );
+                  login(context: context, userName: _numberController.text)
+                      .then((value) {});
                 },
                 child: Container(
                   width: 90,
