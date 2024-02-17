@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz/global.dart';
 import 'package:quiz/provider/drawer_state.dart';
+import 'package:quiz/view/buycoin/buy_coin_screen.dart';
 import 'package:quiz/view/home/quiz/quiz_screen.dart';
 import 'package:quiz/view/profile/profile_screen.dart';
 
@@ -54,22 +55,35 @@ class _MainScreenState extends State<MainScreen> {
               ),
             ],
             centerTitle: true,
-            title: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Image.asset(
-                  'lib/assets/images/coin.png',
-                  width: 25,
-                  height: 25,
-                ),
-                const Text(
-                  '3012',
-                  style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600),
-                )
-              ],
+            title: InkWell(
+              onTap: () {
+                Navigator.of(context).push(
+                  PageRouteBuilder(
+                      pageBuilder: (_, __, ___) => const BuyCoinScreen(),
+                      transitionDuration: const Duration(milliseconds: 500),
+                      transitionsBuilder: (_, a, __, c) => FadeTransition(
+                            opacity: a,
+                            child: c,
+                          )),
+                );
+              },
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset(
+                    'lib/assets/images/coin.png',
+                    width: 25,
+                    height: 25,
+                  ),
+                  const Text(
+                    '3012',
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600),
+                  )
+                ],
+              ),
             ),
             backgroundColor: Colors.transparent,
             elevation: 0,

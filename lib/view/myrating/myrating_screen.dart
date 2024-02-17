@@ -101,7 +101,7 @@ class MyRatingScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               TabBar(
@@ -110,33 +110,32 @@ class MyRatingScreen extends StatelessWidget {
                   dividerColor: Colors.transparent,
                   tabs: [
                     Tab(
-                      text: 'Today',
                       child: Container(
-                        height: 50,
+                        height: 35,
                         width: 100,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
-                            color: Color.fromARGB(255, 204, 118, 217)),
+                            color: const Color.fromARGB(255, 204, 118, 217)),
                       ),
                     ),
                     Tab(
-                      text: 'Today',
                       child: Container(
+                        height: 35,
                         width: 100,
-                        height: 50,
                         decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 204, 118, 217)),
+                            borderRadius: BorderRadius.circular(25),
+                            color: const Color.fromARGB(255, 204, 118, 217)),
                       ),
                     ),
                     Tab(
-                      text: 'Today',
                       child: Container(
+                        height: 35,
                         width: 100,
-                        height: 50,
                         decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 204, 118, 217)),
+                            borderRadius: BorderRadius.circular(25),
+                            color: const Color.fromARGB(255, 204, 118, 217)),
                       ),
-                    )
+                    ),
                   ]),
               const SizedBox(
                 height: 150,

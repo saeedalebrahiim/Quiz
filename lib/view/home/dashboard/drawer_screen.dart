@@ -3,8 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:quiz/global.dart';
 import 'package:quiz/provider/drawer_state.dart';
 import 'package:quiz/view/faq/faq_screen.dart';
+import 'package:quiz/view/help/help_screen.dart';
 import 'package:quiz/view/myrating/myrating_screen.dart';
 import 'package:quiz/view/profile/profile_screen.dart';
+import 'package:quiz/view/rules/rules_screen.dart';
 
 class DrawerScreen extends StatefulWidget {
   const DrawerScreen({super.key});
@@ -218,7 +220,20 @@ class _DrawerScreenState extends State<DrawerScreen> {
                         height: 20,
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(
+                            PageRouteBuilder(
+                                pageBuilder: (_, __, ___) =>
+                                    const RulesScreen(),
+                                transitionDuration:
+                                    const Duration(milliseconds: 500),
+                                transitionsBuilder: (_, a, __, c) =>
+                                    FadeTransition(
+                                      opacity: a,
+                                      child: c,
+                                    )),
+                          );
+                        },
                         child: const Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -241,7 +256,19 @@ class _DrawerScreenState extends State<DrawerScreen> {
                         height: 20,
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(
+                            PageRouteBuilder(
+                                pageBuilder: (_, __, ___) => const HelpScreen(),
+                                transitionDuration:
+                                    const Duration(milliseconds: 500),
+                                transitionsBuilder: (_, a, __, c) =>
+                                    FadeTransition(
+                                      opacity: a,
+                                      child: c,
+                                    )),
+                          );
+                        },
                         child: const Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [

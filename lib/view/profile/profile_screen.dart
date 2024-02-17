@@ -239,6 +239,32 @@ class ProfileScreen extends StatelessWidget {
                         image: AssetImage('lib/assets/images/save.png'),
                         fit: BoxFit.fill)),
               ),
+              const SizedBox(
+                height: 25,
+              ),
+              const SizedBox(
+                width: 200,
+                child: Divider(
+                  color: Colors.red,
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              InkWell(
+                onTap: () {},
+                child: Container(
+                  width: 100,
+                  height: 34,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('lib/assets/images/logout.png'),
+                          fit: BoxFit.fill)),
+                ),
+              ),
+              const SizedBox(
+                height: 100,
+              ),
             ],
           ),
         ),

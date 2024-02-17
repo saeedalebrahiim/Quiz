@@ -38,8 +38,8 @@ class FaqScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 15),
                     child: Text(
                       'Quiz FAQ',
                       style: TextStyle(
@@ -48,12 +48,12 @@ class FaqScreen extends StatelessWidget {
                           fontSize: 18),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 65,
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 120,
               ),
               Padding(
@@ -66,15 +66,15 @@ class FaqScreen extends StatelessWidget {
                       Container(
                         width: 45,
                         height: 45,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             image: DecorationImage(
                                 image: AssetImage(
                                     'lib/assets/images/faqsticker.png'))),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 20,
                       ),
-                      Text(
+                      const Text(
                         'What is Quiz?',
                         style: TextStyle(color: Colors.white),
                       )
@@ -82,7 +82,7 @@ class FaqScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Padding(
@@ -95,15 +95,15 @@ class FaqScreen extends StatelessWidget {
                       Container(
                         width: 45,
                         height: 45,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             image: DecorationImage(
                                 image: AssetImage(
                                     'lib/assets/images/faqsticker.png'))),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 20,
                       ),
-                      Text(
+                      const Text(
                         'Terms of receiving money?',
                         style: TextStyle(color: Colors.white),
                       )
@@ -111,7 +111,7 @@ class FaqScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 260,
               ),
               Center(
@@ -120,7 +120,7 @@ class FaqScreen extends StatelessWidget {
                   child: Container(
                     width: 250,
                     height: 50,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         image: DecorationImage(
                             image: AssetImage('lib/assets/images/faqbtn.png'),
                             fit: BoxFit.fill)),
