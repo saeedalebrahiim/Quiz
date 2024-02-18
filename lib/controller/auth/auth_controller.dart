@@ -1,3 +1,4 @@
+import 'package:chopper/chopper.dart';
 import 'package:flutter/material.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
@@ -41,7 +42,8 @@ class AuthController {
 
   static Future<void> register(
       {required String userName, required BuildContext context}) async {
-    final api = Quiz.create(interceptors: [OrginIndicator()]);
+    final api = Quiz.create(
+        interceptors: [OrginIndicator(), AcceptIndicator(), OrginIndicator()]);
     try {
       final postResult = await api.apiV1AuthRegisterPost(
           body: AuthDto(userName: userName, autoCode: ""));
