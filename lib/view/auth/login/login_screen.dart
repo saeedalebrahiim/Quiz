@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:quiz/controller/auth/auth_controller.dart';
 import 'package:quiz/view/auth/login/forgetpw_screen.dart';
 import 'package:quiz/view/auth/register/register_screen.dart';
-import 'package:quiz/view/home/dashboard/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -69,7 +68,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 45,
                     child: TextFormField(
                         controller: _numberController,
+                        maxLength: 10,
                         decoration: InputDecoration(
+                            counterText: "",
                             prefixIcon: Padding(
                               padding: const EdgeInsets.only(right: 10),
                               child: Container(

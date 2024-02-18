@@ -1,10 +1,8 @@
-import 'package:chopper/chopper.dart';
 import 'package:flutter/material.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'package:quiz/model/api/swagger/generated/quiz.swagger.dart';
 import 'package:quiz/services/headers.dart';
-import 'package:quiz/view/auth/register/pincode_screen.dart';
 import 'package:quiz/view/home/dashboard/home_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -17,7 +15,7 @@ class AuthController {
         Quiz.create(interceptors: [MultipartTypeIndicator(), OrginIndicator()]);
     try {
       final postResult = await api.apiV1AuthTokenPost(
-          username: userName, password: password, userRole: UsersRole.user);
+          username: userName, password: password, userRole: 2);
       print(postResult);
       if (postResult.isSuccessful == true) {
         //save token

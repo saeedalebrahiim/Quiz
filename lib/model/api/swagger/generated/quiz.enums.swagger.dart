@@ -1,14 +1,13 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:collection/collection.dart';
 
 enum UsersRole {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
 
   @JsonValue(admin)
-  admin(0),
+  admin(1),
   @JsonValue(user)
-  user(1);
+  user(2);
 
   final int? value;
 
@@ -20,9 +19,9 @@ enum ContactUsState {
   swaggerGeneratedUnknown(null),
 
   @JsonValue(seen)
-  seen(0),
+  seen(1),
   @JsonValue(unseen)
-  unseen(1);
+  unseen(2);
 
   final int? value;
 
@@ -34,27 +33,27 @@ enum ApiResultStatusCode {
   swaggerGeneratedUnknown(null),
 
   @JsonValue(success)
-  success(0),
+  success(1),
   @JsonValue(servererror)
-  servererror(1),
+  servererror(2),
   @JsonValue(badrequest)
-  badrequest(2),
+  badrequest(3),
   @JsonValue(notfound)
-  notfound(3),
+  notfound(4),
   @JsonValue(listempty)
-  listempty(4),
+  listempty(5),
   @JsonValue(logicerror)
-  logicerror(5),
+  logicerror(6),
   @JsonValue(unauthorized)
-  unauthorized(6),
+  unauthorized(7),
   @JsonValue(phonenotconfirm)
-  phonenotconfirm(7),
+  phonenotconfirm(8),
   @JsonValue(passwordnotfound)
-  passwordnotfound(8),
+  passwordnotfound(9),
   @JsonValue(registered)
-  registered(9),
+  registered(10),
   @JsonValue(tokenisexpired)
-  tokenisexpired(10);
+  tokenisexpired(11);
 
   final int? value;
 
@@ -66,11 +65,11 @@ enum Priority {
   swaggerGeneratedUnknown(null),
 
   @JsonValue(normal)
-  normal(0),
+  normal(1),
   @JsonValue(immediate)
-  immediate(1),
+  immediate(2),
   @JsonValue(urgent)
-  urgent(2);
+  urgent(3);
 
   final int? value;
 
@@ -82,11 +81,11 @@ enum TicketState {
   swaggerGeneratedUnknown(null),
 
   @JsonValue(onprogress)
-  onprogress(0),
+  onprogress(1),
   @JsonValue(answerd)
-  answerd(1),
+  answerd(2),
   @JsonValue(closed)
-  closed(2);
+  closed(3);
 
   final int? value;
 
