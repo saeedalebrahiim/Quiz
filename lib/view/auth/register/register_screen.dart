@@ -111,8 +111,10 @@ class RegisterScreen extends StatelessWidget {
               const SizedBox(),
               InkWell(
                 onTap: () {
-                  login(context: context, userName: _numberController.text)
-                      .then((value) {});
+                  // login(context: context, userName: _numberController.text)
+                  //     .then((value) {});
+                  String number = "+90" + _numberController.text;
+                  AuthController.register(userName: number, context: context);
                 },
                 child: Container(
                   width: 90,

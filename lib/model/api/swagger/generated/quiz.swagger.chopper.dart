@@ -28,8 +28,7 @@ final class _$Quiz extends Quiz {
     String? clientId,
     String? clientSecret,
   }) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/Token');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/Token');
     final List<PartValue> $parts = <PartValue>[
       PartValue<String?>(
         'grant_type',
@@ -76,8 +75,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1AuthRegisterPost({required AuthDto? body}) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/Register');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/Register');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -91,8 +89,7 @@ final class _$Quiz extends Quiz {
   @override
   Future<Response<dynamic>> _apiV1AuthAccountVerificationPost(
       {required AuthConfirmDto? body}) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/AccountVerification');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/AccountVerification');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -108,8 +105,7 @@ final class _$Quiz extends Quiz {
     required String? password,
     required String? confirmPassword,
   }) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/SelectPassword');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/SelectPassword');
     final List<PartValue> $parts = <PartValue>[
       PartValue<String?>(
         'Password',
@@ -132,8 +128,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1AuthSendCodePost({required AuthDto? body}) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/SendCode');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/SendCode');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -147,8 +142,7 @@ final class _$Quiz extends Quiz {
   @override
   Future<Response<dynamic>> _apiV1AuthOAuthPost(
       {required AuthConfirmDto? body}) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/OAuth');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/OAuth');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -164,8 +158,7 @@ final class _$Quiz extends Quiz {
     required String? userName,
     String? autoCode,
   }) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/ForgotPassword');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/ForgotPassword');
     final List<PartValue> $parts = <PartValue>[
       PartValue<String?>(
         'UserName',
@@ -193,8 +186,7 @@ final class _$Quiz extends Quiz {
     required String? password,
     required String? confirmPassword,
   }) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/ChangePassword');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/ChangePassword');
     final List<PartValue> $parts = <PartValue>[
       PartValue<String?>(
         'UserName',
@@ -225,8 +217,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1AuthIsAuthenticatedGet() {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/IsAuthenticated');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/IsAuthenticated');
     final Request $request = Request(
       'GET',
       $url,
@@ -237,8 +228,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1BanerGetBannerGet() {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Baner/GetBanner');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Baner/GetBanner');
     final Request $request = Request(
       'GET',
       $url,
@@ -256,8 +246,7 @@ final class _$Quiz extends Quiz {
     String? subjectText,
     required int? id,
   }) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/ContactUs');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/ContactUs');
     final List<PartValue> $parts = <PartValue>[
       PartValue<String?>(
         'FullName',
@@ -300,8 +289,7 @@ final class _$Quiz extends Quiz {
     int? pageNumber,
     int? pageSize,
   }) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/FAQ/PagedList');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/FAQ/PagedList');
     final Map<String, dynamic> $params = <String, dynamic>{
       'PageNumber': pageNumber,
       'PageSize': pageSize,
@@ -318,8 +306,7 @@ final class _$Quiz extends Quiz {
   @override
   Future<Response<dynamic>> _apiV1ReportQuestionSubmitReportPost(
       {int? questionId}) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/ReportQuestion/SubmitReport');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/ReportQuestion/SubmitReport');
     final Map<String, dynamic> $params = <String, dynamic>{
       'QuestionId': questionId
     };
@@ -334,8 +321,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1ScoreGetRewardListGet() {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetRewardList');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetRewardList');
     final Request $request = Request(
       'GET',
       $url,
@@ -346,8 +332,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1ScoreGetDailyRewardListGet() {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetDailyRewardList');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetDailyRewardList');
     final Request $request = Request(
       'GET',
       $url,
@@ -358,8 +343,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1ScoreGetUserChangeScoreDayListGet() {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetUserChangeScoreDayList');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetUserChangeScoreDayList');
     final Request $request = Request(
       'GET',
       $url,
@@ -370,8 +354,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1ScoreGetUserChangeScoreDayListV0Get() {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetUserChangeScoreDayList_V0');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetUserChangeScoreDayList_V0');
     final Request $request = Request(
       'GET',
       $url,
@@ -382,8 +365,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1ScoreGetUserChangeScoreDayGet() {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetUserChangeScoreDay');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetUserChangeScoreDay');
     final Request $request = Request(
       'GET',
       $url,
@@ -394,8 +376,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1ScoreGetUserChangeScoreMonthListGet() {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetUserChangeScoreMonthList');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetUserChangeScoreMonthList');
     final Request $request = Request(
       'GET',
       $url,
@@ -406,8 +387,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1ScoreUserRankingisLowerThan50Get() {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/UserRankingisLowerThan50');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/UserRankingisLowerThan50');
     final Request $request = Request(
       'GET',
       $url,
@@ -418,8 +398,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1ScoreGetUserRankGet() {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetUserRank');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetUserRank');
     final Request $request = Request(
       'GET',
       $url,
@@ -430,8 +409,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1ScoreAddScorePost({bool? isWatchAds}) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/AddScore');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/AddScore');
     final Map<String, dynamic> $params = <String, dynamic>{
       'IsWatchAds': isWatchAds
     };
@@ -449,8 +427,7 @@ final class _$Quiz extends Quiz {
     DateTime? dateTime,
     int? count,
   }) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/MaxScoreOfMonthScore');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/MaxScoreOfMonthScore');
     final Map<String, dynamic> $params = <String, dynamic>{
       'dateTime': dateTime,
       'count': count,
@@ -467,8 +444,7 @@ final class _$Quiz extends Quiz {
   @override
   Future<Response<dynamic>> _apiV1ScoreGetMyScoreInMonthGet(
       {DateTime? dateTime}) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetMyScoreInMonth');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetMyScoreInMonth');
     final Map<String, dynamic> $params = <String, dynamic>{
       'dateTime': dateTime
     };
@@ -483,8 +459,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1ScoreGetUserBalanceGet() {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetUserBalance');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetUserBalance');
     final Request $request = Request(
       'GET',
       $url,
@@ -496,8 +471,7 @@ final class _$Quiz extends Quiz {
   @override
   Future<Response<dynamic>> _apiV1ScoreGetMyMonthStateGet(
       {DateTime? dateTime}) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetMyMonthState');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetMyMonthState');
     final Map<String, dynamic> $params = <String, dynamic>{
       'dateTime': dateTime
     };
@@ -512,8 +486,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1SettingGetBanksGet() {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Setting/GetBanks');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Setting/GetBanks');
     final Request $request = Request(
       'GET',
       $url,
@@ -524,8 +497,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1SettingGetSettingGet() {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Setting/GetSetting');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Setting/GetSetting');
     final Request $request = Request(
       'GET',
       $url,
@@ -536,8 +508,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1StartQuizSetStTaGet({String? key}) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/setStTa');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/setStTa');
     final Map<String, dynamic> $params = <String, dynamic>{'key': key};
     final Request $request = Request(
       'GET',
@@ -553,8 +524,7 @@ final class _$Quiz extends Quiz {
     String? key,
     int? cou,
   }) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/deUDQQ');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/deUDQQ');
     final Map<String, dynamic> $params = <String, dynamic>{
       'key': key,
       'cou': cou,
@@ -573,8 +543,7 @@ final class _$Quiz extends Quiz {
     String? key,
     int? cou,
   }) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/deUQQ');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/deUQQ');
     final Map<String, dynamic> $params = <String, dynamic>{
       'key': key,
       'cou': cou,
@@ -590,8 +559,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1StartQuizSetStTa11Get({String? key}) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/setStTa11');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/setStTa11');
     final Map<String, dynamic> $params = <String, dynamic>{'key': key};
     final Request $request = Request(
       'GET',
@@ -604,8 +572,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1StartQuizStartQuizGet() {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/StartQuiz');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/StartQuiz');
     final Request $request = Request(
       'GET',
       $url,
@@ -621,8 +588,7 @@ final class _$Quiz extends Quiz {
     int? questionId,
     int? selectedAnswer,
   }) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/AddAnswer');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/AddAnswer');
     final Map<String, dynamic> $params = <String, dynamic>{
       'UserQuizId': userQuizId,
       'UserDQuizId': userDQuizId,
@@ -641,8 +607,7 @@ final class _$Quiz extends Quiz {
   @override
   Future<Response<dynamic>> _apiV1StartQuizShowPercentSelectedAnswerGet(
       {int? questionId}) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/ShowPercentSelectedAnswer');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/ShowPercentSelectedAnswer');
     final Map<String, dynamic> $params = <String, dynamic>{
       'QuestionId': questionId
     };
@@ -658,8 +623,7 @@ final class _$Quiz extends Quiz {
   @override
   Future<Response<dynamic>> _apiV1StartQuizShowWrongAnswerGet(
       {int? questionId}) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/ShowWrongAnswer');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/ShowWrongAnswer');
     final Map<String, dynamic> $params = <String, dynamic>{
       'QuestionId': questionId
     };
@@ -674,8 +638,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1StartQuizTodayMyQuizStateGet() {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/TodayMyQuizState');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/TodayMyQuizState');
     final Request $request = Request(
       'GET',
       $url,
@@ -686,8 +649,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1StartQuizMonthMyQuizStateGet() {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/MonthMyQuizState');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/MonthMyQuizState');
     final Request $request = Request(
       'GET',
       $url,
@@ -701,8 +663,7 @@ final class _$Quiz extends Quiz {
     DateTime? dateTime,
     int? currectAnswer,
   }) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/ShowUserByAnswerCount');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/ShowUserByAnswerCount');
     final Map<String, dynamic> $params = <String, dynamic>{
       'dateTime': dateTime,
       'CurrectAnswer': currectAnswer,
@@ -719,8 +680,7 @@ final class _$Quiz extends Quiz {
   @override
   Future<Response<dynamic>> _apiV1StartQuizShowUserAnswerCountGet(
       {DateTime? dateTime}) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/ShowUserAnswerCount');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/ShowUserAnswerCount');
     final Map<String, dynamic> $params = <String, dynamic>{
       'dateTime': dateTime
     };
@@ -736,8 +696,7 @@ final class _$Quiz extends Quiz {
   @override
   Future<Response<dynamic>> _apiV1StartQuizShowUserWrongAnserCountGet(
       {DateTime? dateTime}) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/ShowUserWrongAnserCount');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/ShowUserWrongAnserCount');
     final Map<String, dynamic> $params = <String, dynamic>{
       'dateTime': dateTime
     };
@@ -753,8 +712,7 @@ final class _$Quiz extends Quiz {
   @override
   Future<Response<dynamic>> _apiV1StartQuizViewUserQuizReportByQuizIdGet(
       {int? quizId}) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/ViewUserQuizReportByQuizId');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/ViewUserQuizReportByQuizId');
     final Map<String, dynamic> $params = <String, dynamic>{'QuizId': quizId};
     final Request $request = Request(
       'GET',
@@ -768,8 +726,7 @@ final class _$Quiz extends Quiz {
   @override
   Future<Response<dynamic>> _apiV1StartQuizAnsweredCountInMonthListGet(
       {DateTime? selecteddatetime}) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/AnsweredCountInMonthList');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/AnsweredCountInMonthList');
     final Map<String, dynamic> $params = <String, dynamic>{
       'selecteddatetime': selecteddatetime
     };
@@ -784,8 +741,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1TicketTestUserGet() {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/testUser');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/testUser');
     final Request $request = Request(
       'GET',
       $url,
@@ -801,8 +757,7 @@ final class _$Quiz extends Quiz {
     required int? id,
     required String? desc,
   }) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/testUserw');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/testUserw');
     final List<PartValue> $parts = <PartValue>[
       PartValue<String?>(
         'Subject',
@@ -838,8 +793,7 @@ final class _$Quiz extends Quiz {
     required int? id,
     required String? desc,
   }) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/CreateTicketByUser');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/CreateTicketByUser');
     final List<PartValue> $parts = <PartValue>[
       PartValue<String?>(
         'Subject',
@@ -874,8 +828,7 @@ final class _$Quiz extends Quiz {
     required String? desc,
     required int? id,
   }) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/AddTicketAnswerByUser');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/AddTicketAnswerByUser');
     final Map<String, dynamic> $params = <String, dynamic>{
       'ticketId': ticketId
     };
@@ -906,8 +859,7 @@ final class _$Quiz extends Quiz {
     int? pageNumber,
     int? pageSize,
   }) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/UserTicketList');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/UserTicketList');
     final Map<String, dynamic> $params = <String, dynamic>{
       'ticketState': ticketState,
       'PageNumber': pageNumber,
@@ -924,8 +876,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1TicketTicketDetailGet({int? ticketId}) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/TicketDetail');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/TicketDetail');
     final Map<String, dynamic> $params = <String, dynamic>{
       'ticketId': ticketId
     };
@@ -941,8 +892,7 @@ final class _$Quiz extends Quiz {
   @override
   Future<Response<dynamic>> _apiV1TicketSeenTicketPost(
       {required List<int>? body}) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/SeenTicket');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/SeenTicket');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -955,8 +905,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1TicketUnreadedTicketCountPost() {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/UnreadedTicketCount');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/UnreadedTicketCount');
     final Request $request = Request(
       'POST',
       $url,
@@ -967,8 +916,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1UserManagerViewProfileGet() {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/ViewProfile');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/ViewProfile');
     final Request $request = Request(
       'GET',
       $url,
@@ -979,8 +927,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1UserManagerAddScorePost({int? count}) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/AddScore');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/AddScore');
     final Map<String, dynamic> $params = <String, dynamic>{'count': count};
     final Request $request = Request(
       'POST',
@@ -999,8 +946,7 @@ final class _$Quiz extends Quiz {
     int? bankId,
     String? iban,
   }) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/EditProfile');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/EditProfile');
     final List<PartValue> $parts = <PartValue>[
       PartValue<String?>(
         'FullName',
@@ -1035,8 +981,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1UserManagerBlockUserGet() {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/BlockUser');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/BlockUser');
     final Request $request = Request(
       'GET',
       $url,
@@ -1050,8 +995,7 @@ final class _$Quiz extends Quiz {
     String? newPhonenumber,
     String? autoCode,
   }) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/UpdatePhoneNumber');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/UpdatePhoneNumber');
     final Map<String, dynamic> $params = <String, dynamic>{
       'NewPhonenumber': newPhonenumber,
       'auto_code': autoCode,
@@ -1068,8 +1012,7 @@ final class _$Quiz extends Quiz {
   @override
   Future<Response<dynamic>> _apiV1UserManagerUpdatePhoneNumberPost(
       {required UpdatePhoneNumberDto? body}) {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/UpdatePhoneNumber');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/UpdatePhoneNumber');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -1082,8 +1025,7 @@ final class _$Quiz extends Quiz {
 
   @override
   Future<Response<dynamic>> _apiV1UserManagerRemoveUserProfilePost() {
-    final Uri $url = Uri.parse(
-        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/RemoveUserProfile');
+    final Uri $url = Uri.parse('https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/RemoveUserProfile');
     final Request $request = Request(
       'POST',
       $url,

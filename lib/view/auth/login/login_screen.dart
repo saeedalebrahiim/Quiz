@@ -1,5 +1,6 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz/controller/auth/auth_controller.dart';
 import 'package:quiz/view/auth/login/forgetpw_screen.dart';
 import 'package:quiz/view/auth/register/register_screen.dart';
 import 'package:quiz/view/home/dashboard/home_screen.dart';
@@ -79,9 +80,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                   showFlagDialog: true,
                                   showFlag: false,
                                   onChanged: print,
-                                  initialSelection: 'IT',
-                                  favorite: ['+39', 'FR'],
-                                  countryFilter: ['IT', 'FR'],
+                                  initialSelection: 'TR',
+                                  favorite: ['+90', 'TR'],
+                                  countryFilter: ['IT', 'FR', 'TR'],
                                 ),
                               ),
                             ),
@@ -218,15 +219,23 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(),
                 InkWell(
                   onTap: () {
-                    Navigator.of(context).push(
-                      PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => const HomeScreen(),
-                          transitionDuration: const Duration(milliseconds: 500),
-                          transitionsBuilder: (_, a, __, c) => FadeTransition(
-                                opacity: a,
-                                child: c,
-                              )),
-                    );
+                    String userName = "+90" + _numberController.text;
+                    print(userName);
+                    print(_userPasswordController.text);
+
+                    AuthController.login(
+                        userName: userName,
+                        password: _userPasswordController.text,
+                        context: context);
+                    // Navigator.of(context).push(
+                    //   PageRouteBuilder(
+                    //       pageBuilder: (_, __, ___) => const HomeScreen(),
+                    //       transitionDuration: const Duration(milliseconds: 500),
+                    //       transitionsBuilder: (_, a, __, c) => FadeTransition(
+                    //             opacity: a,
+                    //             child: c,
+                    //           )),
+                    // );
                   },
                   child: Container(
                     width: 90,
