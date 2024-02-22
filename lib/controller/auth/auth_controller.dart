@@ -125,7 +125,9 @@ class AuthController {
       print(e);
     }
   }
+  ///////////////
 }
+
 
 // Future<dynamic> login({String? userName, required BuildContext context}) async {
 //   final api = Quiz.create();

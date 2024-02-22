@@ -15,6 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _userPasswordController = TextEditingController();
   final _numberController = TextEditingController();
   bool _passwordVisible = false;
+  CountryCode crCode = CountryCode(code: "+90", name: "TR");
 
   @override
   Widget build(BuildContext context) {
@@ -223,7 +224,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(),
                 InkWell(
                   onTap: () {
-                    String userName = "+90" + _numberController.text;
+                    String userName =
+                        crCode!.code.toString() + _numberController.text;
                     print(userName);
                     print(_userPasswordController.text);
 
