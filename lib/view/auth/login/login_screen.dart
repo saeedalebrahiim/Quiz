@@ -15,6 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _userPasswordController = TextEditingController();
   final _numberController = TextEditingController();
   bool _passwordVisible = false;
+  CountryCode crCode = CountryCode(code: "+90", name: "TR");
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: TextFormField(
                         controller: _numberController,
                         maxLength: 10,
+                        
                         decoration: InputDecoration(
                             counterText: "",
                             prefixIcon: Padding(
@@ -77,10 +79,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                 decoration: const BoxDecoration(
                                     border:
                                         Border(right: BorderSide(width: 0.2))),
-                                child: const CountryCodePicker(
+                                child: CountryCodePicker(
                                   showFlagDialog: true,
                                   showFlag: false,
-                                  onChanged: print,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      crCode = value;
+                                    });
+                                  },
                                   initialSelection: 'TR',
                                   favorite: ['+90', 'TR'],
                                   countryFilter: ['IT', 'FR', 'TR'],
@@ -220,7 +226,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(),
                 InkWell(
                   onTap: () {
-                    String userName = "+90" + _numberController.text;
+                    String userName =
+                        crCode!.code.toString() + _numberController.text;
                     print(userName);
                     print(_userPasswordController.text);
 

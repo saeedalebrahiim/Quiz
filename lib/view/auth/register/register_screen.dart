@@ -2,9 +2,16 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz/controller/auth/auth_controller.dart';
 
-class RegisterScreen extends StatelessWidget {
-  final _numberController = TextEditingController();
+class RegisterScreen extends StatefulWidget {
   RegisterScreen({super.key});
+
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  final _numberController = TextEditingController();
+  CountryCode crCode = CountryCode(code: "+90", name: "TR");
 
   @override
   Widget build(BuildContext context) {
@@ -57,20 +64,26 @@ class RegisterScreen extends StatelessWidget {
                   height: 45,
                   child: TextFormField(
                       controller: _numberController,
+                      maxLength: 10,
                       decoration: InputDecoration(
+                          counterText: "",
                           prefixIcon: Padding(
                             padding: const EdgeInsets.only(right: 10),
                             child: Container(
                               decoration: const BoxDecoration(
                                   border:
                                       Border(right: BorderSide(width: 0.2))),
-                              child: const CountryCodePicker(
+                              child: CountryCodePicker(
                                 showFlagDialog: true,
                                 showFlag: false,
-                                onChanged: print,
-                                initialSelection: 'IT',
-                                favorite: ['+39', 'FR'],
-                                countryFilter: ['IT', 'FR'],
+                                onChanged: (value) {
+                                  setState(() {
+                                    crCode = value;
+                                  });
+                                },
+                                initialSelection: 'TR',
+                                favorite: ['+90', 'TR'],
+                                countryFilter: ['IT', 'FR', 'TR'],
                               ),
                             ),
                           ),
@@ -113,7 +126,8 @@ class RegisterScreen extends StatelessWidget {
                 onTap: () {
                   // login(context: context, userName: _numberController.text)
                   //     .then((value) {});
-                  String number = "+90" + _numberController.text;
+                  String number =
+                      crCode.code.toString() + _numberController.text;
                   AuthController.register(userName: number, context: context);
                 },
                 child: Container(

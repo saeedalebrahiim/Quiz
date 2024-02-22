@@ -3,6 +3,7 @@ import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'package:quiz/model/api/swagger/generated/quiz.swagger.dart';
 import 'package:quiz/services/headers.dart';
+import 'package:quiz/view/auth/register/pincode_screen.dart';
 import 'package:quiz/view/home/dashboard/home_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,8 +12,7 @@ class AuthController {
       {required String userName,
       required String password,
       required BuildContext context}) async {
-    final api =
-        Quiz.create(interceptors: [MultipartTypeIndicator(), OrginIndicator()]);
+    final api = Quiz.create();
     try {
       final postResult = await api.apiV1AuthTokenPost(
           username: userName, password: password, userRole: 2);
@@ -40,8 +40,7 @@ class AuthController {
 
   static Future<void> register(
       {required String userName, required BuildContext context}) async {
-    final api = Quiz.create(
-        interceptors: [OrginIndicator(), AcceptIndicator(), OrginIndicator()]);
+    final api = Quiz.create();
     try {
       final postResult = await api.apiV1AuthRegisterPost(
           body: AuthDto(userName: userName, autoCode: ""));
@@ -49,6 +48,11 @@ class AuthController {
       if (postResult.isSuccessful == true) {
         //save token
         print("hereley no corse");
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => PinCodeScreen(),
+          ),
+        );
       } else {
         //show error message
         QuickAlert.show(
@@ -58,7 +62,37 @@ class AuthController {
       print(e);
     }
   }
+
+  static Future<void> otpRegister(
+      {required String userName,
+      required String verificationCode,
+      required BuildContext context}) async {
+    final api = Quiz.create();
+    try {
+      final postResult = await api.apiV1AuthAccountVerificationPost(
+          body: AuthConfirmDto(
+              userName: userName, verificationCode: verificationCode));
+      print(postResult);
+      if (postResult.isSuccessful == true) {
+        //save token
+        print("hereley no corse");
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => PinCodeScreen(),
+          ),
+        );
+      } else {
+        //show error message
+        QuickAlert.show(
+            context: context, type: QuickAlertType.error, text: "OOPs");
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+  ///////////////
 }
+
 
 // Future<dynamic> login({String? userName, required BuildContext context}) async {
 //   final api = Quiz.create();
