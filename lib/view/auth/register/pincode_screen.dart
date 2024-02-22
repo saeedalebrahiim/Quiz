@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:quiz/components/pinput_widget.dart';
-import 'package:quiz/view/auth/register/register_two_screen.dart';
 
 class PinCodeScreen extends StatelessWidget {
   final _otpController = TextEditingController();
-  PinCodeScreen({super.key});
+  PinCodeScreen({super.key, required this.userName});
+  final String userName;
 
   @override
   Widget build(BuildContext context) {

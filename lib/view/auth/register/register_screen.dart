@@ -20,83 +20,80 @@ class _RegisterScreenState extends State<RegisterScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
-            height: 480,
-            width: 480,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-              image: AssetImage('lib/assets/images/forgetpwbg.png'),
-            )),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                const Row(
-                  children: [
-                    SizedBox(
-                      width: 40,
-                    ),
-                    Text(
-                      'Kayıt',
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-                const Row(
-                  children: [
-                    SizedBox(
-                      width: 40,
-                    ),
-                    Text(
-                      'Telefon numaranızı girin',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: Container(
+              height: MediaQuery.of(context).size.height / 2,
+              width: MediaQuery.of(context).size.width,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                image: AssetImage('lib/assets/images/forgetpwbg.png'),
+              )),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  const Row(
+                    children: [
+                      SizedBox(
+                        width: 40,
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                SizedBox(
-                  width: 240,
-                  height: 45,
-                  child: TextFormField(
-                      controller: _numberController,
-                      maxLength: 10,
-                      decoration: InputDecoration(
-                          counterText: "",
-                          prefixIcon: Padding(
-                            padding: const EdgeInsets.only(right: 10),
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                  border:
-                                      Border(right: BorderSide(width: 0.2))),
-                              child: CountryCodePicker(
-                                showFlagDialog: true,
-                                showFlag: false,
-                                onChanged: (value) {
-                                  setState(() {
-                                    crCode = value;
-                                  });
-                                },
-                                initialSelection: 'TR',
-                                favorite: ['+90', 'TR'],
-                                countryFilter: ['IT', 'FR', 'TR'],
+                      Text(
+                        'Kayıt',
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  const Row(
+                    children: [
+                      SizedBox(
+                        width: 40,
+                      ),
+                      Text(
+                        'Telefon numaranızı girin',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    width: 240,
+                    height: 45,
+                    child: TextFormField(
+                        controller: _numberController,
+                        decoration: InputDecoration(
+                            prefixIcon: Padding(
+                              padding: const EdgeInsets.only(right: 10),
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                    border:
+                                        Border(right: BorderSide(width: 0.2))),
+                                child: const CountryCodePicker(
+                                  showFlagDialog: true,
+                                  showFlag: false,
+                                  onChanged: print,
+                                  initialSelection: 'IT',
+                                  favorite: ['+39', 'FR'],
+                                  countryFilter: ['IT', 'FR'],
+                                ),
                               ),
                             ),
-                          ),
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                              borderRadius: BorderRadius.circular(30)),
-                          filled: true,
-                          fillColor: Colors.white)),
-                ),
-                const SizedBox(
-                  height: 60,
-                )
-              ],
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                                borderRadius: BorderRadius.circular(30)),
+                            filled: true,
+                            fillColor: Colors.white)),
+                  ),
+                  const SizedBox(
+                    height: 60,
+                  )
+                ],
+              ),
             ),
           ),
           const SizedBox(
@@ -126,8 +123,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 onTap: () {
                   // login(context: context, userName: _numberController.text)
                   //     .then((value) {});
-                  String number =
-                      crCode.code.toString() + _numberController.text;
+                  String number = "+98" + _numberController.text;
                   AuthController.register(userName: number, context: context);
                 },
                 child: Container(

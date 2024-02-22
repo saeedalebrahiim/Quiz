@@ -25,157 +25,155 @@ class _LoginScreenState extends State<LoginScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Container(
-              height: 480,
-              width: 480,
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                image: AssetImage('lib/assets/images/forgetpwbg.png'),
-              )),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  const Row(
-                    children: [
-                      SizedBox(
-                        width: 40,
-                      ),
-                      Text(
-                        'Login',
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  const Row(
-                    children: [
-                      SizedBox(
-                        width: 40,
-                      ),
-                      Text(
-                        'Whit Namber',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: Container(
+                height: 500,
+                width: MediaQuery.of(context).size.width,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('lib/assets/images/forgetpwbg.png'),
+                        fit: BoxFit.fill)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    const Row(
+                      children: [
+                        SizedBox(
+                          width: 40,
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  SizedBox(
-                    width: 240,
-                    height: 45,
-                    child: TextFormField(
-                        controller: _numberController,
-                        maxLength: 10,
-                        
-                        decoration: InputDecoration(
-                            counterText: "",
-                            prefixIcon: Padding(
-                              padding: const EdgeInsets.only(right: 10),
-                              child: Container(
-                                decoration: const BoxDecoration(
-                                    border:
-                                        Border(right: BorderSide(width: 0.2))),
-                                child: CountryCodePicker(
-                                  showFlagDialog: true,
-                                  showFlag: false,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      crCode = value;
-                                    });
-                                  },
-                                  initialSelection: 'TR',
-                                  favorite: ['+90', 'TR'],
-                                  countryFilter: ['IT', 'FR', 'TR'],
-                                ),
-                              ),
-                            ),
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(30)),
-                            filled: true,
-                            fillColor: Colors.white)),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  SizedBox(
-                    width: 240,
-                    height: 45,
-                    child: TextFormField(
-                        keyboardType: TextInputType.text,
-                        controller: _userPasswordController,
-                        obscureText: !_passwordVisible,
-                        decoration: InputDecoration(
-                            suffixIcon: InkWell(
-                              onTap: () {
-                                // Update the state i.e. toogle the state of passwordVisible variable
-                                setState(() {
-                                  _passwordVisible = !_passwordVisible;
-                                });
-                              },
-                              child: Container(
-                                width: 1,
-                                height: 1,
-                                decoration: BoxDecoration(
-                                    image: _passwordVisible
-                                        ? const DecorationImage(
-                                            image: AssetImage(
-                                                'lib/assets/images/show.png'),
-                                          )
-                                        : const DecorationImage(
-                                            image: AssetImage(
-                                                'lib/assets/images/hide.png'),
-                                          )),
-                              ),
-                            ),
-                            hintText: 'Password',
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(30)),
-                            filled: true,
-                            fillColor: Colors.white)),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    children: [
-                      const SizedBox(
-                        width: 48,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            PageRouteBuilder(
-                                pageBuilder: (_, __, ___) => ForgetPwScreen(),
-                                transitionDuration:
-                                    const Duration(milliseconds: 500),
-                                transitionsBuilder: (_, a, __, c) =>
-                                    FadeTransition(
-                                      opacity: a,
-                                      child: c,
-                                    )),
-                          );
-                        },
-                        child: const Text(
-                          'Forget Password ?',
+                        Text(
+                          'Login',
                           style: TextStyle(
-                            fontWeight: FontWeight.w400,
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    const Row(
+                      children: [
+                        SizedBox(
+                          width: 40,
+                        ),
+                        Text(
+                          'Whit Namber',
+                          style: TextStyle(
                             fontSize: 12,
-                            color: Colors.blue,
+                            color: Colors.grey,
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 45,
-                  )
-                ],
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    SizedBox(
+                      width: 240,
+                      height: 45,
+                      child: TextFormField(
+                          controller: _numberController,
+                          maxLength: 10,
+                          decoration: InputDecoration(
+                              counterText: "",
+                              prefixIcon: Padding(
+                                padding: const EdgeInsets.only(right: 10),
+                                child: Container(
+                                  decoration: const BoxDecoration(
+                                      border: Border(
+                                          right: BorderSide(width: 0.2))),
+                                  child: const CountryCodePicker(
+                                    showFlagDialog: true,
+                                    showFlag: false,
+                                    onChanged: print,
+                                    initialSelection: 'TR',
+                                    favorite: ['+90', 'TR'],
+                                    countryFilter: ['IT', 'FR', 'TR'],
+                                  ),
+                                ),
+                              ),
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(30)),
+                              filled: true,
+                              fillColor: Colors.white)),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                      width: 240,
+                      height: 45,
+                      child: TextFormField(
+                          keyboardType: TextInputType.text,
+                          controller: _userPasswordController,
+                          obscureText: !_passwordVisible,
+                          decoration: InputDecoration(
+                              suffixIcon: InkWell(
+                                onTap: () {
+                                  // Update the state i.e. toogle the state of passwordVisible variable
+                                  setState(() {
+                                    _passwordVisible = !_passwordVisible;
+                                  });
+                                },
+                                child: Container(
+                                  width: 1,
+                                  height: 1,
+                                  decoration: BoxDecoration(
+                                      image: _passwordVisible
+                                          ? const DecorationImage(
+                                              image: AssetImage(
+                                                  'lib/assets/images/show.png'),
+                                            )
+                                          : const DecorationImage(
+                                              image: AssetImage(
+                                                  'lib/assets/images/hide.png'),
+                                            )),
+                                ),
+                              ),
+                              hintText: 'Password',
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(30)),
+                              filled: true,
+                              fillColor: Colors.white)),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      children: [
+                        const SizedBox(
+                          width: 48,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              PageRouteBuilder(
+                                  pageBuilder: (_, __, ___) => ForgetPwScreen(),
+                                  transitionDuration:
+                                      const Duration(milliseconds: 500),
+                                  transitionsBuilder: (_, a, __, c) =>
+                                      FadeTransition(
+                                        opacity: a,
+                                        child: c,
+                                      )),
+                            );
+                          },
+                          child: const Text(
+                            'Forget Password ?',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12,
+                              color: Colors.blue,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 45,
+                    )
+                  ],
+                ),
               ),
             ),
             const SizedBox(
