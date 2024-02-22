@@ -16,7 +16,7 @@ class ForgetPwScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Container(
-              height: 500,
+              height: MediaQuery.of(context).size.height / 1.5,
               width: MediaQuery.of(context).size.width,
               decoration: const BoxDecoration(
                   image: DecorationImage(

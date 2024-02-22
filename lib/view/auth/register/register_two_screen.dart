@@ -24,103 +24,106 @@ class _RegisterStepTwoScreenState extends State<RegisterStepTwoScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Container(
-              height: 480,
-              width: 480,
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                image: AssetImage('lib/assets/images/forgetpwbg.png'),
-              )),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  const Row(
-                    children: [
-                      SizedBox(
-                        width: 40,
-                      ),
-                      Text(
-                        'Signup',
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  const Row(
-                    children: [
-                      SizedBox(
-                        width: 40,
-                      ),
-                      Text(
-                        'Tayp Password',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: Container(
+                height: 480,
+                width: MediaQuery.of(context).size.width,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('lib/assets/images/forgetpwbg.png'),
+                        fit: BoxFit.fill)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    const Row(
+                      children: [
+                        SizedBox(
+                          width: 40,
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  SizedBox(
-                    width: 240,
-                    height: 45,
-                    child: TextFormField(
-                        keyboardType: TextInputType.text,
-                        controller: _userPasswordController,
-                        obscureText: !_passwordVisible,
-                        decoration: InputDecoration(
-                            suffixIcon: InkWell(
-                              onTap: () {
-                                // Update the state i.e. toogle the state of passwordVisible variable
-                                setState(() {
-                                  _passwordVisible = !_passwordVisible;
-                                });
-                              },
-                              child: Container(
-                                width: 1,
-                                height: 1,
-                                decoration: BoxDecoration(
-                                    image: _passwordVisible
-                                        ? const DecorationImage(
-                                            image: AssetImage(
-                                                'lib/assets/images/show.png'),
-                                          )
-                                        : const DecorationImage(
-                                            image: AssetImage(
-                                                'lib/assets/images/hide.png'),
-                                          )),
+                        Text(
+                          'Signup',
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    const Row(
+                      children: [
+                        SizedBox(
+                          width: 40,
+                        ),
+                        Text(
+                          'Tayp Password',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    SizedBox(
+                      width: 240,
+                      height: 45,
+                      child: TextFormField(
+                          keyboardType: TextInputType.text,
+                          controller: _userPasswordController,
+                          obscureText: !_passwordVisible,
+                          decoration: InputDecoration(
+                              suffixIcon: InkWell(
+                                onTap: () {
+                                  // Update the state i.e. toogle the state of passwordVisible variable
+                                  setState(() {
+                                    _passwordVisible = !_passwordVisible;
+                                  });
+                                },
+                                child: Container(
+                                  width: 1,
+                                  height: 1,
+                                  decoration: BoxDecoration(
+                                      image: _passwordVisible
+                                          ? const DecorationImage(
+                                              image: AssetImage(
+                                                  'lib/assets/images/show.png'),
+                                            )
+                                          : const DecorationImage(
+                                              image: AssetImage(
+                                                  'lib/assets/images/hide.png'),
+                                            )),
+                                ),
                               ),
-                            ),
-                            hintText: 'Password',
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(30)),
-                            filled: true,
-                            fillColor: Colors.white)),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  SizedBox(
-                    width: 240,
-                    height: 45,
-                    child: TextFormField(
-                        obscureText: true,
-                        controller: _confirmPasswordController,
-                        decoration: InputDecoration(
-                            hintText: 'Comfrem Password',
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(30)),
-                            filled: true,
-                            fillColor: Colors.white)),
-                  ),
-                  const SizedBox(
-                    height: 60,
-                  )
-                ],
+                              hintText: 'Password',
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(30)),
+                              filled: true,
+                              fillColor: Colors.white)),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                      width: 240,
+                      height: 45,
+                      child: TextFormField(
+                          obscureText: true,
+                          controller: _confirmPasswordController,
+                          decoration: InputDecoration(
+                              hintText: 'Comfrem Password',
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(30)),
+                              filled: true,
+                              fillColor: Colors.white)),
+                    ),
+                    const SizedBox(
+                      height: 60,
+                    )
+                  ],
+                ),
               ),
             ),
             const SizedBox(
@@ -151,8 +154,8 @@ class _RegisterStepTwoScreenState extends State<RegisterStepTwoScreen> {
                     if (_userPasswordController.text !=
                         _confirmPasswordController.text) {
                       showToastWidget(
-                        position:
-                            const StyledToastPosition(align: Alignment.bottomCenter),
+                        position: const StyledToastPosition(
+                            align: Alignment.bottomCenter),
                         Container(
                           width: 250,
                           height: 55,

@@ -147,7 +147,7 @@ class _MainScreenState extends State<MainScreen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       const SizedBox(
-                        height: 30,
+                        height: 50,
                       ),
                       Row(
                         children: [
@@ -175,7 +175,7 @@ class _MainScreenState extends State<MainScreen> {
                         padding: const EdgeInsets.symmetric(horizontal: 30),
                         child: Container(
                           width: 300,
-                          height: 105,
+                          height: 130,
                           decoration: BoxDecoration(
                               image: const DecorationImage(
                                   image: AssetImage(
@@ -185,7 +185,7 @@ class _MainScreenState extends State<MainScreen> {
                         ),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 80,
                       ),
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10),
@@ -217,13 +217,13 @@ class _MainScreenState extends State<MainScreen> {
                         ),
                       ),
                       const SizedBox(
-                        height: 40,
+                        height: 80,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30),
                         child: Container(
                           width: 300,
-                          height: 115,
+                          height: 150,
                           decoration: BoxDecoration(
                               image: const DecorationImage(
                                   image: AssetImage(
@@ -297,7 +297,7 @@ class _MainScreenState extends State<MainScreen> {
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width,
-                        height: 150,
+                        height: MediaQuery.of(context).size.height - 600,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             image: const DecorationImage(

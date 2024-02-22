@@ -16,12 +16,11 @@ class RegisterScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Container(
-              height: MediaQuery.of(context).size.height / 2,
               width: MediaQuery.of(context).size.width,
               decoration: const BoxDecoration(
                   image: DecorationImage(
-                image: AssetImage('lib/assets/images/forgetpwbg.png'),
-              )),
+                      image: AssetImage('lib/assets/images/forgetpwbg.png'),
+                      fit: BoxFit.fill)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
