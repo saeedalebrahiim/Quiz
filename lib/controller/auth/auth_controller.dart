@@ -3,6 +3,8 @@ import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'package:quiz/model/api/swagger/generated/quiz.swagger.dart';
 import 'package:quiz/services/headers.dart';
+import 'package:quiz/view/auth/register/pincode_screen.dart';
+import 'package:quiz/view/auth/register/register_two_screen.dart';
 import 'package:quiz/view/home/dashboard/home_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,8 +13,7 @@ class AuthController {
       {required String userName,
       required String password,
       required BuildContext context}) async {
-    final api =
-        Quiz.create(interceptors: [MultipartTypeIndicator(), OrginIndicator()]);
+    final api = Quiz.create();
     try {
       final postResult = await api.apiV1AuthTokenPost(
           username: userName, password: password, userRole: 2);
@@ -40,15 +41,81 @@ class AuthController {
 
   static Future<void> register(
       {required String userName, required BuildContext context}) async {
-    final api = Quiz.create(
-        interceptors: [OrginIndicator(), AcceptIndicator(), OrginIndicator()]);
+    final api = Quiz.create();
     try {
       final postResult = await api.apiV1AuthRegisterPost(
           body: AuthDto(userName: userName, autoCode: ""));
       print(postResult);
       if (postResult.isSuccessful == true) {
+        //send to otp confirm
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => PinCodeScreen(
+            userName: userName,
+          ),
+        ));
+      } else {
+        //show error message
+        QuickAlert.show(
+            context: context, type: QuickAlertType.error, text: "OOPs");
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  static Future<void> confrimOtp(
+      {required String userName,
+      required String verificationCode,
+      required BuildContext context}) async {
+    final api = Quiz.create();
+    try {
+      final postResult = await api.apiV1AuthAccountVerificationPost(
+          body: AuthConfirmDto(
+              userName: userName, verificationCode: verificationCode));
+      print(postResult);
+      if (postResult.isSuccessful == true) {
+        //send to select password
+        Navigator.of(context).push(
+          PageRouteBuilder(
+              pageBuilder: (_, __, ___) => const RegisterStepTwoScreen(),
+              transitionDuration: const Duration(milliseconds: 500),
+              transitionsBuilder: (_, a, __, c) => FadeTransition(
+                    opacity: a,
+                    child: c,
+                  )),
+        );
+      } else {
+        //show error message
+        QuickAlert.show(
+            context: context, type: QuickAlertType.error, text: "OOPs");
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  static Future<void> selectPassword(
+      {required String password,
+      required String confirmPassword,
+      required BuildContext context}) async {
+    final api = Quiz.create(interceptors: [TokenIndicator()]);
+    try {
+      final postResult = await api.apiV1AuthSelectPasswordPost(
+        confirmPassword: confirmPassword,
+        password: password,
+      );
+      print(postResult);
+      if (postResult.isSuccessful == true) {
         //save token
-        print("hereley no corse");
+        SharedPreferences sp = await SharedPreferences.getInstance();
+        String token = postResult.body["access_token"];
+        sp.setString("token", token);
+        //navigate
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (context) => HomeScreen(),
+            ),
+            (route) => false);
       } else {
         //show error message
         QuickAlert.show(

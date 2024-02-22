@@ -13,7 +13,7 @@ class EnterScreen extends StatelessWidget {
         direction: Axis.vertical,
         children: [
           Container(
-            height: 380,
+            height: 500,
             decoration: const BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage('lib/assets/images/enterbg.jpg'),
@@ -28,64 +28,85 @@ class EnterScreen extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                const Text('Gücümüz bilgimizdedir.'),
-                const Text('Öğrenelim ve ödül kazanalım.'),
+                Center(
+                  child: const Text(
+                    'Gücümüz bilgimizdedir.',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
+                Center(
+                  child: const Text(
+                    'Öğrenelim ve ödül kazanalım.',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
                 const SizedBox(
                   height: 20,
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => RegisterScreen(),
-                          transitionDuration: const Duration(milliseconds: 500),
-                          transitionsBuilder: (_, a, __, c) => FadeTransition(
-                                opacity: a,
-                                child: c,
-                              )),
-                    );
-                  },
-                  child: Container(
-                    height: 35,
-                    width: 180,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage(
-                                'lib/assets/images/enterbuttm.png'))),
-                    child: const Center(
-                        child: Text(
-                      'Üye ol',
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold),
-                    )),
+                Center(
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        PageRouteBuilder(
+                            pageBuilder: (_, __, ___) => RegisterScreen(),
+                            transitionDuration:
+                                const Duration(milliseconds: 500),
+                            transitionsBuilder: (_, a, __, c) => FadeTransition(
+                                  opacity: a,
+                                  child: c,
+                                )),
+                      );
+                    },
+                    child: Container(
+                      height: 50,
+                      width: 180,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage(
+                        'lib/assets/images/enterbuttm.png',
+                      ))),
+                      child: const Center(
+                          child: Text(
+                        'Üye ol',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
+                      )),
+                    ),
                   ),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => const LoginScreen(),
-                          transitionDuration: const Duration(milliseconds: 500),
-                          transitionsBuilder: (_, a, __, c) => FadeTransition(
-                                opacity: a,
-                                child: c,
-                              )),
-                    );
-                  },
-                  child: Container(
-                    height: 35,
-                    width: 180,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('lib/assets/images/go.png'))),
-                    child: const Center(
-                      child: Text(
-                        'Giriş',
-                        style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold),
+                Center(
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        PageRouteBuilder(
+                            pageBuilder: (_, __, ___) => const LoginScreen(),
+                            transitionDuration:
+                                const Duration(milliseconds: 500),
+                            transitionsBuilder: (_, a, __, c) => FadeTransition(
+                                  opacity: a,
+                                  child: c,
+                                )),
+                      );
+                    },
+                    child: Container(
+                      height: 50,
+                      width: 180,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage('lib/assets/images/go.png'))),
+                      child: const Center(
+                        child: Text(
+                          'Giriş',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
                   ),

@@ -13,70 +13,73 @@ class ForgetPwScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
-            height: 480,
-            width: 480,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-              image: AssetImage('lib/assets/images/forgetpwbg.png'),
-            )),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                const Row(
-                  children: [
-                    SizedBox(
-                      width: 40,
-                    ),
-                    Text(
-                      'Forget Password ',
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-                const Row(
-                  children: [
-                    SizedBox(
-                      width: 40,
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                SizedBox(
-                  width: 240,
-                  height: 45,
-                  child: TextFormField(
-                      controller: _numberController,
-                      decoration: InputDecoration(
-                          prefixIcon: Padding(
-                            padding: const EdgeInsets.only(right: 10),
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                  border:
-                                      Border(right: BorderSide(width: 0.2))),
-                              child: const CountryCodePicker(
-                                showFlagDialog: true,
-                                showFlag: false,
-                                onChanged: print,
-                                initialSelection: 'IT',
-                                favorite: ['+39', 'FR'],
-                                countryFilter: ['IT', 'FR'],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: Container(
+              height: 500,
+              width: MediaQuery.of(context).size.width,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('lib/assets/images/forgetpwbg.png'),
+                      fit: BoxFit.fill)),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  const Row(
+                    children: [
+                      SizedBox(
+                        width: 40,
+                      ),
+                      Text(
+                        'Forget Password ',
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  const Row(
+                    children: [
+                      SizedBox(
+                        width: 40,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    width: 240,
+                    height: 45,
+                    child: TextFormField(
+                        controller: _numberController,
+                        decoration: InputDecoration(
+                            prefixIcon: Padding(
+                              padding: const EdgeInsets.only(right: 10),
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                    border:
+                                        Border(right: BorderSide(width: 0.2))),
+                                child: const CountryCodePicker(
+                                  showFlagDialog: true,
+                                  showFlag: false,
+                                  onChanged: print,
+                                  initialSelection: 'IT',
+                                  favorite: ['+39', 'FR'],
+                                  countryFilter: ['IT', 'FR'],
+                                ),
                               ),
                             ),
-                          ),
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                              borderRadius: BorderRadius.circular(30)),
-                          filled: true,
-                          fillColor: Colors.white)),
-                ),
-                const SizedBox(
-                  height: 100,
-                )
-              ],
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                                borderRadius: BorderRadius.circular(30)),
+                            filled: true,
+                            fillColor: Colors.white)),
+                  ),
+                  const SizedBox(
+                    height: 100,
+                  )
+                ],
+              ),
             ),
           ),
           const SizedBox(

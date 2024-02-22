@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:quiz/components/pinput_widget.dart';
-import 'package:quiz/view/auth/register/register_two_screen.dart';
 
 class PinCodeScreen extends StatelessWidget {
   final _otpController = TextEditingController();
-  PinCodeScreen({super.key});
+  PinCodeScreen({super.key, required this.userName});
+  final String userName;
 
   @override
   Widget build(BuildContext context) {
@@ -117,15 +117,16 @@ class PinCodeScreen extends StatelessWidget {
               const SizedBox(),
               InkWell(
                 onTap: () {
-                  Navigator.of(context).push(
-                    PageRouteBuilder(
-                        pageBuilder: (_, __, ___) => const RegisterStepTwoScreen(),
-                        transitionDuration: const Duration(milliseconds: 500),
-                        transitionsBuilder: (_, a, __, c) => FadeTransition(
-                              opacity: a,
-                              child: c,
-                            )),
-                  );
+                  // Navigator.of(context).push(
+                  //   PageRouteBuilder(
+                  //       pageBuilder: (_, __, ___) =>
+                  //           const RegisterStepTwoScreen(),
+                  //       transitionDuration: const Duration(milliseconds: 500),
+                  //       transitionsBuilder: (_, a, __, c) => FadeTransition(
+                  //             opacity: a,
+                  //             child: c,
+                  //           )),
+                  // );
                 },
                 child: Container(
                   width: 90,
