@@ -1,5 +1,6 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz/controller/auth/auth_controller.dart';
 import 'package:quiz/global.dart';
 import 'package:quiz/view/home/dashboard/home_screen.dart';
 import 'package:quiz/view/profile/edit_pw_screen.dart';
@@ -252,7 +253,9 @@ class ProfileScreen extends StatelessWidget {
                 height: 10,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  AuthController.logOut(context: context);
+                },
                 child: Container(
                   width: 100,
                   height: 34,

@@ -6,6 +6,7 @@ import 'package:quiz/services/headers.dart';
 import 'package:quiz/view/auth/register/pincode_screen.dart';
 import 'package:quiz/view/auth/register/register_two_screen.dart';
 import 'package:quiz/view/home/dashboard/home_screen.dart';
+import 'package:quiz/view/welcome/enter_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthController {
@@ -34,6 +35,23 @@ class AuthController {
         QuickAlert.show(
             context: context, type: QuickAlertType.error, text: "OOPs");
       }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  static Future<void> logOut({required BuildContext context}) async {
+    try {
+      //save token
+      SharedPreferences sp = await SharedPreferences.getInstance();
+      sp.clear();
+      //navigate
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (context) => EnterScreen(),
+          ),
+          (route) => false);
+      //show error message
     } catch (e) {
       print(e);
     }
