@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:quiz/global.dart';
 import 'package:quiz/provider/drawer_state.dart';
 import 'package:quiz/view/buycoin/buy_coin_screen.dart';
+import 'package:quiz/view/gem_quiz/gem_quiz_screen.dart';
 import 'package:quiz/view/home/quiz/quiz_screen.dart';
 import 'package:quiz/view/profile/profile_screen.dart';
 
@@ -233,32 +234,6 @@ class _MainScreenState extends State<MainScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text(
-                                    'Yarışma',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18),
-                                  ),
-                                  Image(
-                                    image: AssetImage(
-                                        'lib/assets/images/coin.png'),
-                                    width: 20,
-                                    height: 20,
-                                  ),
-                                  Text(
-                                    '2',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
                               InkWell(
                                 onTap: () {
                                   Navigator.of(context).push(
@@ -275,7 +250,7 @@ class _MainScreenState extends State<MainScreen> {
                                   );
                                 },
                                 child: Container(
-                                  width: 150,
+                                  width: 230,
                                   height: 30,
                                   decoration: const BoxDecoration(
                                       image: DecorationImage(
@@ -284,11 +259,39 @@ class _MainScreenState extends State<MainScreen> {
                                           fit: BoxFit.fill)),
                                   child: const Center(
                                       child: Text(
-                                    'Başla',
+                                    'kelimeyi tahmin et',
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold),
                                   )),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    PageRouteBuilder(
+                                        pageBuilder: (_, __, ___) =>
+                                            const GemQuizScreen(),
+                                        transitionDuration:
+                                            const Duration(milliseconds: 500),
+                                        transitionsBuilder: (_, a, __, c) =>
+                                            FadeTransition(
+                                              opacity: a,
+                                              child: c,
+                                            )),
+                                  );
+                                },
+                                child: Container(
+                                  width: 230,
+                                  height: 30,
+                                  decoration: const BoxDecoration(
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                              'lib/assets/images/mainbt2.png'),
+                                          fit: BoxFit.fill)),
                                 ),
                               )
                             ],

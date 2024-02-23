@@ -67,6 +67,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       image: AssetImage('lib/assets/images/quizbg.png'),
                       fit: BoxFit.fill)),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const SizedBox(
                     height: 60,
@@ -93,6 +94,59 @@ class _QuizScreenState extends State<QuizScreen> {
                         child: AnswerCard(
                             question: '', isSelected: false, currentIndex: 1),
                       ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          onTap: () {},
+                          child: Container(
+                            width: 80,
+                            height: 60,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image:
+                                        AssetImage('lib/assets/images/1.png'),
+                                    fit: BoxFit.fill)),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        InkWell(
+                          onTap: () {},
+                          child: Container(
+                            width: 95,
+                            height: 58,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image:
+                                        AssetImage('lib/assets/images/2.png'),
+                                    fit: BoxFit.fill)),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        InkWell(
+                          onTap: () {},
+                          child: Container(
+                            width: 90,
+                            height: 60,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image:
+                                        AssetImage('lib/assets/images/3.png'),
+                                    fit: BoxFit.fill)),
+                          ),
+                        ),
+                      ],
                     ),
                   )
                 ],
