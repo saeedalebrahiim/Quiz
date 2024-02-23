@@ -1,11 +1,15 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:quiz/controller/banners/banners.dart';
 import 'package:quiz/global.dart';
+import 'package:quiz/provider/banners.dart';
 import 'package:quiz/provider/drawer_state.dart';
 import 'package:quiz/view/buycoin/buy_coin_screen.dart';
 import 'package:quiz/view/gem_quiz/gem_quiz_screen.dart';
 import 'package:quiz/view/home/quiz/quiz_screen.dart';
 import 'package:quiz/view/profile/profile_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -15,6 +19,17 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData();
+  }
+
+  getData() {
+    BannersController.getBanners(context: context);
+  }
+
   double xOffset = 0;
   double yOffset = 0;
 
@@ -172,17 +187,44 @@ class _MainScreenState extends State<MainScreen> {
                       const SizedBox(
                         height: 10,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 30),
-                        child: Container(
-                          width: 300,
-                          height: 130,
-                          decoration: BoxDecoration(
-                              image: const DecorationImage(
-                                  image: AssetImage(
-                                      'lib/assets/images/mainburger.png'),
-                                  fit: BoxFit.fill),
-                              borderRadius: BorderRadius.circular(30)),
+                      Consumer<BannersState>(
+                        builder: (context, value, child) => Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 30),
+                          child: InkWell(
+                            onTap: () async {
+                              if (!await launchUrl(
+                                  Uri.parse(value.bannersURL[0]))) {
+                                throw Exception('Could not launch ');
+                              }
+                            },
+                            child: CachedNetworkImage(
+                              width: 300,
+                              height: 150,
+                              imageUrl: value.banners[0],
+                              imageBuilder: (context, imageProvider) =>
+                                  Container(
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: imageProvider,
+                                      fit: BoxFit.cover,
+                                      colorFilter: ColorFilter.mode(
+                                          Colors.red, BlendMode.colorBurn)),
+                                ),
+                              ),
+                              placeholder: (context, url) =>
+                                  CircularProgressIndicator(),
+                              errorWidget: (context, url, error) =>
+                                  Icon(Icons.error),
+                            ),
+                          ),
+
+                          // Container(
+                          //   width: 300,
+                          //   height: 130,
+                          //   child: Image(
+                          //     image: NetworkImage(value.banners[0]),
+                          //   ),
+                          // ),
                         ),
                       ),
                       const SizedBox(

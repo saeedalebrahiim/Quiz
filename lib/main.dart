@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz/init_screen.dart';
+import 'package:quiz/provider/banners.dart';
 import 'package:quiz/provider/drawer_state.dart';
 import 'package:quiz/route/routes.dart';
 
@@ -10,7 +11,10 @@ void main() {
       providers: [
         ChangeNotifierProvider(
           create: (context) => DrawerState(),
-        )
+        ),
+        ChangeNotifierProvider(
+          create: (context) => BannersState(),
+        ),
       ],
       child: const MyApp(),
     ),
