@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
+import 'package:quiz/controller/profile/profile.dart';
 import 'package:quiz/model/api/swagger/generated/quiz.swagger.dart';
 import 'package:quiz/services/headers.dart';
 import 'package:quiz/view/auth/register/pincode_screen.dart';
@@ -30,6 +31,7 @@ class AuthController {
               builder: (context) => HomeScreen(),
             ),
             (route) => false);
+        ProfileController.getProfile(context: context);
       } else {
         //show error message
         QuickAlert.show(

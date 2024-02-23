@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:quiz/global.dart';
+import 'package:quiz/provider/profile.dart';
 
 class BuyCoinScreen extends StatelessWidget {
   const BuyCoinScreen({super.key});
@@ -64,12 +66,14 @@ class BuyCoinScreen extends StatelessWidget {
                       width: 25,
                       height: 25,
                     ),
-                    const Text(
-                      '3012',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 30),
+                    Consumer<ProfileState>(
+                      builder: (context, value, child) => Text(
+                        value.userBalance.toString(),
+                        style: TextStyle(
+                            fontSize: 30,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600),
+                      ),
                     ),
                     const Text(
                       'Available to use',

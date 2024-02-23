@@ -2,9 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz/controller/banners/banners.dart';
+import 'package:quiz/controller/profile/profile.dart';
 import 'package:quiz/global.dart';
 import 'package:quiz/provider/banners.dart';
 import 'package:quiz/provider/drawer_state.dart';
+import 'package:quiz/provider/profile.dart';
 import 'package:quiz/view/buycoin/buy_coin_screen.dart';
 import 'package:quiz/view/gem_quiz/gem_quiz_screen.dart';
 import 'package:quiz/view/home/quiz/quiz_screen.dart';
@@ -28,6 +30,8 @@ class _MainScreenState extends State<MainScreen> {
 
   getData() {
     BannersController.getBanners(context: context);
+    ProfileController.getProfile(context: context);
+    ProfileController.getUserBalance(context: context);
   }
 
   double xOffset = 0;
@@ -45,7 +49,7 @@ class _MainScreenState extends State<MainScreen> {
             actions: [
               Padding(
                 padding:
-                    const EdgeInsets.only(right: 5, left: 5, bottom: 5, top: 6),
+                    const EdgeInsets.only(right: 0, left: 0, bottom: 0, top: 0),
                 child: InkWell(
                   onTap: () {
                     Navigator.of(context).push(
@@ -58,15 +62,49 @@ class _MainScreenState extends State<MainScreen> {
                               )),
                     );
                   },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 10, 21, 94),
-                        borderRadius: BorderRadius.circular(30)),
-                    child: const Center(
-                        child: Image(
-                      image: AssetImage('lib/assets/images/profile.png'),
-                    )),
+                  child: Consumer<ProfileState>(
+                    builder: (context, value, child) => Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 10, 21, 94),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: CachedNetworkImage(
+                          width: 50,
+                          height: 50,
+                          imageUrl: value.profile != null
+                              ? value.profile!.userPicUrl
+                              : "",
+                          imageBuilder: (context, imageProvider) => Container(
+                            decoration: BoxDecoration(
+                              color: const Color.fromARGB(255, 10, 21, 94),
+                              borderRadius: BorderRadius.circular(30),
+                              image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          placeholder: (context, url) =>
+                              const CircularProgressIndicator(),
+                          errorWidget: (context, url, error) => const Image(
+                            image: AssetImage('lib/assets/images/profile.png'),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
+
+                  //  Container(
+                  //   decoration: BoxDecoration(
+                  //       color: const Color.fromARGB(255, 10, 21, 94),
+                  //       borderRadius: BorderRadius.circular(30)),
+                  //   child: const Center(
+                  //     child: Image(
+                  //   image: AssetImage('lib/assets/images/profile.png'),
+                  // )),
+                  // ),
                 ),
               ),
             ],
@@ -91,13 +129,15 @@ class _MainScreenState extends State<MainScreen> {
                     width: 25,
                     height: 25,
                   ),
-                  const Text(
-                    '3012',
-                    style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600),
-                  )
+                  Consumer<ProfileState>(
+                    builder: (context, value, child) => Text(
+                      value.userBalance.toString(),
+                      style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -205,16 +245,15 @@ class _MainScreenState extends State<MainScreen> {
                                   Container(
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
-                                      image: imageProvider,
-                                      fit: BoxFit.cover,
-                                      colorFilter: ColorFilter.mode(
-                                          Colors.red, BlendMode.colorBurn)),
+                                    image: imageProvider,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                               placeholder: (context, url) =>
-                                  CircularProgressIndicator(),
+                                  const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
-                                  Icon(Icons.error),
+                                  const Icon(Icons.error),
                             ),
                           ),
 
