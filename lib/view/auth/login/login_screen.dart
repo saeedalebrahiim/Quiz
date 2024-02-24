@@ -80,10 +80,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                   decoration: const BoxDecoration(
                                       border: Border(
                                           right: BorderSide(width: 0.2))),
-                                  child: const CountryCodePicker(
+                                  child: CountryCodePicker(
                                     showFlagDialog: true,
                                     showFlag: false,
-                                    onChanged: print,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        crCode = value;
+                                      });
+                                    },
                                     initialSelection: 'TR',
                                     favorite: ['+90', 'TR'],
                                     countryFilter: ['IT', 'FR', 'TR'],

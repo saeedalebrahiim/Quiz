@@ -6,6 +6,8 @@ import 'package:quiz/model/api/swagger/generated/quiz.swagger.dart';
 import 'package:quiz/model/dto/profile.dart';
 import 'package:quiz/provider/profile.dart';
 import 'package:quiz/services/headers.dart';
+import 'package:quiz/view/home/dashboard/home_screen.dart';
+import 'package:quiz/view/profile/edit_otp_screen.dart';
 
 class ProfileController {
   static Future<void> getProfile({required BuildContext context}) async {
@@ -69,6 +71,61 @@ class ProfileController {
         print(body["isSuccess"]);
         if (body["isSuccess"] == true) {
           context.read<ProfileState>().getUserBalance(value: body["data"]);
+        } else {}
+      });
+    } catch (e) {
+      // print(e);
+    }
+  }
+
+  static Future<void> updateUserProfileGET(
+      {required String number, required BuildContext context}) async {
+    final api = Quiz.create(interceptors: [TokenIndicator()]);
+
+    try {
+      await api
+          .apiV1UserManagerUpdatePhoneNumberGet(newPhonenumber: number)
+          .then((postResult) {
+        final body = jsonDecode(postResult.bodyString);
+        print(body);
+        print(body["isSuccess"]);
+        if (body["isSuccess"] == true) {
+          Navigator.of(context).push(
+            PageRouteBuilder(
+                pageBuilder: (_, __, ___) => EditPwOtpScreen(number: number),
+                transitionDuration: const Duration(milliseconds: 500),
+                transitionsBuilder: (_, a, __, c) => FadeTransition(
+                      opacity: a,
+                      child: c,
+                    )),
+          );
+        } else {}
+      });
+    } catch (e) {
+      // print(e);
+    }
+  }
+
+  static Future<void> updateUserProfilePOST(
+      {required String number,
+      required String otp,
+      required BuildContext context}) async {
+    final api = Quiz.create(interceptors: [TokenIndicator()]);
+
+    try {
+      await api
+          .apiV1UserManagerUpdatePhoneNumberPost(
+              body: UpdatePhoneNumberDto(phoneNumber: number, verifyCode: otp))
+          .then((postResult) {
+        final body = jsonDecode(postResult.bodyString);
+        print(body);
+        print(body["isSuccess"]);
+        if (body["isSuccess"] == true) {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                builder: (context) => HomeScreen(),
+              ),
+              (route) => false);
         } else {}
       });
     } catch (e) {

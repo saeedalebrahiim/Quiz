@@ -34,8 +34,9 @@ class ProfileScreen extends StatelessWidget {
             builder: (context, value, child) {
               _nameFamilyController.text =
                   value.profile != null ? value.profile!.fullName : "";
-              _numberController.text =
-                  value.profile != null ? value.profile!.username : "";
+              _numberController.text = value.profile != null
+                  ? value.profile!.username.replaceRange(0, 2, "")
+                  : "";
               _educationController.text =
                   value.profile != null ? value.profile!.education : "";
               _ibanController.text =
@@ -162,6 +163,7 @@ class ProfileScreen extends StatelessWidget {
                     height: 45,
                     child: TextFormField(
                         controller: _numberController,
+                        readOnly: true,
                         decoration: InputDecoration(
                             suffixIcon: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -170,7 +172,9 @@ class ProfileScreen extends StatelessWidget {
                                   Navigator.of(context).push(
                                     PageRouteBuilder(
                                         pageBuilder: (_, __, ___) =>
-                                            const ChangePwScreen(),
+                                            ChangePwScreen(
+                                              number: _numberController.text,
+                                            ),
                                         transitionDuration:
                                             const Duration(milliseconds: 500),
                                         transitionsBuilder: (_, a, __, c) =>
@@ -195,13 +199,16 @@ class ProfileScreen extends StatelessWidget {
                                 decoration: const BoxDecoration(
                                     border:
                                         Border(right: BorderSide(width: 0.2))),
-                                child: const CountryCodePicker(
-                                  showFlagDialog: true,
-                                  showFlag: false,
-                                  onChanged: print,
-                                  initialSelection: 'IT',
-                                  favorite: ['+39', 'FR'],
-                                  countryFilter: ['IT', 'FR'],
+                                child: const IgnorePointer(
+                                  ignoring: true,
+                                  child: CountryCodePicker(
+                                    showFlagDialog: true,
+                                    showFlag: false,
+                                    onChanged: print,
+                                    initialSelection: 'TR',
+                                    favorite: ['+90', 'TR'],
+                                    countryFilter: ['IT', 'FR', 'TR'],
+                                  ),
                                 ),
                               ),
                             ),
@@ -237,7 +244,7 @@ class ProfileScreen extends StatelessWidget {
                         width: 40,
                       ),
                       Text(
-                        "IBAN: ${value.profile != null ? value.profile!.iban : ""}",
+                        "IBAN:",
                         style: TextStyle(color: Colors.white),
                       ),
                     ],
@@ -261,7 +268,7 @@ class ProfileScreen extends StatelessWidget {
                         width: 220,
                         child: TextField(
                             style: const TextStyle(color: Colors.white),
-                            controller: _bankIdController,
+                            controller: _ibanController,
                             decoration: const InputDecoration()),
                       )
                     ],

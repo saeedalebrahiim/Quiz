@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:quiz/components/pinput_widget.dart';
+import 'package:quiz/controller/profile/profile.dart';
 import 'package:quiz/view/profile/profile_screen.dart';
 
 class EditPwOtpScreen extends StatelessWidget {
-  final _otpController = TextEditingController();
-  EditPwOtpScreen({super.key});
+  // final _otpController = TextEditingController();
+  const EditPwOtpScreen({super.key, required this.number});
+  final String number;
 
   @override
   Widget build(BuildContext context) {
-    final _numberController = TextEditingController();
+    final _otpController = TextEditingController();
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -130,15 +132,19 @@ class EditPwOtpScreen extends StatelessWidget {
                 const SizedBox(),
                 InkWell(
                   onTap: () {
-                    Navigator.of(context).push(
-                      PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => ProfileScreen(),
-                          transitionDuration: const Duration(milliseconds: 500),
-                          transitionsBuilder: (_, a, __, c) => FadeTransition(
-                                opacity: a,
-                                child: c,
-                              )),
-                    );
+                    // Navigator.of(context).push(
+                    //   PageRouteBuilder(
+                    //       pageBuilder: (_, __, ___) => ProfileScreen(),
+                    //       transitionDuration: const Duration(milliseconds: 500),
+                    //       transitionsBuilder: (_, a, __, c) => FadeTransition(
+                    //             opacity: a,
+                    //             child: c,
+                    //           )),
+                    // );
+                    ProfileController.updateUserProfilePOST(
+                        number: number,
+                        otp: _otpController.text,
+                        context: context);
                   },
                   child: Container(
                     width: 90,

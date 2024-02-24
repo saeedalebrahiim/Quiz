@@ -1,13 +1,22 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz/controller/profile/profile.dart';
 import 'package:quiz/view/profile/edit_otp_screen.dart';
 
-class ChangePwScreen extends StatelessWidget {
-  const ChangePwScreen({super.key});
+class ChangePwScreen extends StatefulWidget {
+  const ChangePwScreen({super.key, required this.number});
+  final String number;
+
+  @override
+  State<ChangePwScreen> createState() => _ChangePwScreenState();
+}
+
+class _ChangePwScreenState extends State<ChangePwScreen> {
+  CountryCode crCode = CountryCode(code: "+90", name: "TR");
 
   @override
   Widget build(BuildContext context) {
-    final _numberController = TextEditingController();
+    var _numberController = TextEditingController(text: widget.number);
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -73,19 +82,25 @@ class ChangePwScreen extends StatelessWidget {
                 height: 45,
                 child: TextFormField(
                     controller: _numberController,
+                    maxLength: 10,
                     decoration: InputDecoration(
+                        counterText: "",
                         prefixIcon: Padding(
                           padding: const EdgeInsets.only(right: 10),
                           child: Container(
                             decoration: const BoxDecoration(
                                 border: Border(right: BorderSide(width: 0.2))),
-                            child: const CountryCodePicker(
+                            child: CountryCodePicker(
                               showFlagDialog: true,
                               showFlag: false,
-                              onChanged: print,
-                              initialSelection: 'IT',
-                              favorite: ['+39', 'FR'],
-                              countryFilter: ['IT', 'FR'],
+                              onChanged: (value) {
+                                setState(() {
+                                  crCode = value;
+                                });
+                              },
+                              initialSelection: 'TR',
+                              favorite: ['+90', 'TR'],
+                              countryFilter: ['IT', 'FR', 'TR'],
                             ),
                           ),
                         ),
@@ -121,15 +136,8 @@ class ChangePwScreen extends StatelessWidget {
                 const SizedBox(),
                 InkWell(
                   onTap: () {
-                    Navigator.of(context).push(
-                      PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => EditPwOtpScreen(),
-                          transitionDuration: const Duration(milliseconds: 500),
-                          transitionsBuilder: (_, a, __, c) => FadeTransition(
-                                opacity: a,
-                                child: c,
-                              )),
-                    );
+                    ProfileController.updateUserProfileGET(
+                        number: _numberController.text, context: context);
                   },
                   child: Container(
                     width: 90,
