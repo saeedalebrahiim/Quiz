@@ -300,7 +300,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     return RawMaterialButton(
                       onPressed: () async {
                         await FilterListDelegate.show(
-                          enableOnlySingleSelection: true,
                           context: context,
                           list: value.banks!,
                           tileLabel: (p0) => p0!.title,
