@@ -1,22 +1,42 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:country_code_picker/country_code_picker.dart';
+import 'package:filter_list/filter_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz/controller/auth/auth_controller.dart';
 import 'package:quiz/controller/profile/profile.dart';
+import 'package:quiz/controller/settings/settings.dart';
 import 'package:quiz/global.dart';
+import 'package:quiz/model/dto/banks.dart';
 import 'package:quiz/provider/profile.dart';
+import 'package:quiz/provider/settings.dart';
 import 'package:quiz/view/home/dashboard/home_screen.dart';
 import 'package:quiz/view/profile/edit_pw_screen.dart';
 
-class ProfileScreen extends StatelessWidget {
-  var _nameFamilyController = TextEditingController();
-  var _numberController = TextEditingController();
-  var _educationController = TextEditingController();
-  var _ibanController = TextEditingController();
-  var _bankIdController = TextEditingController();
-
+class ProfileScreen extends StatefulWidget {
   ProfileScreen({super.key});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    SettingsController.getBanks(context: context);
+  }
+
+  var _nameFamilyController = TextEditingController();
+
+  var _numberController = TextEditingController();
+
+  var _educationController = TextEditingController();
+
+  var _ibanController = TextEditingController();
+
+  var _bankIdController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -276,14 +296,58 @@ class ProfileScreen extends StatelessWidget {
                   const SizedBox(
                     height: 40,
                   ),
-                  Container(
-                    width: 130,
-                    height: 40,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('lib/assets/images/addbank.png'),
-                            fit: BoxFit.fill)),
-                  ),
+                  Consumer<SettingsState>(builder: (context, value, child) {
+                    return RawMaterialButton(
+                      onPressed: () async {
+                        await FilterListDelegate.show(
+                          enableOnlySingleSelection: true,
+                          context: context,
+                          list: value.banks!,
+                          tileLabel: (p0) => p0!.title,
+                          onItemSearch: (user, query) {
+                            return user.title
+                                .toLowerCase()
+                                .contains(query.toLowerCase());
+                          },
+                          onApplyButtonClick: (list) {
+                            // setState(() {
+                            //   selectedUserList = List.from(list!);
+                            // });
+                            Navigator.pop(context);
+                          },
+                        );
+
+                        // await FilterListDialog.display<BankDto>(
+                        //   context,
+                        //   listData: value.banks!,
+                        //   selectedListData: [],
+                        //   choiceChipLabel: (user) => user!.title,
+                        //   validateSelectedItem: (list, val) =>
+                        //       list!.contains(val),
+                        //   onItemSearch: (user, query) {
+                        //     return user.title!
+                        //         .toLowerCase()
+                        //         .contains(query.toLowerCase());
+                        //   },
+                        //   onApplyButtonClick: (list) {
+                        //     // setState(() {
+                        //     //   selectedUserList = List.from(list!);
+                        //     // });
+                        //     Navigator.pop(context);
+                        //   },
+                        // );
+                      },
+                      child: Container(
+                        width: 130,
+                        height: 40,
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image:
+                                    AssetImage('lib/assets/images/addbank.png'),
+                                fit: BoxFit.fill)),
+                      ),
+                    );
+                  }),
                   const SizedBox(
                     height: 20,
                   ),

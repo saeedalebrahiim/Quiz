@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz/controller/FAQ/faq.dart';
+import 'package:quiz/controller/settings/settings.dart';
 import 'package:quiz/global.dart';
 import 'package:quiz/provider/drawer_state.dart';
 import 'package:quiz/view/faq/faq_screen.dart';
