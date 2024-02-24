@@ -445,6 +445,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.5.0"
+  matertino_radio:
+    dependency: "direct main"
+    description:
+      name: matertino_radio
+      sha256: "19a99959d8044d61a64190e7492c91c3a480404f1f8b5489f0d1bf9a8ee4a25e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.4"
   meta:
     dependency: transitive
     description:

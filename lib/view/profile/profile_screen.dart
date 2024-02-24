@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:filter_list/filter_list.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:matertino_radio/matertino_radio.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz/controller/auth/auth_controller.dart';
 import 'package:quiz/controller/profile/profile.dart';
@@ -28,6 +30,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
     SettingsController.getBanks(context: context);
   }
 
+  // getData() {
+  //   int index = SettingsState.banksID!.indexOf(bankIdSelected!);
+  //   setState(() {
+  //     bankIdTitleSelected = SettingsState.banksTitle![index];
+  //   });
+  // }
+
   var _nameFamilyController = TextEditingController();
 
   var _numberController = TextEditingController();
@@ -37,7 +46,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   var _ibanController = TextEditingController();
 
   var _bankIdController = TextEditingController();
+  int? bankIdSelected;
+  String? bankIdTitleSelected;
 
+  List<BankDto> selectedListData = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,6 +75,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   value.profile != null ? value.profile!.iban : "";
               _bankIdController.text =
                   value.profile != null ? value.profile!.bankId.toString() : "";
+              bankIdSelected = value.profile!.bankId;
+              // getData();
               return Column(
                 children: [
                   Row(
@@ -296,57 +310,101 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const SizedBox(
                     height: 40,
                   ),
-                  Consumer<SettingsState>(builder: (context, value, child) {
-                    return RawMaterialButton(
-                      onPressed: () async {
-                        await FilterListDelegate.show(
-                          context: context,
-                          list: value.banks!,
-                          tileLabel: (p0) => p0!.title,
-                          onItemSearch: (user, query) {
-                            return user.title
-                                .toLowerCase()
-                                .contains(query.toLowerCase());
-                          },
-                          onApplyButtonClick: (list) {
-                            // setState(() {
-                            //   selectedUserList = List.from(list!);
-                            // });
-                            Navigator.pop(context);
-                          },
-                        );
+                  Consumer<SettingsState>(
+                    builder: (context, value, child) {
+                      bankIdTitleSelected == null && value.banks != null
+                          ? bankIdTitleSelected = value.banks!
+                              .firstWhere(
+                                (element) => element.id == bankIdSelected,
+                              )
+                              .title
+                          : null;
+                      return Visibility(
+                        visible: value.banksTitle != null,
+                        replacement: SizedBox(),
+                        child: value.banksTitle != null
+                            ? Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: SizedBox(
+                                  width: 200,
+                                  child: MatertinoBottomSheetRadio(
+                                    list: value.banksTitle!,
+                                    selected: bankIdTitleSelected,
+                                    onSelect: (val) {
+                                      // int index = SettingsState.banksTitle!.indexOf(val!);
+                                      setState(() {
+                                        bankIdTitleSelected = val;
+                                        // bankIdSelected = SettingsState.banksID![index];
+                                      });
+                                    },
+                                    child: CupertinoTextField(
+                                      onTap: null,
+                                      controller: TextEditingController(
+                                          text: bankIdTitleSelected),
+                                      placeholder: "Select Item",
+                                      enabled: false,
+                                      suffix: const Icon(Icons.arrow_drop_down),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : SizedBox(),
+                      );
+                    },
+                  ),
 
-                        // await FilterListDialog.display<BankDto>(
-                        //   context,
-                        //   listData: value.banks!,
-                        //   selectedListData: [],
-                        //   choiceChipLabel: (user) => user!.title,
-                        //   validateSelectedItem: (list, val) =>
-                        //       list!.contains(val),
-                        //   onItemSearch: (user, query) {
-                        //     return user.title!
-                        //         .toLowerCase()
-                        //         .contains(query.toLowerCase());
-                        //   },
-                        //   onApplyButtonClick: (list) {
-                        //     // setState(() {
-                        //     //   selectedUserList = List.from(list!);
-                        //     // });
-                        //     Navigator.pop(context);
-                        //   },
-                        // );
-                      },
-                      child: Container(
-                        width: 130,
-                        height: 40,
-                        decoration: const BoxDecoration(
-                            image: DecorationImage(
-                                image:
-                                    AssetImage('lib/assets/images/addbank.png'),
-                                fit: BoxFit.fill)),
-                      ),
-                    );
-                  }),
+                  // Consumer<SettingsState>(builder: (context, value, child) {
+                  //   return RawMaterialButton(
+                  //     onPressed: () async {
+                  //       await FilterListDelegate.show(
+                  //         context: context,
+                  //         list: value.banks!,
+                  //         selectedListData: selectedListData,
+                  //         tileLabel: (p0) => p0!.title,
+                  //         onItemSearch: (user, query) {
+                  //           return user.title
+                  //               .toLowerCase()
+                  //               .contains(query.toLowerCase());
+                  //         },
+                  //         onApplyButtonClick: (list) {
+                  //           // setState(() {
+                  //           //   selectedUserList = List.from(list!);
+                  //           // });
+                  //           Navigator.pop(context);
+                  //         },
+                  //       );
+
+                  //       // await FilterListDialog.display<BankDto>(
+                  //       //   context,
+                  //       //   listData: value.banks!,
+                  //       //   selectedListData: [],
+                  //       //   choiceChipLabel: (user) => user!.title,
+                  //       //   validateSelectedItem: (list, val) =>
+                  //       //       list!.contains(val),
+                  //       //   onItemSearch: (user, query) {
+                  //       //     return user.title!
+                  //       //         .toLowerCase()
+                  //       //         .contains(query.toLowerCase());
+                  //       //   },
+                  //       //   onApplyButtonClick: (list) {
+                  //       //     // setState(() {
+                  //       //     //   selectedUserList = List.from(list!);
+                  //       //     // });
+                  //       //     Navigator.pop(context);
+                  //       //   },
+                  //       // );
+                  //     },
+                  //     child: Container(
+                  //       width: 130,
+                  //       height: 40,
+                  //       decoration: const BoxDecoration(
+                  //           image: DecorationImage(
+                  //               image:
+                  //                   AssetImage('lib/assets/images/addbank.png'),
+                  //               fit: BoxFit.fill)),
+                  //     ),
+                  //   );
+                  // }),
                   const SizedBox(
                     height: 20,
                   ),
