@@ -2,12 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:filter_list/filter_list.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz/controller/auth/auth_controller.dart';
 import 'package:quiz/controller/profile/profile.dart';
 import 'package:quiz/controller/settings/settings.dart';
 import 'package:quiz/global.dart';
-import 'package:quiz/model/dto/banks.dart';
 import 'package:quiz/provider/profile.dart';
 import 'package:quiz/provider/settings.dart';
 import 'package:quiz/view/home/dashboard/home_screen.dart';
@@ -21,9 +21,9 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  XFile? _imgFile;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     SettingsController.getBanks(context: context);
   }
@@ -104,34 +104,123 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       const SizedBox(
                         width: 15,
                       ),
-                      Container(
-                        width: 80,
-                        height: 80,
-                        decoration: const BoxDecoration(
-                            // image: DecorationImage(
-                            //   image:
-                            //       AssetImage('lib/assets/images/addprofilebg.png'),
-                            // ),
-                            ),
-                        child: CachedNetworkImage(
-                          imageUrl: value.profile != null
-                              ? value.profile!.userPicUrl
-                              : "",
-                          imageBuilder: (context, imageProvider) => Container(
-                            decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 10, 21, 94),
-                              borderRadius: BorderRadius.circular(30),
-                              image: DecorationImage(
-                                image: imageProvider,
-                                fit: BoxFit.cover,
+                      InkWell(
+                        onTap: () {
+                          showBottomSheet(
+                            context: context,
+                            builder: (context) => Container(
+                              height: 80,
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  InkWell(
+                                    onTap: () async {
+                                      try {
+                                        final ImagePicker picker =
+                                            ImagePicker();
+                                        final XFile? img =
+                                            await picker.pickImage(
+                                          source: ImageSource.camera,
+                                        );
+                                        if (img == null) return;
+                                        setState(() {
+                                          _imgFile = XFile(img.path);
+                                        });
+                                      } catch (e) {
+                                        print(e);
+                                      }
+                                    },
+                                    child: Container(
+                                      width: 55,
+                                      height: 55,
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: AssetImage(
+                                                  'lib/assets/images/camera.png'),
+                                              fit: BoxFit.fill)),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  InkWell(
+                                    onTap: () async {
+                                      try {
+                                        final ImagePicker picker =
+                                            ImagePicker();
+                                        final XFile? img =
+                                            await picker.pickImage(
+                                          source: ImageSource.gallery,
+                                        );
+                                        if (img == null) return;
+                                        setState(() {
+                                          _imgFile = XFile(img.path);
+                                        });
+                                      } catch (e) {
+                                        print(e);
+                                      }
+                                    },
+                                    child: Container(
+                                      width: 55,
+                                      height: 55,
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: AssetImage(
+                                                  'lib/assets/images/gallery.png'),
+                                              fit: BoxFit.fill)),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  InkWell(
+                                    onTap: () {},
+                                    child: Container(
+                                      width: 55,
+                                      height: 55,
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: AssetImage(
+                                                  'lib/assets/images/delete.png'),
+                                              fit: BoxFit.fill)),
+                                    ),
+                                  )
+                                ],
                               ),
                             ),
-                          ),
-                          placeholder: (context, url) =>
-                              const CircularProgressIndicator(),
-                          errorWidget: (context, url, error) => const Image(
-                            image: AssetImage(
-                                'lib/assets/images/addprofilebg.png'),
+                          );
+                        },
+                        child: Container(
+                          width: 80,
+                          height: 80,
+                          decoration: const BoxDecoration(
+                              // image: DecorationImage(
+                              //   image:
+                              //       AssetImage('lib/assets/images/addprofilebg.png'),
+                              // ),
+                              ),
+                          child: CachedNetworkImage(
+                            imageUrl: value.profile != null
+                                ? value.profile!.userPicUrl
+                                : "",
+                            imageBuilder: (context, imageProvider) => Container(
+                              decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 10, 21, 94),
+                                borderRadius: BorderRadius.circular(30),
+                                image: DecorationImage(
+                                  image: imageProvider,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            placeholder: (context, url) =>
+                                const CircularProgressIndicator(),
+                            errorWidget: (context, url, error) => const Image(
+                              image: AssetImage(
+                                  'lib/assets/images/addprofilebg.png'),
+                            ),
                           ),
                         ),
                       ),
