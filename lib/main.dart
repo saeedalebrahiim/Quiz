@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:quiz/init_screen.dart';
 import 'package:quiz/provider/banners.dart';
 import 'package:quiz/provider/drawer_state.dart';
+import 'package:quiz/provider/faq.dart';
 import 'package:quiz/provider/profile.dart';
 import 'package:quiz/route/routes.dart';
 
@@ -18,6 +19,9 @@ void main() {
         ),
         ChangeNotifierProvider(
           create: (context) => ProfileState(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => FAQState(),
         ),
       ],
       child: const MyApp(),

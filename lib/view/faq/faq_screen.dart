@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:quiz/global.dart';
+import 'package:quiz/provider/faq.dart';
 
 class FaqScreen extends StatelessWidget {
   const FaqScreen({super.key});
@@ -55,68 +57,78 @@ class FaqScreen extends StatelessWidget {
             const SizedBox(
               height: 120,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          width: 45,
-                          height: 45,
-                          decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(
-                                      'lib/assets/images/faqsticker.png'))),
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        const Text(
-                          'What is Quiz?',
-                          style: TextStyle(color: Colors.white),
-                        )
-                      ],
-                    ),
-                  ),
+            Consumer<FAQState>(builder: (context, value, child) {
+              return Visibility(
+                visible: value.faqs.isNotEmpty,
+                replacement: Center(
+                  child: CircularProgressIndicator(),
                 ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          width: 45,
-                          height: 45,
-                          decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(
-                                      'lib/assets/images/faqsticker.png'))),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    for (var element in value.faqs)
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: InkWell(
+                          onTap: () {},
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                width: 45,
+                                height: 45,
+                                decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                            'lib/assets/images/faqsticker.png'))),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              Text(
+                                element.question,
+                                style: TextStyle(color: Colors.white),
+                              )
+                            ],
+                          ),
                         ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        const Text(
-                          'Terms of receiving money?',
-                          style: TextStyle(color: Colors.white),
-                        )
-                      ],
-                    ),
-                  ),
+                      ),
+
+                    // const SizedBox(
+                    //   height: 15,
+                    // ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 20),
+                    //   child: InkWell(
+                    //     onTap: () {},
+                    //     child: Row(
+                    //       mainAxisSize: MainAxisSize.min,
+                    //       children: [
+                    //         Container(
+                    //           width: 45,
+                    //           height: 45,
+                    //           decoration: const BoxDecoration(
+                    //               image: DecorationImage(
+                    //                   image: AssetImage(
+                    //                       'lib/assets/images/faqsticker.png'))),
+                    //         ),
+                    //         const SizedBox(
+                    //           width: 20,
+                    //         ),
+                    //         const Text(
+                    //           'Terms of receiving money?',
+                    //           style: TextStyle(color: Colors.white),
+                    //         )
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
+                  ],
                 ),
-              ],
-            ),
+              );
+            }),
             const SizedBox(
-              height: 260,
+              height: 60,
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 50),

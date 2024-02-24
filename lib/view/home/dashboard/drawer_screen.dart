@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:quiz/controller/FAQ/faq.dart';
 import 'package:quiz/global.dart';
 import 'package:quiz/provider/drawer_state.dart';
 import 'package:quiz/view/faq/faq_screen.dart';
@@ -186,6 +187,8 @@ class _DrawerScreenState extends State<DrawerScreen> {
                       ),
                       InkWell(
                         onTap: () {
+                          print("FAQ drawer");
+                          FAQController.pageList(context: context);
                           Navigator.of(context).push(
                             PageRouteBuilder(
                                 pageBuilder: (_, __, ___) => const FaqScreen(),
