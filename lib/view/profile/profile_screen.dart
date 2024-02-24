@@ -49,7 +49,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   int? bankIdSelected;
   String? bankIdTitleSelected;
 
-  List<BankDto> selectedListData = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
