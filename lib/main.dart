@@ -5,6 +5,7 @@ import 'package:quiz/provider/banners.dart';
 import 'package:quiz/provider/drawer_state.dart';
 import 'package:quiz/provider/faq.dart';
 import 'package:quiz/provider/profile.dart';
+import 'package:quiz/provider/settings.dart';
 import 'package:quiz/route/routes.dart';
 
 void main() {
@@ -22,6 +23,9 @@ void main() {
         ),
         ChangeNotifierProvider(
           create: (context) => FAQState(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => SettingsState(),
         ),
       ],
       child: const MyApp(),
