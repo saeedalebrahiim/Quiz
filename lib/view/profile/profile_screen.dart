@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:filter_list/filter_list.dart';
@@ -29,13 +31,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.initState();
     SettingsController.getBanks(context: context);
   }
-
-  // getData() {
-  //   int index = SettingsState.banksID!.indexOf(bankIdSelected!);
-  //   setState(() {
-  //     bankIdTitleSelected = SettingsState.banksTitle![index];
-  //   });
-  // }
 
   var _nameFamilyController = TextEditingController();
 
@@ -214,27 +209,38 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               //       AssetImage('lib/assets/images/addprofilebg.png'),
                               // ),
                               ),
-                          child: CachedNetworkImage(
-                            imageUrl: value.profile != null
-                                ? value.profile!.userPicUrl
-                                : "",
-                            imageBuilder: (context, imageProvider) => Container(
-                              decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 10, 21, 94),
-                                borderRadius: BorderRadius.circular(30),
-                                image: DecorationImage(
-                                  image: imageProvider,
-                                  fit: BoxFit.cover,
+                          child: _imgFile != null
+                              ? Image.file(
+                                  File(_imgFile!.path),
+                                )
+                              : CachedNetworkImage(
+                                  imageUrl: (value.profile != null
+                                      ? value.profile!.userPicUrl
+                                      : ""),
+                                  imageBuilder: (context, imageProvider) =>
+                                      Container(
+                                    decoration: BoxDecoration(
+                                      color:
+                                          const Color.fromARGB(255, 10, 21, 94),
+                                      borderRadius: BorderRadius.circular(30),
+                                      image: DecorationImage(
+                                        image: _imgFile != null
+                                            ? NetworkImage(
+                                                _imgFile!.path,
+                                              )
+                                            : imageProvider,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  placeholder: (context, url) =>
+                                      const CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) =>
+                                      const Image(
+                                    image: AssetImage(
+                                        'lib/assets/images/addprofilebg.png'),
+                                  ),
                                 ),
-                              ),
-                            ),
-                            placeholder: (context, url) =>
-                                const CircularProgressIndicator(),
-                            errorWidget: (context, url, error) => const Image(
-                              image: AssetImage(
-                                  'lib/assets/images/addprofilebg.png'),
-                            ),
-                          ),
                         ),
                       ),
                       const SizedBox(
@@ -497,12 +503,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     height: 20,
                   ),
                   InkWell(
-                    onTap: () {
+                    onTap: () async {
+                      List<int>? file;
+                      if (_imgFile != null) {
+                        await _imgFile!.readAsBytes().then((value) {
+                          file = value;
+                        });
+                      }
+                      print("------------------");
+                      print(_nameFamilyController.text);
+                      print(int.tryParse(_bankIdController.text));
+                      print(_educationController.text);
+                      print(_ibanController.text);
+                      print(file);
+
+                      print("------------------");
+
                       ProfileController.editProfile(
                           fullName: _nameFamilyController.text,
                           bankId: int.tryParse(_bankIdController.text),
                           education: _educationController.text,
                           iban: _ibanController.text,
+                          file: file,
                           context: context);
                     },
                     child: Container(
