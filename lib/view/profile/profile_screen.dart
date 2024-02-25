@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:country_code_picker/country_code_picker.dart';
-import 'package:filter_list/filter_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -530,6 +529,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: Container(
                       width: 170,
                       height: 40,
+                      child: Center(
+                        child: Text(
+                          'Save',
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                      ),
                       decoration: const BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage('lib/assets/images/save.png'),
@@ -555,10 +561,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: Container(
                       width: 100,
                       height: 34,
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage('lib/assets/images/logout.png'),
-                              fit: BoxFit.fill)),
+                      child: Row(children: [
+                        Container(
+                          width: 25,
+                          height: 25,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                      'lib/assets/images/logout.png'),
+                                  fit: BoxFit.fill)),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          'Logout',
+                          style: TextStyle(
+                              color: Colors.red, fontWeight: FontWeight.w600),
+                        )
+                      ]),
                     ),
                   ),
                   const SizedBox(
