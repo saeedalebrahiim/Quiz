@@ -7,17 +7,22 @@ import 'package:quiz/model/dto/question.dart';
 import 'package:quiz/model/dto/quiz.dart';
 import 'package:quiz/provider/banners.dart';
 import 'package:quiz/provider/quiz.dart';
+import 'package:quiz/services/headers.dart';
 import 'package:quiz/view/home/quiz/quiz_screen.dart';
 
 class StartQuizController {
   static Future<void> startQuiz({required BuildContext context}) async {
-    final api = Quiz.create();
+    final api = Quiz.create(interceptors: [TokenIndicator()]);
     try {
       await api.apiV1StartQuizStartQuizGet().then((postResult) {
         print("called start");
 
         final body = jsonDecode(postResult.bodyString)["data"];
-        if (postResult.isSuccessful == true) {
+        final res = jsonDecode(postResult.bodyString);
+        print(res);
+        print(body);
+
+        if (res["isSuccess"] == true) {
           List<QuestionsDto> questions = [];
           List jsonQuestions = body['quizQuestions'];
           jsonQuestions.forEach((element) {
@@ -26,7 +31,7 @@ class StartQuizController {
           QuizDto quiz = QuizDto(
               quizId: body['quizId'],
               dQuizId: body['dQuizId'],
-              quizQuestions: body['quizQuestions']);
+              quizQuestions: questions);
           context.read<QuizState>().getQuiz(value: quiz);
           Navigator.of(context).push(
             PageRouteBuilder(
@@ -40,7 +45,7 @@ class StartQuizController {
         }
       });
     } catch (e) {
-      // print(e);
+      print(e);
     }
   }
 }
