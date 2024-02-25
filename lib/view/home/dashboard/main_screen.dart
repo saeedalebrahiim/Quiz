@@ -317,18 +317,18 @@ class _MainScreenState extends State<MainScreen> {
                             children: [
                               InkWell(
                                 onTap: () {
-                                  Navigator.of(context).push(
-                                    PageRouteBuilder(
-                                        pageBuilder: (_, __, ___) =>
-                                            const QuizScreen(),
-                                        transitionDuration:
-                                            const Duration(milliseconds: 500),
-                                        transitionsBuilder: (_, a, __, c) =>
-                                            FadeTransition(
-                                              opacity: a,
-                                              child: c,
-                                            )),
-                                  );
+                                  // Navigator.of(context).push(
+                                  //   PageRouteBuilder(
+                                  //       pageBuilder: (_, __, ___) =>
+                                  //           const QuizScreen(),
+                                  //       transitionDuration:
+                                  //           const Duration(milliseconds: 500),
+                                  //       transitionsBuilder: (_, a, __, c) =>
+                                  //           FadeTransition(
+                                  //             opacity: a,
+                                  //             child: c,
+                                  //           )),
+                                  // );
                                 },
                                 child: Container(
                                   width: 230,
