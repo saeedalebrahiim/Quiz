@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:country_code_picker/country_code_picker.dart';
-import 'package:filter_list/filter_list.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:matertino_radio/matertino_radio.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz/controller/auth/auth_controller.dart';
 import 'package:quiz/controller/profile/profile.dart';
@@ -37,6 +40,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   var _ibanController = TextEditingController();
 
   var _bankIdController = TextEditingController();
+  int? bankIdSelected;
+  String? bankIdTitleSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +68,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   value.profile != null ? value.profile!.iban : "";
               _bankIdController.text =
                   value.profile != null ? value.profile!.bankId.toString() : "";
+              bankIdSelected = value.profile!.bankId;
+              // getData();
               return Column(
                 children: [
                   Row(
@@ -201,27 +208,38 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               //       AssetImage('lib/assets/images/addprofilebg.png'),
                               // ),
                               ),
-                          child: CachedNetworkImage(
-                            imageUrl: value.profile != null
-                                ? value.profile!.userPicUrl
-                                : "",
-                            imageBuilder: (context, imageProvider) => Container(
-                              decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 10, 21, 94),
-                                borderRadius: BorderRadius.circular(30),
-                                image: DecorationImage(
-                                  image: imageProvider,
-                                  fit: BoxFit.cover,
+                          child: _imgFile != null
+                              ? Image.file(
+                                  File(_imgFile!.path),
+                                )
+                              : CachedNetworkImage(
+                                  imageUrl: (value.profile != null
+                                      ? value.profile!.userPicUrl
+                                      : ""),
+                                  imageBuilder: (context, imageProvider) =>
+                                      Container(
+                                    decoration: BoxDecoration(
+                                      color:
+                                          const Color.fromARGB(255, 10, 21, 94),
+                                      borderRadius: BorderRadius.circular(30),
+                                      image: DecorationImage(
+                                        image: _imgFile != null
+                                            ? NetworkImage(
+                                                _imgFile!.path,
+                                              )
+                                            : imageProvider,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  placeholder: (context, url) =>
+                                      const CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) =>
+                                      const Image(
+                                    image: AssetImage(
+                                        'lib/assets/images/addprofilebg.png'),
+                                  ),
                                 ),
-                              ),
-                            ),
-                            placeholder: (context, url) =>
-                                const CircularProgressIndicator(),
-                            errorWidget: (context, url, error) => const Image(
-                              image: AssetImage(
-                                  'lib/assets/images/addprofilebg.png'),
-                            ),
-                          ),
                         ),
                       ),
                       const SizedBox(
@@ -385,73 +403,127 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const SizedBox(
                     height: 40,
                   ),
-                  Consumer<SettingsState>(builder: (context, value, child) {
-                    return RawMaterialButton(
-                      onPressed: () async {
-                        await FilterListDelegate.show(
-                          context: context,
-                          list: value.banks!,
-                          tileLabel: (p0) => p0!.title,
-                          onItemSearch: (user, query) {
-                            return user.title
-                                .toLowerCase()
-                                .contains(query.toLowerCase());
-                          },
-                          onApplyButtonClick: (list) {
-                            // setState(() {
-                            //   selectedUserList = List.from(list!);
-                            // });
-                            Navigator.pop(context);
-                          },
-                        );
+                  Consumer<SettingsState>(
+                    builder: (context, value, child) {
+                      bankIdTitleSelected == null && value.banks != null
+                          ? bankIdTitleSelected = value.banks!
+                              .firstWhere(
+                                (element) => element.id == bankIdSelected,
+                              )
+                              .title
+                          : null;
+                      return Visibility(
+                        visible: value.banksTitle != null,
+                        replacement: SizedBox(),
+                        child: value.banksTitle != null
+                            ? Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: SizedBox(
+                                  width: 200,
+                                  child: MatertinoBottomSheetRadio(
+                                    list: value.banksTitle!,
+                                    selected: bankIdTitleSelected,
+                                    onSelect: (val) {
+                                      // int index = SettingsState.banksTitle!.indexOf(val!);
+                                      setState(() {
+                                        bankIdTitleSelected = val;
+                                        // bankIdSelected = SettingsState.banksID![index];
+                                      });
+                                    },
+                                    child: CupertinoTextField(
+                                      onTap: null,
+                                      controller: TextEditingController(
+                                          text: bankIdTitleSelected),
+                                      placeholder: "Select Item",
+                                      enabled: false,
+                                      suffix: const Icon(Icons.arrow_drop_down),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : SizedBox(),
+                      );
+                    },
+                  ),
 
-                        // await FilterListDialog.display<BankDto>(
-                        //   context,
-                        //   listData: value.banks!,
-                        //   selectedListData: [],
-                        //   choiceChipLabel: (user) => user!.title,
-                        //   validateSelectedItem: (list, val) =>
-                        //       list!.contains(val),
-                        //   onItemSearch: (user, query) {
-                        //     return user.title!
-                        //         .toLowerCase()
-                        //         .contains(query.toLowerCase());
-                        //   },
-                        //   onApplyButtonClick: (list) {
-                        //     // setState(() {
-                        //     //   selectedUserList = List.from(list!);
-                        //     // });
-                        //     Navigator.pop(context);
-                        //   },
-                        // );
-                      },
-                      child: Container(
-                        width: 130,
-                        height: 40,
-                        child: Center(
-                            child: Text(
-                          'Add Bank',
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.w600),
-                        )),
-                        decoration: const BoxDecoration(
-                            image: DecorationImage(
-                                image:
-                                    AssetImage('lib/assets/images/addbank.png'),
-                                fit: BoxFit.fill)),
-                      ),
-                    );
-                  }),
+                  // Consumer<SettingsState>(builder: (context, value, child) {
+                  //   return RawMaterialButton(
+                  //     onPressed: () async {
+                  //       await FilterListDelegate.show(
+                  //         context: context,
+                  //         list: value.banks!,
+                  //         selectedListData: selectedListData,
+                  //         tileLabel: (p0) => p0!.title,
+                  //         onItemSearch: (user, query) {
+                  //           return user.title
+                  //               .toLowerCase()
+                  //               .contains(query.toLowerCase());
+                  //         },
+                  //         onApplyButtonClick: (list) {
+                  //           // setState(() {
+                  //           //   selectedUserList = List.from(list!);
+                  //           // });
+                  //           Navigator.pop(context);
+                  //         },
+                  //       );
+
+                  //       // await FilterListDialog.display<BankDto>(
+                  //       //   context,
+                  //       //   listData: value.banks!,
+                  //       //   selectedListData: [],
+                  //       //   choiceChipLabel: (user) => user!.title,
+                  //       //   validateSelectedItem: (list, val) =>
+                  //       //       list!.contains(val),
+                  //       //   onItemSearch: (user, query) {
+                  //       //     return user.title!
+                  //       //         .toLowerCase()
+                  //       //         .contains(query.toLowerCase());
+                  //       //   },
+                  //       //   onApplyButtonClick: (list) {
+                  //       //     // setState(() {
+                  //       //     //   selectedUserList = List.from(list!);
+                  //       //     // });
+                  //       //     Navigator.pop(context);
+                  //       //   },
+                  //       // );
+                  //     },
+                  //     child: Container(
+                  //       width: 130,
+                  //       height: 40,
+                  //       decoration: const BoxDecoration(
+                  //           image: DecorationImage(
+                  //               image:
+                  //                   AssetImage('lib/assets/images/addbank.png'),
+                  //               fit: BoxFit.fill)),
+                  //     ),
+                  //   );
+                  // }),
                   const SizedBox(
                     height: 20,
                   ),
                   InkWell(
-                    onTap: () {
+                    onTap: () async {
+                      List<int>? file;
+                      if (_imgFile != null) {
+                        await _imgFile!.readAsBytes().then((value) {
+                          file = value;
+                        });
+                      }
+                      print("------------------");
+                      print(_nameFamilyController.text);
+                      print(int.tryParse(_bankIdController.text));
+                      print(_educationController.text);
+                      print(_ibanController.text);
+                      print(file);
+
+                      print("------------------");
+
                       ProfileController.editProfile(
                           fullName: _nameFamilyController.text,
                           bankId: int.tryParse(_bankIdController.text),
                           education: _educationController.text,
                           iban: _ibanController.text,
+                          file: file,
                           context: context);
                     },
                     child: Container(
