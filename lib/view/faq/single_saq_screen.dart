@@ -73,6 +73,24 @@ class SingleFaqScreen extends StatelessWidget {
                       child: Container(
                         width: 250,
                         height: 50,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Need any help?',
+                              style: TextStyle(fontWeight: FontWeight.w700),
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              'Send Message',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.white),
+                            )
+                          ],
+                        ),
                         decoration: const BoxDecoration(
                             image: DecorationImage(
                                 image:
@@ -81,7 +99,7 @@ class SingleFaqScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
+                )
               ],
             )
           ],

@@ -428,6 +428,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Container(
                         width: 130,
                         height: 40,
+                        child: Center(
+                            child: Text(
+                          'Add Bank',
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.w600),
+                        )),
                         decoration: const BoxDecoration(
                             image: DecorationImage(
                                 image:
@@ -451,6 +457,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: Container(
                       width: 170,
                       height: 40,
+                      child: Center(
+                        child: Text(
+                          'Save',
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                      ),
                       decoration: const BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage('lib/assets/images/save.png'),
@@ -476,10 +489,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: Container(
                       width: 100,
                       height: 34,
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage('lib/assets/images/logout.png'),
-                              fit: BoxFit.fill)),
+                      child: Row(children: [
+                        Container(
+                          width: 25,
+                          height: 25,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                      'lib/assets/images/logout.png'),
+                                  fit: BoxFit.fill)),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          'Logout',
+                          style: TextStyle(
+                              color: Colors.red, fontWeight: FontWeight.w600),
+                        )
+                      ]),
                     ),
                   ),
                   const SizedBox(
