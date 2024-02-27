@@ -88,7 +88,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       itemCount: question.options.length,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                              childAspectRatio: 2, crossAxisCount: 2),
+                              childAspectRatio: 1.5, crossAxisCount: 2),
                       itemBuilder: (context, index) => const Padding(
                         padding: EdgeInsets.all(7.0),
                         child: AnswerCard(

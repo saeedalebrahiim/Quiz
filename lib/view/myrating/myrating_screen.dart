@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz/components/rating_card.dart';
 
 class MyRatingScreen extends StatelessWidget {
   const MyRatingScreen({super.key});
@@ -140,6 +141,7 @@ class MyRatingScreen extends StatelessWidget {
               const SizedBox(
                 height: 150,
               ),
+              RatingCard()
             ],
           ),
         ),
