@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:quiz/controller/Quiz/start_quiz.dart';
 import 'package:quiz/controller/banners/banners.dart';
 import 'package:quiz/controller/profile/profile.dart';
 import 'package:quiz/global.dart';
@@ -317,18 +318,20 @@ class _MainScreenState extends State<MainScreen> {
                             children: [
                               InkWell(
                                 onTap: () {
-                                  Navigator.of(context).push(
-                                    PageRouteBuilder(
-                                        pageBuilder: (_, __, ___) =>
-                                            const QuizScreen(),
-                                        transitionDuration:
-                                            const Duration(milliseconds: 500),
-                                        transitionsBuilder: (_, a, __, c) =>
-                                            FadeTransition(
-                                              opacity: a,
-                                              child: c,
-                                            )),
-                                  );
+                                  // Navigator.of(context).push(
+                                  //   PageRouteBuilder(
+                                  //       pageBuilder: (_, __, ___) =>
+                                  //           const QuizScreen(),
+                                  //       transitionDuration:
+                                  //           const Duration(milliseconds: 500),
+                                  //       transitionsBuilder: (_, a, __, c) =>
+                                  //           FadeTransition(
+                                  //             opacity: a,
+                                  //             child: c,
+                                  //           )),
+                                  // );
+                                  StartQuizController.startQuiz(
+                                      context: context);
                                 },
                                 child: Container(
                                   width: 230,
