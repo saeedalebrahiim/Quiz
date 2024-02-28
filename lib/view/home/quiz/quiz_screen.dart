@@ -14,6 +14,7 @@ class QuizScreen extends StatefulWidget {
 }
 
 class _QuizScreenState extends State<QuizScreen> {
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     final question = questions[0];
@@ -49,11 +50,9 @@ class _QuizScreenState extends State<QuizScreen> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 100,
-              ),
               Text(
                 value.quiz!.quizQuestions[widget.index].questionText,
+                textAlign: TextAlign.center,
                 style: const TextStyle(
                   shadows: [Shadow(color: Colors.white, blurRadius: 20)],
                   color: Colors.white,
@@ -66,7 +65,7 @@ class _QuizScreenState extends State<QuizScreen> {
               ),
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: 400,
+                height: 450,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage('lib/assets/images/quizbg.png'),
@@ -84,65 +83,82 @@ class _QuizScreenState extends State<QuizScreen> {
                     const SizedBox(
                       height: 30,
                     ),
-                    SizedBox(
-                      width: 280,
-                      height: 150,
-                      child: GridView(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                childAspectRatio: 2, crossAxisCount: 2),
-                        children: [
-                          Padding(
+                    Wrap(
+                      direction: Axis.horizontal,
+                      children: [
+                        RawMaterialButton(
+                          onPressed: () {
+                            setState(() {
+                              selectedIndex = 1;
+                            });
+                          },
+                          child: Padding(
                             padding: EdgeInsets.all(7.0),
                             child: AnswerCard(
                               question: value
                                   .quiz!.quizQuestions[widget.index].answer1,
-                              isSelected: false,
+                              isSelected: selectedIndex == 1,
                               correctAnswerIndex: value.quiz!
                                   .quizQuestions[widget.index].currectAnswer,
                               currentIndex: 1,
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.all(7.0),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(7.0),
+                          child: RawMaterialButton(
+                            onPressed: () {
+                              setState(() {
+                                selectedIndex = 2;
+                              });
+                            },
                             child: AnswerCard(
                               question: value
                                   .quiz!.quizQuestions[widget.index].answer2,
-                              isSelected: false,
+                              isSelected: selectedIndex == 2,
                               correctAnswerIndex: value.quiz!
                                   .quizQuestions[widget.index].currectAnswer,
                               currentIndex: 2,
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.all(7.0),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(7.0),
+                          child: RawMaterialButton(
+                            onPressed: () {
+                              setState(() {
+                                selectedIndex = 3;
+                              });
+                            },
                             child: AnswerCard(
                               question: value
                                   .quiz!.quizQuestions[widget.index].answer3,
-                              isSelected: false,
+                              isSelected: selectedIndex == 3,
                               correctAnswerIndex: value.quiz!
                                   .quizQuestions[widget.index].currectAnswer,
                               currentIndex: 3,
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.all(7.0),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(7.0),
+                          child: RawMaterialButton(
+                            onPressed: () {
+                              setState(() {
+                                selectedIndex = 4;
+                              });
+                            },
                             child: AnswerCard(
                               question: value
                                   .quiz!.quizQuestions[widget.index].answer4,
-                              isSelected: false,
+                              isSelected: selectedIndex == 4,
                               correctAnswerIndex: value.quiz!
                                   .quizQuestions[widget.index].currectAnswer,
                               currentIndex: 4,
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 40,
+                        ),
+                      ],
                     ),
                     Padding(
                       padding: const EdgeInsets.all(10),
