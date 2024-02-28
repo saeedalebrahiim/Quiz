@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quiz/components/rating_card/rating_card_onemonth.dart';
 
-class MyRatingScreen extends StatelessWidget {
-  const MyRatingScreen({super.key});
+class OneMonthScreen extends StatelessWidget {
+  const OneMonthScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -139,13 +139,32 @@ class MyRatingScreen extends StatelessWidget {
                     ),
                   ]),
               const SizedBox(
-                height: 150,
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Rank',
+                    style: TextStyle(color: Colors.white, fontSize: 12),
+                  ),
+                  SizedBox(
+                    width: 30,
+                  ),
+                  Text('Name',
+                      style: TextStyle(color: Colors.white, fontSize: 12)),
+                  SizedBox(
+                    width: 100,
+                  ),
+                  Text('True Answers',
+                      style: TextStyle(color: Colors.white, fontSize: 12))
+                ],
               ),
               OneMonthRatingCard(
-                id: '',
-                imgProfile: '',
-                trueAnswer: '',
-                name: '',
+                id: '445',
+                imgProfile: 'lib/assets/images/profile.png',
+                name: 'Evrim ',
+                trueAnswer: '236',
               )
             ],
           ),

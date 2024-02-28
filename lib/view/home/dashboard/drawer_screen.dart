@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz/controller/FAQ/faq.dart';
-import 'package:quiz/controller/settings/settings.dart';
 import 'package:quiz/global.dart';
 import 'package:quiz/provider/drawer_state.dart';
 import 'package:quiz/view/faq/faq_screen.dart';
 import 'package:quiz/view/help/help_screen.dart';
-import 'package:quiz/view/myrating/myrating_screen.dart';
+import 'package:quiz/view/myrating/all/all_screen.dart.dart';
 import 'package:quiz/view/profile/profile_screen.dart';
 import 'package:quiz/view/rules/rules_screen.dart';
 
@@ -107,8 +106,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                         onTap: () {
                           Navigator.of(context).push(
                             PageRouteBuilder(
-                                pageBuilder: (_, __, ___) =>
-                                    const MyRatingScreen(),
+                                pageBuilder: (_, __, ___) => const AllScreen(),
                                 transitionDuration:
                                     const Duration(milliseconds: 500),
                                 transitionsBuilder: (_, a, __, c) =>

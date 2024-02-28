@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-class RatingCard extends StatelessWidget {
-  const RatingCard({super.key});
+class TodayRatingCard extends StatelessWidget {
+  const TodayRatingCard({super.key});
 
   @override
   Widget build(BuildContext context) {
