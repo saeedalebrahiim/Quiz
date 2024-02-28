@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:quiz/components/rating_card/rating_card_onemonth.dart';
+import 'package:quiz/components/rating_card/rating_card_today.dart';
 
-class MyRatingScreen extends StatelessWidget {
-  const MyRatingScreen({super.key});
+class TodayScreen extends StatelessWidget {
+  const TodayScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -139,14 +139,130 @@ class MyRatingScreen extends StatelessWidget {
                     ),
                   ]),
               const SizedBox(
-                height: 150,
+                height: 20,
               ),
-              OneMonthRatingCard(
-                id: '',
-                imgProfile: '',
-                trueAnswer: '',
-                name: '',
-              )
+              Container(
+                width: 280,
+                height: 50,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 60,
+                        height: 60,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            image: DecorationImage(
+                                image:
+                                    AssetImage('lib/assets/images/profile.png'),
+                                fit: BoxFit.fill)),
+                      ),
+                      SizedBox(
+                        width: 100,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              width: 20,
+                              height: 20,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                          'lib/assets/images/increase.png'),
+                                      fit: BoxFit.fill)),
+                            ),
+                            Text(
+                              'Your growth',
+                              style: TextStyle(
+                                  fontSize: 8, fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        ),
+                      ),
+                      Text(
+                        '20' + '+',
+                        style: TextStyle(
+                            color: Colors.green, fontWeight: FontWeight.bold),
+                      )
+                    ],
+                  ),
+                ),
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('lib/assets/images/today.png'),
+                        fit: BoxFit.fill)),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 50,
+                  ),
+                  Text(
+                    'Top 10',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold),
+                  )
+                ],
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: 50,
+                    ),
+                    Text(
+                      'Rank',
+                      style: TextStyle(color: Colors.white, fontSize: 12),
+                    ),
+                    SizedBox(
+                      width: 30,
+                    ),
+                    Text('Name',
+                        style: TextStyle(color: Colors.white, fontSize: 12)),
+                    SizedBox(
+                      width: 80,
+                    ),
+                    Column(
+                      children: [
+                        Text(
+                          'Time left to grant reward',
+                          style: TextStyle(color: Colors.white, fontSize: 10),
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              width: 20,
+                              height: 20,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                          'lib/assets/images/allprize.png'))),
+                            ),
+                            Text(
+                              'Prize',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              TodayRatingCard()
             ],
           ),
         ),

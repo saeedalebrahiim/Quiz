@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:quiz/components/rating_card/rating_card_onemonth.dart';
+import 'package:quiz/components/rating_card/rating_card_all.dart';
 
-class MyRatingScreen extends StatelessWidget {
-  const MyRatingScreen({super.key});
+class AllScreen extends StatelessWidget {
+  const AllScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final _numberController = TextEditingController();
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -139,13 +138,58 @@ class MyRatingScreen extends StatelessWidget {
                     ),
                   ]),
               const SizedBox(
-                height: 150,
+                height: 30,
               ),
-              OneMonthRatingCard(
-                id: '',
-                imgProfile: '',
-                trueAnswer: '',
-                name: '',
+              Container(
+                height: 230,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 130,
+                    ),
+                    Text(
+                      'Remaining time for monthly reward payment',
+                      style: TextStyle(color: Colors.yellow, fontSize: 12),
+                    )
+                  ],
+                ),
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('lib/assets/images/all.png'),
+                        fit: BoxFit.fill)),
+                width: MediaQuery.of(context).size.width - 50,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 50,
+                  ),
+                  Text(
+                    'Winners',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  SizedBox(
+                    width: 160,
+                  ),
+                  Container(
+                    width: 20,
+                    height: 20,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image:
+                                AssetImage('lib/assets/images/allprize.png'))),
+                  ),
+                  Text(
+                    'Prize',
+                    style: TextStyle(color: Colors.white, fontSize: 12),
+                  ),
+                ],
+              ),
+              AllRatingCard(
+                price: '57',
+                name: 'Jeff Folanbisar',
+                imgProfile: 'lib/assets/images/profile.png',
+                id: '20',
               )
             ],
           ),
