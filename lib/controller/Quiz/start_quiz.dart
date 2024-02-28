@@ -48,4 +48,91 @@ class StartQuizController {
       print(e);
     }
   }
+
+  static Future<void> addAwnswer({
+    required int userQuizId,
+    required int userDQuizId,
+    required int questionId,
+    required int selectedAnswer,
+    required int questionNumber,
+    bool? isLast,
+    required BuildContext context,
+  }) async {
+    final api = Quiz.create(interceptors: [TokenIndicator()]);
+    try {
+      print("questionId $questionId");
+      print("selectedAnswer $selectedAnswer");
+      print("userDQuizId $userDQuizId");
+      print("userQuizId $userQuizId");
+
+      await api
+          .apiV1StartQuizAddAnswerPost(
+        questionId: questionId,
+        selectedAnswer: selectedAnswer,
+        userDQuizId: userDQuizId,
+        userQuizId: userQuizId,
+      )
+          .then((postResult) {
+        print("called start");
+
+        final body = jsonDecode(postResult.bodyString)["data"];
+        final res = jsonDecode(postResult.bodyString);
+        print(res);
+        print(body);
+
+        if (res["isSuccess"] == true) {
+          if (isLast ?? false) {
+            //reort
+            viewUserQuizReport(quizId: userQuizId, context: context);
+          } else {
+            Navigator.of(context).push(
+              PageRouteBuilder(
+                  pageBuilder: (_, __, ___) =>
+                      QuizScreen(index: (questionNumber + 1)),
+                  transitionDuration: const Duration(milliseconds: 500),
+                  transitionsBuilder: (_, a, __, c) => FadeTransition(
+                        opacity: a,
+                        child: c,
+                      )),
+            );
+          }
+        }
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  static Future<void> viewUserQuizReport({
+    required int quizId,
+    required BuildContext context,
+  }) async {
+    final api = Quiz.create(interceptors: [TokenIndicator()]);
+    try {
+      await api
+          .apiV1StartQuizViewUserQuizReportByQuizIdGet(quizId: quizId)
+          .then((postResult) {
+        print("called start");
+
+        final body = jsonDecode(postResult.bodyString)["data"];
+        final res = jsonDecode(postResult.bodyString);
+        print(res);
+        print(body);
+
+        if (res["isSuccess"] == true) {
+          Navigator.of(context).push(
+            PageRouteBuilder(
+                pageBuilder: (_, __, ___) => QuizScreen(index: 0),
+                transitionDuration: const Duration(milliseconds: 500),
+                transitionsBuilder: (_, a, __, c) => FadeTransition(
+                      opacity: a,
+                      child: c,
+                    )),
+          );
+        }
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
 }

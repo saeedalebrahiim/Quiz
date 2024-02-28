@@ -8,7 +8,7 @@ class StopWatchProvider with ChangeNotifier {
 
   StreamSubscription<int>? streamSubscription;
 
-  int secondsElapsed = 0;
+  int secondsElapsed = 30;
 
   void init() {
     // secondsElapsed = storageService.get(StorageKey.secondsElapsed) ?? 0;
@@ -19,7 +19,8 @@ class StopWatchProvider with ChangeNotifier {
       streamSubscription!.resume();
     } else {
       streamSubscription = timeStream.listen((seconds) {
-        secondsElapsed++;
+        secondsElapsed--;
+        print("secondsElapsed $secondsElapsed");
         notifyListeners();
         // storageService.set(StorageKey.secondsElapsed, secondsElapsed);
       });
@@ -30,7 +31,7 @@ class StopWatchProvider with ChangeNotifier {
     if (streamSubscription != null && !streamSubscription!.isPaused) {
       // storageService.set(StorageKey.secondsElapsed, secondsElapsed);
       streamSubscription!.pause();
-      secondsElapsed = 0;
+      secondsElapsed = 30;
       notifyListeners();
       // storageService.set(StorageKey.secondsElapsed, secondsElapsed);
     }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:quiz/controller/Quiz/start_quiz.dart';
 import 'package:quiz/global.dart';
 import 'package:quiz/provider/quiz.dart';
+import 'package:quiz/view/home/dashboard/home_screen.dart';
 import 'package:quiz/view/home/quiz/answer_card.dart';
 import 'package:quiz/view/home/quiz/quizmodel/questions.dart';
 
@@ -38,7 +40,12 @@ class _QuizScreenState extends State<QuizScreen> {
                     padding: const EdgeInsets.only(left: 15, top: 20),
                     child: InkWell(
                       onTap: () {
-                        Navigator.pop(context);
+                        // Navigator.pop(context);
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                              builder: (context) => const HomeScreen(),
+                            ),
+                            (route) => false);
                       },
                       child: Container(
                         width: 50,
@@ -188,13 +195,25 @@ class _QuizScreenState extends State<QuizScreen> {
                             child: SizedBox(
                               width: 300,
                               child: RawMaterialButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  StartQuizController.addAwnswer(
+                                      userQuizId: value.quiz!.quizId,
+                                      userDQuizId: value.quiz!.dQuizId,
+                                      questionId: value
+                                          .quiz!
+                                          .quizQuestions[widget.index]
+                                          .questionId,
+                                      selectedAnswer: selectedIndex,
+                                      questionNumber: widget.index,
+                                      context: context);
+                                },
                                 fillColor: Colors.green,
+                                
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(6),
                                 ),
                                 child: const Text(
-                                  "Next",
+                                  "Sıradaki",
                                   style: TextStyle(color: Colors.white),
                                 ),
                               ),
