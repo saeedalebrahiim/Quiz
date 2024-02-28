@@ -15,6 +15,8 @@ class QuizScreen extends StatefulWidget {
 
 class _QuizScreenState extends State<QuizScreen> {
   int selectedIndex = 0;
+  bool isSelectedAny = false;
+
   @override
   Widget build(BuildContext context) {
     final question = questions[0];
@@ -86,127 +88,185 @@ class _QuizScreenState extends State<QuizScreen> {
                     Wrap(
                       direction: Axis.horizontal,
                       children: [
-                        RawMaterialButton(
-                          onPressed: () {
-                            setState(() {
-                              selectedIndex = 1;
-                            });
-                          },
-                          child: Padding(
-                            padding: EdgeInsets.all(7.0),
-                            child: AnswerCard(
-                              question: value
-                                  .quiz!.quizQuestions[widget.index].answer1,
-                              isSelected: selectedIndex == 1,
-                              correctAnswerIndex: value.quiz!
-                                  .quizQuestions[widget.index].currectAnswer,
-                              currentIndex: 1,
+                        IgnorePointer(
+                          ignoring: isSelectedAny,
+                          child: RawMaterialButton(
+                            onPressed: () {
+                              print("wt");
+                              setState(() {
+                                isSelectedAny = true;
+                                selectedIndex = 1;
+                              });
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.all(7.0),
+                              child: AnswerCard(
+                                question: value
+                                    .quiz!.quizQuestions[widget.index].answer1,
+                                isSelected: selectedIndex == 1,
+                                correctAnswerIndex: value.quiz!
+                                    .quizQuestions[widget.index].currectAnswer,
+                                currentIndex: 1,
+                              ),
                             ),
                           ),
                         ),
                         Padding(
                           padding: EdgeInsets.all(7.0),
-                          child: RawMaterialButton(
-                            onPressed: () {
-                              setState(() {
-                                selectedIndex = 2;
-                              });
-                            },
-                            child: AnswerCard(
-                              question: value
-                                  .quiz!.quizQuestions[widget.index].answer2,
-                              isSelected: selectedIndex == 2,
-                              correctAnswerIndex: value.quiz!
-                                  .quizQuestions[widget.index].currectAnswer,
-                              currentIndex: 2,
+                          child: IgnorePointer(
+                            ignoring: isSelectedAny,
+                            child: RawMaterialButton(
+                              onPressed: () {
+                                setState(() {
+                                  isSelectedAny = true;
+
+                                  selectedIndex = 2;
+                                });
+                              },
+                              child: AnswerCard(
+                                question: value
+                                    .quiz!.quizQuestions[widget.index].answer2,
+                                isSelected: selectedIndex == 2,
+                                correctAnswerIndex: value.quiz!
+                                    .quizQuestions[widget.index].currectAnswer,
+                                currentIndex: 2,
+                              ),
                             ),
                           ),
                         ),
                         Padding(
                           padding: EdgeInsets.all(7.0),
-                          child: RawMaterialButton(
-                            onPressed: () {
-                              setState(() {
-                                selectedIndex = 3;
-                              });
-                            },
-                            child: AnswerCard(
-                              question: value
-                                  .quiz!.quizQuestions[widget.index].answer3,
-                              isSelected: selectedIndex == 3,
-                              correctAnswerIndex: value.quiz!
-                                  .quizQuestions[widget.index].currectAnswer,
-                              currentIndex: 3,
+                          child: IgnorePointer(
+                            ignoring: isSelectedAny,
+                            child: RawMaterialButton(
+                              onPressed: () {
+                                setState(() {
+                                  isSelectedAny = true;
+
+                                  selectedIndex = 3;
+                                });
+                              },
+                              child: AnswerCard(
+                                question: value
+                                    .quiz!.quizQuestions[widget.index].answer3,
+                                isSelected: selectedIndex == 3,
+                                correctAnswerIndex: value.quiz!
+                                    .quizQuestions[widget.index].currectAnswer,
+                                currentIndex: 3,
+                              ),
                             ),
                           ),
                         ),
                         Padding(
                           padding: EdgeInsets.all(7.0),
-                          child: RawMaterialButton(
-                            onPressed: () {
-                              setState(() {
-                                selectedIndex = 4;
-                              });
-                            },
-                            child: AnswerCard(
-                              question: value
-                                  .quiz!.quizQuestions[widget.index].answer4,
-                              isSelected: selectedIndex == 4,
-                              correctAnswerIndex: value.quiz!
-                                  .quizQuestions[widget.index].currectAnswer,
-                              currentIndex: 4,
+                          child: IgnorePointer(
+                            ignoring: isSelectedAny,
+                            child: RawMaterialButton(
+                              onPressed: () {
+                                setState(() {
+                                  isSelectedAny = true;
+
+                                  selectedIndex = 4;
+                                });
+                              },
+                              child: AnswerCard(
+                                question: value
+                                    .quiz!.quizQuestions[widget.index].answer4,
+                                isSelected: selectedIndex == 4,
+                                correctAnswerIndex: value.quiz!
+                                    .quizQuestions[widget.index].currectAnswer,
+                                currentIndex: 4,
+                              ),
                             ),
                           ),
                         ),
                       ],
                     ),
+                    isSelectedAny
+                        ? Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: SizedBox(
+                              width: 300,
+                              child: RawMaterialButton(
+                                onPressed: () {},
+                                fillColor: Colors.green,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: const Text(
+                                  "Next",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          )
+                        : SizedBox(),
                     Padding(
                       padding: const EdgeInsets.all(10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              width: 80,
-                              height: 60,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image:
-                                          AssetImage('lib/assets/images/1.png'),
-                                      fit: BoxFit.fill)),
+                          IgnorePointer(
+                            ignoring: isSelectedAny,
+                            child: InkWell(
+                              onTap: () {},
+                              child: Container(
+                                width: 80,
+                                height: 60,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                            'lib/assets/images/1.png'),
+                                        fit: BoxFit.fill)),
+                              ),
                             ),
                           ),
                           SizedBox(
                             width: 10,
                           ),
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              width: 95,
-                              height: 58,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image:
-                                          AssetImage('lib/assets/images/2.png'),
-                                      fit: BoxFit.fill)),
+                          IgnorePointer(
+                            ignoring: isSelectedAny,
+                            child: InkWell(
+                              onTap: () {},
+                              child: Container(
+                                width: 95,
+                                height: 58,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                            'lib/assets/images/2.png'),
+                                        fit: BoxFit.fill)),
+                              ),
                             ),
                           ),
                           SizedBox(
                             width: 10,
                           ),
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              width: 90,
-                              height: 60,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image:
-                                          AssetImage('lib/assets/images/3.png'),
-                                      fit: BoxFit.fill)),
-                            ),
-                          ),
+                          isSelectedAny
+                              ? InkWell(
+                                  onTap: () {},
+                                  child: Container(
+                                    width: 90,
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            image: AssetImage(
+                                                'lib/assets/images/3.png'),
+                                            fit: BoxFit.fill)),
+                                  ),
+                                )
+                              : InkWell(
+                                  onTap: () {},
+                                  child: Container(
+                                    width: 90,
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            image: AssetImage(
+                                                'lib/assets/images/3.png'),
+                                            fit: BoxFit.fill)),
+                                  ),
+                                ),
                         ],
                       ),
                     )
