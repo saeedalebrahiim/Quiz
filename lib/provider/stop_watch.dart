@@ -1,12 +1,14 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:quiz/controller/Quiz/start_quiz.dart';
+import 'package:quiz/provider/quiz.dart';
 
 class StopWatchProvider with ChangeNotifier {
-  Stream<int> timeStream = Stream.periodic(const Duration(seconds: 1));
+  Stream timeStream = Stream.periodic(const Duration(seconds: 1));
 
-  StreamSubscription<int>? streamSubscription;
+  StreamSubscription? streamSubscription;
 
   int secondsElapsed = 30;
 
@@ -14,13 +16,25 @@ class StopWatchProvider with ChangeNotifier {
     // secondsElapsed = storageService.get(StorageKey.secondsElapsed) ?? 0;
   }
 
-  void start() {
+  void start({required BuildContext context, required int index}) {
     if (streamSubscription != null && streamSubscription!.isPaused) {
       streamSubscription!.resume();
     } else {
       streamSubscription = timeStream.listen((seconds) {
         secondsElapsed--;
         print("secondsElapsed $secondsElapsed");
+        if (secondsElapsed == 0) {
+          QuizState quiz = Provider.of<QuizState>(context, listen: false);
+          //TODO call add
+          StartQuizController.addAwnswer(
+              userQuizId: quiz.quiz!.quizId,
+              userDQuizId: quiz.quiz!.dQuizId,
+              questionId: quiz.quiz!.quizQuestions[index].questionId,
+              selectedAnswer: 0,
+              questionNumber: index,
+              context: context);
+          stop();
+        }
         notifyListeners();
         // storageService.set(StorageKey.secondsElapsed, secondsElapsed);
       });

@@ -7,6 +7,7 @@ import 'package:quiz/provider/faq.dart';
 import 'package:quiz/provider/profile.dart';
 import 'package:quiz/provider/quiz.dart';
 import 'package:quiz/provider/settings.dart';
+import 'package:quiz/provider/stop_watch.dart';
 import 'package:quiz/route/routes.dart';
 
 void main() {
@@ -30,6 +31,9 @@ void main() {
         ),
         ChangeNotifierProvider(
           create: (context) => QuizState(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => StopWatchProvider(),
         ),
       ],
       child: const MyApp(),

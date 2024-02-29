@@ -7,6 +7,7 @@ import 'package:quiz/model/dto/question.dart';
 import 'package:quiz/model/dto/quiz.dart';
 import 'package:quiz/provider/banners.dart';
 import 'package:quiz/provider/quiz.dart';
+import 'package:quiz/provider/stop_watch.dart';
 import 'package:quiz/services/headers.dart';
 import 'package:quiz/view/home/quiz/quiz_screen.dart';
 
@@ -33,6 +34,7 @@ class StartQuizController {
               dQuizId: body['dQuizId'],
               quizQuestions: questions);
           context.read<QuizState>().getQuiz(value: quiz);
+
           Navigator.of(context).push(
             PageRouteBuilder(
                 pageBuilder: (_, __, ___) => const QuizScreen(index: 1),
