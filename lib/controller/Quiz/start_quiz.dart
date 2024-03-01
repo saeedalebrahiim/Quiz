@@ -141,15 +141,15 @@ class StartQuizController {
   }
 
   static Future<void> hintPercent({
-    required int quizId,
+    required int questionId,
     required BuildContext context,
   }) async {
     final api = Quiz.create(interceptors: [TokenIndicator()]);
     try {
       await api
-          .apiV1StartQuizViewUserQuizReportByQuizIdGet(quizId: quizId)
+          .apiV1StartQuizShowPercentSelectedAnswerGet(questionId: questionId)
           .then((postResult) {
-        print("called result");
+        print("called percent hint");
 
         final body = jsonDecode(postResult.bodyString)["data"];
         final res = jsonDecode(postResult.bodyString);
@@ -157,15 +157,34 @@ class StartQuizController {
         print(body);
 
         if (res["isSuccess"] == true) {
-          Navigator.of(context).push(
-            PageRouteBuilder(
-                pageBuilder: (_, __, ___) => const Result(),
-                transitionDuration: const Duration(milliseconds: 500),
-                transitionsBuilder: (_, a, __, c) => FadeTransition(
-                      opacity: a,
-                      child: c,
-                    )),
-          );
+          UserPercentageHint hint = UserPercentageHint.fromJson(body);
+          context.read<QuizState>().addPercentHint(hint);
+        }
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  static Future<void> hinteliminate({
+    required int questionId,
+    required BuildContext context,
+  }) async {
+    final api = Quiz.create(interceptors: [TokenIndicator()]);
+    try {
+      await api
+          .apiV1StartQuizShowWrongAnswerGet(questionId: questionId)
+          .then((postResult) {
+        print("called percent hint");
+
+        final body = jsonDecode(postResult.bodyString)["data"];
+        final res = jsonDecode(postResult.bodyString);
+        print(res);
+        print(body);
+        List n = body;
+        print(n);
+        if (res["isSuccess"] == true) {
+          context.read<QuizState>().addEliminateAnswers(n.first, n.last);
         }
       });
     } catch (e) {

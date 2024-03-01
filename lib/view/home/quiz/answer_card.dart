@@ -4,7 +4,7 @@ class AnswerCard extends StatelessWidget {
   final String question;
   final bool isSelected;
   final bool? helpBomb;
-  final bool? helpDisk;
+  final double? helpPercentage;
   final int? correctAnswerIndex;
   final int? selectedAnswerIndex;
   final int currentIndex;
@@ -16,7 +16,7 @@ class AnswerCard extends StatelessWidget {
       this.selectedAnswerIndex,
       required this.currentIndex,
       this.helpBomb,
-      this.helpDisk});
+      this.helpPercentage});
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +46,7 @@ class AnswerCard extends StatelessWidget {
                   width: 5)),
           child: Center(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
                   padding: EdgeInsets.all(5.0),
@@ -61,21 +62,27 @@ class AnswerCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                helpDisk == true
+                helpPercentage != null
                     ? Row(
                         children: [
                           const SizedBox(
                             width: 5,
                           ),
-                          Container(
-                            width: 15,
-                            height: 15,
-                            decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage(
-                                        'lib/assets/images/answercard.png'),
-                                    fit: BoxFit.fill)),
+                          Icon(
+                            Icons.groups,
+                            color: Colors.orange,
                           ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          SizedBox(
+                            width: 100,
+                            child: LinearProgressIndicator(
+                              backgroundColor: Colors.grey,
+                              color: Colors.orange,
+                              value: helpPercentage,
+                            ),
+                          )
                         ],
                       )
                     : const SizedBox()
@@ -97,7 +104,7 @@ class AnswerCard extends StatelessWidget {
                     Icon(Icons.cancel),
                     Text(
                       //TODO Change to TR
-                      'FAlse',
+                      'False',
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
