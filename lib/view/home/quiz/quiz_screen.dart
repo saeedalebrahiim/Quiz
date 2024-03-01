@@ -437,6 +437,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                         width: 300,
                                         child: RawMaterialButton(
                                           onPressed: () {
+                                            //TODO everting should be on report
                                             bool isLast = (widget.index + 1) <
                                                 value
                                                     .quiz!.quizQuestions.length;
@@ -530,7 +531,9 @@ class _QuizScreenState extends State<QuizScreen> {
                                     ),
                                     isSelectedAny
                                         ? InkWell(
-                                            onTap: () {},
+                                            onTap: () {
+                                              //see ads
+                                            },
                                             child: Container(
                                               width: 90,
                                               height: 60,
@@ -542,7 +545,39 @@ class _QuizScreenState extends State<QuizScreen> {
                                             ),
                                           )
                                         : InkWell(
-                                            onTap: () {},
+                                            onTap: () {
+                                              StartQuizController
+                                                  .reportQuestion(
+                                                      questionId: value
+                                                          .quiz!
+                                                          .quizQuestions[
+                                                              widget.index]
+                                                          .questionId,
+                                                      context: context);
+                                              bool isLast = (widget.index + 1) <
+                                                  value.quiz!.quizQuestions
+                                                      .length;
+                                              StartQuizController.addAwnswer(
+                                                  userQuizId:
+                                                      value.quiz!.quizId,
+                                                  userDQuizId:
+                                                      value.quiz!.dQuizId,
+                                                  isLast: !isLast,
+                                                  questionId: value
+                                                      .quiz!
+                                                      .quizQuestions[
+                                                          widget.index]
+                                                      .questionId,
+                                                  selectedAnswer: selectedIndex,
+                                                  questionNumber: widget.index,
+                                                  context: context);
+                                              context
+                                                  .read<QuizState>()
+                                                  .removePercentHint();
+                                              context
+                                                  .read<QuizState>()
+                                                  .removeEliminateAnswers();
+                                            },
                                             child: Container(
                                               width: 90,
                                               height: 60,

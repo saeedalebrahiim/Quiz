@@ -183,10 +183,22 @@ class StartQuizController {
         print(body);
         List n = body;
         print(n);
-        if (res["isSuccess"] == true) {
-          context.read<QuizState>().addEliminateAnswers(n.first, n.last);
-        }
+        if (res["isSuccess"] == true) {}
       });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  static Future<void> reportQuestion({
+    required int questionId,
+    required BuildContext context,
+  }) async {
+    final api = Quiz.create(interceptors: [TokenIndicator()]);
+    try {
+      await api
+          .apiV1ReportQuestionSubmitReportPost(questionId: questionId)
+          .then((postResult) {});
     } catch (e) {
       print(e);
     }
