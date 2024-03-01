@@ -183,7 +183,9 @@ class StartQuizController {
         print(body);
         List n = body;
         print(n);
-        if (res["isSuccess"] == true) {}
+        if (res["isSuccess"] == true) {
+          context.read<QuizState>().addEliminateAnswers(n.first, n.last);
+        }
       });
     } catch (e) {
       print(e);
@@ -198,7 +200,19 @@ class StartQuizController {
     try {
       await api
           .apiV1ReportQuestionSubmitReportPost(questionId: questionId)
-          .then((postResult) {});
+          .then((postResult) {
+        print("called report hint");
+
+        final body = jsonDecode(postResult.bodyString)["data"];
+        final res = jsonDecode(postResult.bodyString);
+        // print(res);
+        // print(body);
+        // List n = body;
+        // print(n);
+        // if (res["isSuccess"] == true) {
+        //   context.read<QuizState>().addEliminateAnswers(n.first, n.last);
+        // }
+      });
     } catch (e) {
       print(e);
     }
