@@ -21,13 +21,29 @@ class QuizScreen extends StatefulWidget {
 class _QuizScreenState extends State<QuizScreen> {
   int selectedIndex = 0;
   bool isSelectedAny = false;
+  StopWatchProvider? stopWatchProvider;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getStop();
+  }
+
+  getStop() {
+    stopWatchProvider = Provider.of<StopWatchProvider>(context, listen: false);
+    stopWatchProvider!.start(context: context, index: widget.index);
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    stopWatchProvider!.stop();
+    stopWatchProvider!.cancel();
+  }
 
   @override
   Widget build(BuildContext context) {
-    StopWatchProvider stopWatchProvider =
-        Provider.of<StopWatchProvider>(context, listen: false);
-    stopWatchProvider.start(context: context, index: widget.index);
-
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -36,339 +52,430 @@ class _QuizScreenState extends State<QuizScreen> {
             image: const DecorationImage(
                 image: AssetImage('lib/assets/images/bg2.png'),
                 fit: BoxFit.fill)),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 15, top: 20),
-                  child: InkWell(
-                    onTap: () {
-                      // Navigator.pop(context);
-                      Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(
-                            builder: (context) => const HomeScreen(),
-                          ),
-                          (route) => false);
-                    },
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage('lib/assets/images/back.png'))),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 50,
-                  width: 300,
-                  child: Consumer<StopWatchProvider>(
-                    builder: (c, stopWatchProvider, _) {
-                      Duration duration =
-                          Duration(seconds: stopWatchProvider.secondsElapsed);
-
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.timer,
-                              color: Colors.white,
-                              size: 24,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15, top: 20),
+                    child: InkWell(
+                      onTap: () {
+                        // Navigator.pop(context);
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                              builder: (context) => const HomeScreen(),
                             ),
-                            Text(
-                              "${duration.inSeconds.toString()} s",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: SizedBox(
-                                width: 180,
-                                height: 10,
-                                child: LinearProgressIndicator(
-                                  backgroundColor: Colors.black,
-                                  color: Colors.green,
-                                  value: (duration.inSeconds / 30),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Image.asset(
-                      'lib/assets/images/coin.png',
-                      width: 25,
-                      height: 25,
-                    ),
-                    Consumer<ProfileState>(
-                      builder: (context, value, child) => Text(
-                        value.userBalance.toString(),
-                        style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600),
+                            (route) => false);
+                      },
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image:
+                                    AssetImage('lib/assets/images/back.png'))),
                       ),
                     ),
-                  ],
-                ),
-              ],
-            ),
-            Consumer<QuizState>(
-              builder: (context, value, child) => Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    value.quiz!.quizQuestions[widget.index].questionText,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      shadows: [Shadow(color: Colors.white, blurRadius: 20)],
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                    ),
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 50,
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 450,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('lib/assets/images/quizbg.png'),
-                            fit: BoxFit.fill)),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const SizedBox(
-                          height: 60,
-                        ),
-                        const Text(
-                          'Doğru şıkkı seç:',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        Wrap(
-                          direction: Axis.horizontal,
-                          children: [
-                            IgnorePointer(
-                              ignoring: isSelectedAny,
-                              child: RawMaterialButton(
-                                onPressed: () {
-                                  print("wt");
-                                  setState(() {
-                                    isSelectedAny = true;
-                                    selectedIndex = 1;
-                                  });
-                                },
-                                child: Padding(
-                                  padding: EdgeInsets.all(7.0),
-                                  child: AnswerCard(
-                                    question: value.quiz!
-                                        .quizQuestions[widget.index].answer1,
-                                    isSelected: selectedIndex == 1,
-                                    correctAnswerIndex: value
-                                        .quiz!
-                                        .quizQuestions[widget.index]
-                                        .currectAnswer,
-                                    currentIndex: 1,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(7.0),
-                              child: IgnorePointer(
-                                ignoring: isSelectedAny,
-                                child: RawMaterialButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      isSelectedAny = true;
+                    width: 300,
+                    child: Consumer<StopWatchProvider>(
+                      builder: (c, stopWatchProvider, _) {
+                        Duration duration =
+                            Duration(seconds: stopWatchProvider.secondsElapsed);
 
-                                      selectedIndex = 2;
-                                    });
-                                  },
-                                  child: AnswerCard(
-                                    question: value.quiz!
-                                        .quizQuestions[widget.index].answer2,
-                                    isSelected: selectedIndex == 2,
-                                    correctAnswerIndex: value
-                                        .quiz!
-                                        .quizQuestions[widget.index]
-                                        .currectAnswer,
-                                    currentIndex: 2,
-                                  ),
-                                ),
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.timer,
+                                color: Colors.white,
+                                size: 24,
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(7.0),
-                              child: IgnorePointer(
-                                ignoring: isSelectedAny,
-                                child: RawMaterialButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      isSelectedAny = true;
-
-                                      selectedIndex = 3;
-                                    });
-                                  },
-                                  child: AnswerCard(
-                                    question: value.quiz!
-                                        .quizQuestions[widget.index].answer3,
-                                    isSelected: selectedIndex == 3,
-                                    correctAnswerIndex: value
-                                        .quiz!
-                                        .quizQuestions[widget.index]
-                                        .currectAnswer,
-                                    currentIndex: 3,
-                                  ),
-                                ),
+                              Text(
+                                "${duration.inSeconds.toString()} s",
+                                style: TextStyle(color: Colors.white),
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(7.0),
-                              child: IgnorePointer(
-                                ignoring: isSelectedAny,
-                                child: RawMaterialButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      isSelectedAny = true;
-
-                                      selectedIndex = 4;
-                                    });
-                                  },
-                                  child: AnswerCard(
-                                    question: value.quiz!
-                                        .quizQuestions[widget.index].answer4,
-                                    isSelected: selectedIndex == 4,
-                                    correctAnswerIndex: value
-                                        .quiz!
-                                        .quizQuestions[widget.index]
-                                        .currectAnswer,
-                                    currentIndex: 4,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        isSelectedAny
-                            ? Padding(
-                                padding: const EdgeInsets.all(10),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
                                 child: SizedBox(
-                                  width: 300,
-                                  child: RawMaterialButton(
-                                    onPressed: () {
-                                      StartQuizController.addAwnswer(
-                                          userQuizId: value.quiz!.quizId,
-                                          userDQuizId: value.quiz!.dQuizId,
-                                          questionId: value
-                                              .quiz!
-                                              .quizQuestions[widget.index]
-                                              .questionId,
-                                          selectedAnswer: selectedIndex,
-                                          questionNumber: widget.index,
-                                          context: context);
-                                    },
-                                    fillColor: Colors.green,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(6),
-                                    ),
-                                    child: const Text(
-                                      "Sıradaki",
-                                      style: TextStyle(color: Colors.white),
-                                    ),
+                                  width: 180,
+                                  height: 10,
+                                  child: LinearProgressIndicator(
+                                    backgroundColor: Colors.black,
+                                    color: Colors.green,
+                                    value: (duration.inSeconds / 30),
                                   ),
                                 ),
                               )
-                            : SizedBox(),
-                        Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              IgnorePointer(
-                                ignoring: isSelectedAny,
-                                child: InkWell(
-                                  onTap: () {},
-                                  child: Container(
-                                    width: 80,
-                                    height: 60,
-                                    decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                            image: AssetImage(
-                                                'lib/assets/images/1.png'),
-                                            fit: BoxFit.fill)),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              IgnorePointer(
-                                ignoring: isSelectedAny,
-                                child: InkWell(
-                                  onTap: () {},
-                                  child: Container(
-                                    width: 95,
-                                    height: 58,
-                                    decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                            image: AssetImage(
-                                                'lib/assets/images/2.png'),
-                                            fit: BoxFit.fill)),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              isSelectedAny
-                                  ? InkWell(
-                                      onTap: () {},
-                                      child: Container(
-                                        width: 90,
-                                        height: 60,
-                                        decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                image: AssetImage(
-                                                    'lib/assets/images/3.png'),
-                                                fit: BoxFit.fill)),
-                                      ),
-                                    )
-                                  : InkWell(
-                                      onTap: () {},
-                                      child: Container(
-                                        width: 90,
-                                        height: 60,
-                                        decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                image: AssetImage(
-                                                    'lib/assets/images/3.png'),
-                                                fit: BoxFit.fill)),
-                                      ),
-                                    ),
                             ],
                           ),
-                        )
-                      ],
+                        );
+                      },
                     ),
-                  )
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Image.asset(
+                        'lib/assets/images/coin.png',
+                        width: 25,
+                        height: 25,
+                      ),
+                      Consumer<ProfileState>(
+                        builder: (context, value, child) => Text(
+                          value.userBalance.toString(),
+                          style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
-            ),
-          ],
+              Consumer<QuizState>(
+                builder: (context, value, child) => SizedBox(
+                  width: MediaQuery.sizeOf(context).width,
+                  height: MediaQuery.sizeOf(context).height - 70,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(
+                        flex: 1,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              value.quiz!.quizQuestions[widget.index]
+                                  .questionText,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                shadows: [
+                                  Shadow(color: Colors.white, blurRadius: 20)
+                                ],
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 28,
+                              ),
+                            ),
+                            Text(
+                              "${widget.index + 1} / ${value.quiz!.quizQuestions.length}",
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Flexible(
+                        flex: 3,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                      'lib/assets/images/quizbg.png'),
+                                  fit: BoxFit.cover)),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(
+                                height: 40,
+                              ),
+                              const Text(
+                                'Doğru şıkkı seç:',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              Wrap(
+                                direction: Axis.horizontal,
+                                children: [
+                                  IgnorePointer(
+                                    ignoring: isSelectedAny,
+                                    child: RawMaterialButton(
+                                      onPressed: () {
+                                        print("wt");
+                                        setState(() {
+                                          isSelectedAny = true;
+                                          selectedIndex = 1;
+                                        });
+                                        stopWatchProvider!.stop();
+                                        if (selectedIndex ==
+                                            value
+                                                .quiz!
+                                                .quizQuestions[widget.index]
+                                                .currectAnswer) {
+                                          context.read<QuizState>().plusCount();
+                                        } else {
+                                          context
+                                              .read<QuizState>()
+                                              .falsePlusCount();
+                                        }
+                                      },
+                                      child: Padding(
+                                        padding: EdgeInsets.all(7.0),
+                                        child: AnswerCard(
+                                          question: value
+                                              .quiz!
+                                              .quizQuestions[widget.index]
+                                              .answer1,
+                                          isSelected: selectedIndex == 1,
+                                          correctAnswerIndex: value
+                                              .quiz!
+                                              .quizQuestions[widget.index]
+                                              .currectAnswer,
+                                          currentIndex: 1,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.all(7.0),
+                                    child: IgnorePointer(
+                                      ignoring: isSelectedAny,
+                                      child: RawMaterialButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            isSelectedAny = true;
+
+                                            selectedIndex = 2;
+                                          });
+                                          stopWatchProvider!.stop();
+
+                                          if (selectedIndex ==
+                                              value
+                                                  .quiz!
+                                                  .quizQuestions[widget.index]
+                                                  .currectAnswer) {
+                                            context
+                                                .read<QuizState>()
+                                                .plusCount();
+                                          } else {
+                                            context
+                                                .read<QuizState>()
+                                                .falsePlusCount();
+                                          }
+                                        },
+                                        child: AnswerCard(
+                                          question: value
+                                              .quiz!
+                                              .quizQuestions[widget.index]
+                                              .answer2,
+                                          isSelected: selectedIndex == 2,
+                                          correctAnswerIndex: value
+                                              .quiz!
+                                              .quizQuestions[widget.index]
+                                              .currectAnswer,
+                                          currentIndex: 2,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.all(7.0),
+                                    child: IgnorePointer(
+                                      ignoring: isSelectedAny,
+                                      child: RawMaterialButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            isSelectedAny = true;
+
+                                            selectedIndex = 3;
+                                          });
+                                          stopWatchProvider!.stop();
+
+                                          if (selectedIndex ==
+                                              value
+                                                  .quiz!
+                                                  .quizQuestions[widget.index]
+                                                  .currectAnswer) {
+                                            context
+                                                .read<QuizState>()
+                                                .plusCount();
+                                          } else {
+                                            context
+                                                .read<QuizState>()
+                                                .falsePlusCount();
+                                          }
+                                        },
+                                        child: AnswerCard(
+                                          question: value
+                                              .quiz!
+                                              .quizQuestions[widget.index]
+                                              .answer3,
+                                          isSelected: selectedIndex == 3,
+                                          correctAnswerIndex: value
+                                              .quiz!
+                                              .quizQuestions[widget.index]
+                                              .currectAnswer,
+                                          currentIndex: 3,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.all(7.0),
+                                    child: IgnorePointer(
+                                      ignoring: isSelectedAny,
+                                      child: RawMaterialButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            isSelectedAny = true;
+
+                                            selectedIndex = 4;
+                                          });
+                                          stopWatchProvider!.stop();
+
+                                          if (selectedIndex ==
+                                              value
+                                                  .quiz!
+                                                  .quizQuestions[widget.index]
+                                                  .currectAnswer) {
+                                            context
+                                                .read<QuizState>()
+                                                .plusCount();
+                                          } else {
+                                            context
+                                                .read<QuizState>()
+                                                .falsePlusCount();
+                                          }
+                                        },
+                                        child: AnswerCard(
+                                          question: value
+                                              .quiz!
+                                              .quizQuestions[widget.index]
+                                              .answer4,
+                                          isSelected: selectedIndex == 4,
+                                          correctAnswerIndex: value
+                                              .quiz!
+                                              .quizQuestions[widget.index]
+                                              .currectAnswer,
+                                          currentIndex: 4,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              isSelectedAny
+                                  ? Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: SizedBox(
+                                        width: 300,
+                                        child: RawMaterialButton(
+                                          onPressed: () {
+                                            bool isLast = (widget.index + 1) <
+                                                value
+                                                    .quiz!.quizQuestions.length;
+                                            StartQuizController.addAwnswer(
+                                                userQuizId: value.quiz!.quizId,
+                                                userDQuizId:
+                                                    value.quiz!.dQuizId,
+                                                isLast: !isLast,
+                                                questionId: value
+                                                    .quiz!
+                                                    .quizQuestions[widget.index]
+                                                    .questionId,
+                                                selectedAnswer: selectedIndex,
+                                                questionNumber: widget.index,
+                                                context: context);
+                                          },
+                                          fillColor: Colors.green,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(6),
+                                          ),
+                                          child: const Text(
+                                            "Sıradaki",
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  : SizedBox(),
+                              Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    IgnorePointer(
+                                      ignoring: isSelectedAny,
+                                      child: InkWell(
+                                        onTap: () {},
+                                        child: Container(
+                                          width: 80,
+                                          height: 60,
+                                          decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                  image: AssetImage(
+                                                      'lib/assets/images/1.png'),
+                                                  fit: BoxFit.fill)),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    IgnorePointer(
+                                      ignoring: isSelectedAny,
+                                      child: InkWell(
+                                        onTap: () {},
+                                        child: Container(
+                                          width: 95,
+                                          height: 58,
+                                          decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                  image: AssetImage(
+                                                      'lib/assets/images/2.png'),
+                                                  fit: BoxFit.fill)),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    isSelectedAny
+                                        ? InkWell(
+                                            onTap: () {},
+                                            child: Container(
+                                              width: 90,
+                                              height: 60,
+                                              decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                      image: AssetImage(
+                                                          'lib/assets/images/3.png'),
+                                                      fit: BoxFit.fill)),
+                                            ),
+                                          )
+                                        : InkWell(
+                                            onTap: () {},
+                                            child: Container(
+                                              width: 90,
+                                              height: 60,
+                                              decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                      image: AssetImage(
+                                                          'lib/assets/images/3.png'),
+                                                      fit: BoxFit.fill)),
+                                            ),
+                                          ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

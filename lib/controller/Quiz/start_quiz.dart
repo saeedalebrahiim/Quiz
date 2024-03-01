@@ -9,7 +9,9 @@ import 'package:quiz/provider/banners.dart';
 import 'package:quiz/provider/quiz.dart';
 import 'package:quiz/provider/stop_watch.dart';
 import 'package:quiz/services/headers.dart';
+import 'package:quiz/view/home/dashboard/home_screen.dart';
 import 'package:quiz/view/home/quiz/quiz_screen.dart';
+import 'package:quiz/view/home/quiz/result.dart';
 
 class StartQuizController {
   static Future<void> startQuiz({required BuildContext context}) async {
@@ -37,7 +39,7 @@ class StartQuizController {
 
           Navigator.of(context).push(
             PageRouteBuilder(
-                pageBuilder: (_, __, ___) => const QuizScreen(index: 1),
+                pageBuilder: (_, __, ___) => const QuizScreen(index: 0),
                 transitionDuration: const Duration(milliseconds: 500),
                 transitionsBuilder: (_, a, __, c) => FadeTransition(
                       opacity: a,
@@ -82,23 +84,23 @@ class StartQuizController {
         print(res);
         print(body);
 
-        if (res["isSuccess"] == true) {
-          if (isLast ?? false) {
-            //reort
-            viewUserQuizReport(quizId: userQuizId, context: context);
-          } else {
-            Navigator.of(context).push(
-              PageRouteBuilder(
-                  pageBuilder: (_, __, ___) =>
-                      QuizScreen(index: (questionNumber + 1)),
-                  transitionDuration: const Duration(milliseconds: 500),
-                  transitionsBuilder: (_, a, __, c) => FadeTransition(
-                        opacity: a,
-                        child: c,
-                      )),
-            );
-          }
+        // if (res["isSuccess"] == true) {
+        if (isLast ?? false) {
+          //reort
+          viewUserQuizReport(quizId: userQuizId, context: context);
+        } else {
+          Navigator.of(context).push(
+            PageRouteBuilder(
+                pageBuilder: (_, __, ___) =>
+                    QuizScreen(index: (questionNumber + 1)),
+                transitionDuration: const Duration(milliseconds: 500),
+                transitionsBuilder: (_, a, __, c) => FadeTransition(
+                      opacity: a,
+                      child: c,
+                    )),
+          );
         }
+        // }
       });
     } catch (e) {
       print(e);
@@ -114,7 +116,7 @@ class StartQuizController {
       await api
           .apiV1StartQuizViewUserQuizReportByQuizIdGet(quizId: quizId)
           .then((postResult) {
-        print("called start");
+        print("called result");
 
         final body = jsonDecode(postResult.bodyString)["data"];
         final res = jsonDecode(postResult.bodyString);
@@ -124,7 +126,40 @@ class StartQuizController {
         if (res["isSuccess"] == true) {
           Navigator.of(context).push(
             PageRouteBuilder(
-                pageBuilder: (_, __, ___) => QuizScreen(index: 0),
+                pageBuilder: (_, __, ___) => const Result(),
+                transitionDuration: const Duration(milliseconds: 500),
+                transitionsBuilder: (_, a, __, c) => FadeTransition(
+                      opacity: a,
+                      child: c,
+                    )),
+          );
+        }
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  static Future<void> hintPercent({
+    required int quizId,
+    required BuildContext context,
+  }) async {
+    final api = Quiz.create(interceptors: [TokenIndicator()]);
+    try {
+      await api
+          .apiV1StartQuizViewUserQuizReportByQuizIdGet(quizId: quizId)
+          .then((postResult) {
+        print("called result");
+
+        final body = jsonDecode(postResult.bodyString)["data"];
+        final res = jsonDecode(postResult.bodyString);
+        print(res);
+        print(body);
+
+        if (res["isSuccess"] == true) {
+          Navigator.of(context).push(
+            PageRouteBuilder(
+                pageBuilder: (_, __, ___) => const Result(),
                 transitionDuration: const Duration(milliseconds: 500),
                 transitionsBuilder: (_, a, __, c) => FadeTransition(
                       opacity: a,

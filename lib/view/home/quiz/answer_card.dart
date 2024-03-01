@@ -50,7 +50,7 @@ class AnswerCard extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.all(5.0),
                   child: Text(
-                    'Kutluk bilge kül kağan bilge',
+                    question,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,

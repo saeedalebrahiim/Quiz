@@ -1,0 +1,52 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:quiz/provider/quiz.dart';
+import 'package:quiz/view/home/dashboard/home_screen.dart';
+
+class Result extends StatefulWidget {
+  const Result({super.key});
+
+  @override
+  State<Result> createState() => _ResultState();
+}
+
+class _ResultState extends State<Result> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Consumer<QuizState>(builder: (context, value, child) {
+              return Column(
+                children: [
+                  Text("value.correctCount ${value.correctCount}"),
+                  Text("value.false ${value.falseCount}"),
+                  Text("value.total ${value.quiz!.quizQuestions.length}"),
+                  RawMaterialButton(
+                    onPressed: () {
+                      context.read<QuizState>().resetCount();
+                      Navigator.of(context).push(
+                        PageRouteBuilder(
+                            pageBuilder: (_, __, ___) => const HomeScreen(),
+                            transitionDuration:
+                                const Duration(milliseconds: 500),
+                            transitionsBuilder: (_, a, __, c) => FadeTransition(
+                                  opacity: a,
+                                  child: c,
+                                )),
+                      );
+                    },
+                    fillColor: Colors.red,
+                    child: Text("ok"),
+                  )
+                ],
+              );
+            }),
+          ),
+        ),
+      ),
+    );
+  }
+}

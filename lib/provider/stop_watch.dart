@@ -17,6 +17,8 @@ class StopWatchProvider with ChangeNotifier {
   }
 
   void start({required BuildContext context, required int index}) {
+    secondsElapsed = 30;
+
     if (streamSubscription != null && streamSubscription!.isPaused) {
       streamSubscription!.resume();
     } else {
@@ -45,7 +47,6 @@ class StopWatchProvider with ChangeNotifier {
     if (streamSubscription != null && !streamSubscription!.isPaused) {
       // storageService.set(StorageKey.secondsElapsed, secondsElapsed);
       streamSubscription!.pause();
-      secondsElapsed = 30;
       notifyListeners();
       // storageService.set(StorageKey.secondsElapsed, secondsElapsed);
     }
