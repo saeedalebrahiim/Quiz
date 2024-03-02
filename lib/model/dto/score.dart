@@ -44,3 +44,26 @@ class UserScore {
     );
   }
 }
+
+class RewardScore {
+  final int userId;
+  final int score;
+  final String? applicationUserUserPicUrl;
+  final String? applicationUserFullName;
+
+  RewardScore({
+    required this.userId,
+    this.applicationUserFullName,
+    required this.score,
+    this.applicationUserUserPicUrl,
+  });
+
+  static RewardScore fromJson(json) {
+    return RewardScore(
+      userId: json['userId'],
+      applicationUserFullName: json['applicationUserFullName'],
+      score: json['score'],
+      applicationUserUserPicUrl: json['applicationUserUserPicUrl'],
+    );
+  }
+}

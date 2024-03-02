@@ -9,6 +9,7 @@ import 'package:quiz/controller/score/score.dart';
 import 'package:quiz/provider/profile.dart';
 import 'package:quiz/provider/score.dart';
 import 'package:quiz/view/buycoin/buy_coin_screen.dart';
+import 'package:quiz/view/myrating/all/all_screen.dart.dart';
 import 'package:quiz/view/myrating/onemonth/one_month_screen.dart.dart';
 import 'package:quiz/view/myrating/today/today_screen.dart';
 
@@ -204,18 +205,17 @@ class _OneMonthScreenState extends State<OneMonthScreen> {
                     ),
                     RawMaterialButton(
                       onPressed: () {
-                        // Navigator.of(context).pushReplacement(
-                        //   PageRouteBuilder(
-                        //       pageBuilder: (_, __, ___) =>
-                        //           const OneMonthScreen(),
-                        //       transitionDuration:
-                        //           const Duration(milliseconds: 500),
-                        //       transitionsBuilder: (_, a, __, c) =>
-                        //           FadeTransition(
-                        //             opacity: a,
-                        //             child: c,
-                        //           )),
-                        // );
+                        Navigator.of(context).pushReplacement(
+                          PageRouteBuilder(
+                              pageBuilder: (_, __, ___) => const AllScreen(),
+                              transitionDuration:
+                                  const Duration(milliseconds: 500),
+                              transitionsBuilder: (_, a, __, c) =>
+                                  FadeTransition(
+                                    opacity: a,
+                                    child: c,
+                                  )),
+                        );
                       },
                       child: Container(
                         height: 35,

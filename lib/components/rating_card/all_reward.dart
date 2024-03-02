@@ -2,27 +2,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz/model/dto/score.dart';
 
-class AllRatingCard extends StatelessWidget {
-  final String? name, imgProfile, id;
-  const AllRatingCard(
-      {super.key,
-      this.price,
-      this.name,
-      this.imgProfile,
-      this.id,
-      this.isPrice,
-      this.isRank,
-      this.showChanges,
-      this.isMe,
-      required this.score,
-      required this.index});
+class AllReward extends StatelessWidget {
+  const AllReward({
+    super.key,
+    required this.score,
+    required this.index,
+    this.isMe,
+  });
 
-  final UserScore score;
+  final RewardScore score;
   final int index;
-  final String? price;
-  final bool? showChanges;
-  final bool? isPrice;
-  final bool? isRank;
   final bool? isMe;
 
   @override
@@ -49,41 +38,10 @@ class AllRatingCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    isRank == true ? '${score.id}.' : "$index .",
+                    "$index .",
                     style: const TextStyle(
                         color: Colors.white, fontWeight: FontWeight.bold),
                   ),
-                  showChanges == true
-                      ? Visibility(
-                          visible: score.changes > 0,
-                          replacement: Row(
-                            children: [
-                              Icon(
-                                Icons.arrow_drop_down,
-                                color: Colors.red,
-                              ),
-                              Text(
-                                "${score.changes}",
-                                style: const TextStyle(
-                                    color: Colors.red, fontSize: 12),
-                              ),
-                            ],
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.arrow_drop_up,
-                                color: Colors.green,
-                              ),
-                              Text(
-                                "${score.changes}",
-                                style: const TextStyle(
-                                    color: Colors.green, fontSize: 12),
-                              ),
-                            ],
-                          ),
-                        )
-                      : SizedBox(),
                 ],
               ),
               const SizedBox(
@@ -122,8 +80,7 @@ class AllRatingCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    score.applicationUserFullName ??
-                        score.applicationUserUserName,
+                    score.applicationUserFullName ?? "",
                     style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -157,20 +114,8 @@ class AllRatingCard extends StatelessWidget {
             padding: const EdgeInsets.only(right: 12.0),
             child: Row(
               children: [
-                isPrice == true
-                    ? const SizedBox()
-                    : const Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Icon(
-                          Icons.circle,
-                          color: Colors.green,
-                          size: 12,
-                        ),
-                      ),
                 Text(
-                  isPrice == true
-                      ? '${price ?? ""} TL'
-                      : '${score.sumCurrectAnswer}',
+                  '${score.score} TL',
                   style: const TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),

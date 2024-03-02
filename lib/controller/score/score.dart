@@ -128,15 +128,24 @@ class ScoreController {
   }) async {
     final api = Quiz.create(interceptors: [TokenIndicator()]);
     try {
-      await api.apiV1ScoreMaxScoreOfMonthScoreGet().then((postResult) {
-        print("called percent hint");
+      await api.apiV1ScoreMaxScoreOfMonthScoreGet(count: 50).then((postResult) {
+        print("called Month");
 
         final body = jsonDecode(postResult.bodyString)["data"];
         final res = jsonDecode(postResult.bodyString);
         print(res);
         print(body);
 
-        if (res["isSuccess"] == true) {}
+        if (res["isSuccess"] == true) {
+          context.read<ScoreState>().resetAllUsers();
+
+          List listScores = body;
+          print(listScores);
+          for (var element in listScores) {
+            RewardScore score = RewardScore.fromJson(element);
+            context.read<ScoreState>().getAllUsers(value: score);
+          }
+        }
       });
     } catch (e) {
       print(e);
