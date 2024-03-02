@@ -410,6 +410,8 @@ class _TodayScreenState extends State<TodayScreen> {
                       padding: const EdgeInsets.symmetric(
                           vertical: 8.0, horizontal: 25),
                       child: AllRatingCard(
+                          showChanges: true,
+                          isPrice: true,
                           score: value.dailyScores[index],
                           index: index + 1,
                           price: value.rewards[index] ?? "0"),

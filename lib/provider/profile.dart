@@ -3,8 +3,10 @@ import 'package:quiz/model/dto/profile.dart';
 
 class ProfileState extends ChangeNotifier {
   ProfileDto? profile;
+  static ProfileDto? profileUse;
   getProfile({required ProfileDto user}) {
     profile = user;
+    profileUse = user;
     notifyListeners();
   }
 

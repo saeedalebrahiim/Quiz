@@ -99,14 +99,23 @@ class ScoreController {
     final api = Quiz.create(interceptors: [TokenIndicator()]);
     try {
       await api.apiV1ScoreGetUserChangeScoreMonthListGet().then((postResult) {
-        print("called percent hint");
+        print("called Month");
 
         final body = jsonDecode(postResult.bodyString)["data"];
         final res = jsonDecode(postResult.bodyString);
         print(res);
         print(body);
 
-        if (res["isSuccess"] == true) {}
+        if (res["isSuccess"] == true) {
+          context.read<ScoreState>().resetMonthlyUsers();
+
+          List listScores = body;
+          print(listScores);
+          for (var element in listScores) {
+            UserScore score = UserScore.fromJson(element);
+            context.read<ScoreState>().getMonthlyUsers(value: score);
+          }
+        }
       });
     } catch (e) {
       print(e);

@@ -10,6 +10,7 @@ class ScoreState extends ChangeNotifier {
 
   UserScore? userScore;
   List<UserScore> dailyScores = [];
+  List<UserScore> monthlyScores = [];
   List<String> rewards = [];
 
   getDailyUsers({required UserScore value}) {
@@ -26,6 +27,17 @@ class ScoreState extends ChangeNotifier {
     dailyScores.clear();
     dailyScores = [];
     userScore = null;
+    notifyListeners();
+  }
+
+  getMonthlyUsers({required UserScore value}) {
+    monthlyScores.add(value);
+    notifyListeners();
+  }
+
+  resetMonthlyUsers() {
+    monthlyScores.clear();
+    monthlyScores = [];
     notifyListeners();
   }
 

@@ -1,12 +1,35 @@
+import 'dart:async';
+
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_count_timer/easy_count_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz/components/rating_card/rating_card_onemonth.dart';
+import 'package:quiz/components/rating_card/rating_card_all.dart';
+import 'package:quiz/controller/score/score.dart';
 import 'package:quiz/provider/profile.dart';
+import 'package:quiz/provider/score.dart';
 import 'package:quiz/view/buycoin/buy_coin_screen.dart';
+import 'package:quiz/view/myrating/onemonth/one_month_screen.dart.dart';
 import 'package:quiz/view/myrating/today/today_screen.dart';
 
-class OneMonthScreen extends StatelessWidget {
+class OneMonthScreen extends StatefulWidget {
   const OneMonthScreen({super.key});
+
+  @override
+  State<OneMonthScreen> createState() => _OneMonthScreenState();
+}
+
+class _OneMonthScreenState extends State<OneMonthScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData();
+  }
+
+  getData() {
+    ScoreController.getUserChangeScoreMonth(context: context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -213,8 +236,11 @@ class OneMonthScreen extends StatelessWidget {
                 height: 20,
               ),
               const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  SizedBox(
+                    width: 30,
+                  ),
                   Text(
                     'Rank',
                     style: TextStyle(color: Colors.white, fontSize: 12),
@@ -225,18 +251,41 @@ class OneMonthScreen extends StatelessWidget {
                   Text('Name',
                       style: TextStyle(color: Colors.white, fontSize: 12)),
                   SizedBox(
-                    width: 100,
+                    width: 80,
                   ),
-                  Text('True Answers',
-                      style: TextStyle(color: Colors.white, fontSize: 12))
+                  Text(
+                    'True Awnsers',
+                    style: TextStyle(color: Colors.white, fontSize: 12),
+                  ),
+                  SizedBox(
+                    width: 30,
+                  ),
                 ],
               ),
-              const OneMonthRatingCard(
-                id: '445',
-                imgProfile: 'lib/assets/images/profile.png',
-                name: 'Evrim ',
-                trueAnswer: '236',
-              )
+              Consumer<ScoreState>(builder: (context, value, child) {
+                return Expanded(
+                  child: ListView.builder(
+                    itemCount: value.monthlyScores.length,
+                    itemBuilder: (context, index) => Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8.0, horizontal: 25),
+                      child: AllRatingCard(
+                          score: value.monthlyScores[index],
+                          index: index + 1,
+                          isMe: value.monthlyScores[index]
+                                      .applicationUserUserName ==
+                                  ProfileState.profileUse!.username ||
+                              value.monthlyScores[index]
+                                      .applicationUserFullName ==
+                                  ProfileState.profileUse!.fullName,
+                          isRank: true,
+                          price: value.monthlyScores[index].sumCurrectAnswer
+                                  .toString() ??
+                              "0"),
+                    ),
+                  ),
+                );
+              }),
             ],
           ),
         ),

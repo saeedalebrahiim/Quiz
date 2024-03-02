@@ -1,7 +1,7 @@
 class UserScore {
   final int applicationUserId;
   final String applicationUserUserName;
-  final String applicationUserFullName;
+  final String? applicationUserFullName;
   final String? applicationUserUserPicUrl;
   final int currectAnswer;
   final int wrongAnswer;
@@ -15,7 +15,7 @@ class UserScore {
   UserScore({
     required this.applicationUserId,
     required this.applicationUserUserName,
-    required this.applicationUserFullName,
+    this.applicationUserFullName,
     this.applicationUserUserPicUrl,
     required this.currectAnswer,
     required this.wrongAnswer,
@@ -42,6 +42,5 @@ class UserScore {
       changes: json['changes'],
       id: json['id'],
     );
-    
   }
 }
