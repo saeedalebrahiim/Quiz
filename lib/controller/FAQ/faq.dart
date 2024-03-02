@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz/model/api/swagger/generated/quiz.swagger.dart';
 import 'package:quiz/model/dto/faq.dart';
-import 'package:quiz/provider/banners.dart';
 import 'package:quiz/provider/faq.dart';
 import 'package:quiz/services/headers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,7 +22,7 @@ class FAQController {
             'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/FAQ/PagedList?PageNumber=1&PageSize=10'),
         headers: <String, String>{
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${token}'
+          'Authorization': 'Bearer $token'
         },
       );
       print(response.body);
@@ -35,10 +34,10 @@ class FAQController {
         print("befor");
         print(data);
 
-        data.forEach((v) {
+        for (var v in data) {
           FAQDto value = FAQDto.fromJson(v);
           values.add(value);
-        });
+        }
         print("after");
         context.read<FAQState>().getFAQs(values: values);
       }

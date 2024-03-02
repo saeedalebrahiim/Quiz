@@ -3,7 +3,7 @@ import 'package:quiz/global.dart';
 
 class SingleFaqScreen extends StatelessWidget {
   final String answer;
-  SingleFaqScreen({super.key, required this.answer});
+  const SingleFaqScreen({super.key, required this.answer});
 
   @override
   Widget build(BuildContext context) {
@@ -51,11 +51,11 @@ class SingleFaqScreen extends StatelessWidget {
             ]),
             Center(
               child: Padding(
-                padding: EdgeInsets.only(left: 22, right: 22, top: 10),
+                padding: const EdgeInsets.only(left: 22, right: 22, top: 10),
                 child: Text(
                   maxLines: 10,
                   answer,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w600,
                       fontSize: 16),
@@ -73,7 +73,12 @@ class SingleFaqScreen extends StatelessWidget {
                       child: Container(
                         width: 250,
                         height: 50,
-                        child: Row(
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image:
+                                    AssetImage('lib/assets/images/faqbtn.png'),
+                                fit: BoxFit.fill)),
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
@@ -91,11 +96,6 @@ class SingleFaqScreen extends StatelessWidget {
                             )
                           ],
                         ),
-                        decoration: const BoxDecoration(
-                            image: DecorationImage(
-                                image:
-                                    AssetImage('lib/assets/images/faqbtn.png'),
-                                fit: BoxFit.fill)),
                       ),
                     ),
                   ),

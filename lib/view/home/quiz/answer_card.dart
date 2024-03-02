@@ -49,7 +49,7 @@ class AnswerCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                  padding: EdgeInsets.all(5.0),
+                  padding: const EdgeInsets.all(5.0),
                   child: Text(
                     question,
                     textAlign: TextAlign.center,
@@ -68,7 +68,7 @@ class AnswerCard extends StatelessWidget {
                           const SizedBox(
                             width: 5,
                           ),
-                          Icon(
+                          const Icon(
                             Icons.groups,
                             color: Colors.orange,
                           ),
@@ -134,7 +134,7 @@ class AnswerCard extends StatelessWidget {
                                       AssetImage('lib/assets/images/tik.png'),
                                   fit: BoxFit.fill)),
                         ),
-                        Text(
+                        const Text(
                           'Doğru',
                           style: TextStyle(
                               color: Colors.white,

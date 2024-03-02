@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz/components/rating_card/rating_card_all.dart';
-import 'package:quiz/components/rating_card/rating_card_today.dart';
 import 'package:quiz/controller/score/score.dart';
 import 'package:quiz/provider/score.dart';
 
@@ -27,7 +26,7 @@ class _TodayScreenState extends State<TodayScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final _numberController = TextEditingController();
+    final numberController = TextEditingController();
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -188,6 +187,10 @@ class _TodayScreenState extends State<TodayScreen> {
                 Container(
                   width: 280,
                   height: 50,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('lib/assets/images/today.png'),
+                          fit: BoxFit.fill)),
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
@@ -197,12 +200,12 @@ class _TodayScreenState extends State<TodayScreen> {
                           height: 60,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
-                              image: DecorationImage(
+                              image: const DecorationImage(
                                   image: AssetImage(
                                       'lib/assets/images/profile.png'),
                                   fit: BoxFit.fill)),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 100,
                         ),
                         Padding(
@@ -215,12 +218,12 @@ class _TodayScreenState extends State<TodayScreen> {
                                 height: 20,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(12),
-                                    image: DecorationImage(
+                                    image: const DecorationImage(
                                         image: AssetImage(
                                             'lib/assets/images/increase.png'),
                                         fit: BoxFit.fill)),
                               ),
-                              Text(
+                              const Text(
                                 'Your growth',
                                 style: TextStyle(
                                     fontSize: 8, fontWeight: FontWeight.bold),
@@ -228,23 +231,19 @@ class _TodayScreenState extends State<TodayScreen> {
                             ],
                           ),
                         ),
-                        Text(
-                          '20' + '+',
+                        const Text(
+                          '20' '+',
                           style: TextStyle(
                               color: Colors.green, fontWeight: FontWeight.bold),
                         )
                       ],
                     ),
                   ),
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('lib/assets/images/today.png'),
-                          fit: BoxFit.fill)),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Row(
+                const Row(
                   children: [
                     SizedBox(
                       width: 50,
@@ -261,24 +260,24 @@ class _TodayScreenState extends State<TodayScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 50,
                     ),
-                    Text(
+                    const Text(
                       'Rank',
                       style: TextStyle(color: Colors.white, fontSize: 12),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 30,
                     ),
-                    Text('Name',
+                    const Text('Name',
                         style: TextStyle(color: Colors.white, fontSize: 12)),
-                    SizedBox(
+                    const SizedBox(
                       width: 80,
                     ),
                     Column(
                       children: [
-                        Text(
+                        const Text(
                           'Time left to grant reward',
                           style: TextStyle(color: Colors.white, fontSize: 10),
                         ),
@@ -287,12 +286,12 @@ class _TodayScreenState extends State<TodayScreen> {
                             Container(
                               width: 20,
                               height: 20,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                   image: DecorationImage(
                                       image: AssetImage(
                                           'lib/assets/images/allprize.png'))),
                             ),
-                            Text(
+                            const Text(
                               'Prize',
                               style:
                                   TextStyle(color: Colors.white, fontSize: 12),

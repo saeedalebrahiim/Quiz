@@ -89,8 +89,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                       });
                                     },
                                     initialSelection: 'TR',
-                                    favorite: ['+90', 'TR'],
-                                    countryFilter: ['IT', 'FR', 'TR'],
+                                    favorite: const ['+90', 'TR'],
+                                    countryFilter: const ['IT', 'FR', 'TR'],
                                   ),
                                 ),
                               ),
@@ -187,7 +187,7 @@ class _LoginScreenState extends State<LoginScreen> {
               onTap: () {
                 Navigator.of(context).push(
                   PageRouteBuilder(
-                      pageBuilder: (_, __, ___) => RegisterScreen(),
+                      pageBuilder: (_, __, ___) => const RegisterScreen(),
                       transitionDuration: const Duration(milliseconds: 500),
                       transitionsBuilder: (_, a, __, c) => FadeTransition(
                             opacity: a,
@@ -229,7 +229,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 InkWell(
                   onTap: () {
                     String userName =
-                        crCode!.code.toString() + _numberController.text;
+                        crCode.code.toString() + _numberController.text;
                     print(userName);
                     print(_userPasswordController.text);
 

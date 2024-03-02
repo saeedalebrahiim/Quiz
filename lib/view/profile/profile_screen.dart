@@ -17,7 +17,7 @@ import 'package:quiz/view/home/dashboard/home_screen.dart';
 import 'package:quiz/view/profile/edit_pw_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
-  ProfileScreen({super.key});
+  const ProfileScreen({super.key});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -31,15 +31,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
     SettingsController.getBanks(context: context);
   }
 
-  var _nameFamilyController = TextEditingController();
+  final _nameFamilyController = TextEditingController();
 
-  var _numberController = TextEditingController();
+  final _numberController = TextEditingController();
 
-  var _educationController = TextEditingController();
+  final _educationController = TextEditingController();
 
-  var _ibanController = TextEditingController();
+  final _ibanController = TextEditingController();
 
-  var _bankIdController = TextEditingController();
+  final _bankIdController = TextEditingController();
   int? bankIdSelected;
   String? bankIdTitleSelected;
 
@@ -115,11 +115,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         onTap: () {
                           showBottomSheet(
                             context: context,
-                            builder: (context) => Container(
+                            builder: (context) => SizedBox(
                               height: 80,
                               child: Row(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 20,
                                   ),
                                   InkWell(
@@ -142,14 +142,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     child: Container(
                                       width: 55,
                                       height: 55,
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                           image: DecorationImage(
                                               image: AssetImage(
                                                   'lib/assets/images/camera.png'),
                                               fit: BoxFit.fill)),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   InkWell(
@@ -172,14 +172,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     child: Container(
                                       width: 55,
                                       height: 55,
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                           image: DecorationImage(
                                               image: AssetImage(
                                                   'lib/assets/images/gallery.png'),
                                               fit: BoxFit.fill)),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   InkWell(
@@ -187,7 +187,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     child: Container(
                                       width: 55,
                                       height: 55,
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                           image: DecorationImage(
                                               image: AssetImage(
                                                   'lib/assets/images/delete.png'),
@@ -252,14 +252,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             value.profile != null
                                 ? value.profile!.fullName
                                 : "name",
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                           ),
                           Text(
                             //TODO wrf plan
                             value.profile == null
                                 ? value.profile!.fullName
                                 : "Free",
-                            style: TextStyle(color: Colors.grey),
+                            style: const TextStyle(color: Colors.grey),
                           )
                         ],
                       )
@@ -365,7 +365,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const SizedBox(
                     height: 30,
                   ),
-                  Row(
+                  const Row(
                     children: [
                       SizedBox(
                         width: 40,
@@ -414,7 +414,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           : null;
                       return Visibility(
                         visible: value.banksTitle != null,
-                        replacement: SizedBox(),
+                        replacement: const SizedBox(),
                         child: value.banksTitle != null
                             ? Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -441,7 +441,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 ),
                               )
-                            : SizedBox(),
+                            : const SizedBox(),
                       );
                     },
                   ),
@@ -529,17 +529,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: Container(
                       width: 170,
                       height: 40,
-                      child: Center(
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage('lib/assets/images/save.png'),
+                              fit: BoxFit.fill)),
+                      child: const Center(
                         child: Text(
                           'Save',
                           style: TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
                         ),
                       ),
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage('lib/assets/images/save.png'),
-                              fit: BoxFit.fill)),
                     ),
                   ),
                   const SizedBox(
@@ -558,23 +558,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     onTap: () {
                       AuthController.logOut(context: context);
                     },
-                    child: Container(
+                    child: SizedBox(
                       width: 100,
                       height: 34,
                       child: Row(children: [
                         Container(
                           width: 25,
                           height: 25,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               image: DecorationImage(
                                   image: AssetImage(
                                       'lib/assets/images/logout.png'),
                                   fit: BoxFit.fill)),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 5,
                         ),
-                        Text(
+                        const Text(
                           'Logout',
                           style: TextStyle(
                               color: Colors.red, fontWeight: FontWeight.w600),

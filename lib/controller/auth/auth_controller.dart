@@ -28,7 +28,7 @@ class AuthController {
         //navigate
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
-              builder: (context) => HomeScreen(),
+              builder: (context) => const HomeScreen(),
             ),
             (route) => false);
         ProfileController.getProfile(context: context);
@@ -50,7 +50,7 @@ class AuthController {
       //navigate
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
-            builder: (context) => EnterScreen(),
+            builder: (context) => const EnterScreen(),
           ),
           (route) => false);
       //show error message
@@ -133,7 +133,7 @@ class AuthController {
         //navigate
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
-              builder: (context) => HomeScreen(),
+              builder: (context) => const HomeScreen(),
             ),
             (route) => false);
       } else {

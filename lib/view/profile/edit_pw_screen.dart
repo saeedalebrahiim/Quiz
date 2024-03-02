@@ -1,7 +1,6 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz/controller/profile/profile.dart';
-import 'package:quiz/view/profile/edit_otp_screen.dart';
 
 class ChangePwScreen extends StatefulWidget {
   const ChangePwScreen({super.key, required this.number});
@@ -16,7 +15,7 @@ class _ChangePwScreenState extends State<ChangePwScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var _numberController = TextEditingController(text: widget.number);
+    var numberController = TextEditingController(text: widget.number);
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -81,7 +80,7 @@ class _ChangePwScreenState extends State<ChangePwScreen> {
                 width: 240,
                 height: 45,
                 child: TextFormField(
-                    controller: _numberController,
+                    controller: numberController,
                     maxLength: 10,
                     decoration: InputDecoration(
                         counterText: "",
@@ -99,8 +98,8 @@ class _ChangePwScreenState extends State<ChangePwScreen> {
                                 });
                               },
                               initialSelection: 'TR',
-                              favorite: ['+90', 'TR'],
-                              countryFilter: ['IT', 'FR', 'TR'],
+                              favorite: const ['+90', 'TR'],
+                              countryFilter: const ['IT', 'FR', 'TR'],
                             ),
                           ),
                         ),
@@ -137,7 +136,7 @@ class _ChangePwScreenState extends State<ChangePwScreen> {
                 InkWell(
                   onTap: () {
                     ProfileController.updateUserProfileGET(
-                        number: _numberController.text, context: context);
+                        number: numberController.text, context: context);
                   },
                   child: Container(
                     width: 90,

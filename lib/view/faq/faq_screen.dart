@@ -63,7 +63,7 @@ class FaqScreen extends StatelessWidget {
               Consumer<FAQState>(builder: (context, value, child) {
                 return Visibility(
                   visible: value.faqs.isNotEmpty,
-                  replacement: Center(
+                  replacement: const Center(
                     child: CircularProgressIndicator(),
                   ),
                   child: Column(
@@ -103,12 +103,12 @@ class FaqScreen extends StatelessWidget {
                                     const SizedBox(
                                       width: 20,
                                     ),
-                                    Container(
+                                    SizedBox(
                                       width: 250,
                                       child: Text(
                                         maxLines: 2,
                                         element.question,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.white,
                                         ),
                                       ),
@@ -164,7 +164,11 @@ class FaqScreen extends StatelessWidget {
                     child: Container(
                       width: 250,
                       height: 50,
-                      child: Row(
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage('lib/assets/images/faqbtn.png'),
+                              fit: BoxFit.fill)),
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
@@ -182,10 +186,6 @@ class FaqScreen extends StatelessWidget {
                           )
                         ],
                       ),
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage('lib/assets/images/faqbtn.png'),
-                              fit: BoxFit.fill)),
                     ),
                   ),
                 ),

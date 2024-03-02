@@ -6,7 +6,7 @@ class MyRatingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _numberController = TextEditingController();
+    final numberController = TextEditingController();
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -141,7 +141,7 @@ class MyRatingScreen extends StatelessWidget {
               const SizedBox(
                 height: 150,
               ),
-              OneMonthRatingCard(
+              const OneMonthRatingCard(
                 id: '',
                 imgProfile: '',
                 trueAnswer: '',

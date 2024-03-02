@@ -10,7 +10,6 @@ import 'package:quiz/provider/drawer_state.dart';
 import 'package:quiz/provider/profile.dart';
 import 'package:quiz/view/buycoin/buy_coin_screen.dart';
 import 'package:quiz/view/gem_quiz/gem_quiz_screen.dart';
-import 'package:quiz/view/home/quiz/quiz_screen.dart';
 import 'package:quiz/view/profile/profile_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -55,7 +54,7 @@ class _MainScreenState extends State<MainScreen> {
                   onTap: () {
                     Navigator.of(context).push(
                       PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => ProfileScreen(),
+                          pageBuilder: (_, __, ___) => const ProfileScreen(),
                           transitionDuration: const Duration(milliseconds: 500),
                           transitionsBuilder: (_, a, __, c) => FadeTransition(
                                 opacity: a,
@@ -133,7 +132,7 @@ class _MainScreenState extends State<MainScreen> {
                   Consumer<ProfileState>(
                     builder: (context, value, child) => Text(
                       value.userBalance.toString(),
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 14,
                           color: Colors.white,
                           fontWeight: FontWeight.w600),

@@ -12,7 +12,7 @@ class GemQuizScreen extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
             color: primaryColor,
-            image: DecorationImage(
+            image: const DecorationImage(
                 image: AssetImage('lib/assets/images/gembg.png'),
                 fit: BoxFit.fill)),
         child: Column(
@@ -27,7 +27,7 @@ class GemQuizScreen extends StatelessWidget {
                     child: Container(
                       width: 23,
                       height: 25,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         image: DecorationImage(
                             image: AssetImage(
                           'lib/assets/images/shopicon.png',
@@ -46,10 +46,10 @@ class GemQuizScreen extends StatelessWidget {
                           height: 15,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 7,
                       ),
-                      Text(
+                      const Text(
                         '3012',
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold),
@@ -61,7 +61,7 @@ class GemQuizScreen extends StatelessWidget {
                     child: Container(
                       width: 23,
                       height: 25,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage(
                                   'lib/assets/images/questions.png'))),
@@ -70,7 +70,7 @@ class GemQuizScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 3.0,
             ),
             Image.asset(

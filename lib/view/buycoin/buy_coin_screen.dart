@@ -69,7 +69,7 @@ class BuyCoinScreen extends StatelessWidget {
                     Consumer<ProfileState>(
                       builder: (context, value, child) => Text(
                         value.userBalance.toString(),
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 30,
                             color: Colors.white,
                             fontWeight: FontWeight.w600),

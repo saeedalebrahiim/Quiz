@@ -5,8 +5,6 @@ import 'package:quiz/global.dart';
 import 'package:quiz/provider/drawer_state.dart';
 import 'package:quiz/view/faq/faq_screen.dart';
 import 'package:quiz/view/help/help_screen.dart';
-import 'package:quiz/view/myrating/all/all_screen.dart.dart';
-import 'package:quiz/view/myrating/rating.dart';
 import 'package:quiz/view/myrating/today/today_screen.dart';
 import 'package:quiz/view/profile/profile_screen.dart';
 import 'package:quiz/view/rules/rules_screen.dart';
@@ -73,7 +71,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                         onTap: () {
                           Navigator.of(context).push(
                             PageRouteBuilder(
-                                pageBuilder: (_, __, ___) => ProfileScreen(),
+                                pageBuilder: (_, __, ___) => const ProfileScreen(),
                                 transitionDuration:
                                     const Duration(milliseconds: 500),
                                 transitionsBuilder: (_, a, __, c) =>

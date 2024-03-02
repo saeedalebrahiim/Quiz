@@ -28,14 +28,14 @@ class EnterScreen extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                Center(
-                  child: const Text(
+                const Center(
+                  child: Text(
                     'Gücümüz bilgimizdedir.',
                     style: TextStyle(fontSize: 20),
                   ),
                 ),
-                Center(
-                  child: const Text(
+                const Center(
+                  child: Text(
                     'Öğrenelim ve ödül kazanalım.',
                     style: TextStyle(fontSize: 20),
                   ),
@@ -48,7 +48,7 @@ class EnterScreen extends StatelessWidget {
                     onTap: () {
                       Navigator.of(context).push(
                         PageRouteBuilder(
-                            pageBuilder: (_, __, ___) => RegisterScreen(),
+                            pageBuilder: (_, __, ___) => const RegisterScreen(),
                             transitionDuration:
                                 const Duration(milliseconds: 500),
                             transitionsBuilder: (_, a, __, c) => FadeTransition(

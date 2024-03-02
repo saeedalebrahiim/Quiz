@@ -8,7 +8,7 @@ class TodayRatingCard extends StatelessWidget {
     return Container(
       width: 280,
       height: 55,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage('lib/assets/images/ratingcard.png'),
               fit: BoxFit.fill)),

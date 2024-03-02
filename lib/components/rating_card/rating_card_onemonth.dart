@@ -15,16 +15,20 @@ class OneMonthRatingCard extends StatelessWidget {
     return Container(
       width: 280,
       height: 50,
+      decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('lib/assets/images/ratingcard.png'),
+              fit: BoxFit.fill)),
       child: Row(
         children: [
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           Text(
-            id + " .",
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            "$id .",
+            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           Container(
@@ -37,13 +41,13 @@ class OneMonthRatingCard extends StatelessWidget {
           ),
           Text(
             name,
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
-          SizedBox(
+          const SizedBox(
             width: 90,
           ),
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage('lib/assets/images/onemonth.png'),
                     fit: BoxFit.fill)),
@@ -52,14 +56,10 @@ class OneMonthRatingCard extends StatelessWidget {
           ),
           Text(
             trueAnswer,
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
         ],
       ),
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('lib/assets/images/ratingcard.png'),
-              fit: BoxFit.fill)),
     );
   }
 }

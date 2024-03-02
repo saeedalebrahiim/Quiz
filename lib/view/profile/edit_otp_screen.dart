@@ -9,7 +9,7 @@ class EditPwOtpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _otpController = TextEditingController();
+    final otpController = TextEditingController();
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -75,7 +75,7 @@ class EditPwOtpScreen extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            PinputWidget(pinController: _otpController),
+            PinputWidget(pinController: otpController),
             const SizedBox(
               height: 20,
             ),
@@ -142,7 +142,7 @@ class EditPwOtpScreen extends StatelessWidget {
                     // );
                     ProfileController.updateUserProfilePOST(
                         number: number,
-                        otp: _otpController.text,
+                        otp: otpController.text,
                         context: context);
                   },
                   child: Container(

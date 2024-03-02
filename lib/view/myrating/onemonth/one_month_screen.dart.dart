@@ -6,7 +6,7 @@ class OneMonthScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _numberController = TextEditingController();
+    final numberController = TextEditingController();
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -141,7 +141,7 @@ class OneMonthScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
@@ -160,7 +160,7 @@ class OneMonthScreen extends StatelessWidget {
                       style: TextStyle(color: Colors.white, fontSize: 12))
                 ],
               ),
-              OneMonthRatingCard(
+              const OneMonthRatingCard(
                 id: '445',
                 imgProfile: 'lib/assets/images/profile.png',
                 name: 'Evrim ',

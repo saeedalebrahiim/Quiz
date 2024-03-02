@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:quiz/global.dart';
 
 class BannersState extends ChangeNotifier {
   List<String> banners = [

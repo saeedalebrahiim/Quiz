@@ -123,7 +123,7 @@ class ProfileController {
         if (body["isSuccess"] == true) {
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(
-                builder: (context) => HomeScreen(),
+                builder: (context) => const HomeScreen(),
               ),
               (route) => false);
         } else {}

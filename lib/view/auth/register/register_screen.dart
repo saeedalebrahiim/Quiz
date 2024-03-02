@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:quiz/controller/auth/auth_controller.dart';
 
 class RegisterScreen extends StatefulWidget {
-  RegisterScreen({super.key});
+  const RegisterScreen({super.key});
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
@@ -122,7 +122,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 onTap: () {
                   // login(context: context, userName: _numberController.text)
                   //     .then((value) {});
-                  String number = "+98" + _numberController.text;
+                  String number = "+98${_numberController.text}";
                   AuthController.register(userName: number, context: context);
                 },
                 child: Container(

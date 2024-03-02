@@ -4,13 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz/model/api/swagger/generated/quiz.swagger.dart';
 import 'package:quiz/model/dto/banks.dart';
-import 'package:quiz/model/dto/faq.dart';
-import 'package:quiz/provider/banners.dart';
-import 'package:quiz/provider/faq.dart';
 import 'package:quiz/provider/settings.dart';
 import 'package:quiz/services/headers.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
 
 class SettingsController {
   static Future<void> getBanks({required BuildContext context}) async {
@@ -24,10 +19,10 @@ class SettingsController {
           List<BankDto> values = [];
           print("befor");
           print(data);
-          data.forEach((v) {
+          for (var v in data) {
             BankDto value = BankDto.fromJson(v);
             values.add(value);
-          });
+          }
           print("after");
           context.read<SettingsState>().getBanks(values: values);
         }

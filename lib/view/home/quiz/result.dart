@@ -47,7 +47,7 @@ class _ResultState extends State<Result> {
                           );
                         },
                         fillColor: Colors.red,
-                        child: Text("ok"),
+                        child: const Text("ok"),
                       )
                     ],
                   );
