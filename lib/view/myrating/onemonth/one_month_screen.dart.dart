@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:quiz/components/rating_card/rating_card_onemonth.dart';
+import 'package:quiz/provider/profile.dart';
+import 'package:quiz/view/buycoin/buy_coin_screen.dart';
+import 'package:quiz/view/myrating/today/today_screen.dart';
 
 class OneMonthScreen extends StatelessWidget {
   const OneMonthScreen({super.key});
@@ -54,22 +58,40 @@ class OneMonthScreen extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 23),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Image.asset(
-                          'lib/assets/images/coin.png',
-                          width: 25,
-                          height: 25,
-                        ),
-                        const Text(
-                          '3012',
-                          style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600),
-                        )
-                      ],
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          PageRouteBuilder(
+                              pageBuilder: (_, __, ___) =>
+                                  const BuyCoinScreen(),
+                              transitionDuration:
+                                  const Duration(milliseconds: 500),
+                              transitionsBuilder: (_, a, __, c) =>
+                                  FadeTransition(
+                                    opacity: a,
+                                    child: c,
+                                  )),
+                        );
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Image.asset(
+                            'lib/assets/images/coin.png',
+                            width: 25,
+                            height: 25,
+                          ),
+                          Consumer<ProfileState>(
+                            builder: (context, value, child) => Text(
+                              value.userBalance.toString(),
+                              style: const TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Padding(
@@ -110,13 +132,32 @@ class OneMonthScreen extends StatelessWidget {
                       BoxDecoration(borderRadius: BorderRadius.circular(20)),
                   dividerColor: Colors.transparent,
                   tabs: [
-                    Tab(
+                    RawMaterialButton(
+                      onPressed: () {
+                        Navigator.of(context).pushReplacement(
+                          PageRouteBuilder(
+                              pageBuilder: (_, __, ___) => const TodayScreen(),
+                              transitionDuration:
+                                  const Duration(milliseconds: 500),
+                              transitionsBuilder: (_, a, __, c) =>
+                                  FadeTransition(
+                                    opacity: a,
+                                    child: c,
+                                  )),
+                        );
+                      },
                       child: Container(
                         height: 35,
                         width: 100,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
                             color: const Color.fromARGB(255, 204, 118, 217)),
+                        child: const Center(
+                          child: Text(
+                            "Today",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
                       ),
                     ),
                     Tab(
@@ -125,16 +166,46 @@ class OneMonthScreen extends StatelessWidget {
                         width: 100,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
-                            color: const Color.fromARGB(255, 204, 118, 217)),
+                            color: Colors.transparent,
+                            border: Border.all(
+                                color: Colors.white,
+                                width: 2,
+                                style: BorderStyle.solid)),
+                        child: const Center(
+                          child: Text(
+                            "Month",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
                       ),
                     ),
-                    Tab(
+                    RawMaterialButton(
+                      onPressed: () {
+                        // Navigator.of(context).pushReplacement(
+                        //   PageRouteBuilder(
+                        //       pageBuilder: (_, __, ___) =>
+                        //           const OneMonthScreen(),
+                        //       transitionDuration:
+                        //           const Duration(milliseconds: 500),
+                        //       transitionsBuilder: (_, a, __, c) =>
+                        //           FadeTransition(
+                        //             opacity: a,
+                        //             child: c,
+                        //           )),
+                        // );
+                      },
                       child: Container(
                         height: 35,
                         width: 100,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
                             color: const Color.fromARGB(255, 204, 118, 217)),
+                        child: const Center(
+                          child: Text(
+                            "All",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
                       ),
                     ),
                   ]),

@@ -1,11 +1,14 @@
 import 'dart:async';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_count_timer/easy_count_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz/components/rating_card/rating_card_all.dart';
 import 'package:quiz/controller/score/score.dart';
+import 'package:quiz/provider/profile.dart';
 import 'package:quiz/provider/score.dart';
+import 'package:quiz/view/buycoin/buy_coin_screen.dart';
 import 'package:quiz/view/myrating/onemonth/one_month_screen.dart.dart';
 
 class TodayScreen extends StatefulWidget {
@@ -78,22 +81,40 @@ class _TodayScreenState extends State<TodayScreen> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 23),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Image.asset(
-                          'lib/assets/images/coin.png',
-                          width: 25,
-                          height: 25,
-                        ),
-                        const Text(
-                          '3012',
-                          style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600),
-                        )
-                      ],
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          PageRouteBuilder(
+                              pageBuilder: (_, __, ___) =>
+                                  const BuyCoinScreen(),
+                              transitionDuration:
+                                  const Duration(milliseconds: 500),
+                              transitionsBuilder: (_, a, __, c) =>
+                                  FadeTransition(
+                                    opacity: a,
+                                    child: c,
+                                  )),
+                        );
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Image.asset(
+                            'lib/assets/images/coin.png',
+                            width: 25,
+                            height: 25,
+                          ),
+                          Consumer<ProfileState>(
+                            builder: (context, value, child) => Text(
+                              value.userBalance.toString(),
+                              style: const TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Padding(
@@ -155,7 +176,7 @@ class _TodayScreenState extends State<TodayScreen> {
                     ),
                     RawMaterialButton(
                       onPressed: () {
-                        Navigator.of(context).push(
+                        Navigator.of(context).pushReplacement(
                           PageRouteBuilder(
                               pageBuilder: (_, __, ___) =>
                                   const OneMonthScreen(),
@@ -184,7 +205,7 @@ class _TodayScreenState extends State<TodayScreen> {
                     ),
                     RawMaterialButton(
                       onPressed: () {
-                        // Navigator.of(context).push(
+                        // Navigator.of(context).pushReplacement(
                         //   PageRouteBuilder(
                         //       pageBuilder: (_, __, ___) =>
                         //           const OneMonthScreen(),
@@ -229,11 +250,34 @@ class _TodayScreenState extends State<TodayScreen> {
                         width: 60,
                         height: 60,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            image: const DecorationImage(
-                                image:
-                                    AssetImage('lib/assets/images/profile.png'),
-                                fit: BoxFit.fill)),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: CachedNetworkImage(
+                          imageUrl: value.userScore != null
+                              ? value.userScore!.applicationUserUserPicUrl
+                                  .toString()
+                              : "",
+                          imageBuilder: (context, imageProvider) => Container(
+                            decoration: BoxDecoration(
+                              color: const Color.fromARGB(255, 10, 21, 94),
+                              borderRadius: BorderRadius.circular(30),
+                              image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          placeholder: (context, url) {
+                            return const CircularProgressIndicator();
+                          },
+                          errorWidget: (context, url, error) {
+                            print(error);
+                            return const Image(
+                              image:
+                                  AssetImage('lib/assets/images/profile.png'),
+                            );
+                          },
+                        ),
                       ),
                       const SizedBox(
                         width: 100,
