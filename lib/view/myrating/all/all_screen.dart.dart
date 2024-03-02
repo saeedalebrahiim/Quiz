@@ -27,6 +27,7 @@ class _AllScreenState extends State<AllScreen> {
 
   getData() {
     ScoreController.getAllScores(context: context);
+    ScoreController.getAllRewards(context: context);
   }
 
   @override
@@ -316,6 +317,9 @@ class _AllScreenState extends State<AllScreen> {
                       child: AllReward(
                         score: value.allScores[index],
                         index: index + 1,
+                        reward: index < value.rewardsAll.length
+                            ? value.rewardsAll[index]
+                            : "",
                       ),
                     ),
                   ),

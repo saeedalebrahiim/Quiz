@@ -123,6 +123,7 @@ class ScoreController {
   }
 
   //ALL
+
   static Future<void> getAllScores({
     required BuildContext context,
   }) async {
@@ -144,6 +145,34 @@ class ScoreController {
           for (var element in listScores) {
             RewardScore score = RewardScore.fromJson(element);
             context.read<ScoreState>().getAllUsers(value: score);
+          }
+        }
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  static Future<void> getAllRewards({
+    required BuildContext context,
+  }) async {
+    final api = Quiz.create(interceptors: [TokenIndicator()]);
+    try {
+      await api.apiV1ScoreGetRewardListGet().then((postResult) {
+        print("called Month");
+
+        final body = jsonDecode(postResult.bodyString)["data"];
+        final res = jsonDecode(postResult.bodyString);
+        print(res);
+        print(body);
+
+        if (res["isSuccess"] == true) {
+          context.read<ScoreState>().resetAllRewards();
+
+          List listScores = body;
+          print(listScores);
+          for (var element in listScores) {
+            context.read<ScoreState>().getAllRewards(value: element);
           }
         }
       });

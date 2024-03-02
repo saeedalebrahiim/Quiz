@@ -8,11 +8,13 @@ class AllReward extends StatelessWidget {
     required this.score,
     required this.index,
     this.isMe,
+    required this.reward,
   });
 
   final RewardScore score;
   final int index;
   final bool? isMe;
+  final String reward;
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +117,7 @@ class AllReward extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  '${score.score} TL',
+                  '${reward} TL',
                   style: const TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),
