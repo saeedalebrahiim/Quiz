@@ -54,6 +54,9 @@ class ScoreController {
             UserScore score = UserScore.fromJson(element);
             context.read<ScoreState>().getDailyUsers(value: score);
           }
+          final userScore =
+              jsonDecode(postResult.bodyString)["data"]["userScore"];
+          context.read<ScoreState>().getUserDay(value: userScore);
         }
       });
     } catch (e) {

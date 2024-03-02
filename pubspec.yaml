@@ -48,6 +48,7 @@ dependencies:
   filter_list: ^1.0.2
   image_picker: ^1.0.7
   matertino_radio: ^1.0.4
+  easy_count_timer: ^0.0.2
 
 dev_dependencies:
   flutter_test:

@@ -42,5 +42,6 @@ class UserScore {
       changes: json['changes'],
       id: json['id'],
     );
+    
   }
 }
