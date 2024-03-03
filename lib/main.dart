@@ -9,6 +9,7 @@ import 'package:quiz/provider/quiz.dart';
 import 'package:quiz/provider/score.dart';
 import 'package:quiz/provider/settings.dart';
 import 'package:quiz/provider/stop_watch.dart';
+import 'package:quiz/provider/ticket.dart';
 import 'package:quiz/route/routes.dart';
 
 void main() {
@@ -38,6 +39,9 @@ void main() {
         ),
         ChangeNotifierProvider(
           create: (context) => ScoreState(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => TicketStateProvider(),
         ),
       ],
       child: const MyApp(),

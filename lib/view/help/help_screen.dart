@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:quiz/controller/ticket/ticket.dart';
 import 'package:quiz/global.dart';
+import 'package:quiz/model/api/swagger/generated/quiz.models.swagger.dart';
+import 'package:quiz/model/dto/ticket.dart';
+import 'package:quiz/provider/ticket.dart';
 import 'package:quiz/view/help/add_help_screen.dart';
 
 class HelpScreen extends StatelessWidget {
@@ -7,6 +12,7 @@ class HelpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TicketController.getTicketList(context: context);
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -78,12 +84,104 @@ class HelpScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(
-                height: 120,
+                height: 20,
+              ),
+              SizedBox(
+                height: MediaQuery.sizeOf(context).height,
+                child: Consumer<TicketStateProvider>(
+                    builder: (context, value, child) {
+                  return Expanded(
+                    child: ListView.builder(
+                      itemCount: value.tickets.length,
+                      itemBuilder: (context, index) =>
+                          RecentTicket(dto: value.tickets[index]),
+                    ),
+                  );
+                }),
               ),
             ],
           ),
         ),
       ),
     );
+  }
+}
+
+class RecentTicket extends StatelessWidget {
+  const RecentTicket({
+    super.key,
+    required this.dto,
+  });
+  final TicketDto dto;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 25),
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: Colors.black38,
+            borderRadius: BorderRadius.circular(20),
+            border: Border(
+              bottom: BorderSide(
+                color: Colors.indigo.shade700,
+                strokeAlign: 2,
+                width: 3,
+              ),
+            ),
+          ),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      dto.subject.toString(),
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(3),
+                      decoration: BoxDecoration(
+                        color: Colors.indigo,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Icon(
+                        Icons.done,
+                        color: Colors.white,
+                        size: 14,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Bilet kimliği: ",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      "${dto.id}",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ));
   }
 }
