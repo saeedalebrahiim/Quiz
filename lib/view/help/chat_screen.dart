@@ -6,10 +6,11 @@ import 'package:quiz/model/api/swagger/generated/quiz.models.swagger.dart';
 import 'package:quiz/model/dto/ticket.dart';
 import 'package:quiz/provider/ticket.dart';
 import 'package:quiz/view/help/add_help_screen.dart';
-import 'package:quiz/view/help/chat_screen.dart';
 
-class HelpScreen extends StatelessWidget {
-  const HelpScreen({super.key});
+class ChatScreen extends StatelessWidget {
+  const ChatScreen({super.key, required this.dto, required this.subject});
+  final List<ChatDto> dto;
+  final String subject;
 
   @override
   Widget build(BuildContext context) {
@@ -46,41 +47,18 @@ class HelpScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.only(top: 18),
                     child: Text(
-                      'Help',
-                      style: TextStyle(
+                      subject,
+                      style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
                           fontSize: 18),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 15, top: 20),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          PageRouteBuilder(
-                              pageBuilder: (_, __, ___) => AddHelpScreen(),
-                              transitionDuration:
-                                  const Duration(milliseconds: 500),
-                              transitionsBuilder: (_, a, __, c) =>
-                                  FadeTransition(
-                                    opacity: a,
-                                    child: c,
-                                  )),
-                        );
-                      },
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        decoration: const BoxDecoration(
-                            image: DecorationImage(
-                                image:
-                                    AssetImage('lib/assets/images/add.png'))),
-                      ),
-                    ),
+                  SizedBox(
+                    width: 50,
                   ),
                 ],
               ),
@@ -93,34 +71,20 @@ class HelpScreen extends StatelessWidget {
                     builder: (context, value, child) {
                   return Expanded(
                     child: ListView.builder(
-                      itemCount: value.tickets.length,
-                      itemBuilder: (context, index) => RawMaterialButton(
-                          onPressed: () {
-                            TicketController.getTicketDetail(
-                                    context: context,
-                                    ticketId: value.tickets[index].id ?? 0)
-                                .then((v) {
-                              if (v != null) {
-                                Navigator.of(context).push(
-                                  PageRouteBuilder(
-                                      pageBuilder: (_, __, ___) => ChatScreen(
-                                            dto: v,
-                                            subject: value
-                                                .tickets[index].subject
-                                                .toString(),
-                                          ),
-                                      transitionDuration:
-                                          const Duration(milliseconds: 500),
-                                      transitionsBuilder: (_, a, __, c) =>
-                                          FadeTransition(
-                                            opacity: a,
-                                            child: c,
-                                          )),
-                                );
-                              }
-                            });
-                          },
-                          child: RecentTicket(dto: value.tickets[index])),
+                      itemCount: dto.length,
+                      itemBuilder: (context, index) => Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: dto[index].isClient == true
+                                ? const Color.fromARGB(255, 83, 94, 159)
+                                : Colors.white,
+                          ),
+                          child: Text(
+                            dto[index].desc.toString(),
+                          ),
+                        ),
+                      ),
                     ),
                   );
                 }),

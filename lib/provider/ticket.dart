@@ -5,14 +5,14 @@ import 'package:quiz/model/dto/ticket.dart';
 
 class TicketStateProvider extends ChangeNotifier {
   List<TicketDto> tickets = [];
-  List<Chat> chats = [];
+  List<ChatDto> chats = [];
 
   getTicketList({required List<TicketDto> val}) {
     tickets = val;
     notifyListeners();
   }
 
-  getChatsList({required List<Chat> val}) {
+  getChatsList({required List<ChatDto> val}) {
     chats = val;
     notifyListeners();
   }

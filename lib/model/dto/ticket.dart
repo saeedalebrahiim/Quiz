@@ -33,8 +33,8 @@ class TicketDto {
   }
 }
 
-class Chat {
-  const Chat({
+class ChatDto {
+  const ChatDto({
     this.desc,
     this.ticketAnswerState,
     this.isSeen,
@@ -50,8 +50,8 @@ class Chat {
   final int? createDate;
   final bool? isClient;
 
-  static Chat fromJson(json) {
-    return Chat(
+  static ChatDto fromJson(json) {
+    return ChatDto(
       desc: json['desc'],
       ticketAnswerState: json['ticketAnswerState'],
       isSeen: json['isSeen'],

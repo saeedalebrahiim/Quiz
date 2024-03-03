@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -48,7 +49,7 @@ class TicketController {
     }
   }
 
-  static Future<void> getTicketDetail(
+  static Future<List<ChatDto>?> getTicketDetail(
       {required BuildContext context, required int ticketId}) async {
     final api = Quiz.create(interceptors: [TokenIndicator()]);
     try {
@@ -66,21 +67,23 @@ class TicketController {
       final body = jsonDecode(postResult.body);
       // print("body");
       if (body["isSuccess"] == true) {
-        List data = body["data"];
-        List<Chat> values = [];
+        List data = body["data"]["items"];
+        List<ChatDto> values = [];
         print("befor");
         print(data);
         for (var v in data) {
-          Chat value = Chat.fromJson(v);
+          ChatDto value = ChatDto.fromJson(v);
           values.add(value);
         }
-        context.read<TicketStateProvider>().getChatsList(val: values);
-
-        print("after");
+        print(values.length.toString() + "values length");
+        // context.read<TicketStateProvider>().getChatsList(val: values);
+        return values;
       }
     } catch (e) {
       print("faq error $e");
+      return [];
     }
+    return null;
   }
 
   static Future<void> addTicket({

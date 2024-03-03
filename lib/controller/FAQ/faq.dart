@@ -31,7 +31,7 @@ class FAQController {
       if (body["isSuccess"] == true) {
         List data = body["data"];
         List<FAQDto> values = [];
-        print("befor");
+        print("in succ");
         print(data);
 
         for (var v in data) {
