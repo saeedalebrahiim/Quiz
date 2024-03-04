@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz/init_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -16,8 +17,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   navigate() async {
     await Future.delayed(const Duration(seconds: 3), () {
-      Navigator.of(context)
-          .pushNamedAndRemoveUntil("enterscreen", (route) => false);
+      Navigator.of(context).push(
+        PageRouteBuilder(
+            pageBuilder: (_, __, ___) => const InitScreen(),
+            transitionDuration: const Duration(milliseconds: 500),
+            transitionsBuilder: (_, a, __, c) => FadeTransition(
+                  opacity: a,
+                  child: c,
+                )),
+      );
     });
   }
 

@@ -7,14 +7,32 @@ import 'package:quiz/model/dto/ticket.dart';
 import 'package:quiz/provider/ticket.dart';
 import 'package:quiz/view/help/add_help_screen.dart';
 
-class ChatScreen extends StatelessWidget {
-  ChatScreen(
+class ChatScreen extends StatefulWidget {
+  const ChatScreen(
       {super.key, required this.dto, required this.subject, required this.id});
   final List<ChatDto> dto;
   final String subject;
   final int id;
 
+  @override
+  State<ChatScreen> createState() => _ChatScreenState();
+}
+
+class _ChatScreenState extends State<ChatScreen> {
   TextEditingController textController = TextEditingController();
+  List<ChatDto> theChats = [];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setData();
+  }
+
+  setData() {
+    setState(() {
+      theChats = widget.dto;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,10 +99,16 @@ class ChatScreen extends StatelessWidget {
                   onPressed: () {
                     TicketController.addTicket(
                       context: context,
-                      subject: subject,
+                      subject: widget.subject,
                       desc: textController.text,
-                      id: id,
-                    );
+                      id: widget.id,
+                    ).then((value) {
+                      theChats.add(ChatDto(
+                        createDate: DateTime.now().toString(),
+                        desc: textController.text,
+                        isClient: true,
+                      ));
+                    });
                   },
                 ),
               ),
@@ -126,7 +150,7 @@ class ChatScreen extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(top: 18),
                     child: Text(
-                      subject,
+                      widget.subject,
                       style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
@@ -147,26 +171,26 @@ class ChatScreen extends StatelessWidget {
                     builder: (context, value, child) {
                   return Expanded(
                     child: ListView.builder(
-                      itemCount: dto.length,
+                      itemCount: theChats.length,
                       itemBuilder: (context, index) => Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
-                          mainAxisAlignment: dto[index].isClient == true
+                          mainAxisAlignment: theChats[index].isClient == true
                               ? MainAxisAlignment.end
                               : MainAxisAlignment.start,
                           children: [
                             Container(
                               padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
-                                color: dto[index].isClient == true
+                                color: theChats[index].isClient == true
                                     ? const Color.fromARGB(255, 83, 94, 159)
                                     : Colors.white,
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Text(
-                                dto[index].desc.toString(),
+                                theChats[index].desc.toString(),
                                 style: TextStyle(
-                                    color: dto[index].isClient == true
+                                    color: theChats[index].isClient == true
                                         ? Colors.white
                                         : Colors.black),
                               ),

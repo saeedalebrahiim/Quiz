@@ -11,6 +11,7 @@ import 'package:quiz/provider/settings.dart';
 import 'package:quiz/provider/stop_watch.dart';
 import 'package:quiz/provider/ticket.dart';
 import 'package:quiz/route/routes.dart';
+import 'package:quiz/view/welcome/welcome_screen.dart';
 
 void main() {
   runApp(
@@ -57,7 +58,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: routes,
       debugShowCheckedModeBanner: false,
-      home: const InitScreen(),
+      home: const WelcomeScreen(),
       theme: ThemeData(
           bottomSheetTheme:
               BottomSheetThemeData(backgroundColor: Colors.transparent)),

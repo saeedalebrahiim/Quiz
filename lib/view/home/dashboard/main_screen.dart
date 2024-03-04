@@ -203,7 +203,7 @@ class _MainScreenState extends State<MainScreen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       const SizedBox(
-                        height: 50,
+                        height: 10,
                       ),
                       Row(
                         children: [
@@ -244,6 +244,7 @@ class _MainScreenState extends State<MainScreen> {
                               imageBuilder: (context, imageProvider) =>
                                   Container(
                                 decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
                                   image: DecorationImage(
                                     image: imageProvider,
                                     fit: BoxFit.cover,
@@ -267,7 +268,7 @@ class _MainScreenState extends State<MainScreen> {
                         ),
                       ),
                       const SizedBox(
-                        height: 80,
+                        height: 18,
                       ),
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10),
@@ -299,7 +300,7 @@ class _MainScreenState extends State<MainScreen> {
                         ),
                       ),
                       const SizedBox(
-                        height: 80,
+                        height: 28,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30),
