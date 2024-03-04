@@ -105,6 +105,7 @@ class HelpScreen extends StatelessWidget {
                                   PageRouteBuilder(
                                       pageBuilder: (_, __, ___) => ChatScreen(
                                             dto: v,
+                                            id: value.tickets[index].id ?? 0,
                                             subject: value
                                                 .tickets[index].subject
                                                 .toString(),

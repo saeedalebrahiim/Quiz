@@ -65,7 +65,7 @@ class TicketController {
         },
       );
       final body = jsonDecode(postResult.body);
-      // print("body");
+      print("body $body");
       if (body["isSuccess"] == true) {
         List data = body["data"]["items"];
         List<ChatDto> values = [];
@@ -86,16 +86,16 @@ class TicketController {
     return null;
   }
 
-  static Future<void> addTicket({
-    required BuildContext context,
-    required String? subject,
-    required String? desc,
-  }) async {
+  static Future<void> addTicket(
+      {required BuildContext context,
+      required String? subject,
+      required String? desc,
+      required int? id}) async {
     final api = Quiz.create(interceptors: [TokenIndicator()]);
     try {
       await api
           .apiV1TicketCreateTicketByUserPost(
-              desc: desc, id: 0, subject: subject)
+              desc: desc, id: id, subject: subject)
           .then((postResult) {
         final body = jsonDecode(postResult.bodyString);
 

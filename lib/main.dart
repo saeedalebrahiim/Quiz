@@ -58,6 +58,9 @@ class MyApp extends StatelessWidget {
       routes: routes,
       debugShowCheckedModeBanner: false,
       home: const InitScreen(),
+      theme: ThemeData(
+          bottomSheetTheme:
+              BottomSheetThemeData(backgroundColor: Colors.transparent)),
     );
   }
 }

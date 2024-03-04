@@ -146,9 +146,11 @@ class AddHelpScreen extends StatelessWidget {
               onPressed: () {
                 //TODO add ticket
                 TicketController.addTicket(
-                    context: context,
-                    subject: _titleController.text,
-                    desc: _descController.text);
+                  context: context,
+                  subject: _titleController.text,
+                  desc: _descController.text,
+                  id: 0,
+                );
               },
               fillColor: Colors.green,
               shape: RoundedRectangleBorder(

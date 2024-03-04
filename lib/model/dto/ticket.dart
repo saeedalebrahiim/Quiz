@@ -47,7 +47,7 @@ class ChatDto {
   final int? ticketAnswerState;
   final bool? isSeen;
   final int? id;
-  final int? createDate;
+  final String? createDate;
   final bool? isClient;
 
   static ChatDto fromJson(json) {

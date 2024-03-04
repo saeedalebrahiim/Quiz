@@ -8,14 +8,90 @@ import 'package:quiz/provider/ticket.dart';
 import 'package:quiz/view/help/add_help_screen.dart';
 
 class ChatScreen extends StatelessWidget {
-  const ChatScreen({super.key, required this.dto, required this.subject});
+  ChatScreen(
+      {super.key, required this.dto, required this.subject, required this.id});
   final List<ChatDto> dto;
   final String subject;
+  final int id;
+
+  TextEditingController textController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    TicketController.getTicketList(context: context);
     return Scaffold(
+      bottomSheet: Padding(
+        padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 16, 12),
+        child: Container(
+          decoration: BoxDecoration(
+              color: Color.fromARGB(255, 83, 94, 159),
+              borderRadius: BorderRadius.circular(50)),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Expanded(
+                child: TextFormField(
+                  controller: textController,
+                  onChanged: (_) {},
+                  autofocus: true,
+                  obscureText: false,
+                  decoration: InputDecoration(
+                    hintText: "Type...",
+                    hintStyle: const TextStyle(
+                      color: Color.fromARGB(128, 241, 244, 245),
+                      fontSize: 14,
+                      fontWeight: FontWeight.normal,
+                    ),
+                    labelStyle: const TextStyle(
+                      color: Color(0xFF57636C),
+                      fontSize: 14,
+                      fontWeight: FontWeight.normal,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Color(0x00000000),
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Color(0x00000000),
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    filled: true,
+                    fillColor: Colors.transparent,
+                  ),
+                  style: const TextStyle(
+                    color: Color(0xFF1D2429),
+                    fontSize: 14,
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 10, 0),
+                child: IconButton(
+                  icon: const Icon(
+                    Icons.send_rounded,
+                    color: Colors.white,
+                    size: 24,
+                  ),
+                  onPressed: () {
+                    TicketController.addTicket(
+                      context: context,
+                      subject: subject,
+                      desc: textController.text,
+                      id: id,
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -74,15 +150,28 @@ class ChatScreen extends StatelessWidget {
                       itemCount: dto.length,
                       itemBuilder: (context, index) => Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: dto[index].isClient == true
-                                ? const Color.fromARGB(255, 83, 94, 159)
-                                : Colors.white,
-                          ),
-                          child: Text(
-                            dto[index].desc.toString(),
-                          ),
+                        child: Row(
+                          mainAxisAlignment: dto[index].isClient == true
+                              ? MainAxisAlignment.end
+                              : MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                color: dto[index].isClient == true
+                                    ? const Color.fromARGB(255, 83, 94, 159)
+                                    : Colors.white,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Text(
+                                dto[index].desc.toString(),
+                                style: TextStyle(
+                                    color: dto[index].isClient == true
+                                        ? Colors.white
+                                        : Colors.black),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
