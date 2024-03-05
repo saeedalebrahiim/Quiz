@@ -35,6 +35,6 @@ class _InitScreenState extends State<InitScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return isNeedLogin ? const EnterScreen() : const HomeScreen();
+    return isNeedLogin ? const LoginScreen() : const HomeScreen();
   }
 }

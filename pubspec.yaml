@@ -50,6 +50,7 @@ dependencies:
   matertino_radio: ^1.0.4
   easy_count_timer: ^0.0.2
   google_mobile_ads: ^4.0.0
+  loading_animation_widget: ^1.2.0+4
 
 dev_dependencies:
   flutter_test:

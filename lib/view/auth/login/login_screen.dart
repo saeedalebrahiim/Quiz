@@ -1,5 +1,6 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:bilgimizde/controller/auth/auth_controller.dart';
 import 'package:bilgimizde/view/auth/login/forgetpw_screen.dart';
 import 'package:bilgimizde/view/auth/register/register_screen.dart';
@@ -12,6 +13,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool visible = true;
   final _userPasswordController = TextEditingController();
   final _numberController = TextEditingController();
   bool _passwordVisible = false;
@@ -28,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 5),
               child: Container(
-                height: MediaQuery.of(context).size.height / 1.5,
+                height: MediaQuery.of(context).size.height * 2 / 3,
                 width: MediaQuery.of(context).size.width,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
@@ -228,15 +230,21 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(),
                 InkWell(
                   onTap: () {
+                    setState(() {
+                      visible = false;
+                    });
                     String userName =
                         crCode.code.toString() + _numberController.text;
                     print(userName);
                     print(_userPasswordController.text);
 
                     AuthController.login(
-                        userName: userName,
-                        password: _userPasswordController.text,
-                        context: context);
+                            userName: userName,
+                            password: _userPasswordController.text,
+                            context: context)
+                        .then((value) => setState(() {
+                              visible = true;
+                            }));
                     // Navigator.of(context).push(
                     //   PageRouteBuilder(
                     //       pageBuilder: (_, __, ___) => const HomeScreen(),
@@ -247,18 +255,32 @@ class _LoginScreenState extends State<LoginScreen> {
                     //           )),
                     // );
                   },
-                  child: Container(
-                    width: 90,
-                    height: 50,
-                    decoration: BoxDecoration(
-                        image: const DecorationImage(
-                            image: AssetImage('lib/assets/images/buttun.png')),
-                        borderRadius: BorderRadius.circular(22)),
-                    child: const Center(
-                        child: Text(
-                      'Next',
-                      style: TextStyle(color: Colors.white),
-                    )),
+                  child: Visibility(
+                    replacement: Container(
+                        width: 90,
+                        height: 50,
+                        decoration: BoxDecoration(
+                            image: const DecorationImage(
+                                image:
+                                    AssetImage('lib/assets/images/buttun.png')),
+                            borderRadius: BorderRadius.circular(22)),
+                        child: LoadingAnimationWidget.fourRotatingDots(
+                            color: Colors.white, size: 20)),
+                    visible: visible,
+                    child: Container(
+                      width: 90,
+                      height: 50,
+                      decoration: BoxDecoration(
+                          image: const DecorationImage(
+                              image:
+                                  AssetImage('lib/assets/images/buttun.png')),
+                          borderRadius: BorderRadius.circular(22)),
+                      child: const Center(
+                          child: Text(
+                        'Next',
+                        style: TextStyle(color: Colors.white),
+                      )),
+                    ),
                   ),
                 )
               ],

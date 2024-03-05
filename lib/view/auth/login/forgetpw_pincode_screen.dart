@@ -2,9 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:bilgimizde/components/pinput_widget.dart';
 import 'package:bilgimizde/view/auth/login/forget_newpas_screen.dart';
 
-class ForgetPwPinCodeScreen extends StatelessWidget {
-  final _otpController = TextEditingController();
+class ForgetPwPinCodeScreen extends StatefulWidget {
   ForgetPwPinCodeScreen({super.key});
+
+  @override
+  State<ForgetPwPinCodeScreen> createState() => _ForgetPwPinCodeScreenState();
+}
+
+class _ForgetPwPinCodeScreenState extends State<ForgetPwPinCodeScreen> {
+  bool visible = true;
+  final _otpController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
