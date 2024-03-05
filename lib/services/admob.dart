@@ -11,9 +11,9 @@ class AdMobService {
     return null;
   }
 
-  static String? get interstitialAdUnitId {
+  static String? get appOpenAdUnitId {
     if (Platform.isAndroid) {
-      return 'ca-app-pub-3940256099942544/6300978111';
+      return 'ca-app-pub-3940256099942544/9257395921';
     } else if (Platform.isIOS) {
       return '';
     }

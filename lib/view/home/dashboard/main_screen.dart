@@ -24,6 +24,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   RewardedAd? _rewardedAd;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -36,6 +37,7 @@ class _MainScreenState extends State<MainScreen> {
     BannersController.getBanners(context: context);
     ProfileController.getProfile(context: context);
     ProfileController.getUserBalance(context: context);
+    context.read<DrawerState>().changeVisibleTwo();
   }
 
   _createRewardedAd() {
@@ -60,10 +62,12 @@ class _MainScreenState extends State<MainScreen> {
         onAdDismissedFullScreenContent: (ad) {
           ad.dispose();
           _createRewardedAd();
+          ProfileController.getUserBalance(context: context);
         },
         onAdFailedToShowFullScreenContent: (ad, error) {
           ad.dispose();
           _createRewardedAd();
+          ProfileController.getUserBalance(context: context);
         },
       );
       _rewardedAd!.show(
@@ -232,7 +236,7 @@ class _MainScreenState extends State<MainScreen> {
           child: Column(
             children: [
               Container(
-                height: MediaQuery.of(context).size.height - 76,
+                height: MediaQuery.of(context).size.height - 100,
                 width: MediaQuery.of(context).size.width,
                 decoration: const BoxDecoration(
                   color: Colors.transparent,

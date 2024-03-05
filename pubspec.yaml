@@ -51,6 +51,7 @@ dependencies:
   easy_count_timer: ^0.0.2
   google_mobile_ads: ^4.0.0
   loading_animation_widget: ^1.2.0+4
+  firebase_core: ^2.25.5
 
 dev_dependencies:
   flutter_test:

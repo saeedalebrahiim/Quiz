@@ -1,3 +1,5 @@
+import 'package:bilgimizde/services/admob.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:bilgimizde/init_screen.dart';
@@ -14,9 +16,33 @@ import 'package:bilgimizde/route/routes.dart';
 import 'package:bilgimizde/view/welcome/welcome_screen.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-void main() {
+AppOpenAd? _appOpenAd;
+_createAppOpenAd() {
+  try {
+    AppOpenAd.load(
+      adUnitId: AdMobService.appOpenAdUnitId!,
+      request: const AdRequest(),
+      adLoadCallback: AppOpenAdLoadCallback(
+        onAdLoaded: (ad) {
+          _appOpenAd = ad;
+          _appOpenAd!.show();
+        },
+        onAdFailedToLoad: (error) => _appOpenAd = null,
+      ),
+      orientation: AppOpenAd.orientationPortrait,
+    );
+  } catch (e) {
+    print("error $e");
+  }
+}
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  MobileAds.instance.initialize();
+  await MobileAds.instance.initialize();
+  await Firebase.initializeApp(
+      // options: DefaultFirebaseOptions.currentPlatform,
+      );
+  _createAppOpenAd();
   runApp(
     MultiProvider(
       providers: [
