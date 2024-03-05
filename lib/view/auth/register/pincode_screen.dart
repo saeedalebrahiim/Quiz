@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:bilgimizde/components/pinput_widget.dart';
+import 'package:flutter/material.dart';
 
 class PinCodeScreen extends StatelessWidget {
   final _otpController = TextEditingController();
@@ -16,7 +16,7 @@ class PinCodeScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Container(
-              height: 480,
+              height: MediaQuery.of(context).size.height * 2 / 3,
               width: MediaQuery.of(context).size.width,
               decoration: const BoxDecoration(
                   image: DecorationImage(

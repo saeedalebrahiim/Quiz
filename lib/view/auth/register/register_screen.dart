@@ -1,7 +1,7 @@
+import 'package:bilgimizde/controller/auth/auth_controller.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:bilgimizde/controller/auth/auth_controller.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -25,6 +25,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Container(
+              height: MediaQuery.of(context).size.height * 2 / 3,
               width: MediaQuery.of(context).size.width,
               decoration: const BoxDecoration(
                   image: DecorationImage(

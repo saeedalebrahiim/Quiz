@@ -1,6 +1,6 @@
+import 'package:bilgimizde/view/auth/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
-import 'package:bilgimizde/view/auth/login/login_screen.dart';
 
 class ForgetNewPasScreen extends StatefulWidget {
   const ForgetNewPasScreen({super.key});
@@ -27,7 +27,7 @@ class _ForgetNewPasScreenState extends State<ForgetNewPasScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 5),
               child: Container(
-                height: 500,
+                height: MediaQuery.of(context).size.height * 2 / 3,
                 width: MediaQuery.of(context).size.width,
                 decoration: const BoxDecoration(
                     image: DecorationImage(

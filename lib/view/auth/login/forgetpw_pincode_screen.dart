@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:bilgimizde/components/pinput_widget.dart';
 import 'package:bilgimizde/view/auth/login/forget_newpas_screen.dart';
+import 'package:flutter/material.dart';
 
 class ForgetPwPinCodeScreen extends StatefulWidget {
   ForgetPwPinCodeScreen({super.key});
@@ -23,6 +23,7 @@ class _ForgetPwPinCodeScreenState extends State<ForgetPwPinCodeScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Container(
+              height: MediaQuery.of(context).size.height * 2 / 3,
               width: MediaQuery.of(context).size.width,
               decoration: const BoxDecoration(
                   image: DecorationImage(
