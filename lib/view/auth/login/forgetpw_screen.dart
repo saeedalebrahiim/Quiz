@@ -1,10 +1,19 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:quiz/view/auth/login/forgetpw_pincode_screen.dart';
 
-class ForgetPwScreen extends StatelessWidget {
-  final _numberController = TextEditingController();
+class ForgetPwScreen extends StatefulWidget {
   ForgetPwScreen({super.key});
+
+  @override
+  State<ForgetPwScreen> createState() => _ForgetPwScreenState();
+}
+
+class _ForgetPwScreenState extends State<ForgetPwScreen> {
+  bool visible = true;
+
+  final _numberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +25,7 @@ class ForgetPwScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Container(
-              height: MediaQuery.of(context).size.height / 1.5,
+              height: MediaQuery.of(context).size.height * 2 / 3,
               width: MediaQuery.of(context).size.width,
               decoration: const BoxDecoration(
                   image: DecorationImage(
@@ -107,6 +116,9 @@ class ForgetPwScreen extends StatelessWidget {
               const SizedBox(),
               InkWell(
                 onTap: () {
+                  setState(() {
+                    visible = false;
+                  });
                   Navigator.of(context).push(
                     PageRouteBuilder(
                         pageBuilder: (_, __, ___) => ForgetPwPinCodeScreen(),
@@ -117,18 +129,31 @@ class ForgetPwScreen extends StatelessWidget {
                             )),
                   );
                 },
-                child: Container(
-                  width: 90,
-                  height: 50,
-                  decoration: BoxDecoration(
-                      image: const DecorationImage(
-                          image: AssetImage('lib/assets/images/buttun.png')),
-                      borderRadius: BorderRadius.circular(22)),
-                  child: const Center(
-                      child: Text(
-                    'Next',
-                    style: TextStyle(color: Colors.white),
-                  )),
+                child: Visibility(
+                  replacement: Container(
+                    width: 90,
+                    height: 50,
+                    decoration: BoxDecoration(
+                        image: const DecorationImage(
+                            image: AssetImage('lib/assets/images/buttun.png')),
+                        borderRadius: BorderRadius.circular(22)),
+                    child: LoadingAnimationWidget.fourRotatingDots(
+                        color: Colors.white, size: 20),
+                  ),
+                  visible: visible,
+                  child: Container(
+                    width: 90,
+                    height: 50,
+                    decoration: BoxDecoration(
+                        image: const DecorationImage(
+                            image: AssetImage('lib/assets/images/buttun.png')),
+                        borderRadius: BorderRadius.circular(22)),
+                    child: const Center(
+                        child: Text(
+                      'Next',
+                      style: TextStyle(color: Colors.white),
+                    )),
+                  ),
                 ),
               )
             ],

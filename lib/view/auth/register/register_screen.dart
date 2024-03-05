@@ -1,5 +1,6 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:quiz/controller/auth/auth_controller.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -10,6 +11,7 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  bool visible = true;
   final _numberController = TextEditingController();
   CountryCode crCode = CountryCode(code: "+90", name: "TR");
 
@@ -120,23 +122,40 @@ class _RegisterScreenState extends State<RegisterScreen> {
               const SizedBox(),
               InkWell(
                 onTap: () {
+                  setState(() {
+                    visible = false;
+                  });
                   // login(context: context, userName: _numberController.text)
                   //     .then((value) {});
                   String number = "+98${_numberController.text}";
-                  AuthController.register(userName: number, context: context);
+                  AuthController.register(userName: number, context: context)
+                      .then((value) => (value) => visible = true);
                 },
-                child: Container(
-                  width: 90,
-                  height: 50,
-                  decoration: BoxDecoration(
-                      image: const DecorationImage(
-                          image: AssetImage('lib/assets/images/buttun.png')),
-                      borderRadius: BorderRadius.circular(22)),
-                  child: const Center(
-                      child: Text(
-                    'Next',
-                    style: TextStyle(color: Colors.white),
-                  )),
+                child: Visibility(
+                  replacement: Container(
+                      width: 90,
+                      height: 50,
+                      decoration: BoxDecoration(
+                          image: const DecorationImage(
+                              image:
+                                  AssetImage('lib/assets/images/buttun.png')),
+                          borderRadius: BorderRadius.circular(22)),
+                      child: LoadingAnimationWidget.fourRotatingDots(
+                          color: Colors.white, size: 20)),
+                  visible: visible,
+                  child: Container(
+                    width: 90,
+                    height: 50,
+                    decoration: BoxDecoration(
+                        image: const DecorationImage(
+                            image: AssetImage('lib/assets/images/buttun.png')),
+                        borderRadius: BorderRadius.circular(22)),
+                    child: const Center(
+                        child: Text(
+                      'Next',
+                      style: TextStyle(color: Colors.white),
+                    )),
+                  ),
                 ),
               )
             ],
