@@ -1,6 +1,6 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:quiz/view/auth/login/forgetpw_pincode_screen.dart';
+import 'package:bilgimizde/view/auth/login/forgetpw_pincode_screen.dart';
 
 class ForgetPwScreen extends StatelessWidget {
   final _numberController = TextEditingController();

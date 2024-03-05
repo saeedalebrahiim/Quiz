@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz/model/dto/banks.dart';
+import 'package:bilgimizde/model/dto/banks.dart';
 
 class SettingsState extends ChangeNotifier {
   List<BankDto>? banks;

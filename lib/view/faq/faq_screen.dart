@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz/global.dart';
-import 'package:quiz/provider/faq.dart';
-import 'package:quiz/view/faq/single_saq_screen.dart';
+import 'package:bilgimizde/global.dart';
+import 'package:bilgimizde/provider/faq.dart';
+import 'package:bilgimizde/view/faq/single_saq_screen.dart';
 
 class FaqScreen extends StatelessWidget {
   const FaqScreen({super.key});

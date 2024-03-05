@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz/model/api/swagger/generated/quiz.swagger.dart';
-import 'package:quiz/provider/banners.dart';
+import 'package:bilgimizde/model/api/swagger/generated/quiz.swagger.dart';
+import 'package:bilgimizde/provider/banners.dart';
 
 class BannersController {
   static Future<void> getBanners({required BuildContext context}) async {

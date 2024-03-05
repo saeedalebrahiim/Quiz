@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
-import 'package:quiz/model/api/swagger/generated/quiz.swagger.dart';
-import 'package:quiz/model/dto/banks.dart';
-import 'package:quiz/model/dto/ticket.dart';
-import 'package:quiz/provider/settings.dart';
-import 'package:quiz/provider/ticket.dart';
-import 'package:quiz/services/headers.dart';
+import 'package:bilgimizde/model/api/swagger/generated/quiz.swagger.dart';
+import 'package:bilgimizde/model/dto/banks.dart';
+import 'package:bilgimizde/model/dto/ticket.dart';
+import 'package:bilgimizde/provider/settings.dart';
+import 'package:bilgimizde/provider/ticket.dart';
+import 'package:bilgimizde/services/headers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 

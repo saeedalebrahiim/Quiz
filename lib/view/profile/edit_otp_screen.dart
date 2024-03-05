@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quiz/components/pinput_widget.dart';
-import 'package:quiz/controller/profile/profile.dart';
+import 'package:bilgimizde/components/pinput_widget.dart';
+import 'package:bilgimizde/controller/profile/profile.dart';
 
 class EditPwOtpScreen extends StatelessWidget {
   // final _otpController = TextEditingController();

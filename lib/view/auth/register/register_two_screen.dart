@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
-import 'package:quiz/view/home/dashboard/home_screen.dart';
+import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
 
 class RegisterStepTwoScreen extends StatefulWidget {
   const RegisterStepTwoScreen({super.key});

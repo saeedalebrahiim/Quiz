@@ -1,6 +1,6 @@
 // import 'package:flutter/material.dart';
 // import 'package:provider/provider.dart';
-// import 'package:quiz/provider/stop_watch.dart';
+// import 'package:bilgimizde/provider/stop_watch.dart';
 
 // class PuzzleStopWatch extends StatelessWidget {
 //   const PuzzleStopWatch({Key? key}) : super(key: key);

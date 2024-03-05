@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quiz/view/home/dashboard/home_screen.dart';
-import 'package:quiz/view/welcome/enter_screen.dart';
+import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
+import 'package:bilgimizde/view/welcome/enter_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class InitScreen extends StatefulWidget {
@@ -24,8 +24,9 @@ class _InitScreenState extends State<InitScreen> {
     // check for internet
     //check for admob services
     SharedPreferences sp = await SharedPreferences.getInstance();
-    bool any = sp.containsKey("accessToken");
-    if (!any) {
+    bool any = sp.containsKey("token");
+    print(any);
+    if (any == false) {
       setState(() {
         isNeedLogin = true;
       });

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz/model/dto/profile.dart';
+import 'package:bilgimizde/model/dto/profile.dart';
 
 class ProfileState extends ChangeNotifier {
   ProfileDto? profile;

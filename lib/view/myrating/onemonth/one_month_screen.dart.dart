@@ -4,14 +4,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_count_timer/easy_count_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz/components/rating_card/rating_card_all.dart';
-import 'package:quiz/controller/score/score.dart';
-import 'package:quiz/provider/profile.dart';
-import 'package:quiz/provider/score.dart';
-import 'package:quiz/view/buycoin/buy_coin_screen.dart';
-import 'package:quiz/view/myrating/all/all_screen.dart.dart';
-import 'package:quiz/view/myrating/onemonth/one_month_screen.dart.dart';
-import 'package:quiz/view/myrating/today/today_screen.dart';
+import 'package:bilgimizde/components/rating_card/rating_card_all.dart';
+import 'package:bilgimizde/controller/score/score.dart';
+import 'package:bilgimizde/provider/profile.dart';
+import 'package:bilgimizde/provider/score.dart';
+import 'package:bilgimizde/view/buycoin/buy_coin_screen.dart';
+import 'package:bilgimizde/view/myrating/all/all_screen.dart.dart';
+import 'package:bilgimizde/view/myrating/onemonth/one_month_screen.dart.dart';
+import 'package:bilgimizde/view/myrating/today/today_screen.dart';
 
 class OneMonthScreen extends StatefulWidget {
   const OneMonthScreen({super.key});

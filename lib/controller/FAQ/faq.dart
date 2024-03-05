@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz/model/api/swagger/generated/quiz.swagger.dart';
-import 'package:quiz/model/dto/faq.dart';
-import 'package:quiz/provider/faq.dart';
-import 'package:quiz/services/headers.dart';
+import 'package:bilgimizde/model/api/swagger/generated/quiz.swagger.dart';
+import 'package:bilgimizde/model/dto/faq.dart';
+import 'package:bilgimizde/provider/faq.dart';
+import 'package:bilgimizde/services/headers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 

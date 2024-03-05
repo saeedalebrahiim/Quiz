@@ -1,4 +1,4 @@
-import 'package:quiz/model/dto/question.dart';
+import 'package:bilgimizde/model/dto/question.dart';
 
 class QuizDto {
   final int quizId;

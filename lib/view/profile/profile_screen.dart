@@ -7,14 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matertino_radio/matertino_radio.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz/controller/auth/auth_controller.dart';
-import 'package:quiz/controller/profile/profile.dart';
-import 'package:quiz/controller/settings/settings.dart';
-import 'package:quiz/global.dart';
-import 'package:quiz/provider/profile.dart';
-import 'package:quiz/provider/settings.dart';
-import 'package:quiz/view/home/dashboard/home_screen.dart';
-import 'package:quiz/view/profile/edit_pw_screen.dart';
+import 'package:bilgimizde/controller/auth/auth_controller.dart';
+import 'package:bilgimizde/controller/profile/profile.dart';
+import 'package:bilgimizde/controller/settings/settings.dart';
+import 'package:bilgimizde/global.dart';
+import 'package:bilgimizde/provider/profile.dart';
+import 'package:bilgimizde/provider/settings.dart';
+import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
+import 'package:bilgimizde/view/profile/edit_pw_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});

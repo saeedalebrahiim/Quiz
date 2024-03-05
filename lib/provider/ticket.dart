@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:quiz/model/api/swagger/generated/quiz.models.swagger.dart';
-import 'package:quiz/model/dto/banks.dart';
-import 'package:quiz/model/dto/ticket.dart';
+import 'package:bilgimizde/model/api/swagger/generated/quiz.models.swagger.dart';
+import 'package:bilgimizde/model/dto/banks.dart';
+import 'package:bilgimizde/model/dto/ticket.dart';
 
 class TicketStateProvider extends ChangeNotifier {
   List<TicketDto> tickets = [];

@@ -2,12 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz/model/api/swagger/generated/quiz.swagger.dart';
-import 'package:quiz/model/dto/profile.dart';
-import 'package:quiz/provider/profile.dart';
-import 'package:quiz/services/headers.dart';
-import 'package:quiz/view/home/dashboard/home_screen.dart';
-import 'package:quiz/view/profile/edit_otp_screen.dart';
+import 'package:bilgimizde/model/api/swagger/generated/quiz.swagger.dart';
+import 'package:bilgimizde/model/dto/profile.dart';
+import 'package:bilgimizde/provider/profile.dart';
+import 'package:bilgimizde/services/headers.dart';
+import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
+import 'package:bilgimizde/view/profile/edit_otp_screen.dart';
 
 class ProfileController {
   static Future<void> getProfile({required BuildContext context}) async {

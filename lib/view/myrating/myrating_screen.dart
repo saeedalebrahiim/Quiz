@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz/components/rating_card/rating_card_onemonth.dart';
+import 'package:bilgimizde/components/rating_card/rating_card_onemonth.dart';
 
 class MyRatingScreen extends StatelessWidget {
   const MyRatingScreen({super.key});

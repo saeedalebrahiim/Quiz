@@ -1,8 +1,8 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:quiz/controller/auth/auth_controller.dart';
-import 'package:quiz/view/auth/login/forgetpw_screen.dart';
-import 'package:quiz/view/auth/register/register_screen.dart';
+import 'package:bilgimizde/controller/auth/auth_controller.dart';
+import 'package:bilgimizde/view/auth/login/forgetpw_screen.dart';
+import 'package:bilgimizde/view/auth/register/register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

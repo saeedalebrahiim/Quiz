@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz/model/dto/faq.dart';
+import 'package:bilgimizde/model/dto/faq.dart';
 
 class FAQState extends ChangeNotifier {
   List<FAQDto> faqs = [];

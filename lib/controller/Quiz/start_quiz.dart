@@ -2,13 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz/model/api/swagger/generated/quiz.swagger.dart';
-import 'package:quiz/model/dto/question.dart';
-import 'package:quiz/model/dto/quiz.dart';
-import 'package:quiz/provider/quiz.dart';
-import 'package:quiz/services/headers.dart';
-import 'package:quiz/view/home/quiz/quiz_screen.dart';
-import 'package:quiz/view/home/quiz/result.dart';
+import 'package:bilgimizde/model/api/swagger/generated/quiz.swagger.dart';
+import 'package:bilgimizde/model/dto/question.dart';
+import 'package:bilgimizde/model/dto/quiz.dart';
+import 'package:bilgimizde/provider/quiz.dart';
+import 'package:bilgimizde/services/headers.dart';
+import 'package:bilgimizde/view/home/quiz/quiz_screen.dart';
+import 'package:bilgimizde/view/home/quiz/result.dart';
 
 class StartQuizController {
   static Future<void> startQuiz({required BuildContext context}) async {

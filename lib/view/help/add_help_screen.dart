@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quiz/controller/ticket/ticket.dart';
-import 'package:quiz/global.dart';
+import 'package:bilgimizde/controller/ticket/ticket.dart';
+import 'package:bilgimizde/global.dart';
 
 class AddHelpScreen extends StatelessWidget {
   final _titleController = TextEditingController();

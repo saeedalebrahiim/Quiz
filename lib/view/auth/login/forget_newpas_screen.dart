@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
-import 'package:quiz/view/auth/login/login_screen.dart';
+import 'package:bilgimizde/view/auth/login/login_screen.dart';
 
 class ForgetNewPasScreen extends StatefulWidget {
   const ForgetNewPasScreen({super.key});

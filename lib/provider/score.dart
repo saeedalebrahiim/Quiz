@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz/model/dto/score.dart';
+import 'package:bilgimizde/model/dto/score.dart';
 
 class ScoreState extends ChangeNotifier {
   int? userRank;

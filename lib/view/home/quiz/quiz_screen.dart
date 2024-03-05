@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz/controller/Quiz/start_quiz.dart';
-import 'package:quiz/global.dart';
-import 'package:quiz/provider/profile.dart';
-import 'package:quiz/provider/quiz.dart';
-import 'package:quiz/provider/stop_watch.dart';
-import 'package:quiz/view/home/dashboard/home_screen.dart';
-import 'package:quiz/view/home/quiz/answer_card.dart';
+import 'package:bilgimizde/controller/Quiz/start_quiz.dart';
+import 'package:bilgimizde/global.dart';
+import 'package:bilgimizde/provider/profile.dart';
+import 'package:bilgimizde/provider/quiz.dart';
+import 'package:bilgimizde/provider/stop_watch.dart';
+import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
+import 'package:bilgimizde/view/home/quiz/answer_card.dart';
 
 class QuizScreen extends StatefulWidget {
   const QuizScreen({super.key, required this.index});
@@ -220,7 +220,8 @@ class _QuizScreenState extends State<QuizScreen> {
                                               }
                                             },
                                             child: Padding(
-                                              padding: const EdgeInsets.all(7.0),
+                                              padding:
+                                                  const EdgeInsets.all(7.0),
                                               child: AnswerCard(
                                                 helpPercentage: value.percentHint !=
                                                         null

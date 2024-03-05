@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz/global.dart';
+import 'package:bilgimizde/global.dart';
 
 class DrawerState extends ChangeNotifier {
   changeVisible() {

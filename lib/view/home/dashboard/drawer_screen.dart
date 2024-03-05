@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz/controller/FAQ/faq.dart';
-import 'package:quiz/global.dart';
-import 'package:quiz/provider/drawer_state.dart';
-import 'package:quiz/view/faq/faq_screen.dart';
-import 'package:quiz/view/help/help_screen.dart';
-import 'package:quiz/view/myrating/today/today_screen.dart';
-import 'package:quiz/view/profile/profile_screen.dart';
-import 'package:quiz/view/rules/rules_screen.dart';
+import 'package:bilgimizde/controller/FAQ/faq.dart';
+import 'package:bilgimizde/global.dart';
+import 'package:bilgimizde/provider/drawer_state.dart';
+import 'package:bilgimizde/view/faq/faq_screen.dart';
+import 'package:bilgimizde/view/help/help_screen.dart';
+import 'package:bilgimizde/view/myrating/today/today_screen.dart';
+import 'package:bilgimizde/view/profile/profile_screen.dart';
+import 'package:bilgimizde/view/rules/rules_screen.dart';
 
 class DrawerScreen extends StatefulWidget {
   const DrawerScreen({super.key});
@@ -71,7 +71,8 @@ class _DrawerScreenState extends State<DrawerScreen> {
                         onTap: () {
                           Navigator.of(context).push(
                             PageRouteBuilder(
-                                pageBuilder: (_, __, ___) => const ProfileScreen(),
+                                pageBuilder: (_, __, ___) =>
+                                    const ProfileScreen(),
                                 transitionDuration:
                                     const Duration(milliseconds: 500),
                                 transitionsBuilder: (_, a, __, c) =>

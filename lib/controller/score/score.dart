@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz/model/api/swagger/generated/quiz.swagger.dart';
-import 'package:quiz/model/dto/score.dart';
-import 'package:quiz/provider/score.dart';
-import 'package:quiz/services/headers.dart';
+import 'package:bilgimizde/model/api/swagger/generated/quiz.swagger.dart';
+import 'package:bilgimizde/model/dto/score.dart';
+import 'package:bilgimizde/provider/score.dart';
+import 'package:bilgimizde/services/headers.dart';
 
 class ScoreController {
   static Future<void> getUserRank({

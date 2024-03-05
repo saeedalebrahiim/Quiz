@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
-import 'package:quiz/controller/profile/profile.dart';
-import 'package:quiz/model/api/swagger/generated/quiz.swagger.dart';
-import 'package:quiz/services/headers.dart';
-import 'package:quiz/view/auth/register/pincode_screen.dart';
-import 'package:quiz/view/auth/register/register_two_screen.dart';
-import 'package:quiz/view/home/dashboard/home_screen.dart';
-import 'package:quiz/view/welcome/enter_screen.dart';
+import 'package:bilgimizde/controller/profile/profile.dart';
+import 'package:bilgimizde/model/api/swagger/generated/quiz.swagger.dart';
+import 'package:bilgimizde/services/headers.dart';
+import 'package:bilgimizde/view/auth/register/pincode_screen.dart';
+import 'package:bilgimizde/view/auth/register/register_two_screen.dart';
+import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
+import 'package:bilgimizde/view/welcome/enter_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthController {

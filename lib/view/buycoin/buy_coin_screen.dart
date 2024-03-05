@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz/global.dart';
-import 'package:quiz/provider/profile.dart';
+import 'package:bilgimizde/global.dart';
+import 'package:bilgimizde/provider/profile.dart';
 
 class BuyCoinScreen extends StatelessWidget {
   const BuyCoinScreen({super.key});

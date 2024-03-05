@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz/components/pinput_widget.dart';
+import 'package:bilgimizde/components/pinput_widget.dart';
 
 class PinCodeScreen extends StatelessWidget {
   final _otpController = TextEditingController();

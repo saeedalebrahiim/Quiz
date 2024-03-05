@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:quiz/model/dto/score.dart';
+import 'package:bilgimizde/model/dto/score.dart';
 
 class AllReward extends StatelessWidget {
   const AllReward({

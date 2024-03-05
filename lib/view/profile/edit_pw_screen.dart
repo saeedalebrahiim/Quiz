@@ -1,6 +1,6 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:quiz/controller/profile/profile.dart';
+import 'package:bilgimizde/controller/profile/profile.dart';
 
 class ChangePwScreen extends StatefulWidget {
   const ChangePwScreen({super.key, required this.number});

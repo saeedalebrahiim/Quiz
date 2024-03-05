@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quiz/components/pinput_widget.dart';
-import 'package:quiz/view/auth/login/forget_newpas_screen.dart';
+import 'package:bilgimizde/components/pinput_widget.dart';
+import 'package:bilgimizde/view/auth/login/forget_newpas_screen.dart';
 
 class ForgetPwPinCodeScreen extends StatelessWidget {
   final _otpController = TextEditingController();

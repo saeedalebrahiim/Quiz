@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quiz/view/auth/login/login_screen.dart';
-import 'package:quiz/view/auth/register/register_screen.dart';
+import 'package:bilgimizde/view/auth/login/login_screen.dart';
+import 'package:bilgimizde/view/auth/register/register_screen.dart';
 
 class EnterScreen extends StatelessWidget {
   const EnterScreen({super.key});

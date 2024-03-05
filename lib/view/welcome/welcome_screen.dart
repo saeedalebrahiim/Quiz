@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz/init_screen.dart';
+import 'package:bilgimizde/init_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});

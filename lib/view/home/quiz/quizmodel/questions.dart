@@ -1,4 +1,4 @@
-import 'package:quiz/view/home/quiz/quizmodel/question.dart';
+import 'package:bilgimizde/view/home/quiz/quizmodel/question.dart';
 
 List<Questions> questions = [
   Questions(

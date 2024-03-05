@@ -1,16 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz/controller/Quiz/start_quiz.dart';
-import 'package:quiz/controller/banners/banners.dart';
-import 'package:quiz/controller/profile/profile.dart';
-import 'package:quiz/global.dart';
-import 'package:quiz/provider/banners.dart';
-import 'package:quiz/provider/drawer_state.dart';
-import 'package:quiz/provider/profile.dart';
-import 'package:quiz/view/buycoin/buy_coin_screen.dart';
-import 'package:quiz/view/gem_quiz/gem_quiz_screen.dart';
-import 'package:quiz/view/profile/profile_screen.dart';
+import 'package:bilgimizde/controller/Quiz/start_quiz.dart';
+import 'package:bilgimizde/controller/banners/banners.dart';
+import 'package:bilgimizde/controller/profile/profile.dart';
+import 'package:bilgimizde/global.dart';
+import 'package:bilgimizde/provider/banners.dart';
+import 'package:bilgimizde/provider/drawer_state.dart';
+import 'package:bilgimizde/provider/profile.dart';
+import 'package:bilgimizde/services/admob.dart';
+import 'package:bilgimizde/view/buycoin/buy_coin_screen.dart';
+import 'package:bilgimizde/view/gem_quiz/gem_quiz_screen.dart';
+import 'package:bilgimizde/view/profile/profile_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MainScreen extends StatefulWidget {
@@ -21,17 +23,54 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  RewardedAd? _rewardedAd;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     getData();
+    _createRewardedAd();
   }
 
   getData() {
     BannersController.getBanners(context: context);
     ProfileController.getProfile(context: context);
     ProfileController.getUserBalance(context: context);
+  }
+
+  _createRewardedAd() {
+    try {
+      RewardedAd.load(
+        adUnitId: AdMobService.rewardedAdUnitId!,
+        request: const AdRequest(),
+        rewardedAdLoadCallback: RewardedAdLoadCallback(
+          onAdLoaded: (ad) => _rewardedAd = ad,
+          onAdFailedToLoad: (error) => _rewardedAd = null,
+        ),
+      );
+    } catch (e) {
+      print("error $e");
+    }
+  }
+
+  _showRewardedAd() {
+    print(_rewardedAd);
+    if (_rewardedAd != null) {
+      _rewardedAd!.fullScreenContentCallback = FullScreenContentCallback(
+        onAdDismissedFullScreenContent: (ad) {
+          ad.dispose();
+          _createRewardedAd();
+        },
+        onAdFailedToShowFullScreenContent: (ad, error) {
+          ad.dispose();
+          _createRewardedAd();
+        },
+      );
+      _rewardedAd!.show(
+        onUserEarnedReward: (ad, reward) => print("this is $ad + $reward"),
+      );
+      _rewardedAd = null;
+    }
   }
 
   double xOffset = 0;
@@ -270,33 +309,38 @@ class _MainScreenState extends State<MainScreen> {
                       const SizedBox(
                         height: 18,
                       ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Image(
-                              image:
-                                  AssetImage('lib/assets/images/mainstar.png'),
-                              width: 75,
-                              height: 75,
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  'Watch the video and get ',
-                                  style: TextStyle(color: Colors.orange),
-                                ),
-                                Text('points',
-                                    style: TextStyle(color: Colors.orange))
-                              ],
-                            )
-                          ],
+                      RawMaterialButton(
+                        onPressed: () {
+                          _showRewardedAd();
+                        },
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Image(
+                                image: AssetImage(
+                                    'lib/assets/images/mainstar.png'),
+                                width: 75,
+                                height: 75,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    'Watch the video and get ',
+                                    style: TextStyle(color: Colors.orange),
+                                  ),
+                                  Text('points',
+                                      style: TextStyle(color: Colors.orange))
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(

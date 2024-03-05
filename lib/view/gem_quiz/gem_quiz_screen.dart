@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz/global.dart';
+import 'package:bilgimizde/global.dart';
 
 class GemQuizScreen extends StatelessWidget {
   const GemQuizScreen({super.key});

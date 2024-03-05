@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz/provider/quiz.dart';
-import 'package:quiz/provider/score.dart';
-import 'package:quiz/view/home/dashboard/home_screen.dart';
+import 'package:bilgimizde/provider/quiz.dart';
+import 'package:bilgimizde/provider/score.dart';
+import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
 
 class Result extends StatefulWidget {
   const Result({super.key});
@@ -15,7 +15,7 @@ class _ResultState extends State<Result> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:  SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(20),

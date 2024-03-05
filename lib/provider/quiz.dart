@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz/model/dto/quiz.dart';
+import 'package:bilgimizde/model/dto/quiz.dart';
 
 class QuizState extends ChangeNotifier {
   QuizDto? quiz;

@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz/init_screen.dart';
-import 'package:quiz/provider/banners.dart';
-import 'package:quiz/provider/drawer_state.dart';
-import 'package:quiz/provider/faq.dart';
-import 'package:quiz/provider/profile.dart';
-import 'package:quiz/provider/quiz.dart';
-import 'package:quiz/provider/score.dart';
-import 'package:quiz/provider/settings.dart';
-import 'package:quiz/provider/stop_watch.dart';
-import 'package:quiz/provider/ticket.dart';
-import 'package:quiz/route/routes.dart';
-import 'package:quiz/view/welcome/welcome_screen.dart';
+import 'package:bilgimizde/init_screen.dart';
+import 'package:bilgimizde/provider/banners.dart';
+import 'package:bilgimizde/provider/drawer_state.dart';
+import 'package:bilgimizde/provider/faq.dart';
+import 'package:bilgimizde/provider/profile.dart';
+import 'package:bilgimizde/provider/quiz.dart';
+import 'package:bilgimizde/provider/score.dart';
+import 'package:bilgimizde/provider/settings.dart';
+import 'package:bilgimizde/provider/stop_watch.dart';
+import 'package:bilgimizde/provider/ticket.dart';
+import 'package:bilgimizde/route/routes.dart';
+import 'package:bilgimizde/view/welcome/welcome_screen.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
   runApp(
     MultiProvider(
       providers: [
