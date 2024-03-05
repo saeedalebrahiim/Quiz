@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:quiz/view/home/dashboard/home_screen.dart';
-import 'package:quiz/view/welcome/enter_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class InitScreen extends StatefulWidget {
@@ -34,6 +33,6 @@ class _InitScreenState extends State<InitScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return isNeedLogin ? const EnterScreen() : const HomeScreen();
+    return isNeedLogin ? const HomeScreen() : const HomeScreen();
   }
 }
