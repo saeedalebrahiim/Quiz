@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz/provider/profile.dart';
-import 'package:quiz/view/profile/profile_screen.dart';
+import 'package:bilgimizde/provider/profile.dart';
+import 'package:bilgimizde/view/profile/profile_screen.dart';
 
 class EndQuizScreen extends StatelessWidget {
   const EndQuizScreen({super.key});
