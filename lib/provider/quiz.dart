@@ -6,6 +6,8 @@ class QuizState extends ChangeNotifier {
   int correctCount = 0;
   int falseCount = 0;
 
+  bool? isTop50;
+
   UserPercentageHint? percentHint;
 
   List<int> eliminateAnswers = [];
@@ -51,6 +53,11 @@ class QuizState extends ChangeNotifier {
   removeEliminateAnswers() {
     eliminateAnswers.clear;
     eliminateAnswers = [];
+    notifyListeners();
+  }
+
+  getIsTop50({required bool value}) {
+    isTop50 = value;
     notifyListeners();
   }
 }

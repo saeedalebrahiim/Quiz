@@ -53,89 +53,95 @@ class _QuizScreenState extends State<QuizScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15, top: 20),
-                    child: InkWell(
-                      onTap: () {
-                        // Navigator.pop(context);
-                        Navigator.of(context).pushAndRemoveUntil(
-                            MaterialPageRoute(
-                              builder: (context) => const HomeScreen(),
-                            ),
-                            (route) => false);
-                      },
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        decoration: const BoxDecoration(
-                            image: DecorationImage(
-                                image:
-                                    AssetImage('lib/assets/images/back.png'))),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 50,
-                    width: 300,
-                    child: Consumer<StopWatchProvider>(
-                      builder: (c, stopWatchProvider, _) {
-                        Duration duration =
-                            Duration(seconds: stopWatchProvider.secondsElapsed);
-
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            children: [
-                              const Icon(
-                                Icons.timer,
-                                color: Colors.white,
-                                size: 24,
+              SizedBox(
+                width: MediaQuery.sizeOf(context).width,
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15, top: 20),
+                      child: InkWell(
+                        onTap: () {
+                          // Navigator.pop(context);
+                          Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(
+                                builder: (context) => const HomeScreen(),
                               ),
-                              Text(
-                                "${duration.inSeconds.toString()} s",
-                                style: const TextStyle(color: Colors.white),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
-                                child: SizedBox(
-                                  width: 180,
-                                  height: 10,
-                                  child: LinearProgressIndicator(
-                                    backgroundColor: Colors.black,
-                                    color: Colors.green,
-                                    value: (duration.inSeconds / 30),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Image.asset(
-                        'lib/assets/images/coin.png',
-                        width: 25,
-                        height: 25,
-                      ),
-                      Consumer<ProfileState>(
-                        builder: (context, value, child) => Text(
-                          value.userBalance.toString(),
-                          style: const TextStyle(
-                              fontSize: 14,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600),
+                              (route) => false);
+                        },
+                        child: Container(
+                          width: 50,
+                          height: 50,
+                          decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                      'lib/assets/images/back.png'))),
                         ),
                       ),
-                    ],
-                  ),
-                ],
+                    ),
+                    Expanded(
+                      child: Consumer<StopWatchProvider>(
+                        builder: (c, stopWatchProvider, _) {
+                          Duration duration = Duration(
+                              seconds: stopWatchProvider.secondsElapsed);
+
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const Icon(
+                                  Icons.timer,
+                                  color: Colors.white,
+                                  size: 24,
+                                ),
+                                Text(
+                                  "${duration.inSeconds.toString()} s",
+                                  style: const TextStyle(color: Colors.white),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: SizedBox(
+                                    width: 160,
+                                    height: 10,
+                                    child: LinearProgressIndicator(
+                                      backgroundColor: Colors.black,
+                                      color: Colors.green,
+                                      value: (duration.inSeconds / 30),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 18.0, right: 15),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Image.asset(
+                            'lib/assets/images/coin.png',
+                            width: 25,
+                            height: 25,
+                          ),
+                          Consumer<ProfileState>(
+                            builder: (context, value, child) => Text(
+                              value.userBalance.toString(),
+                              style: const TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
               Consumer<QuizState>(
                 builder: (context, value, child) => SizedBox(
@@ -170,7 +176,7 @@ class _QuizScreenState extends State<QuizScreen> {
                         ),
                       ),
                       Flexible(
-                        flex: 3,
+                        flex: 2,
                         child: Container(
                           width: MediaQuery.of(context).size.width,
                           decoration: const BoxDecoration(

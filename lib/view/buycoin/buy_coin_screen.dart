@@ -1,10 +1,62 @@
+import 'dart:async';
+
+import 'package:bilgimizde/components/coin_packages.dart';
 import 'package:flutter/material.dart';
+import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:provider/provider.dart';
 import 'package:bilgimizde/global.dart';
 import 'package:bilgimizde/provider/profile.dart';
 
-class BuyCoinScreen extends StatelessWidget {
+class BuyCoinScreen extends StatefulWidget {
   const BuyCoinScreen({super.key});
+
+  @override
+  State<BuyCoinScreen> createState() => _BuyCoinScreenState();
+}
+
+class _BuyCoinScreenState extends State<BuyCoinScreen> {
+  final InAppPurchase _iap = InAppPurchase.instance;
+
+  bool _isAvailable = true;
+  List<ProductDetails> _products = [];
+  List<PurchaseDetails> _purchases = [];
+  StreamSubscription? _subscription;
+
+  @override
+  void initState() {
+    // _initialize();
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _subscription!.cancel();
+    super.dispose();
+  }
+
+  void _initialize() async {
+    print("in here");
+    try {
+      _isAvailable = await _iap.isAvailable();
+      print(_isAvailable);
+      if (_isAvailable) {
+        await _getProducts();
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  _getProducts() async {
+    Set<String> ids = Set.from(["100.p", "50.p"]);
+    ProductDetailsResponse response = await _iap.queryProductDetails(ids);
+    // setState(() {
+    //   _products = response.productDetails;
+    // });
+
+    print(response.productDetails);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,8 +145,22 @@ class BuyCoinScreen extends StatelessWidget {
                           fontSize: 16),
                     ),
                     const SizedBox(
-                      height: 200,
+                      height: 20,
                     ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    for (var prod in _products) ...[
+                      CoinPackages(
+                        coinCount: prod.title,
+                        price: prod.price,
+                        onPress: () {
+                          _iap.buyConsumable(
+                            purchaseParam: PurchaseParam(productDetails: prod),
+                          );
+                        },
+                      ),
+                    ],
                     const Text(
                       'How trust us?',
                       style: TextStyle(

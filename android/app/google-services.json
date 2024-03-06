@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "775999130252",
+    "project_id": "bilgimizde-android",
+    "storage_bucket": "bilgimizde-android.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:775999130252:android:d9fc09fabb9bc12ff2c9a9",
+        "android_client_info": {
+          "package_name": "com.bilgimizde.bilgimizde_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "775999130252-29dv3mnn68ut850kjoaopihj8pck68bn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAI6EsIbqUzPFByuOgFk3NSpxmKwfquXlo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "775999130252-29dv3mnn68ut850kjoaopihj8pck68bn.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "775999130252-64gb6i52gjnn1lmc788t882v0j9kddgn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bilgimizde.bilgimizde-app",
+                "app_store_id": "1622558615"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -15,6 +15,7 @@ import 'package:bilgimizde/provider/ticket.dart';
 import 'package:bilgimizde/route/routes.dart';
 import 'package:bilgimizde/view/welcome/welcome_screen.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 AppOpenAd? _appOpenAd;
 _createAppOpenAd() {
@@ -38,10 +39,10 @@ _createAppOpenAd() {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await MobileAds.instance.initialize();
-  await Firebase.initializeApp(
-      // options: DefaultFirebaseOptions.currentPlatform,
-      );
+  MobileAds.instance.initialize();
+  // // await Firebase.initializeApp(
+  // //     options: DefaultFirebaseOptions.currentPlatform,
+  // //     );
   _createAppOpenAd();
   runApp(
     MultiProvider(

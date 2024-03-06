@@ -52,6 +52,8 @@ dependencies:
   google_mobile_ads: ^4.0.0
   loading_animation_widget: ^1.2.0+4
   firebase_core: ^2.25.5
+  firebase_messaging: ^14.7.18
+  in_app_purchase: ^3.1.13
 
 dev_dependencies:
   flutter_test:

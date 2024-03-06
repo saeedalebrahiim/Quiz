@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:bilgimizde/view/home/quiz/end_quiz_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:bilgimizde/model/api/swagger/generated/quiz.swagger.dart';
@@ -86,7 +87,7 @@ class StartQuizController {
           //reort
           viewUserQuizReport(quizId: userQuizId, context: context);
         } else {
-          Navigator.of(context).push(
+          Navigator.of(context).pushReplacement(
             PageRouteBuilder(
                 pageBuilder: (_, __, ___) =>
                     QuizScreen(index: (questionNumber + 1)),
@@ -123,7 +124,7 @@ class StartQuizController {
         if (res["isSuccess"] == true) {
           Navigator.of(context).push(
             PageRouteBuilder(
-                pageBuilder: (_, __, ___) => const Result(),
+                pageBuilder: (_, __, ___) => const EndQuizScreen(),
                 transitionDuration: const Duration(milliseconds: 500),
                 transitionsBuilder: (_, a, __, c) => FadeTransition(
                       opacity: a,
@@ -202,6 +203,29 @@ class StartQuizController {
 
         final body = jsonDecode(postResult.bodyString)["data"];
         final res = jsonDecode(postResult.bodyString);
+        // print(res);
+        // print(body);
+        // List n = body;
+        // print(n);
+        // if (res["isSuccess"] == true) {
+        //   context.read<QuizState>().addEliminateAnswers(n.first, n.last);
+        // }
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  static Future<void> getIsTop50({
+    required BuildContext context,
+  }) async {
+    final api = Quiz.create(interceptors: [TokenIndicator()]);
+    try {
+      await api.apiV1ScoreUserRankingisLowerThan50Get().then((postResult) {
+        print("called report hint");
+
+        final body = jsonDecode(postResult.bodyString)["data"];
+        context.read<QuizState>().getIsTop50(value: body);
         // print(res);
         // print(body);
         // List n = body;
