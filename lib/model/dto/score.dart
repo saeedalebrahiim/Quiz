@@ -1,6 +1,6 @@
 class UserScore {
   final int applicationUserId;
-  final String applicationUserUserName;
+  final String? applicationUserUserName;
   final String? applicationUserFullName;
   final String? applicationUserUserPicUrl;
   final int currectAnswer;
@@ -14,7 +14,7 @@ class UserScore {
 
   UserScore({
     required this.applicationUserId,
-    required this.applicationUserUserName,
+    this.applicationUserUserName,
     this.applicationUserFullName,
     this.applicationUserUserPicUrl,
     required this.currectAnswer,

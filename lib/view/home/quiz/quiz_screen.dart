@@ -35,9 +35,9 @@ class _QuizScreenState extends State<QuizScreen> {
   @override
   void dispose() {
     // TODO: implement dispose
-    super.dispose();
     stopWatchProvider!.stop();
     stopWatchProvider!.cancel();
+    super.dispose();
   }
 
   @override
@@ -183,7 +183,7 @@ class _QuizScreenState extends State<QuizScreen> {
                               image: DecorationImage(
                                   image: AssetImage(
                                       'lib/assets/images/quizbg.png'),
-                                  fit: BoxFit.cover)),
+                                  fit: BoxFit.fill)),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -499,10 +499,11 @@ class _QuizScreenState extends State<QuizScreen> {
                                           width: 80,
                                           height: 60,
                                           decoration: const BoxDecoration(
-                                              image: DecorationImage(
-                                                  image: AssetImage(
-                                                      'lib/assets/images/1.png'),
-                                                  fit: BoxFit.fill)),
+                                            image: DecorationImage(
+                                                image: AssetImage(
+                                                    'lib/assets/images/1.png'),
+                                                fit: BoxFit.fill),
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -541,12 +542,35 @@ class _QuizScreenState extends State<QuizScreen> {
                                             },
                                             child: Container(
                                               width: 90,
-                                              height: 60,
-                                              decoration: const BoxDecoration(
-                                                  image: DecorationImage(
-                                                      image: AssetImage(
-                                                          'lib/assets/images/3.png'),
-                                                      fit: BoxFit.fill)),
+                                              height: 55,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                border: Border(
+                                                  bottom: BorderSide(
+                                                      width: 3,
+                                                      color: Colors.orange),
+                                                ),
+                                                color: Colors.white,
+                                              ),
+                                              child: Column(
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            1.0),
+                                                    child: Image.asset(
+                                                      'lib/assets/images/mainstar.png',
+                                                      width: 25,
+                                                    ),
+                                                  ),
+                                                  const Text(
+                                                    "TL topla",
+                                                    style:
+                                                        TextStyle(fontSize: 10),
+                                                  )
+                                                ],
+                                              ),
                                             ),
                                           )
                                         : InkWell(

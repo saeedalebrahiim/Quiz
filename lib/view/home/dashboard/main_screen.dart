@@ -432,7 +432,7 @@ class _MainScreenState extends State<MainScreen> {
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height - 600,
+                        height: MediaQuery.of(context).size.height - 560,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             image: const DecorationImage(

@@ -1,3 +1,5 @@
+import 'package:bilgimizde/view/myrating/all/all_screen.dart.dart';
+import 'package:bilgimizde/view/myrating/onemonth/one_month_screen.dart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:bilgimizde/controller/FAQ/faq.dart';
@@ -140,7 +142,19 @@ class _DrawerScreenState extends State<DrawerScreen> {
                         height: 20,
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(
+                            PageRouteBuilder(
+                                pageBuilder: (_, __, ___) => const AllScreen(),
+                                transitionDuration:
+                                    const Duration(milliseconds: 500),
+                                transitionsBuilder: (_, a, __, c) =>
+                                    FadeTransition(
+                                      opacity: a,
+                                      child: c,
+                                    )),
+                          );
+                        },
                         child: const Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -164,7 +178,20 @@ class _DrawerScreenState extends State<DrawerScreen> {
                         height: 20,
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(
+                            PageRouteBuilder(
+                                pageBuilder: (_, __, ___) =>
+                                    const OneMonthScreen(),
+                                transitionDuration:
+                                    const Duration(milliseconds: 500),
+                                transitionsBuilder: (_, a, __, c) =>
+                                    FadeTransition(
+                                      opacity: a,
+                                      child: c,
+                                    )),
+                          );
+                        },
                         child: const Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [

@@ -27,71 +27,73 @@ class HelpScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15, top: 20),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        decoration: const BoxDecoration(
-                            image: DecorationImage(
-                                image:
-                                    AssetImage('lib/assets/images/back.png'))),
+              Padding(
+                padding: const EdgeInsets.only(top: 18.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15, top: 20),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          width: 50,
+                          height: 50,
+                          decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                      'lib/assets/images/back.png'))),
+                        ),
                       ),
                     ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 18),
-                    child: Text(
-                      'Help',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 15, top: 20),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          PageRouteBuilder(
-                              pageBuilder: (_, __, ___) => AddHelpScreen(),
-                              transitionDuration:
-                                  const Duration(milliseconds: 500),
-                              transitionsBuilder: (_, a, __, c) =>
-                                  FadeTransition(
-                                    opacity: a,
-                                    child: c,
-                                  )),
-                        );
-                      },
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        decoration: const BoxDecoration(
-                            image: DecorationImage(
-                                image:
-                                    AssetImage('lib/assets/images/add.png'))),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 18),
+                      child: Text(
+                        'Help',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18),
                       ),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.only(right: 15, top: 20),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            PageRouteBuilder(
+                                pageBuilder: (_, __, ___) => AddHelpScreen(),
+                                transitionDuration:
+                                    const Duration(milliseconds: 500),
+                                transitionsBuilder: (_, a, __, c) =>
+                                    FadeTransition(
+                                      opacity: a,
+                                      child: c,
+                                    )),
+                          );
+                        },
+                        child: Container(
+                          width: 50,
+                          height: 50,
+                          decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                  image:
+                                      AssetImage('lib/assets/images/add.png'))),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(
                 height: 20,
               ),
-              SizedBox(
-                height: MediaQuery.sizeOf(context).height,
-                child: Consumer<TicketStateProvider>(
-                    builder: (context, value, child) {
-                  return Expanded(
+              Consumer<TicketStateProvider>(builder: (context, value, child) {
+                return SizedBox(
+                  height: MediaQuery.sizeOf(context).height - 70,
+                  child: Expanded(
                     child: ListView.builder(
                       itemCount: value.tickets.length,
                       itemBuilder: (context, index) => RawMaterialButton(
@@ -123,9 +125,9 @@ class HelpScreen extends StatelessWidget {
                           },
                           child: RecentTicket(dto: value.tickets[index])),
                     ),
-                  );
-                }),
-              ),
+                  ),
+                );
+              }),
             ],
           ),
         ),
