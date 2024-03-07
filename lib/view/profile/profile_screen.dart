@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:bilgimizde/provider/drawer_state.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/cupertino.dart';
@@ -78,7 +79,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         padding: const EdgeInsets.only(left: 15, top: 20),
                         child: InkWell(
                           onTap: () {
-                            Navigator.of(context).push(
+                            Navigator.of(context).pushAndRemoveUntil(
                               PageRouteBuilder(
                                   pageBuilder: (_, __, ___) =>
                                       const HomeScreen(),
@@ -89,7 +90,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         opacity: a,
                                         child: c,
                                       )),
+                              (route) => false,
                             );
+                            context.read<DrawerState>().changeVisibleTwo();
                           },
                           child: Container(
                             width: 50,

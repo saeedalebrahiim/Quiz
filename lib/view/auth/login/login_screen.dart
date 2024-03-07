@@ -70,10 +70,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     SizedBox(
                       width: 240,
-                      height: 45,
+                      height: 50,
                       child: TextFormField(
                           controller: _numberController,
                           maxLength: 10,
+                          keyboardType: TextInputType.phone,
                           decoration: InputDecoration(
                               counterText: "",
                               prefixIcon: Padding(
@@ -107,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     SizedBox(
                       width: 240,
-                      height: 45,
+                      height: 50,
                       child: TextFormField(
                           keyboardType: TextInputType.text,
                           controller: _userPasswordController,

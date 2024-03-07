@@ -1,4 +1,7 @@
+import 'package:bilgimizde/controller/profile/profile.dart';
+import 'package:bilgimizde/services/admob.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:bilgimizde/controller/Quiz/start_quiz.dart';
 import 'package:bilgimizde/global.dart';
@@ -19,25 +22,72 @@ class QuizScreen extends StatefulWidget {
 class _QuizScreenState extends State<QuizScreen> {
   int selectedIndex = 0;
   bool isSelectedAny = false;
-  StopWatchProvider? stopWatchProvider;
+  // StopWatchProvider? stopWatchProvider;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     getStop();
+    // _createRewardedAd();
   }
 
   getStop() {
-    stopWatchProvider = Provider.of<StopWatchProvider>(context, listen: false);
-    stopWatchProvider!.start(context: context, index: widget.index);
+    // stopWatchProvider = Provider.of<StopWatchProvider>(context, listen: false);
+    // stopWatchProvider!.start(context: context, index: widget.index);
+    context
+        .read<StopWatchProvider>()
+        .start(context: context, index: widget.index);
   }
 
   @override
   void dispose() {
     // TODO: implement dispose
-    stopWatchProvider!.stop();
-    stopWatchProvider!.cancel();
+    // stopWatchProvider!.stop();
+    context.read<StopWatchProvider>().stop();
+    context.read<StopWatchProvider>().cancel();
+
+    // stopWatchProvider!.cancel();
     super.dispose();
+  }
+
+  RewardedAd? _rewardedAd;
+
+  _createRewardedAd() {
+    try {
+      RewardedAd.load(
+        adUnitId: AdMobService.rewardedAdUnitId2!,
+        request: const AdRequest(),
+        rewardedAdLoadCallback: RewardedAdLoadCallback(
+          onAdLoaded: (ad) => _rewardedAd = ad,
+          onAdFailedToLoad: (error) => _rewardedAd = null,
+        ),
+      );
+      _showRewardedAd();
+    } catch (e) {
+      print("error $e");
+    }
+  }
+
+  _showRewardedAd() {
+    print(_rewardedAd);
+    if (_rewardedAd != null) {
+      _rewardedAd!.fullScreenContentCallback = FullScreenContentCallback(
+        onAdDismissedFullScreenContent: (ad) {
+          ad.dispose();
+          // _createRewardedAd();
+          ProfileController.getUserBalance(context: context);
+        },
+        onAdFailedToShowFullScreenContent: (ad, error) {
+          ad.dispose();
+          // _createRewardedAd();
+          ProfileController.getUserBalance(context: context);
+        },
+      );
+      _rewardedAd!.show(
+        onUserEarnedReward: (ad, reward) => print("this is $ad + $reward"),
+      );
+      _rewardedAd = null;
+    }
   }
 
   @override
@@ -209,7 +259,6 @@ class _QuizScreenState extends State<QuizScreen> {
                                                 isSelectedAny = true;
                                                 selectedIndex = 1;
                                               });
-                                              stopWatchProvider!.stop();
                                               if (selectedIndex ==
                                                   value
                                                       .quiz!
@@ -224,6 +273,10 @@ class _QuizScreenState extends State<QuizScreen> {
                                                     .read<QuizState>()
                                                     .falsePlusCount();
                                               }
+                                              // stopWatchProvider!.stop();
+                                              context
+                                                  .read<StopWatchProvider>()
+                                                  .stop();
                                             },
                                             child: Padding(
                                               padding:
@@ -270,7 +323,6 @@ class _QuizScreenState extends State<QuizScreen> {
 
                                                   selectedIndex = 2;
                                                 });
-                                                stopWatchProvider!.stop();
 
                                                 if (selectedIndex ==
                                                     value
@@ -286,6 +338,10 @@ class _QuizScreenState extends State<QuizScreen> {
                                                       .read<QuizState>()
                                                       .falsePlusCount();
                                                 }
+                                                // stopWatchProvider!.stop();
+                                                context
+                                                    .read<StopWatchProvider>()
+                                                    .stop();
                                               },
                                               child: AnswerCard(
                                                 helpPercentage: value.percentHint !=
@@ -329,7 +385,6 @@ class _QuizScreenState extends State<QuizScreen> {
 
                                                   selectedIndex = 3;
                                                 });
-                                                stopWatchProvider!.stop();
 
                                                 if (selectedIndex ==
                                                     value
@@ -345,6 +400,10 @@ class _QuizScreenState extends State<QuizScreen> {
                                                       .read<QuizState>()
                                                       .falsePlusCount();
                                                 }
+                                                // stopWatchProvider!.stop();
+                                                context
+                                                    .read<StopWatchProvider>()
+                                                    .stop();
                                               },
                                               child: AnswerCard(
                                                 helpPercentage: value.percentHint !=
@@ -388,7 +447,6 @@ class _QuizScreenState extends State<QuizScreen> {
 
                                                   selectedIndex = 4;
                                                 });
-                                                stopWatchProvider!.stop();
 
                                                 if (selectedIndex ==
                                                     value
@@ -404,6 +462,10 @@ class _QuizScreenState extends State<QuizScreen> {
                                                       .read<QuizState>()
                                                       .falsePlusCount();
                                                 }
+                                                // stopWatchProvider!.stop();
+                                                context
+                                                    .read<StopWatchProvider>()
+                                                    .stop();
                                               },
                                               child: AnswerCard(
                                                 helpPercentage: value.percentHint !=
@@ -539,6 +601,8 @@ class _QuizScreenState extends State<QuizScreen> {
                                         ? InkWell(
                                             onTap: () {
                                               //see ads
+                                              _createRewardedAd();
+                                              // _showRewardedAd();
                                             },
                                             child: Container(
                                               width: 90,

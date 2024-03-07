@@ -25,7 +25,10 @@ class StopWatchProvider with ChangeNotifier {
       streamSubscription = timeStream.listen((seconds) {
         secondsElapsed--;
         print("secondsElapsed $secondsElapsed");
-        if (secondsElapsed == 0) {
+        print(secondsElapsed <= 0);
+        if (secondsElapsed <= 0) {
+          print("seirosali $secondsElapsed");
+
           QuizState quiz = Provider.of<QuizState>(context, listen: false);
           //TODO call add
           StartQuizController.addAwnswer(

@@ -13,20 +13,20 @@ class EnterScreen extends StatelessWidget {
         direction: Axis.vertical,
         children: [
           Container(
-            height: 500,
+            height: MediaQuery.sizeOf(context).height * 2 / 3 - 20,
             decoration: const BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage('lib/assets/images/enterbg.jpg'),
                     fit: BoxFit.cover)),
           ),
           SizedBox(
-            height: 250,
+            height: MediaQuery.sizeOf(context).height * 1 / 3,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 const Center(
                   child: Text(
