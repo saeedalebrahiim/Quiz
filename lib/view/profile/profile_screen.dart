@@ -43,6 +43,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final _bankIdController = TextEditingController();
   int? bankIdSelected;
   String? bankIdTitleSelected;
+  CountryCode crCode = CountryCode(code: "+90", name: "TR");
 
   @override
   Widget build(BuildContext context) {
@@ -329,15 +330,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 decoration: const BoxDecoration(
                                     border:
                                         Border(right: BorderSide(width: 0.2))),
-                                child: const IgnorePointer(
+                                child: IgnorePointer(
                                   ignoring: true,
                                   child: CountryCodePicker(
                                     showFlagDialog: true,
                                     showFlag: false,
-                                    onChanged: print,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        crCode = value;
+                                      });
+                                    },
                                     initialSelection: 'TR',
-                                    favorite: ['+90', 'TR'],
-                                    countryFilter: ['IT', 'FR', 'TR'],
+                                    favorite: const ['+90', 'TR'],
+                                    countryFilter: const ['IT', 'FR', 'TR'],
                                   ),
                                 ),
                               ),
@@ -397,6 +402,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       SizedBox(
                         width: 220,
                         child: TextField(
+                            readOnly: value.profile!.iban.isNotEmpty &&
+                                value.profile!.iban != "",
                             style: const TextStyle(color: Colors.white),
                             controller: _ibanController,
                             decoration: const InputDecoration()),

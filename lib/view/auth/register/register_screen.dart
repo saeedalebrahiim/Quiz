@@ -75,13 +75,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 decoration: const BoxDecoration(
                                     border:
                                         Border(right: BorderSide(width: 0.2))),
-                                child: const CountryCodePicker(
+                                child: CountryCodePicker(
                                   showFlagDialog: true,
                                   showFlag: false,
-                                  onChanged: print,
-                                  initialSelection: 'IT',
-                                  favorite: ['+39', 'FR'],
-                                  countryFilter: ['IT', 'FR'],
+                                  onChanged: (value) {
+                                    setState(() {
+                                      crCode = value;
+                                    });
+                                  },
+                                  initialSelection: 'TR',
+                                  favorite: const ['+90', 'TR'],
+                                  countryFilter: const ['IT', 'FR', 'TR'],
                                 ),
                               ),
                             ),

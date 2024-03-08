@@ -44,282 +44,233 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(
-                        height: 55,
+                        height: 75,
                       ),
-                      InkWell(
-                        onTap: () {},
-                        child: const Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Image(
-                              image: AssetImage('lib/assets/images/home.png'),
-                              width: 22,
-                              height: 22,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              'Home',
-                              style: TextStyle(color: Colors.white),
-                            )
-                          ],
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap: () {},
+                          child: const Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Image(
+                                image: AssetImage('lib/assets/images/home.png'),
+                                width: 22,
+                                height: 22,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'Home',
+                                style: TextStyle(color: Colors.white),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 12,
                       ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            PageRouteBuilder(
-                                pageBuilder: (_, __, ___) =>
-                                    const ProfileScreen(),
-                                transitionDuration:
-                                    const Duration(milliseconds: 500),
-                                transitionsBuilder: (_, a, __, c) =>
-                                    FadeTransition(
-                                      opacity: a,
-                                      child: c,
-                                    )),
-                          );
-                        },
-                        child: const Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Image(
-                              image: AssetImage('lib/assets/images/person.png'),
-                              width: 22,
-                              height: 22,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              'Profile',
-                              style: TextStyle(color: Colors.white),
-                            )
-                          ],
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              PageRouteBuilder(
+                                  pageBuilder: (_, __, ___) =>
+                                      const ProfileScreen(),
+                                  transitionDuration:
+                                      const Duration(milliseconds: 500),
+                                  transitionsBuilder: (_, a, __, c) =>
+                                      FadeTransition(
+                                        opacity: a,
+                                        child: c,
+                                      )),
+                            );
+                          },
+                          child: const Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Image(
+                                image:
+                                    AssetImage('lib/assets/images/person.png'),
+                                width: 22,
+                                height: 22,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'Profile',
+                                style: TextStyle(color: Colors.white),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 12,
                       ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            PageRouteBuilder(
-                                pageBuilder: (_, __, ___) =>
-                                    const TodayScreen(),
-                                transitionDuration:
-                                    const Duration(milliseconds: 500),
-                                transitionsBuilder: (_, a, __, c) =>
-                                    FadeTransition(
-                                      opacity: a,
-                                      child: c,
-                                    )),
-                          );
-                        },
-                        child: const Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Image(
-                              image: AssetImage('lib/assets/images/sun.png'),
-                              width: 22,
-                              height: 22,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              'My Rating',
-                              style: TextStyle(color: Colors.white),
-                            )
-                          ],
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              PageRouteBuilder(
+                                  pageBuilder: (_, __, ___) =>
+                                      const TodayScreen(),
+                                  transitionDuration:
+                                      const Duration(milliseconds: 500),
+                                  transitionsBuilder: (_, a, __, c) =>
+                                      FadeTransition(
+                                        opacity: a,
+                                        child: c,
+                                      )),
+                            );
+                          },
+                          child: const Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Image(
+                                image: AssetImage('lib/assets/images/sun.png'),
+                                width: 22,
+                                height: 22,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'My Rating',
+                                style: TextStyle(color: Colors.white),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 12,
                       ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            PageRouteBuilder(
-                                pageBuilder: (_, __, ___) => const AllScreen(),
-                                transitionDuration:
-                                    const Duration(milliseconds: 500),
-                                transitionsBuilder: (_, a, __, c) =>
-                                    FadeTransition(
-                                      opacity: a,
-                                      child: c,
-                                    )),
-                          );
-                        },
-                        child: const Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Image(
-                              image:
-                                  AssetImage('lib/assets/images/ranking.png'),
-                              width: 22,
-                              height: 22,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              'Results this month',
-                              style: TextStyle(color: Colors.white),
-                            )
-                          ],
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap: () {
+                            print("FAQ drawer");
+                            FAQController.pageList(context: context);
+                            Navigator.of(context).push(
+                              PageRouteBuilder(
+                                  pageBuilder: (_, __, ___) =>
+                                      const FaqScreen(),
+                                  transitionDuration:
+                                      const Duration(milliseconds: 500),
+                                  transitionsBuilder: (_, a, __, c) =>
+                                      FadeTransition(
+                                        opacity: a,
+                                        child: c,
+                                      )),
+                            );
+                          },
+                          child: const Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Image(
+                                image:
+                                    AssetImage('lib/assets/images/coffee.png'),
+                                width: 22,
+                                height: 22,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'Questions',
+                                style: TextStyle(color: Colors.white),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 12,
                       ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            PageRouteBuilder(
-                                pageBuilder: (_, __, ___) =>
-                                    const OneMonthScreen(),
-                                transitionDuration:
-                                    const Duration(milliseconds: 500),
-                                transitionsBuilder: (_, a, __, c) =>
-                                    FadeTransition(
-                                      opacity: a,
-                                      child: c,
-                                    )),
-                          );
-                        },
-                        child: const Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Image(
-                              image: AssetImage('lib/assets/images/folder.png'),
-                              width: 22,
-                              height: 22,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              'One Month',
-                              style: TextStyle(color: Colors.white),
-                            )
-                          ],
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              PageRouteBuilder(
+                                  pageBuilder: (_, __, ___) =>
+                                      const RulesScreen(),
+                                  transitionDuration:
+                                      const Duration(milliseconds: 500),
+                                  transitionsBuilder: (_, a, __, c) =>
+                                      FadeTransition(
+                                        opacity: a,
+                                        child: c,
+                                      )),
+                            );
+                          },
+                          child: const Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Image(
+                                image: AssetImage('lib/assets/images/book.png'),
+                                width: 22,
+                                height: 22,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'Rules',
+                                style: TextStyle(color: Colors.white),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 12,
                       ),
-                      InkWell(
-                        onTap: () {
-                          print("FAQ drawer");
-                          FAQController.pageList(context: context);
-                          Navigator.of(context).push(
-                            PageRouteBuilder(
-                                pageBuilder: (_, __, ___) => const FaqScreen(),
-                                transitionDuration:
-                                    const Duration(milliseconds: 500),
-                                transitionsBuilder: (_, a, __, c) =>
-                                    FadeTransition(
-                                      opacity: a,
-                                      child: c,
-                                    )),
-                          );
-                        },
-                        child: const Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Image(
-                              image: AssetImage('lib/assets/images/coffee.png'),
-                              width: 22,
-                              height: 22,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              'Questions',
-                              style: TextStyle(color: Colors.white),
-                            )
-                          ],
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              PageRouteBuilder(
+                                  pageBuilder: (_, __, ___) =>
+                                      const HelpScreen(),
+                                  transitionDuration:
+                                      const Duration(milliseconds: 500),
+                                  transitionsBuilder: (_, a, __, c) =>
+                                      FadeTransition(
+                                        opacity: a,
+                                        child: c,
+                                      )),
+                            );
+                          },
+                          child: const Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Image(
+                                image:
+                                    AssetImage('lib/assets/images/alarm.png'),
+                                width: 22,
+                                height: 22,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'Help',
+                                style: TextStyle(color: Colors.white),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(
-                        height: 20,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            PageRouteBuilder(
-                                pageBuilder: (_, __, ___) =>
-                                    const RulesScreen(),
-                                transitionDuration:
-                                    const Duration(milliseconds: 500),
-                                transitionsBuilder: (_, a, __, c) =>
-                                    FadeTransition(
-                                      opacity: a,
-                                      child: c,
-                                    )),
-                          );
-                        },
-                        child: const Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Image(
-                              image: AssetImage('lib/assets/images/book.png'),
-                              width: 22,
-                              height: 22,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              'Rules',
-                              style: TextStyle(color: Colors.white),
-                            )
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            PageRouteBuilder(
-                                pageBuilder: (_, __, ___) => const HelpScreen(),
-                                transitionDuration:
-                                    const Duration(milliseconds: 500),
-                                transitionsBuilder: (_, a, __, c) =>
-                                    FadeTransition(
-                                      opacity: a,
-                                      child: c,
-                                    )),
-                          );
-                        },
-                        child: const Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Image(
-                              image: AssetImage('lib/assets/images/alarm.png'),
-                              width: 22,
-                              height: 22,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              'Help',
-                              style: TextStyle(color: Colors.white),
-                            )
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
+                        height: 12,
                       ),
                     ],
                   ),
