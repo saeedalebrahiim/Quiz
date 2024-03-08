@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:bilgimizde/view/help/help_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quickalert/models/quickalert_type.dart';
@@ -106,7 +107,15 @@ class TicketController {
               type: QuickAlertType.success,
               onConfirmBtnTap: () {
                 Navigator.of(context).pop();
-                Navigator.of(context).pop();
+                Navigator.of(context).pushReplacement(
+                  PageRouteBuilder(
+                      pageBuilder: (_, __, ___) => const HelpScreen(),
+                      transitionDuration: const Duration(milliseconds: 500),
+                      transitionsBuilder: (_, a, __, c) => FadeTransition(
+                            opacity: a,
+                            child: c,
+                          )),
+                );
               });
         }
       });

@@ -54,6 +54,7 @@ dependencies:
   firebase_core: ^2.25.5
   firebase_messaging: ^14.7.18
   in_app_purchase: ^3.1.13
+  internet_connection_checker_plus: ^2.2.0
 
 dev_dependencies:
   flutter_test:
