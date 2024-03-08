@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:bilgimizde/view/rules/rules_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_count_timer/easy_count_timer.dart';
 import 'package:flutter/material.dart';
@@ -122,16 +123,17 @@ class _OneMonthScreenState extends State<OneMonthScreen> {
                     padding: const EdgeInsets.only(right: 15, top: 20),
                     child: InkWell(
                       onTap: () {
-                        // Navigator.of(context).push(
-                        //   PageRouteBuilder(
-                        //       pageBuilder: (_, __, ___) => const HomeScreen(),
-                        //       transitionDuration:
-                        //           const Duration(milliseconds: 500),
-                        //       transitionsBuilder: (_, a, __, c) => FadeTransition(
-                        //             opacity: a,
-                        //             child: c,
-                        //           )),
-                        // );
+                        Navigator.of(context).push(
+                          PageRouteBuilder(
+                              pageBuilder: (_, __, ___) => const RulesScreen(),
+                              transitionDuration:
+                                  const Duration(milliseconds: 500),
+                              transitionsBuilder: (_, a, __, c) =>
+                                  FadeTransition(
+                                    opacity: a,
+                                    child: c,
+                                  )),
+                        );
                       },
                       child: Container(
                         width: 40,

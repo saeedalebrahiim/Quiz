@@ -1,3 +1,4 @@
+import 'package:bilgimizde/view/rules/rules_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:bilgimizde/components/rating_card/rating_card_onemonth.dart';
 
@@ -76,16 +77,17 @@ class MyRatingScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 15, top: 20),
                     child: InkWell(
                       onTap: () {
-                        // Navigator.of(context).push(
-                        //   PageRouteBuilder(
-                        //       pageBuilder: (_, __, ___) => const HomeScreen(),
-                        //       transitionDuration:
-                        //           const Duration(milliseconds: 500),
-                        //       transitionsBuilder: (_, a, __, c) => FadeTransition(
-                        //             opacity: a,
-                        //             child: c,
-                        //           )),
-                        // );
+                        Navigator.of(context).push(
+                          PageRouteBuilder(
+                              pageBuilder: (_, __, ___) => const RulesScreen(),
+                              transitionDuration:
+                                  const Duration(milliseconds: 500),
+                              transitionsBuilder: (_, a, __, c) =>
+                                  FadeTransition(
+                                    opacity: a,
+                                    child: c,
+                                  )),
+                        );
                       },
                       child: Container(
                         width: 40,

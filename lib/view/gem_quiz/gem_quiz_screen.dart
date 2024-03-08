@@ -62,7 +62,9 @@ class GemQuizScreen extends StatelessWidget {
                     ),
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      
+                    },
                     child: Container(
                       width: 23,
                       height: 25,

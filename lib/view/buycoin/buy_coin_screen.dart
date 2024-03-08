@@ -39,6 +39,7 @@ class _BuyCoinScreenState extends State<BuyCoinScreen> {
     print("in here");
     try {
       _isAvailable = await _iap.isAvailable();
+
       print(_isAvailable);
       if (_isAvailable) {
         await _getProducts();
