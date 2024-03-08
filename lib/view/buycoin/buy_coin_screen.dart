@@ -24,7 +24,7 @@ class _BuyCoinScreenState extends State<BuyCoinScreen> {
 
   @override
   void initState() {
-    // _initialize();
+    _initialize();
 
     super.initState();
   }
@@ -49,13 +49,26 @@ class _BuyCoinScreenState extends State<BuyCoinScreen> {
   }
 
   _getProducts() async {
-    Set<String> ids = Set.from(["100.p", "50.p"]);
-    ProductDetailsResponse response = await _iap.queryProductDetails(ids);
-    // setState(() {
-    //   _products = response.productDetails;
-    // });
+    try {
+      Set<String> ids = {
+        "10.p",
+        "50.p",
+        "80.p",
+        "100.p",
+        "150.p",
+        "180.p",
+      };
+      ProductDetailsResponse response = await _iap.queryProductDetails(ids);
+      setState(() {
+        _products = response.productDetails;
+      });
 
-    print(response.productDetails);
+      print("${response.productDetails}  products");
+      print("${response.error}  products");
+      print("${response.notFoundIDs}  products");
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override

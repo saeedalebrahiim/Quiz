@@ -21,7 +21,7 @@ class StopWatchProvider with ChangeNotifier {
 
     if (streamSubscription != null && streamSubscription!.isPaused) {
       streamSubscription!.resume();
-    } else {
+    } else if (streamSubscription != null) {
       streamSubscription = timeStream.listen((seconds) {
         secondsElapsed--;
         print("secondsElapsed $secondsElapsed");

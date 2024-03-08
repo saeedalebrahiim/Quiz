@@ -13,17 +13,17 @@ class AdMobService {
 
   static String? get appOpenAdUnitId {
     if (Platform.isAndroid) {
-      return 'ca-app-pub-3940256099942544/9257395921';
+      return 'ca-app-pub-5344393902349142/9190629770';
     } else if (Platform.isIOS) {
       return '';
     }
     return null;
   }
 
-// we need this
+// rewarded ad for homepage
   static String? get rewardedAdUnitId {
     if (Platform.isAndroid) {
-      return 'ca-app-pub-3940256099942544/6300978111';
+      return 'ca-app-pub-5344393902349142/8395158826';
     } else if (Platform.isIOS) {
       return '';
     }
@@ -32,7 +32,7 @@ class AdMobService {
 
   static String? get rewardedAdUnitId2 {
     if (Platform.isAndroid) {
-      return 'ca-app-pub-3940256099942544/6300978111';
+      return 'ca-app-pub-5344393902349142/9532980678';
     } else if (Platform.isIOS) {
       return '';
     }

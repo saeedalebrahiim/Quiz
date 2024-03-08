@@ -22,7 +22,7 @@ class QuizScreen extends StatefulWidget {
 class _QuizScreenState extends State<QuizScreen> {
   int selectedIndex = 0;
   bool isSelectedAny = false;
-  // StopWatchProvider? stopWatchProvider;
+  StopWatchProvider? stopWatchProvider;
   @override
   void initState() {
     // TODO: implement initState
@@ -32,21 +32,21 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 
   getStop() {
-    // stopWatchProvider = Provider.of<StopWatchProvider>(context, listen: false);
-    // stopWatchProvider!.start(context: context, index: widget.index);
-    context
-        .read<StopWatchProvider>()
-        .start(context: context, index: widget.index);
+    stopWatchProvider = Provider.of<StopWatchProvider>(context, listen: false);
+    stopWatchProvider!.start(context: context, index: widget.index);
+    // context
+    //     .read<StopWatchProvider>()
+    //     .start(context: context, index: widget.index);
   }
 
   @override
   void dispose() {
     // TODO: implement dispose
-    // stopWatchProvider!.stop();
-    context.read<StopWatchProvider>().stop();
-    context.read<StopWatchProvider>().cancel();
+    stopWatchProvider!.stop();
+    // context.read<StopWatchProvider>().stop();
+    // context.read<StopWatchProvider>().cancel();
 
-    // stopWatchProvider!.cancel();
+    stopWatchProvider!.cancel();
     super.dispose();
   }
 
@@ -153,7 +153,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10),
                                   child: SizedBox(
-                                    width: 160,
+                                    width: 150,
                                     height: 10,
                                     child: LinearProgressIndicator(
                                       backgroundColor: Colors.black,
@@ -203,7 +203,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       Flexible(
                         flex: 1,
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               value.quiz!.quizQuestions[widget.index]
@@ -215,12 +215,8 @@ class _QuizScreenState extends State<QuizScreen> {
                                 ],
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 28,
+                                fontSize: 24,
                               ),
-                            ),
-                            Text(
-                              "${widget.index + 1} / ${value.quiz!.quizQuestions.length}",
-                              style: const TextStyle(color: Colors.white),
                             ),
                           ],
                         ),
@@ -237,8 +233,12 @@ class _QuizScreenState extends State<QuizScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              Text(
+                                "${widget.index + 1} / ${value.quiz!.quizQuestions.length}",
+                                style: const TextStyle(color: Colors.white),
+                              ),
                               const SizedBox(
-                                height: 40,
+                                height: 25,
                               ),
                               const Text(
                                 'Doğru şıkkı seç:',
@@ -280,7 +280,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                             },
                                             child: Padding(
                                               padding:
-                                                  const EdgeInsets.all(7.0),
+                                                  const EdgeInsets.all(3.0),
                                               child: AnswerCard(
                                                 helpPercentage: value.percentHint !=
                                                         null
@@ -313,7 +313,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                           value.eliminateAnswers.contains(2)
                                       ? const SizedBox()
                                       : Padding(
-                                          padding: const EdgeInsets.all(7.0),
+                                          padding: const EdgeInsets.all(3.0),
                                           child: IgnorePointer(
                                             ignoring: isSelectedAny,
                                             child: RawMaterialButton(
@@ -375,7 +375,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                           value.eliminateAnswers.contains(3)
                                       ? const SizedBox()
                                       : Padding(
-                                          padding: const EdgeInsets.all(7.0),
+                                          padding: const EdgeInsets.all(3.0),
                                           child: IgnorePointer(
                                             ignoring: isSelectedAny,
                                             child: RawMaterialButton(
@@ -437,7 +437,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                           value.eliminateAnswers.contains(4)
                                       ? const SizedBox()
                                       : Padding(
-                                          padding: const EdgeInsets.all(7.0),
+                                          padding: const EdgeInsets.all(3.0),
                                           child: IgnorePointer(
                                             ignoring: isSelectedAny,
                                             child: RawMaterialButton(
@@ -499,7 +499,7 @@ class _QuizScreenState extends State<QuizScreen> {
                               ),
                               isSelectedAny
                                   ? Padding(
-                                      padding: const EdgeInsets.all(10),
+                                      padding: const EdgeInsets.all(5),
                                       child: SizedBox(
                                         width: 300,
                                         child: RawMaterialButton(
@@ -542,7 +542,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                     )
                                   : const SizedBox(),
                               Padding(
-                                padding: const EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(5),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
