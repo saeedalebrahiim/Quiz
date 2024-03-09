@@ -38,7 +38,6 @@ class HelpScreen extends StatelessWidget {
                       child: InkWell(
                         onTap: () {
                           Navigator.pop(context);
-                          context.read<DrawerState>().changeVisibleTwo();
                         },
                         child: Container(
                           width: 50,
@@ -93,39 +92,45 @@ class HelpScreen extends StatelessWidget {
                 height: 20,
               ),
               Consumer<TicketStateProvider>(builder: (context, value, child) {
-                return SizedBox(
-                  height: MediaQuery.sizeOf(context).height - 70,
-                  child: Expanded(
-                    child: ListView.builder(
-                      itemCount: value.tickets.length,
-                      itemBuilder: (context, index) => RawMaterialButton(
-                          onPressed: () {
-                            TicketController.getTicketDetail(
-                                    context: context,
-                                    ticketId: value.tickets[index].id ?? 0)
-                                .then((v) {
-                              if (v != null) {
-                                Navigator.of(context).push(
-                                  PageRouteBuilder(
-                                      pageBuilder: (_, __, ___) => ChatScreen(
-                                            dto: v,
-                                            id: value.tickets[index].id ?? 0,
-                                            subject: value
-                                                .tickets[index].subject
-                                                .toString(),
-                                          ),
-                                      transitionDuration:
-                                          const Duration(milliseconds: 500),
-                                      transitionsBuilder: (_, a, __, c) =>
-                                          FadeTransition(
-                                            opacity: a,
-                                            child: c,
-                                          )),
-                                );
-                              }
-                            });
-                          },
-                          child: RecentTicket(dto: value.tickets[index])),
+                return Visibility(
+                  visible: value.tickets.isNotEmpty,
+                  replacement: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  child: SizedBox(
+                    height: MediaQuery.sizeOf(context).height - 70,
+                    child: Expanded(
+                      child: ListView.builder(
+                        itemCount: value.tickets.length,
+                        itemBuilder: (context, index) => RawMaterialButton(
+                            onPressed: () {
+                              TicketController.getTicketDetail(
+                                      context: context,
+                                      ticketId: value.tickets[index].id ?? 0)
+                                  .then((v) {
+                                if (v != null) {
+                                  Navigator.of(context).push(
+                                    PageRouteBuilder(
+                                        pageBuilder: (_, __, ___) => ChatScreen(
+                                              dto: v,
+                                              id: value.tickets[index].id ?? 0,
+                                              subject: value
+                                                  .tickets[index].subject
+                                                  .toString(),
+                                            ),
+                                        transitionDuration:
+                                            const Duration(milliseconds: 500),
+                                        transitionsBuilder: (_, a, __, c) =>
+                                            FadeTransition(
+                                              opacity: a,
+                                              child: c,
+                                            )),
+                                  );
+                                }
+                              });
+                            },
+                            child: RecentTicket(dto: value.tickets[index])),
+                      ),
                     ),
                   ),
                 );

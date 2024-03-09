@@ -1,9 +1,11 @@
 import 'dart:async';
 
+import 'package:bilgimizde/services/admob.dart';
 import 'package:bilgimizde/view/rules/rules_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_count_timer/easy_count_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:bilgimizde/components/rating_card/rating_card_all.dart';
@@ -32,6 +34,22 @@ class _TodayScreenState extends State<TodayScreen> {
   getData() {
     ScoreController.getUserChangeScoreDay(context: context);
     ScoreController.getUserRewardsDaily(context: context);
+    _createBannerAd();
+  }
+
+  BannerAd? _bannerAd;
+
+  _createBannerAd() {
+    try {
+      _bannerAd = BannerAd(
+          size: AdSize.fullBanner,
+          adUnitId: AdMobService.bannerAdUnitId!,
+          listener: BannerAdListener(),
+          request: AdRequest())
+        ..load();
+    } catch (e) {
+      print("error $e");
+    }
   }
 
   @override
@@ -40,6 +58,9 @@ class _TodayScreenState extends State<TodayScreen> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+        bottomNavigationBar: _bannerAd != null
+            ? SizedBox(height: 60, child: AdWidget(ad: _bannerAd!))
+            : SizedBox(),
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
@@ -298,12 +319,24 @@ class _TodayScreenState extends State<TodayScreen> {
                             Container(
                               width: 20,
                               height: 20,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12),
-                                  image: const DecorationImage(
-                                      image: AssetImage(
-                                          'lib/assets/images/increase.png'),
-                                      fit: BoxFit.fill)),
+                              // decoration: BoxDecoration(
+                              //     borderRadius: BorderRadius.circular(12),
+                              //     image: const DecorationImage(
+                              //         image: AssetImage(
+                              //             'lib/assets/images/increase.png'),
+                              //         fit: BoxFit.fill)),
+                              child: Icon(
+                                value.userScore != null
+                                    ? value.userScore!.changes.isNegative
+                                        ? Icons.arrow_drop_down
+                                        : Icons.arrow_drop_up
+                                    : Icons.arrow_drop_up,
+                                color: value.userScore != null
+                                    ? value.userScore!.changes.isNegative
+                                        ? Colors.red
+                                        : Colors.green
+                                    : Colors.green,
+                              ),
                             ),
                             const Text(
                               'Your growth',
@@ -315,8 +348,13 @@ class _TodayScreenState extends State<TodayScreen> {
                       ),
                       Text(
                         '${value.userScore != null ? value.userScore!.changes : "0"} +',
-                        style: const TextStyle(
-                            color: Colors.green, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            color: value.userScore != null
+                                ? value.userScore!.changes.isNegative
+                                    ? Colors.red
+                                    : Colors.green
+                                : Colors.green,
+                            fontWeight: FontWeight.bold),
                       )
                     ],
                   ),
@@ -411,18 +449,24 @@ class _TodayScreenState extends State<TodayScreen> {
                 ],
               ),
               Consumer<ScoreState>(builder: (context, value, child) {
-                return Expanded(
-                  child: ListView.builder(
-                    itemCount: value.dailyScores.length,
-                    itemBuilder: (context, index) => Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 8.0, horizontal: 25),
-                      child: AllRatingCard(
-                          showChanges: true,
-                          isPrice: true,
-                          score: value.dailyScores[index],
-                          index: index + 1,
-                          price: value.rewards[index] ?? "0"),
+                return Visibility(
+                  visible: value.dailyScores.isNotEmpty,
+                  replacement: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  child: Expanded(
+                    child: ListView.builder(
+                      itemCount: value.dailyScores.length,
+                      itemBuilder: (context, index) => Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 25),
+                        child: AllRatingCard(
+                            showChanges: true,
+                            isPrice: true,
+                            score: value.dailyScores[index],
+                            index: index + 1,
+                            price: value.rewards[index] ?? "0"),
+                      ),
                     ),
                   ),
                 );
