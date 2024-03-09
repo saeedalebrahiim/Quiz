@@ -2,6 +2,7 @@ import 'package:bilgimizde/components/alarms_functions/no_coin.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:bilgimizde/controller/Quiz/start_quiz.dart';
 import 'package:bilgimizde/controller/banners/banners.dart';
@@ -203,13 +204,18 @@ class _MainScreenState extends State<MainScreen> {
                       height: 25,
                     ),
                     Consumer<ProfileState>(
-                      builder: (context, value, child) => Text(
-                        value.userBalance.toString(),
-                        style: const TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600),
-                      ),
+                      builder: (context, value, child) {
+                        var _formattedNumber =
+                            NumberFormat.compact().format(value.userBalance);
+                        return Text(
+                          _formattedNumber,
+                          //  value.userBalance.toString(),
+                          style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600),
+                        );
+                      },
                     ),
                   ],
                 ),

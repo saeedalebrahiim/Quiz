@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bilgimizde/components/coin_packages.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:bilgimizde/global.dart';
 import 'package:bilgimizde/provider/profile.dart';
@@ -133,13 +134,18 @@ class _BuyCoinScreenState extends State<BuyCoinScreen> {
                       height: 25,
                     ),
                     Consumer<ProfileState>(
-                      builder: (context, value, child) => Text(
-                        value.userBalance.toString(),
-                        style: const TextStyle(
-                            fontSize: 30,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600),
-                      ),
+                      builder: (context, value, child) {
+                        var _formattedNumber =
+                            NumberFormat.compact().format(value.userBalance);
+                        return Text(
+                          _formattedNumber,
+                          //  value.userBalance.toString(),
+                          style: const TextStyle(
+                              fontSize: 30,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600),
+                        );
+                      },
                     ),
                     const Text(
                       'Available to use',

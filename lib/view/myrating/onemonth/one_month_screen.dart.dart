@@ -4,6 +4,7 @@ import 'package:bilgimizde/view/rules/rules_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_count_timer/easy_count_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:bilgimizde/components/rating_card/rating_card_all.dart';
 import 'package:bilgimizde/controller/score/score.dart';
@@ -107,13 +108,18 @@ class _OneMonthScreenState extends State<OneMonthScreen> {
                             height: 25,
                           ),
                           Consumer<ProfileState>(
-                            builder: (context, value, child) => Text(
-                              value.userBalance.toString(),
-                              style: const TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600),
-                            ),
+                            builder: (context, value, child) {
+                              var _formattedNumber = NumberFormat.compact()
+                                  .format(value.userBalance);
+                              return Text(
+                                _formattedNumber,
+                                //  value.userBalance.toString(),
+                                style: const TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600),
+                              );
+                            },
                           ),
                         ],
                       ),

@@ -4,6 +4,7 @@ import 'package:bilgimizde/view/buycoin/buy_coin_screen.dart';
 import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:bilgimizde/provider/profile.dart';
 import 'package:bilgimizde/view/profile/profile_screen.dart';
@@ -95,13 +96,18 @@ class _EndQuizScreenState extends State<EndQuizScreen> {
                           height: 25,
                         ),
                         Consumer<ProfileState>(
-                          builder: (context, value, child) => Text(
-                            value.userBalance.toString(),
-                            style: const TextStyle(
-                                fontSize: 14,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600),
-                          ),
+                          builder: (context, value, child) {
+                            var _formattedNumber = NumberFormat.compact()
+                                .format(value.userBalance);
+                            return Text(
+                              _formattedNumber,
+                              //  value.userBalance.toString(),
+                              style: const TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600),
+                            );
+                          },
                         ),
                       ],
                     ),
