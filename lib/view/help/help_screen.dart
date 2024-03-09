@@ -98,7 +98,7 @@ class HelpScreen extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   ),
                   child: SizedBox(
-                    height: MediaQuery.sizeOf(context).height - 70,
+                    height: MediaQuery.sizeOf(context).height - 150,
                     child: Expanded(
                       child: ListView.builder(
                         itemCount: value.tickets.length,
@@ -176,7 +176,7 @@ class RecentTicket extends StatelessWidget {
                   children: [
                     Text(
                       dto.subject.toString(),
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                       ),
                     ),
@@ -186,11 +186,23 @@ class RecentTicket extends StatelessWidget {
                         color: Colors.indigo,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: Icon(
-                        Icons.done,
-                        color: Colors.white,
-                        size: 14,
-                      ),
+                      child: dto.ticketState == 1
+                          ? const Icon(
+                              Icons.hdr_strong,
+                              color: Colors.white,
+                              size: 14,
+                            )
+                          : dto.ticketState == 2
+                              ? const Icon(
+                                  Icons.chat,
+                                  color: Colors.white,
+                                  size: 14,
+                                )
+                              : const Icon(
+                                  Icons.done,
+                                  color: Colors.white,
+                                  size: 14,
+                                ),
                     ),
                   ],
                 ),
@@ -200,7 +212,7 @@ class RecentTicket extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       "Bilet kimliği: ",
                       style: TextStyle(
                         color: Colors.white,
@@ -208,7 +220,7 @@ class RecentTicket extends StatelessWidget {
                     ),
                     Text(
                       "${dto.id}",
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
