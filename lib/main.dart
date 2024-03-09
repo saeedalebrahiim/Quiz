@@ -1,4 +1,5 @@
 import 'package:bilgimizde/services/admob.dart';
+import 'package:bilgimizde/services/internet_listener.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -44,6 +45,7 @@ void main() async {
   // //     options: DefaultFirebaseOptions.currentPlatform,
   // //     );
   _createAppOpenAd();
+
   runApp(
     MultiProvider(
       providers: [
@@ -85,7 +87,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ConnectionStatusListener().initialize();
+
     return MaterialApp(
+      navigatorKey: NavigationService.navigatorKey,
       routes: routes,
       debugShowCheckedModeBanner: false,
       home: const WelcomeScreen(),
@@ -94,4 +99,8 @@ class MyApp extends StatelessWidget {
               BottomSheetThemeData(backgroundColor: Colors.transparent)),
     );
   }
+}
+
+class NavigationService {
+  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 }

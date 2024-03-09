@@ -1,3 +1,4 @@
+import 'package:bilgimizde/services/internet_listener.dart';
 import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
 import 'package:bilgimizde/view/welcome/enter_screen.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,8 @@ class _InitScreenState extends State<InitScreen> {
     super.initState();
     checkData();
   }
+
+
 
   checkData() async {
     //todo Check token for login or home
