@@ -33,9 +33,16 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('lib/assets/images/welcomebg.jpg'),
-              fit: BoxFit.cover)),
+        image: DecorationImage(
+            image: AssetImage('lib/assets/images/welcomebg-bg.png'),
+            fit: BoxFit.cover),
+      ),
+      child: Center(
+        child: Image.asset(
+          'lib/assets/images/Logo4.png',
+          width: 250,
+        ),
+      ),
     );
   }
 }
