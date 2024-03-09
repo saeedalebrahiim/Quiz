@@ -23,7 +23,7 @@ class RulesScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 15, top: 20),
+                    padding: const EdgeInsets.only(left: 15, top: 45),
                     child: InkWell(
                       onTap: () {
                         Navigator.pop(context);

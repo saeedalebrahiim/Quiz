@@ -1,3 +1,4 @@
+import 'package:bilgimizde/view/help/add_help_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:bilgimizde/global.dart';
 
@@ -21,7 +22,7 @@ class SingleFaqScreen extends StatelessWidget {
           children: [
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               Padding(
-                padding: const EdgeInsets.only(left: 15, top: 20),
+                padding: const EdgeInsets.only(left: 15, top: 45),
                 child: InkWell(
                   onTap: () {
                     Navigator.pop(context);
@@ -53,11 +54,11 @@ class SingleFaqScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(left: 22, right: 22, top: 10),
                 child: Text(
-                  maxLines: 10,
+                  // maxLines: 10,
                   answer,
                   style: const TextStyle(
                       color: Colors.white,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w400,
                       fontSize: 16),
                 ),
               ),
@@ -69,7 +70,19 @@ class SingleFaqScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 50),
                   child: Center(
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context).push(
+                          PageRouteBuilder(
+                              pageBuilder: (_, __, ___) => AddHelpScreen(),
+                              transitionDuration:
+                                  const Duration(milliseconds: 500),
+                              transitionsBuilder: (_, a, __, c) =>
+                                  FadeTransition(
+                                    opacity: a,
+                                    child: c,
+                                  )),
+                        );
+                      },
                       child: Container(
                         width: 250,
                         height: 50,
