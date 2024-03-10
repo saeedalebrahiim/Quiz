@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
@@ -20,6 +22,10 @@ class AuthController {
       final postResult = await api.apiV1AuthTokenPost(
           username: userName, password: password, userRole: 2);
       print(postResult);
+      final body = jsonDecode(postResult.bodyString);
+
+      print(body['message']);
+
       if (postResult.isSuccessful == true) {
         //save token
         SharedPreferences sp = await SharedPreferences.getInstance();
@@ -35,7 +41,9 @@ class AuthController {
       } else {
         //show error message
         QuickAlert.show(
-            context: context, type: QuickAlertType.error, text: "OOPs");
+            context: context,
+            type: QuickAlertType.error,
+            text: "Something went wrong!");
       }
     } catch (e) {
       print(e);
@@ -76,7 +84,9 @@ class AuthController {
       } else {
         //show error message
         QuickAlert.show(
-            context: context, type: QuickAlertType.error, text: "OOPs");
+            context: context,
+            type: QuickAlertType.error,
+            text: "Something went wrong!");
       }
     } catch (e) {
       print(e);
@@ -107,7 +117,9 @@ class AuthController {
       } else {
         //show error message
         QuickAlert.show(
-            context: context, type: QuickAlertType.error, text: "OOPs");
+            context: context,
+            type: QuickAlertType.error,
+            text: "Something went wrong!");
       }
     } catch (e) {
       print(e);
@@ -139,7 +151,9 @@ class AuthController {
       } else {
         //show error message
         QuickAlert.show(
-            context: context, type: QuickAlertType.error, text: "OOPs");
+            context: context,
+            type: QuickAlertType.error,
+            text: "Something went wrong!");
       }
     } catch (e) {
       print(e);
