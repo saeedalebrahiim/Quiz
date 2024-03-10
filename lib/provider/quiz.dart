@@ -12,6 +12,9 @@ class QuizState extends ChangeNotifier {
 
   List<int> eliminateAnswers = [];
 
+  bool usedPercentage = false;
+  bool usedEliminate = false;
+
   getQuiz({required QuizDto value}) {
     quiz = value;
     notifyListeners();
@@ -21,6 +24,8 @@ class QuizState extends ChangeNotifier {
     correctCount = 0;
     falseCount = 0;
     quiz = null;
+    usedPercentage = false;
+    usedEliminate = false;
     notifyListeners();
   }
 
@@ -36,6 +41,8 @@ class QuizState extends ChangeNotifier {
 
   addPercentHint(UserPercentageHint hint) {
     percentHint = hint;
+    usedPercentage = true;
+
     notifyListeners();
   }
 
@@ -47,6 +54,7 @@ class QuizState extends ChangeNotifier {
   addEliminateAnswers(int n1, int n2) {
     eliminateAnswers.add(n1);
     eliminateAnswers.add(n2);
+    usedEliminate = true;
     notifyListeners();
   }
 

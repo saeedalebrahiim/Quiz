@@ -31,4 +31,22 @@ class SettingsController {
       print("faq error $e");
     }
   }
+
+  static Future<void> getSettings({required BuildContext context}) async {
+    final api = Quiz.create(interceptors: [TokenIndicator()]);
+    try {
+      await api.apiV1SettingGetSettingGet().then((postResult) {
+        final body = jsonDecode(postResult.bodyString);
+
+        if (body["isSuccess"] == true) {
+          final terms = body["data"]["termsAndConditions"];
+          print(terms);
+
+          context.read<SettingsState>().getTerms(values: terms);
+        }
+      });
+    } catch (e) {
+      print("faq error $e");
+    }
+  }
 }

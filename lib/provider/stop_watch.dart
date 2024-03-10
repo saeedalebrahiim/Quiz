@@ -31,13 +31,13 @@ class StopWatchProvider with ChangeNotifier {
 
           QuizState quiz = Provider.of<QuizState>(context, listen: false);
           //TODO call add
-          StartQuizController.addAwnswer(
-              userQuizId: quiz.quiz!.quizId,
-              userDQuizId: quiz.quiz!.dQuizId,
-              questionId: quiz.quiz!.quizQuestions[index].questionId,
-              selectedAnswer: 0,
-              questionNumber: index,
-              context: context);
+          // StartQuizController.addAwnswer(
+          //     userQuizId: quiz.quiz!.quizId,
+          //     userDQuizId: quiz.quiz!.dQuizId,
+          //     questionId: quiz.quiz!.quizQuestions[index].questionId,
+          //     selectedAnswer: 0,
+          //     questionNumber: index,
+          //     context: context);
           stop();
         }
         notifyListeners();

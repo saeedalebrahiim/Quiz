@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:bilgimizde/controller/profile/profile.dart';
 import 'package:bilgimizde/view/home/quiz/end_quiz_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -157,6 +158,7 @@ class StartQuizController {
         if (res["isSuccess"] == true) {
           UserPercentageHint hint = UserPercentageHint.fromJson(body);
           context.read<QuizState>().addPercentHint(hint);
+          ProfileController.getUserBalance(context: context);
         }
       });
     } catch (e) {
@@ -183,6 +185,7 @@ class StartQuizController {
         print(n);
         if (res["isSuccess"] == true) {
           context.read<QuizState>().addEliminateAnswers(n.first, n.last);
+          ProfileController.getUserBalance(context: context);
         }
       });
     } catch (e) {

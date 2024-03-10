@@ -1,8 +1,29 @@
+import 'package:bilgimizde/controller/settings/settings.dart';
+import 'package:bilgimizde/provider/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:bilgimizde/global.dart';
+import 'package:provider/provider.dart';
+import 'package:quill_html_editor/quill_html_editor.dart';
 
-class RulesScreen extends StatelessWidget {
+class RulesScreen extends StatefulWidget {
   const RulesScreen({super.key});
+
+  @override
+  State<RulesScreen> createState() => _RulesScreenState();
+}
+
+class _RulesScreenState extends State<RulesScreen> {
+  final QuillEditorController controller = QuillEditorController();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData();
+  }
+
+  getData() {
+    SettingsController.getSettings(context: context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +60,7 @@ class RulesScreen extends StatelessWidget {
                     ),
                   ),
                   const Padding(
-                    padding: EdgeInsets.only(top: 18),
+                    padding: EdgeInsets.only(top: 38),
                     child: Text(
                       'Rules',
                       style: TextStyle(
@@ -53,57 +74,41 @@ class RulesScreen extends StatelessWidget {
                   )
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: Container(
-                  height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width,
-                  color: Colors.white,
-                  child: const Column(
-                    children: [
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Text(
-                            'LORM IPUM',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 18),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 22, right: 22, top: 10),
-                        child: Text(
-                          maxLines: 5,
-                          'A quiz is a form of game or mind sport in which players attempt to answer questions correctly about a certain or variety of subjects. ',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 22, right: 22, top: 10),
-                        child: Text(
-                          maxLines: 5,
-                          'Quizzes can be used as a brief assessment in education and similar fields to measure growth in knowledge, abilities, or skills. ',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16),
-                        ),
-                      ),
-                    ],
+              Consumer<SettingsState>(
+                builder: (context, value, child) => Padding(
+                  padding: const EdgeInsets.only(top: 20, bottom: 20),
+                  child: Container(
+                    height: MediaQuery.of(context).size.height,
+                    width: MediaQuery.of(context).size.width,
+                    color: Colors.white,
+                    child: QuillHtmlEditor(
+                      text: value.terms,
+                      hintText: 'Hint text goes here',
+                      controller: controller,
+                      isEnabled: false,
+                      minHeight: 300,
+                      hintTextAlign: TextAlign.start,
+                      padding: const EdgeInsets.only(left: 10, top: 5),
+                      hintTextPadding: EdgeInsets.zero,
+                      onFocusChanged: (hasFocus) =>
+                          debugPrint('has focus $hasFocus'),
+                      onTextChanged: (text) =>
+                          debugPrint('widget text change $text'),
+                      onEditorCreated: () =>
+                          debugPrint('Editor has been loaded'),
+                      onEditingComplete: (s) =>
+                          debugPrint('Editing completed $s'),
+                      onEditorResized: (height) =>
+                          debugPrint('Editor resized $height'),
+                      onSelectionChanged: (sel) =>
+                          debugPrint('${sel.index},${sel.length}'),
+                      loadingBuilder: (context) {
+                        return const Center(child: CircularProgressIndicator());
+                      },
+                    ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),

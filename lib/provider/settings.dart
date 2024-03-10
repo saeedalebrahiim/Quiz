@@ -5,6 +5,7 @@ class SettingsState extends ChangeNotifier {
   List<BankDto>? banks;
   List<String>? banksTitle;
   List<int>? banksID;
+  String? terms;
 
   getBanks({required List<BankDto> values}) {
     banks = values;
@@ -20,6 +21,12 @@ class SettingsState extends ChangeNotifier {
 
     banksTitle = titles;
     banksID = iDs;
+
+    notifyListeners();
+  }
+
+  getTerms({required String values}) {
+    terms = values;
 
     notifyListeners();
   }
