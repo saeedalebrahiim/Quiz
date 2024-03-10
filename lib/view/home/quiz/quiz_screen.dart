@@ -50,6 +50,7 @@ class _QuizScreenState extends State<QuizScreen> {
     // context.read<StopWatchProvider>().cancel();
 
     stopWatchProvider!.cancel();
+    _createRewardedAd();
     super.dispose();
   }
 
@@ -65,7 +66,7 @@ class _QuizScreenState extends State<QuizScreen> {
           onAdFailedToLoad: (error) => _rewardedAd = null,
         ),
       );
-      _showRewardedAd();
+      // _showRewardedAd();
     } catch (e) {
       print("error $e");
     }
@@ -86,9 +87,14 @@ class _QuizScreenState extends State<QuizScreen> {
           ProfileController.getUserBalance(context: context);
         },
       );
-      _rewardedAd!.show(
+      _rewardedAd!
+          .show(
         onUserEarnedReward: (ad, reward) => print("this is $ad + $reward"),
-      );
+      )
+          .then((value) {
+        ProfileController.getUserBalance(context: context);
+      });
+
       _rewardedAd = null;
     }
   }
@@ -640,39 +646,46 @@ class _QuizScreenState extends State<QuizScreen> {
                                       ? InkWell(
                                           onTap: () {
                                             //see ads
-                                            _createRewardedAd();
-                                            // _showRewardedAd();
+                                            // _createRewardedAd();
+                                            _showRewardedAd();
                                           },
                                           child: Container(
                                             width: 90,
-                                            height: 55,
+                                            height: 58,
+                                            foregroundDecoration:
+                                                _rewardedAd == null
+                                                    ? const BoxDecoration(
+                                                        color: Colors.black12)
+                                                    : null,
                                             decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              border: Border(
-                                                bottom: BorderSide(
-                                                    width: 3,
-                                                    color: Colors.orange),
-                                              ),
-                                              color: Colors.white,
-                                            ),
-                                            child: Column(
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(1.0),
-                                                  child: Image.asset(
-                                                    'lib/assets/images/mainstar.png',
-                                                    width: 25,
-                                                  ),
-                                                ),
-                                                const Text(
-                                                  "TL topla",
-                                                  style:
-                                                      TextStyle(fontSize: 10),
-                                                )
-                                              ],
-                                            ),
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                // border: Border(
+                                                //   bottom: BorderSide(
+                                                //       width: 3,
+                                                //       color: Colors.orange),
+                                                // ),
+                                                image: DecorationImage(
+                                                    image: AssetImage(
+                                                        'lib/assets/images/4.png'),
+                                                    fit: BoxFit.fill)),
+                                            // child: Column(
+                                            //   children: [
+                                            //     Padding(
+                                            //       padding:
+                                            //           const EdgeInsets.all(1.0),
+                                            //       child: Image.asset(
+                                            //         'lib/assets/images/mainstar.png',
+                                            //         width: 25,
+                                            //       ),
+                                            //     ),
+                                            //     const Text(
+                                            //       "TL topla",
+                                            //       style:
+                                            //           TextStyle(fontSize: 10),
+                                            //     )
+                                            //   ],
+                                            // ),
                                           ),
                                         )
                                       : InkWell(

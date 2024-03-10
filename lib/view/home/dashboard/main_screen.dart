@@ -1,4 +1,5 @@
 import 'package:bilgimizde/components/alarms_functions/no_coin.dart';
+import 'package:bilgimizde/provider/quiz.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -428,6 +429,7 @@ class _MainScreenState extends State<MainScreen> {
                                       //           )),
                                       // );
                                       if (value.userBalance >= 2) {
+                                        context.read<QuizState>().resetCount();
                                         StartQuizController.startQuiz(
                                             context: context);
                                       } else {

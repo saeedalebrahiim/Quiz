@@ -176,170 +176,176 @@ class _EndQuizScreenState extends State<EndQuizScreen> {
               height: 25,
             ),
             Consumer<QuizState>(
-              builder: (context, value, child) => Container(
-                height: 300,
-                width: MediaQuery.of(context).size.width - 110,
-                decoration: BoxDecoration(
-                    color: Colors.grey.shade100,
-                    borderRadius: BorderRadius.circular(20)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      'End of the Test',
-                      style: TextStyle(
-                          color: Color.fromARGB(255, 96, 131, 255),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18),
-                    ),
-                    const SizedBox(
-                      height: 4,
-                    ),
-                    Visibility(
-                      visible: value.isTop50 == true,
-                      replacement: const Column(
-                        children: [
-                          SizedBox(
-                            height: 100,
-                          ),
-                          Text(
-                            "Successfuly",
-                            style: TextStyle(
-                              fontSize: 22,
-                              color: Colors.green,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(
-                              "You are too close to be among 50 best players and grant Prize",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.black,
-                              ),
-                            ),
-                          )
-                        ],
+              builder: (context, value, child) => Visibility(
+                visible: value.isTop50 != null,
+                replacement: const Center(
+                  child: CircularProgressIndicator(),
+                ),
+                child: Container(
+                  height: 300,
+                  width: MediaQuery.of(context).size.width - 110,
+                  decoration: BoxDecoration(
+                      color: Colors.grey.shade100,
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const SizedBox(
+                        height: 20,
                       ),
-                      child: Column(
-                        children: [
-                          Container(
-                            width: 100,
-                            height: 100,
-                            decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage(
-                                        'lib/assets/images/congrats.png'),
-                                    fit: BoxFit.fill)),
-                          ),
-                          const SizedBox(
-                            height: 2,
-                          ),
-                          const Text(
-                            'Congrats!',
-                            style: TextStyle(
-                                color: Colors.orange,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 18),
-                          ),
-                          const Text(
-                            'You are among',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 12),
-                          ),
-                          const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'best 50 players , ',
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 96, 131, 255),
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 12),
-                              ),
-                              Text(
-                                'So  you grant',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 12),
-                              ),
-                            ],
-                          ),
-                          const Text(
-                            'prize at end of the season',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12),
-                          ),
-                          const SizedBox(
-                            height: 4,
-                          ),
-                        ],
+                      const Text(
+                        'End of the Test',
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 96, 131, 255),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: SizedBox(
-                        width: 300,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                      const SizedBox(
+                        height: 4,
+                      ),
+                      Visibility(
+                        visible: value.isTop50 == true,
+                        replacement: const Column(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(value.correctCount.toString()),
-                            ),
                             SizedBox(
-                              width: 200,
-                              child: LinearProgressIndicator(
-                                backgroundColor: Colors.red,
+                              height: 100,
+                            ),
+                            Text(
+                              "Successfuly",
+                              style: TextStyle(
+                                fontSize: 22,
                                 color: Colors.green,
-                                value: value.correctCount.toDouble() /
-                                    (value.correctCount + value.falseCount),
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(value.falseCount.toString()),
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                "You are too close to be among 50 best players and grant Prize",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                        child: Column(
+                          children: [
+                            Container(
+                              width: 100,
+                              height: 100,
+                              decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                          'lib/assets/images/congrats.png'),
+                                      fit: BoxFit.fill)),
+                            ),
+                            const SizedBox(
+                              height: 2,
+                            ),
+                            const Text(
+                              'Congrats!',
+                              style: TextStyle(
+                                  color: Colors.orange,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 18),
+                            ),
+                            const Text(
+                              'You are among',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 12),
+                            ),
+                            const Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'best 50 players , ',
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 96, 131, 255),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12),
+                                ),
+                                Text(
+                                  'So  you grant',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12),
+                                ),
+                              ],
+                            ),
+                            const Text(
+                              'prize at end of the season',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12),
+                            ),
+                            const SizedBox(
+                              height: 4,
                             ),
                           ],
                         ),
                       ),
-                    ),
-                    //TODO
-                    value.isTop50 == true
-                        ? Container(
-                            width: 150,
-                            height: 30,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                      blurRadius: 10,
-                                      spreadRadius: 0.5,
-                                      color: Colors.grey.shade300)
-                                ]),
-                            child: const Center(
-                              child: Text(
-                                'See Best 50 Players',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 14),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: SizedBox(
+                          width: 300,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(value.correctCount.toString()),
                               ),
-                            ),
-                          )
-                        : SizedBox()
-                  ],
+                              SizedBox(
+                                width: 200,
+                                child: LinearProgressIndicator(
+                                  backgroundColor: Colors.red,
+                                  color: Colors.green,
+                                  value: value.correctCount.toDouble() /
+                                      (value.correctCount + value.falseCount),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(value.falseCount.toString()),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      //TODO
+                      value.isTop50 == true
+                          ? Container(
+                              width: 150,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                        blurRadius: 10,
+                                        spreadRadius: 0.5,
+                                        color: Colors.grey.shade300)
+                                  ]),
+                              child: const Center(
+                                child: Text(
+                                  'See Best 50 Players',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 14),
+                                ),
+                              ),
+                            )
+                          : SizedBox()
+                    ],
+                  ),
                 ),
               ),
             ),
