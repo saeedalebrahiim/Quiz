@@ -50,11 +50,15 @@ class _QuizScreenState extends State<QuizScreen> {
         BackgroundServices.stop();
         BackgroundServices.cancel();
       },
-      onHide: () => print('hide'),
+      onHide:  () {
+        BackgroundServices.inactive(context);
+      },
       onInactive: () {
         BackgroundServices.inactive(context);
       },
-      onPause: () => print('pause'),
+      onPause: () {
+        BackgroundServices.inactive(context);
+      },
       onDetach: () => print('detach'),
       onRestart: () => print('restart'),
       // This fires for each state change. Callbacks above fire only for
