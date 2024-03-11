@@ -47,25 +47,27 @@ class ConnectionStatusListener {
   final Connectivity _connectivity = Connectivity();
   bool showedError = false;
   //flutter_connectivity's listener
-  void _connectionChange(ConnectivityResult result) {
-    checkConnection().then((value) {
-      if (value) {
-        print("ok internet");
-        showedError = false;
-      } else {
-        print("bad internet");
-        if (!showedError) {
-          wifiAlarm(NavigationService.navigatorKey.currentContext!);
-          showedError = true;
-        }
-      }
-    });
-  }
+  // void _connectionChange(ConnectivityResult result) {
+  //   checkConnection().then((value) {
+  //     if (value) {
+  //       print("ok internet");
+  //       print(result);
+
+  //       showedError = false;
+  //     } else {
+  //       print("bad internet");
+  //       if (!showedError) {
+  //         wifiAlarm(NavigationService.navigatorKey.currentContext!);
+  //         showedError = true;
+  //       }
+  //     }
+  //   });
+  // }
 
   //Hook into connectivity_plus's Stream to listen for changes
   //And check the connection status out of the gate
-  Future<void> initialize() async {
-    _connectivity.onConnectivityChanged.listen(_connectionChange);
-    await checkConnection();
-  }
+  // Future<void> initialize() async {
+  //   _connectivity.onConnectivityChanged.listen(_connectionChange);
+  //   await checkConnection();
+  // }
 }

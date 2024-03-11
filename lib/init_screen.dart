@@ -1,3 +1,4 @@
+import 'package:bilgimizde/components/alarms_functions/wifi_alarm.dart';
 import 'package:bilgimizde/services/internet_listener.dart';
 import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
 import 'package:bilgimizde/view/welcome/enter_screen.dart';
@@ -20,11 +21,10 @@ class _InitScreenState extends State<InitScreen> {
     checkData();
   }
 
-
-
   checkData() async {
     //todo Check token for login or home
     // check for internet
+
     //check for admob services
     SharedPreferences sp = await SharedPreferences.getInstance();
     bool any = sp.containsKey("token");

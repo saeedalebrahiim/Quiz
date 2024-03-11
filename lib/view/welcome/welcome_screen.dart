@@ -1,3 +1,4 @@
+import 'package:bilgimizde/services/internet_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:bilgimizde/init_screen.dart';
 
@@ -16,6 +17,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   }
 
   navigate() async {
+    // ConnectionStatusListener().initialize();
     await Future.delayed(const Duration(seconds: 3), () {
       Navigator.of(context).push(
         PageRouteBuilder(

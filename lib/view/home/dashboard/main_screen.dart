@@ -1,5 +1,7 @@
 import 'package:bilgimizde/components/alarms_functions/no_coin.dart';
+import 'package:bilgimizde/components/alarms_functions/wifi_alarm.dart';
 import 'package:bilgimizde/provider/quiz.dart';
+import 'package:bilgimizde/services/internet_listener.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -35,6 +37,15 @@ class _MainScreenState extends State<MainScreen> {
     super.initState();
     getData();
     _createRewardedAd();
+    checkWifi();
+  }
+
+  checkWifi() {
+    ConnectionStatusListener().checkConnection().then((value) {
+      if (!value) {
+        wifiAlarm(context);
+      }
+    });
   }
 
   getData() {
@@ -449,6 +460,13 @@ class _MainScreenState extends State<MainScreen> {
                                               //             child: c,
                                               //           )),
                                               // );
+                                              ConnectionStatusListener()
+                                                  .checkConnection()
+                                                  .then((value) {
+                                                if (!value) {
+                                                  wifiAlarm(context);
+                                                }
+                                              });
                                               if (value.userBalance >= 2) {
                                                 context
                                                     .read<QuizState>()

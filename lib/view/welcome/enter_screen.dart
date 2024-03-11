@@ -1,9 +1,30 @@
+import 'package:bilgimizde/components/alarms_functions/wifi_alarm.dart';
+import 'package:bilgimizde/services/internet_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:bilgimizde/view/auth/login/login_screen.dart';
 import 'package:bilgimizde/view/auth/register/register_screen.dart';
 
-class EnterScreen extends StatelessWidget {
+class EnterScreen extends StatefulWidget {
   const EnterScreen({super.key});
+
+  @override
+  State<EnterScreen> createState() => _EnterScreenState();
+}
+
+class _EnterScreenState extends State<EnterScreen> {
+  @override
+  void initState() {
+    checkWifi();
+    super.initState();
+  }
+
+  checkWifi() {
+    ConnectionStatusListener().checkConnection().then((value) {
+      if (!value) {
+        wifiAlarm(context);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

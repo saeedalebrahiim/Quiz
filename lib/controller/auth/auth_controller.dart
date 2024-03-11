@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:bilgimizde/components/alarms_functions/no_account.dart';
 import 'package:flutter/material.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
@@ -40,10 +41,7 @@ class AuthController {
         ProfileController.getProfile(context: context);
       } else {
         //show error message
-        QuickAlert.show(
-            context: context,
-            type: QuickAlertType.error,
-            text: "Something went wrong!");
+        noAccountAlarm(context);
       }
     } catch (e) {
       print(e);
