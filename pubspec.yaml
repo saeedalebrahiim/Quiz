@@ -59,6 +59,7 @@ dependencies:
   internet_connection_checker_plus: ^2.2.0
   intl: ^0.18.0
   quill_html_editor: ^2.2.7
+  flutter_staggered_animations: ^1.1.1
 
 dev_dependencies:
   flutter_test:

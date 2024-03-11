@@ -31,11 +31,15 @@ class QuizState extends ChangeNotifier {
 
   plusCount() {
     correctCount++;
+    usedPercentage = false;
+    usedEliminate = false;
     notifyListeners();
   }
 
   falsePlusCount() {
     falseCount++;
+    usedPercentage = false;
+    usedEliminate = false;
     notifyListeners();
   }
 

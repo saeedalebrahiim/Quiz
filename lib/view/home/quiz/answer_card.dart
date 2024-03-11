@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
-class AnswerCard extends StatelessWidget {
+class AnswerCard extends StatefulWidget {
   final String question;
   final bool isSelected;
   final bool? helpBomb;
@@ -19,9 +20,14 @@ class AnswerCard extends StatelessWidget {
       this.helpPercentage});
 
   @override
+  State<AnswerCard> createState() => _AnswerCardState();
+}
+
+class _AnswerCardState extends State<AnswerCard> with TickerProviderStateMixin {
+  @override
   Widget build(BuildContext context) {
-    bool isCorrectAnswer = currentIndex == correctAnswerIndex;
-    bool isWrongAnswer = !isCorrectAnswer && isSelected;
+    bool isCorrectAnswer = widget.currentIndex == widget.correctAnswerIndex;
+    bool isWrongAnswer = !isCorrectAnswer && widget.isSelected;
     return Stack(
       alignment: AlignmentDirectional.bottomCenter,
       children: [
@@ -40,7 +46,7 @@ class AnswerCard extends StatelessWidget {
               border: Border.all(
                   color: isWrongAnswer
                       ? Colors.red
-                      : isSelected
+                      : widget.isSelected
                           ? Colors.green
                           : Colors.white,
                   width: 5)),
@@ -51,40 +57,53 @@ class AnswerCard extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(5.0),
                   child: Text(
-                    question,
+                    widget.question,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 12,
                       color: isWrongAnswer
                           ? Colors.red
-                          : (isSelected ? Colors.green : Colors.black),
+                          : (widget.isSelected ? Colors.green : Colors.black),
                     ),
                   ),
                 ),
-                helpPercentage != null
-                    ? Row(
-                        children: [
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          const Icon(
-                            Icons.groups,
-                            color: Colors.orange,
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          SizedBox(
-                            width: 100,
-                            child: LinearProgressIndicator(
-                              backgroundColor: Colors.grey,
-                              color: Colors.orange,
-                              value: helpPercentage,
+                widget.helpPercentage != null
+                    ? TweenAnimationBuilder<double>(
+                        duration: const Duration(seconds: 1),
+                        tween: Tween(begin: 0, end: widget.helpPercentage),
+                        builder: (context, value, child) {
+                          return AnimationConfiguration.synchronized(
+                            duration: const Duration(milliseconds: 500),
+                            child: SlideAnimation(
+                              verticalOffset: 50.0,
+                              child: FadeInAnimation(
+                                child: Row(
+                                  children: [
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    const Icon(
+                                      Icons.groups,
+                                      color: Colors.orange,
+                                    ),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    SizedBox(
+                                      width: 100,
+                                      child: LinearProgressIndicator(
+                                        backgroundColor: Colors.grey,
+                                        color: Colors.orange,
+                                        value: value,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
                             ),
-                          )
-                        ],
-                      )
+                          );
+                        })
                     : const SizedBox()
               ],
             ),
@@ -113,7 +132,7 @@ class AnswerCard extends StatelessWidget {
                   ],
                 ),
               )
-            : isSelected
+            : widget.isSelected
                 ? Container(
                     width: 60,
                     height: 18,
