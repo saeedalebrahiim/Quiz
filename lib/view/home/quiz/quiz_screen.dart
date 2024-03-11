@@ -1,7 +1,9 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:bilgimizde/controller/profile/profile.dart';
 import 'package:bilgimizde/services/admob.dart';
+import 'package:easy_count_timer/easy_count_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -14,6 +16,7 @@ import 'package:bilgimizde/provider/quiz.dart';
 import 'package:bilgimizde/provider/stop_watch.dart';
 import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
 import 'package:bilgimizde/view/home/quiz/answer_card.dart';
+import 'package:timer_count_down/timer_count_down.dart';
 
 class QuizScreen extends StatefulWidget {
   const QuizScreen({super.key, required this.index});
@@ -26,34 +29,47 @@ class QuizScreen extends StatefulWidget {
 class _QuizScreenState extends State<QuizScreen> {
   int selectedIndex = 0;
   bool isSelectedAny = false;
-  StopWatchProvider? stopWatchProvider;
+
+  // Stream timeStream = Stream.periodic(const Duration(seconds: 1));
+  // StreamSubscription? streamSubscription;
+  // int secondsElapsed = 30;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    getStop();
+    // getStop();
     // _createRewardedAd();
   }
 
-  getStop() {
-    stopWatchProvider = Provider.of<StopWatchProvider>(context, listen: false);
-    stopWatchProvider!.start(context: context, index: widget.index);
-    // context
-    //     .read<StopWatchProvider>()
-    //     .start(context: context, index: widget.index);
-  }
+  // getStop() {
+  //   streamSubscription = timeStream.listen((seconds) {
+  //     secondsElapsed--;
+  //     print("secondsElapsed $secondsElapsed");
+  //     print(secondsElapsed <= 0);
+  //     if (secondsElapsed <= 0) {
+  //       print("seirosali $secondsElapsed");
+  //       streamSubscription!.cancel();
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    stopWatchProvider!.stop();
-    // context.read<StopWatchProvider>().stop();
-    // context.read<StopWatchProvider>().cancel();
+  //       // QuizState quiz = Provider.of<QuizState>(context, listen: false);
+  //       //TODO call add
+  //       // StartQuizController.addAwnswer(
+  //       //     userQuizId: quiz.quiz!.quizId,
+  //       //     userDQuizId: quiz.quiz!.dQuizId,
+  //       //     questionId: quiz.quiz!.quizQuestions[index].questionId,
+  //       //     selectedAnswer: 0,
+  //       //     questionNumber: index,
+  //       //     context: context);
+  //     }
+  //   });
+  // }
 
-    stopWatchProvider!.cancel();
-    _createRewardedAd();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   // _createRewardedAd();
+  //   streamSubscription!.cancel();
+  //   super.dispose();
+  // }
 
   RewardedAd? _rewardedAd;
 
@@ -142,43 +158,76 @@ class _QuizScreenState extends State<QuizScreen> {
                       ),
                     ),
                     Expanded(
-                      child: Consumer<StopWatchProvider>(
-                        builder: (c, stopWatchProvider, _) {
-                          Duration duration = Duration(
-                              seconds: stopWatchProvider.secondsElapsed);
-
-                          return Padding(
-                            padding: const EdgeInsets.only(top: 20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                const Icon(
-                                  Icons.timer,
-                                  color: Colors.white,
-                                  size: 24,
-                                ),
-                                Text(
-                                  "${duration.inSeconds.toString()} s",
-                                  style: const TextStyle(color: Colors.white),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10),
-                                  child: SizedBox(
-                                    width: 150,
-                                    height: 10,
-                                    child: LinearProgressIndicator(
-                                      backgroundColor: Colors.black,
-                                      color: Colors.green,
-                                      value: (duration.inSeconds / 30),
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              Icons.timer,
+                              color: Colors.white,
+                              size: 24,
+                            ),
+                            // Text(
+                            //   "${secondsElapsed.toString()} s",
+                            //   style: const TextStyle(color: Colors.white),
+                            // ),
+                            Countdown(
+                              seconds: 30,
+                              build: (BuildContext context, double time) => Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(4.0),
+                                    child: Text(
+                                      time.toInt().toString(),
+                                      style:
+                                          const TextStyle(color: Colors.white),
                                     ),
                                   ),
-                                )
-                              ],
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    child: SizedBox(
+                                      width: 150,
+                                      height: 10,
+                                      child: LinearProgressIndicator(
+                                        backgroundColor: Colors.black,
+                                        borderRadius: BorderRadius.circular(20),
+                                        color: time > 15
+                                            ? Colors.green
+                                            : time > 9
+                                                ? Colors.amber
+                                                : Colors.red,
+                                        value: (time / 30),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              interval: Duration(milliseconds: 100),
+                              onFinished: () {
+                                print('Timer is done!');
+                                setState(() {
+                                  isSelectedAny = true;
+                                });
+                              },
                             ),
-                          );
-                        },
+                            // Padding(
+                            //   padding:
+                            //       const EdgeInsets.symmetric(horizontal: 10),
+                            //   child: SizedBox(
+                            //     width: 150,
+                            //     height: 10,
+                            //     child: LinearProgressIndicator(
+                            //       backgroundColor: Colors.black,
+                            //       color: Colors.green,
+                            //       value: (secondsElapsed / 30),
+                            //     ),
+                            //   ),
+                            // )
+                          ],
+                        ),
                       ),
                     ),
                     Padding(

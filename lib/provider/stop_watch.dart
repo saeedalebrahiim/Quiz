@@ -29,7 +29,7 @@ class StopWatchProvider with ChangeNotifier {
         if (secondsElapsed <= 0) {
           print("seirosali $secondsElapsed");
 
-          QuizState quiz = Provider.of<QuizState>(context, listen: false);
+          // QuizState quiz = Provider.of<QuizState>(context, listen: false);
           //TODO call add
           // StartQuizController.addAwnswer(
           //     userQuizId: quiz.quiz!.quizId,

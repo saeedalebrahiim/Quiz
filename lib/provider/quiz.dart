@@ -1,7 +1,10 @@
+
 import 'package:flutter/material.dart';
 import 'package:bilgimizde/model/dto/quiz.dart';
 
 class QuizState extends ChangeNotifier {
+
+
   QuizDto? quiz;
   int correctCount = 0;
   int falseCount = 0;

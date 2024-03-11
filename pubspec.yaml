@@ -60,6 +60,7 @@ dependencies:
   intl: ^0.18.0
   quill_html_editor: ^2.2.7
   flutter_staggered_animations: ^1.1.1
+  timer_count_down: ^2.2.2
 
 dev_dependencies:
   flutter_test:
