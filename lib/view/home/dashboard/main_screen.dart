@@ -2,6 +2,7 @@ import 'package:bilgimizde/components/alarms_functions/no_coin.dart';
 import 'package:bilgimizde/provider/quiz.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -352,47 +353,60 @@ class _MainScreenState extends State<MainScreen> {
                         const SizedBox(
                           height: 18,
                         ),
-                        RawMaterialButton(
-                          onPressed: () {
-                            _showRewardedAd();
-                          },
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 10),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Image(
-                                  image: AssetImage(
-                                    _rewardedAd != null
-                                        ? 'lib/assets/images/mainstar.png'
-                                        : 'lib/assets/images/mainstar-grey.png',
-                                  ),
-                                  width: 75,
-                                  height: 75,
-                                ),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(
-                                      'Watch the video and get ',
-                                      style: TextStyle(
-                                          color: _rewardedAd != null
-                                              ? Colors.orange
-                                              : Colors.orange.withOpacity(0.5)),
+                        AnimationLimiter(
+                          child: AnimationConfiguration.synchronized(
+                            duration: const Duration(milliseconds: 500),
+                            child: SlideAnimation(
+                              verticalOffset: 50.0,
+                              child: FadeInAnimation(
+                                child: RawMaterialButton(
+                                  onPressed: () {
+                                    _showRewardedAd();
+                                  },
+                                  child: Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 10),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Image(
+                                          image: AssetImage(
+                                            _rewardedAd != null
+                                                ? 'lib/assets/images/mainstar.png'
+                                                : 'lib/assets/images/mainstar-grey.png',
+                                          ),
+                                          width: 75,
+                                          height: 75,
+                                        ),
+                                        const SizedBox(
+                                          width: 5,
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text(
+                                              'Watch the video and get ',
+                                              style: TextStyle(
+                                                  color: _rewardedAd != null
+                                                      ? Colors.orange
+                                                      : Colors.orange
+                                                          .withOpacity(0.5)),
+                                            ),
+                                            Text('points',
+                                                style: TextStyle(
+                                                    color: _rewardedAd != null
+                                                        ? Colors.orange
+                                                        : Colors.orange
+                                                            .withOpacity(0.5)))
+                                          ],
+                                        )
+                                      ],
                                     ),
-                                    Text('points',
-                                        style: TextStyle(
-                                            color: _rewardedAd != null
-                                                ? Colors.orange
-                                                : Colors.orange
-                                                    .withOpacity(0.5)))
-                                  ],
-                                )
-                              ],
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -402,86 +416,109 @@ class _MainScreenState extends State<MainScreen> {
                         Consumer<ProfileState>(
                           builder: (context, value, child) => Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 30),
-                            child: Container(
-                              width: 300,
-                              height: 150,
-                              decoration: BoxDecoration(
-                                  image: const DecorationImage(
-                                      image: AssetImage(
-                                          'lib/assets/images/questionbg.png'),
-                                      fit: BoxFit.fill),
-                                  borderRadius: BorderRadius.circular(25)),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      // Navigator.of(context).push(
-                                      //   PageRouteBuilder(
-                                      //       pageBuilder: (_, __, ___) =>
-                                      //           const QuizScreen(),
-                                      //       transitionDuration:
-                                      //           const Duration(milliseconds: 500),
-                                      //       transitionsBuilder: (_, a, __, c) =>
-                                      //           FadeTransition(
-                                      //             opacity: a,
-                                      //             child: c,
-                                      //           )),
-                                      // );
-                                      if (value.userBalance >= 2) {
-                                        context.read<QuizState>().resetCount();
-                                        StartQuizController.startQuiz(
-                                            context: context);
-                                      } else {
-                                        noCoinAlert(context);
-                                      }
-                                    },
-                                    child: Container(
-                                      width: 230,
-                                      height: 30,
-                                      decoration: const BoxDecoration(
-                                          image: DecorationImage(
-                                              image: AssetImage(
-                                                  'lib/assets/images/mainbuttun.png'),
-                                              fit: BoxFit.fill)),
-                                      child: const Center(
-                                          child: Text(
-                                        'kelimeyi tahmin et',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold),
-                                      )),
+                            child: AnimationLimiter(
+                              child: Container(
+                                width: 300,
+                                height: 150,
+                                decoration: BoxDecoration(
+                                    image: const DecorationImage(
+                                        image: AssetImage(
+                                            'lib/assets/images/questionbg.png'),
+                                        fit: BoxFit.fill),
+                                    borderRadius: BorderRadius.circular(25)),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    AnimationConfiguration.synchronized(
+                                      duration:
+                                          const Duration(milliseconds: 500),
+                                      child: SlideAnimation(
+                                        verticalOffset: 50.0,
+                                        child: FadeInAnimation(
+                                          child: InkWell(
+                                            onTap: () {
+                                              // Navigator.of(context).push(
+                                              //   PageRouteBuilder(
+                                              //       pageBuilder: (_, __, ___) =>
+                                              //           const QuizScreen(),
+                                              //       transitionDuration:
+                                              //           const Duration(milliseconds: 500),
+                                              //       transitionsBuilder: (_, a, __, c) =>
+                                              //           FadeTransition(
+                                              //             opacity: a,
+                                              //             child: c,
+                                              //           )),
+                                              // );
+                                              if (value.userBalance >= 2) {
+                                                context
+                                                    .read<QuizState>()
+                                                    .resetCount();
+                                                StartQuizController.startQuiz(
+                                                    context: context);
+                                              } else {
+                                                noCoinAlert(context);
+                                              }
+                                            },
+                                            child: Container(
+                                              width: 230,
+                                              height: 30,
+                                              decoration: const BoxDecoration(
+                                                  image: DecorationImage(
+                                                      image: AssetImage(
+                                                          'lib/assets/images/mainbuttun.png'),
+                                                      fit: BoxFit.fill)),
+                                              child: const Center(
+                                                  child: Text(
+                                                'kelimeyi tahmin et',
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              )),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.of(context).push(
-                                        PageRouteBuilder(
-                                            pageBuilder: (_, __, ___) =>
-                                                const GemQuizScreen(),
-                                            transitionDuration: const Duration(
-                                                milliseconds: 500),
-                                            transitionsBuilder: (_, a, __, c) =>
-                                                FadeTransition(
-                                                  opacity: a,
-                                                  child: c,
-                                                )),
-                                      );
-                                    },
-                                    child: Container(
-                                      width: 230,
-                                      height: 30,
-                                      decoration: const BoxDecoration(
-                                          image: DecorationImage(
-                                              image: AssetImage(
-                                                  'lib/assets/images/mainbt2.png'),
-                                              fit: BoxFit.fill)),
+                                    const SizedBox(
+                                      height: 10,
                                     ),
-                                  )
-                                ],
+                                    AnimationConfiguration.synchronized(
+                                      duration:
+                                          const Duration(milliseconds: 500),
+                                      child: SlideAnimation(
+                                        verticalOffset: 50.0,
+                                        child: FadeInAnimation(
+                                          child: InkWell(
+                                            onTap: () {
+                                              // Navigator.of(context).push(
+                                              //   PageRouteBuilder(
+                                              //       pageBuilder: (_, __, ___) =>
+                                              //           const GemQuizScreen(),
+                                              //       transitionDuration: const Duration(
+                                              //           milliseconds: 500),
+                                              //       transitionsBuilder: (_, a, __, c) =>
+                                              //           FadeTransition(
+                                              //             opacity: a,
+                                              //             child: c,
+                                              //           )),
+                                              // );
+                                            },
+                                            child: Container(
+                                              width: 230,
+                                              height: 30,
+                                              decoration: const BoxDecoration(
+                                                  image: DecorationImage(
+                                                      image: AssetImage(
+                                                          'lib/assets/images/mainbt2.png'),
+                                                      fit: BoxFit.fill)),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                           ),
