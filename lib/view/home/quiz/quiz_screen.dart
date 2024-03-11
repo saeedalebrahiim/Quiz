@@ -3,8 +3,10 @@ import 'dart:ui';
 
 import 'package:bilgimizde/controller/profile/profile.dart';
 import 'package:bilgimizde/services/admob.dart';
+import 'package:bilgimizde/services/background.dart';
 import 'package:easy_count_timer/easy_count_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:intl/intl.dart';
@@ -30,6 +32,9 @@ class _QuizScreenState extends State<QuizScreen> {
   int selectedIndex = 0;
   bool isSelectedAny = false;
 
+  late final AppLifecycleListener _listener;
+  final List<String> _states = <String>[];
+  late AppLifecycleState? _state;
   // Stream timeStream = Stream.periodic(const Duration(seconds: 1));
   // StreamSubscription? streamSubscription;
   // int secondsElapsed = 30;
@@ -38,10 +43,42 @@ class _QuizScreenState extends State<QuizScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    _state = SchedulerBinding.instance.lifecycleState;
+    _listener = AppLifecycleListener(
+      onShow: () => print('show'),
+      onResume: () {
+        BackgroundServices.stop();
+        BackgroundServices.cancel();
+      },
+      onHide: () => print('hide'),
+      onInactive: () {
+        BackgroundServices.inactive(context);
+      },
+      onPause: () => print('pause'),
+      onDetach: () => print('detach'),
+      onRestart: () => print('restart'),
+      // This fires for each state change. Callbacks above fire only for
+      // specific state transitions.
+      onStateChange: _handleStateChange,
+    );
+    if (_state != null) {
+      _states.add(_state!.name);
+    }
     // getStop();
     // _createRewardedAd();
   }
 
+  @override
+  void dispose() {
+    _listener.dispose();
+    super.dispose();
+  }
+
+  void _handleStateChange(AppLifecycleState state) {
+    setState(() {
+      _state = state;
+    });
+  }
   // getStop() {
   //   streamSubscription = timeStream.listen((seconds) {
   //     secondsElapsed--;
