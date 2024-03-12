@@ -2,6 +2,7 @@ import 'package:bilgimizde/services/admob.dart';
 import 'package:bilgimizde/services/internet_listener.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 import 'package:bilgimizde/init_screen.dart';
 import 'package:bilgimizde/provider/banners.dart';
@@ -38,13 +39,52 @@ _createAppOpenAd() {
   }
 }
 
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  print("Handling a background message: ${message.messageId}");
+  _showNotification(
+      title: message.notification!.title ?? "",
+      body: message.notification!.body ?? "",
+      id: 1);
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
-  // // await Firebase.initializeApp(
-  // //     options: DefaultFirebaseOptions.currentPlatform,
-  // //     );
+
   _createAppOpenAd();
+
+  await Firebase.initializeApp(
+    options: const FirebaseOptions(
+      apiKey: "AIzaSyAI6EsIbqUzPFByuOgFk3NSpxmKwfquXlo",
+      appId: "1:775999130252:android:d9fc09fabb9bc12ff2c9a9",
+      messagingSenderId: "775999130252",
+      projectId: "bilgimizde-android",
+    ),
+  );
+
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+  NotificationSettings settings = await messaging.requestPermission(
+    alert: true,
+    announcement: false,
+    badge: true,
+    carPlay: false,
+    criticalAlert: false,
+    provisional: false,
+    sound: true,
+  );
+
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    print('Got a message whilst in the foreground!');
+    print('Message data: ${message.data}');
+
+    if (message.notification != null) {
+      print('Message also contained a notification: ${message.notification}');
+    }
+  });
 
   runApp(
     MultiProvider(
@@ -101,4 +141,28 @@ class MyApp extends StatelessWidget {
 
 class NavigationService {
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+}
+
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+
+Future<void> _showNotification({
+  required int id,
+  required String title,
+  required String body,
+}) async {
+  const AndroidNotificationDetails androidNotificationDetails =
+      AndroidNotificationDetails('1', 'bilgimizde',
+          channelDescription: 'bilgimizde Notification Channel',
+          importance: Importance.max,
+          priority: Priority.high,
+          ticker: 'ticker');
+  const NotificationDetails notificationDetails =
+      NotificationDetails(android: androidNotificationDetails);
+  await flutterLocalNotificationsPlugin.show(
+    id,
+    title,
+    body,
+    notificationDetails,
+  );
 }
