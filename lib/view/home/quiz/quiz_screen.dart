@@ -50,7 +50,7 @@ class _QuizScreenState extends State<QuizScreen> {
         BackgroundServices.stop();
         BackgroundServices.cancel();
       },
-      onHide:  () {
+      onHide: () {
         BackgroundServices.inactive(context);
       },
       onInactive: () {
@@ -145,13 +145,10 @@ class _QuizScreenState extends State<QuizScreen> {
           ProfileController.getUserBalance(context: context);
         },
       );
-      _rewardedAd!
-          .show(
-        onUserEarnedReward: (ad, reward) => print("this is $ad + $reward"),
-      )
-          .then((value) {
-        ProfileController.getUserBalance(context: context);
-      });
+      _rewardedAd!.show(
+        onUserEarnedReward: (ad, reward) =>
+            ProfileController.addToWatchScore(context: context),
+      );
 
       _rewardedAd = null;
     }

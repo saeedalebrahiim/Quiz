@@ -78,6 +78,23 @@ class ProfileController {
     }
   }
 
+  static Future<void> addToWatchScore({required BuildContext context}) async {
+    final api = Quiz.create(interceptors: [TokenIndicator()]);
+
+    try {
+      await api.apiV1ScoreAddScorePost(isWatchAds: true).then((postResult) {
+        final body = jsonDecode(postResult.bodyString);
+        print(body);
+        print(body["isSuccess"]);
+        if (body["isSuccess"] == true) {
+          getUserBalance(context: context);
+        } else {}
+      });
+    } catch (e) {
+      // print(e);
+    }
+  }
+
   static Future<void> updateUserProfileGET(
       {required String number, required BuildContext context}) async {
     final api = Quiz.create(interceptors: [TokenIndicator()]);

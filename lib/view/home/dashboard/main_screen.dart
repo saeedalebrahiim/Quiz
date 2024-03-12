@@ -85,11 +85,10 @@ class _MainScreenState extends State<MainScreen> {
           ProfileController.getUserBalance(context: context);
         },
       );
-      _rewardedAd!
-          .show(
-            onUserEarnedReward: (ad, reward) => print("this is $ad + $reward"),
-          )
-          .then((value) => ProfileController.getUserBalance(context: context));
+      _rewardedAd!.show(
+        onUserEarnedReward: (ad, reward) =>
+            ProfileController.addToWatchScore(context: context),
+      );
       _rewardedAd = null;
       _createRewardedAd();
     }
