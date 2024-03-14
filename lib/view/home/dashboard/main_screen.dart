@@ -480,6 +480,9 @@ class _MainScreenState extends State<MainScreen> {
                                                       .resetCount();
                                                   StartQuizController.startQuiz(
                                                       context: context);
+                                                  ProfileController
+                                                      .getUserBalance(
+                                                          context: context);
                                                 } else {
                                                   noCoinAlert(context);
                                                 }
