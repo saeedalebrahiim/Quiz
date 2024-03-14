@@ -306,7 +306,7 @@ class _MainScreenState extends State<MainScreen> {
                             Text(
                               'iyi haberler',
                               style: TextStyle(
-                                  color: Colors.grey.shade300, fontSize: 20),
+                                  color: Colors.grey.shade300, fontSize: 16),
                             ),
                             const SizedBox(
                               width: 10,

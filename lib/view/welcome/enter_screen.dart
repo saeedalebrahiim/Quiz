@@ -34,11 +34,18 @@ class _EnterScreenState extends State<EnterScreen> {
         direction: Axis.vertical,
         children: [
           Container(
-            height: MediaQuery.sizeOf(context).height * 2 / 3 - 20,
+            height: MediaQuery.sizeOf(context).height * 2 / 3,
             decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('lib/assets/images/enterbg.jpg'),
-                    fit: BoxFit.cover)),
+              image: DecorationImage(
+                  image: AssetImage('lib/assets/images/welcomebg-bg.png'),
+                  fit: BoxFit.cover),
+            ),
+            child: Center(
+              child: Image.asset(
+                'lib/assets/images/Logo4.png',
+                width: 250,
+              ),
+            ),
           ),
           SizedBox(
             height: MediaQuery.sizeOf(context).height * 1 / 3,
@@ -49,16 +56,20 @@ class _EnterScreenState extends State<EnterScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                const Center(
+                const Padding(
+                  padding: const EdgeInsets.only(left: 28.0),
                   child: Text(
                     'Gücümüz bilgimizdedir.',
-                    style: TextStyle(fontSize: 20),
+                    textAlign: TextAlign.start,
+                    style: TextStyle(fontSize: 18),
                   ),
                 ),
-                const Center(
+                const Padding(
+                  padding: const EdgeInsets.only(left: 28.0),
                   child: Text(
                     'Öğrenelim ve ödül kazanalım.',
-                    style: TextStyle(fontSize: 20),
+                    textAlign: TextAlign.start,
+                    style: TextStyle(fontSize: 18),
                   ),
                 ),
                 const SizedBox(
@@ -80,7 +91,7 @@ class _EnterScreenState extends State<EnterScreen> {
                     },
                     child: Container(
                       height: 50,
-                      width: 180,
+                      width: 221,
                       decoration: const BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage(
@@ -116,7 +127,7 @@ class _EnterScreenState extends State<EnterScreen> {
                     },
                     child: Container(
                       height: 50,
-                      width: 180,
+                      width: 221,
                       decoration: const BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage('lib/assets/images/go.png'))),
