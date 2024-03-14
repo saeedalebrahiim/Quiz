@@ -46,7 +46,7 @@ class _PinputWidgetState extends State<PinputWidget> {
             // Specify direction if desired
             textDirection: TextDirection.ltr,
             child: Pinput(
-              length: 4,
+              length: 6,
               controller: widget.pinController,
               focusNode: focusNode,
               androidSmsAutofillMethod:

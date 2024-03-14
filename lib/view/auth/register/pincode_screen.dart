@@ -1,10 +1,20 @@
 import 'package:bilgimizde/components/pinput_widget.dart';
+import 'package:bilgimizde/controller/auth/auth_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-class PinCodeScreen extends StatelessWidget {
-  final _otpController = TextEditingController();
+class PinCodeScreen extends StatefulWidget {
   PinCodeScreen({super.key, required this.userName});
   final String userName;
+
+  @override
+  State<PinCodeScreen> createState() => _PinCodeScreenState();
+}
+
+class _PinCodeScreenState extends State<PinCodeScreen> {
+  final _otpController = TextEditingController();
+
+  bool visible = true;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +27,7 @@ class PinCodeScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 5),
               child: Container(
-                height: MediaQuery.of(context).size.height * 2 / 3,
+                height: MediaQuery.of(context).size.height * 3 / 4,
                 width: MediaQuery.of(context).size.width,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
@@ -34,7 +44,9 @@ class PinCodeScreen extends StatelessWidget {
                         Text(
                           'Kayıt',
                           style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 22),
                         ),
                       ],
                     ),
@@ -46,7 +58,7 @@ class PinCodeScreen extends StatelessWidget {
                         Text(
                           'Enter Code',
                           style: TextStyle(
-                            fontSize: 12,
+                            fontSize: 16,
                             color: Colors.grey,
                           ),
                         ),
@@ -55,9 +67,11 @@ class PinCodeScreen extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    PinputWidget(pinController: _otpController),
+                    PinputWidget(
+                      pinController: _otpController,
+                    ),
                     const SizedBox(
-                      height: 20,
+                      height: 30,
                     ),
                     Row(
                       children: [
@@ -90,7 +104,7 @@ class PinCodeScreen extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(
-                      height: 50,
+                      height: 60,
                     )
                   ],
                 ),
@@ -107,11 +121,11 @@ class PinCodeScreen extends StatelessWidget {
                     Navigator.pop(context);
                   },
                   child: Container(
-                    width: 52,
-                    height: 50,
+                    width: 68,
+                    height: 68,
                     decoration: BoxDecoration(
                         color: Colors.grey.shade400,
-                        borderRadius: BorderRadius.circular(22)),
+                        borderRadius: BorderRadius.circular(50)),
                     child: const Icon(
                       Icons.arrow_back,
                       color: Colors.white,
@@ -121,6 +135,11 @@ class PinCodeScreen extends StatelessWidget {
                 const SizedBox(),
                 InkWell(
                   onTap: () {
+                    AuthController.confrimOtp(
+                            userName: widget.userName,
+                            verificationCode: _otpController.text,
+                            context: context)
+                        .then((value) => visible = true);
                     // Navigator.of(context).push(
                     //   PageRouteBuilder(
                     //       pageBuilder: (_, __, ___) =>
@@ -132,18 +151,33 @@ class PinCodeScreen extends StatelessWidget {
                     //           )),
                     // );
                   },
-                  child: Container(
-                    width: 90,
-                    height: 50,
-                    decoration: BoxDecoration(
-                        image: const DecorationImage(
-                            image: AssetImage('lib/assets/images/buttun.png')),
-                        borderRadius: BorderRadius.circular(22)),
-                    child: const Center(
-                        child: Text(
-                      'Next',
-                      style: TextStyle(color: Colors.white),
-                    )),
+                  child: Visibility(
+                    replacement: Container(
+                      width: 144,
+                      height: 68,
+                      decoration: BoxDecoration(
+                          image: const DecorationImage(
+                              image:
+                                  AssetImage('lib/assets/images/buttun.png')),
+                          borderRadius: BorderRadius.circular(22)),
+                      child: LoadingAnimationWidget.fourRotatingDots(
+                          color: Colors.white, size: 20),
+                    ),
+                    visible: visible,
+                    child: Container(
+                      width: 144,
+                      height: 68,
+                      decoration: BoxDecoration(
+                          image: const DecorationImage(
+                              image:
+                                  AssetImage('lib/assets/images/buttun.png')),
+                          borderRadius: BorderRadius.circular(22)),
+                      child: const Center(
+                          child: Text(
+                        'Next',
+                        style: TextStyle(color: Colors.white),
+                      )),
+                    ),
                   ),
                 )
               ],

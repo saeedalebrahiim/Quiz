@@ -27,7 +27,7 @@ class _RegisterStepTwoScreenState extends State<RegisterStepTwoScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 5),
               child: Container(
-                height: MediaQuery.of(context).size.height * 2 / 3,
+                height: MediaQuery.of(context).size.height * 3 / 4,
                 width: MediaQuery.of(context).size.width,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
@@ -44,7 +44,9 @@ class _RegisterStepTwoScreenState extends State<RegisterStepTwoScreen> {
                         Text(
                           'Signup',
                           style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 22),
                         ),
                       ],
                     ),
@@ -56,7 +58,7 @@ class _RegisterStepTwoScreenState extends State<RegisterStepTwoScreen> {
                         Text(
                           'Tayp Password',
                           style: TextStyle(
-                            fontSize: 12,
+                            fontSize: 16,
                             color: Colors.grey,
                           ),
                         ),
@@ -66,8 +68,8 @@ class _RegisterStepTwoScreenState extends State<RegisterStepTwoScreen> {
                       height: 20,
                     ),
                     SizedBox(
-                      width: 240,
-                      height: 45,
+                      width: 316,
+                      height: 64,
                       child: TextFormField(
                           keyboardType: TextInputType.text,
                           controller: _userPasswordController,
@@ -106,8 +108,8 @@ class _RegisterStepTwoScreenState extends State<RegisterStepTwoScreen> {
                       height: 10,
                     ),
                     SizedBox(
-                      width: 240,
-                      height: 45,
+                      width: 316,
+                      height: 64,
                       child: TextFormField(
                           obscureText: true,
                           controller: _confirmPasswordController,
@@ -137,11 +139,11 @@ class _RegisterStepTwoScreenState extends State<RegisterStepTwoScreen> {
                     Navigator.pop(context);
                   },
                   child: Container(
-                    width: 52,
-                    height: 50,
+                    width: 68,
+                    height: 68,
                     decoration: BoxDecoration(
                         color: Colors.grey.shade400,
-                        borderRadius: BorderRadius.circular(22)),
+                        borderRadius: BorderRadius.circular(50)),
                     child: const Icon(
                       Icons.arrow_back,
                       color: Colors.white,
@@ -209,8 +211,8 @@ class _RegisterStepTwoScreenState extends State<RegisterStepTwoScreen> {
                     }
                   },
                   child: Container(
-                    width: 90,
-                    height: 50,
+                    width: 144,
+                    height: 68,
                     decoration: BoxDecoration(
                         image: const DecorationImage(
                             image: AssetImage('lib/assets/images/buttun.png')),

@@ -41,7 +41,12 @@ class AuthController {
         ProfileController.getProfile(context: context);
       } else {
         //show error message
-        noAccountAlarm(context);
+        body['message'] == "1"
+            ? noAccountAlarm(context)
+            : QuickAlert.show(
+                context: context,
+                type: QuickAlertType.error,
+                text: "Something went wrong!");
       }
     } catch (e) {
       print(e);
@@ -72,7 +77,7 @@ class AuthController {
       final postResult = await api.apiV1AuthRegisterPost(
           body: AuthDto(userName: userName, autoCode: ""));
       print(postResult);
-      if (postResult.isSuccessful == true) {
+      if (postResult.body["isSuccess"] == true) {
         //send to otp confirm
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => PinCodeScreen(

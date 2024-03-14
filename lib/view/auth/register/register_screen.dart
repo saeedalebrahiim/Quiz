@@ -26,7 +26,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 5),
               child: Container(
-                height: MediaQuery.of(context).size.height * 2 / 3,
+                height: MediaQuery.of(context).size.height * 3 / 4,
                 width: MediaQuery.of(context).size.width,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
@@ -43,7 +43,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         Text(
                           'Kayıt',
                           style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 22,
+                          ),
                         ),
                       ],
                     ),
@@ -55,7 +58,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         Text(
                           'Telefon numaranızı girin',
                           style: TextStyle(
-                            fontSize: 12,
+                            fontSize: 16,
                             color: Colors.grey,
                           ),
                         ),
@@ -65,10 +68,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       height: 20,
                     ),
                     SizedBox(
-                      width: 240,
-                      height: 45,
+                      width: 316,
+                      height: 64,
                       child: TextFormField(
                           controller: _numberController,
+                          keyboardType: TextInputType.phone,
                           decoration: InputDecoration(
                               prefixIcon: Padding(
                                 padding: const EdgeInsets.only(right: 10),
@@ -114,11 +118,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     Navigator.pop(context);
                   },
                   child: Container(
-                    width: 52,
-                    height: 50,
+                    width: 68,
+                    height: 68,
                     decoration: BoxDecoration(
                         color: Colors.grey.shade400,
-                        borderRadius: BorderRadius.circular(22)),
+                        borderRadius: BorderRadius.circular(50)),
                     child: const Icon(
                       Icons.arrow_back,
                       color: Colors.white,
@@ -139,19 +143,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   },
                   child: Visibility(
                     replacement: Container(
-                        width: 90,
-                        height: 50,
-                        decoration: BoxDecoration(
-                            image: const DecorationImage(
-                                image:
-                                    AssetImage('lib/assets/images/buttun.png')),
-                            borderRadius: BorderRadius.circular(22)),
-                        child: LoadingAnimationWidget.fourRotatingDots(
-                            color: Colors.white, size: 20)),
+                      width: 144,
+                      height: 68,
+                      decoration: BoxDecoration(
+                          image: const DecorationImage(
+                              image:
+                                  AssetImage('lib/assets/images/buttun.png')),
+                          borderRadius: BorderRadius.circular(22)),
+                      child: LoadingAnimationWidget.fourRotatingDots(
+                          color: Colors.white, size: 20),
+                    ),
                     visible: visible,
                     child: Container(
-                      width: 90,
-                      height: 50,
+                      width: 144,
+                      height: 68,
                       decoration: BoxDecoration(
                           image: const DecorationImage(
                               image:
