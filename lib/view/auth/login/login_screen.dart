@@ -28,9 +28,9 @@ class _LoginScreenState extends State<LoginScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Container(
-                height: MediaQuery.of(context).size.height * 2 / 3,
+                height: MediaQuery.of(context).size.height * 3 / 4,
                 width: MediaQuery.of(context).size.width,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
@@ -47,7 +47,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         Text(
                           'Login',
                           style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 22),
                         ),
                       ],
                     ),
@@ -59,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Text(
                           'Whit Namber',
                           style: TextStyle(
-                            fontSize: 12,
+                            fontSize: 16,
                             color: Colors.grey,
                           ),
                         ),
@@ -69,8 +71,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 20,
                     ),
                     SizedBox(
-                      width: 240,
-                      height: 50,
+                      width: 316,
+                      height: 64,
                       child: TextFormField(
                           controller: _numberController,
                           maxLength: 10,
@@ -107,10 +109,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 10,
                     ),
                     SizedBox(
-                      width: 240,
-                      height: 50,
+                      width: 316,
+                      height: 64,
                       child: TextFormField(
-                          keyboardType: TextInputType.text,
+                          keyboardType: TextInputType.number,
                           controller: _userPasswordController,
                           obscureText: !_passwordVisible,
                           decoration: InputDecoration(
@@ -137,6 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ),
                               hintText: 'Password',
+                              hintStyle: TextStyle(color: Colors.grey),
                               border: OutlineInputBorder(
                                   borderSide: BorderSide.none,
                                   borderRadius: BorderRadius.circular(30)),
@@ -169,7 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             'Forget Password ?',
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
-                              fontSize: 12,
+                              fontSize: 18,
                               color: Colors.blue,
                             ),
                           ),
@@ -177,7 +180,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                     const SizedBox(
-                      height: 45,
+                      height: 65,
                     )
                   ],
                 ),
@@ -186,26 +189,26 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(
               height: 5,
             ),
-            InkWell(
-              onTap: () {
-                Navigator.of(context).push(
-                  PageRouteBuilder(
-                      pageBuilder: (_, __, ___) => const RegisterScreen(),
-                      transitionDuration: const Duration(milliseconds: 500),
-                      transitionsBuilder: (_, a, __, c) => FadeTransition(
-                            opacity: a,
-                            child: c,
-                          )),
-                );
-              },
-              child: const Text(
-                'Create an account ?',
-                style: TextStyle(
-                    fontSize: 13,
-                    color: Colors.blue,
-                    fontWeight: FontWeight.w500),
-              ),
-            ),
+            // InkWell(
+            //   onTap: () {
+            //     Navigator.of(context).push(
+            //       PageRouteBuilder(
+            //           pageBuilder: (_, __, ___) => const RegisterScreen(),
+            //           transitionDuration: const Duration(milliseconds: 500),
+            //           transitionsBuilder: (_, a, __, c) => FadeTransition(
+            //                 opacity: a,
+            //                 child: c,
+            //               )),
+            //     );
+            //   },
+            //   child: const Text(
+            //     'Create an account ?',
+            //     style: TextStyle(
+            //         fontSize: 13,
+            //         color: Colors.blue,
+            //         fontWeight: FontWeight.w500),
+            //   ),
+            // ),
             const SizedBox(
               height: 30,
             ),
@@ -217,11 +220,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     Navigator.pop(context);
                   },
                   child: Container(
-                    width: 52,
-                    height: 50,
+                    width: 68,
+                    height: 68,
                     decoration: BoxDecoration(
                         color: Colors.grey.shade400,
-                        borderRadius: BorderRadius.circular(22)),
+                        borderRadius: BorderRadius.circular(50)),
                     child: const Icon(
                       Icons.arrow_back,
                       color: Colors.white,
@@ -258,8 +261,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   child: Visibility(
                     replacement: Container(
-                        width: 90,
-                        height: 50,
+                        width: 144,
+                        height: 68,
                         decoration: BoxDecoration(
                             image: const DecorationImage(
                                 image:
@@ -269,8 +272,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             color: Colors.white, size: 20)),
                     visible: visible,
                     child: Container(
-                      width: 90,
-                      height: 50,
+                      width: 144,
+                      height: 68,
                       decoration: BoxDecoration(
                           image: const DecorationImage(
                               image:

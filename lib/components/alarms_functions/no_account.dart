@@ -1,3 +1,4 @@
+import 'package:bilgimizde/view/auth/register/register_screen.dart';
 import 'package:flutter/material.dart';
 
 noAccountAlarm(BuildContext context) {
@@ -23,25 +24,30 @@ noAccountAlarm(BuildContext context) {
                   child: Container(
                     width: 40,
                     height: 40,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         image: DecorationImage(
                             image:
                                 AssetImage('lib/assets/images/alarmexit.png'),
                             fit: BoxFit.fill)),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(25)),
+                height: 190,
+                width: MediaQuery.of(context).size.width - 50,
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     Row(
@@ -50,15 +56,15 @@ noAccountAlarm(BuildContext context) {
                         Container(
                           width: 40,
                           height: 40,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               image: DecorationImage(
                                   image: AssetImage(
                                       'lib/assets/images/alarmsticker.png'))),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 15,
                         ),
-                        Column(
+                        const Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -80,55 +86,58 @@ noAccountAlarm(BuildContext context) {
                         )
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 50,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
                           child: Container(
                             width: 40,
                             height: 40,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 image: DecorationImage(
                                     image: AssetImage(
                                         'lib/assets/images/alarmback.png'),
                                     fit: BoxFit.fill)),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 40,
                         ),
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const RegisterScreen(),
+                                ));
+                          },
                           child: Container(
-                            child: Center(
+                            width: 100,
+                            height: 40,
+                            decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage(
+                                        'lib/assets/images/alarmsignupbtn.png'),
+                                    fit: BoxFit.fill)),
+                            child: const Center(
                                 child: Text(
                               'Signup',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w500),
                             )),
-                            width: 100,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage(
-                                        'lib/assets/images/alarmsignupbtn.png'),
-                                    fit: BoxFit.fill)),
                           ),
                         ),
                       ],
                     )
                   ],
-                ),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(25)),
-                height: 190,
-                width: MediaQuery.of(context).size.width - 50),
+                )),
           ],
         ),
       ),
