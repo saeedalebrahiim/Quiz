@@ -88,6 +88,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                         child: c,
                                       )),
                             );
+                            context.read<DrawerState>().changeVisibleTwo();
                           },
                           child: const Row(
                             mainAxisSize: MainAxisSize.min,
@@ -128,6 +129,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                         child: c,
                                       )),
                             );
+                            context.read<DrawerState>().changeVisibleTwo();
                           },
                           child: const Row(
                             mainAxisSize: MainAxisSize.min,
@@ -169,6 +171,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                         child: c,
                                       )),
                             );
+                            context.read<DrawerState>().changeVisibleTwo();
                           },
                           child: const Row(
                             mainAxisSize: MainAxisSize.min,
@@ -209,6 +212,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                         child: c,
                                       )),
                             );
+                            context.read<DrawerState>().changeVisibleTwo();
                           },
                           child: const Row(
                             mainAxisSize: MainAxisSize.min,
@@ -248,6 +252,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                         child: c,
                                       )),
                             );
+                            context.read<DrawerState>().changeVisibleTwo();
                           },
                           child: const Row(
                             mainAxisSize: MainAxisSize.min,

@@ -94,478 +94,482 @@ class _MainScreenState extends State<MainScreen> {
     }
   }
 
-  double xOffset = 0;
-  double yOffset = 0;
+  // double xOffset = 0;
+  // double yOffset = 0;
 
-  bool isDrawerOpen = false;
+  // bool isDrawerOpen = false;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onPanUpdate: (details) {
-        // Swiping in right direction.
-        if (details.delta.dx > 0) {
-          setState(() {
-            xOffset = 220;
-            yOffset = 0;
-            isDrawerOpen = true;
+    return Consumer<DrawerState>(builder: (context, value, child) {
+      return GestureDetector(
+        onPanUpdate: (details) {
+          // Swiping in right direction.
+          if (details.delta.dx > 0) {
+            value.xOffset = 220;
+            value.yOffset = 0;
+            value.isDrawerOpen = true;
             drawerVisible = true;
-          });
-          context.read<DrawerState>().changeVisible();
-        }
 
-        // Swiping in left direction.
-        if (details.delta.dx < 0) {
-          setState(() {
-            xOffset = 0;
-            yOffset = 0;
-            isDrawerOpen = false;
+            context.read<DrawerState>().changeVisible();
+          }
+
+          // Swiping in left direction.
+          if (details.delta.dx < 0) {
+            value.xOffset = 0;
+            value.yOffset = 0;
+            value.isDrawerOpen = false;
             drawerVisible = false;
-          });
-          context.read<DrawerState>().changeVisibleTwo();
-        }
-      },
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 20, left: 15, right: 15),
-            child: AppBar(
-              actions: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                      right: 0, left: 0, bottom: 0, top: 0),
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        PageRouteBuilder(
-                            pageBuilder: (_, __, ___) => const ProfileScreen(),
-                            transitionDuration:
-                                const Duration(milliseconds: 500),
-                            transitionsBuilder: (_, a, __, c) => FadeTransition(
-                                  opacity: a,
-                                  child: c,
-                                )),
-                      );
-                    },
-                    child: Consumer<ProfileState>(
-                      builder: (context, value, child) => Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 30),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 10, 21, 94),
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: CachedNetworkImage(
-                            width: 50,
-                            height: 50,
-                            imageUrl: value.profile != null
-                                ? value.profile!.userPicUrl
-                                : "",
-                            imageBuilder: (context, imageProvider) => Container(
-                              decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 10, 21, 94),
-                                borderRadius: BorderRadius.circular(30),
-                                image: DecorationImage(
-                                  image: imageProvider,
-                                  fit: BoxFit.cover,
+
+            context.read<DrawerState>().changeVisibleTwo();
+          }
+        },
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 20, left: 15, right: 15),
+              child: AppBar(
+                actions: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        right: 0, left: 0, bottom: 0, top: 0),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          PageRouteBuilder(
+                              pageBuilder: (_, __, ___) =>
+                                  const ProfileScreen(),
+                              transitionDuration:
+                                  const Duration(milliseconds: 500),
+                              transitionsBuilder: (_, a, __, c) =>
+                                  FadeTransition(
+                                    opacity: a,
+                                    child: c,
+                                  )),
+                        );
+                      },
+                      child: Consumer<ProfileState>(
+                        builder: (context, value, child) => Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 30),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: const Color.fromARGB(255, 10, 21, 94),
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: CachedNetworkImage(
+                              width: 50,
+                              height: 50,
+                              imageUrl: value.profile != null
+                                  ? value.profile!.userPicUrl
+                                  : "",
+                              imageBuilder: (context, imageProvider) =>
+                                  Container(
+                                decoration: BoxDecoration(
+                                  color: const Color.fromARGB(255, 10, 21, 94),
+                                  borderRadius: BorderRadius.circular(30),
+                                  image: DecorationImage(
+                                    image: imageProvider,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
-                            ),
-                            placeholder: (context, url) =>
-                                const CircularProgressIndicator(),
-                            errorWidget: (context, url, error) => const Image(
-                              image:
-                                  AssetImage('lib/assets/images/profile.png'),
+                              placeholder: (context, url) =>
+                                  const CircularProgressIndicator(),
+                              errorWidget: (context, url, error) => const Image(
+                                image:
+                                    AssetImage('lib/assets/images/profile.png'),
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
 
-                    //  Container(
-                    //   decoration: BoxDecoration(
-                    //       color: const Color.fromARGB(255, 10, 21, 94),
-                    //       borderRadius: BorderRadius.circular(30)),
-                    //   child: const Center(
-                    //     child: Image(
-                    //   image: AssetImage('lib/assets/images/profile.png'),
-                    // )),
-                    // ),
+                      //  Container(
+                      //   decoration: BoxDecoration(
+                      //       color: const Color.fromARGB(255, 10, 21, 94),
+                      //       borderRadius: BorderRadius.circular(30)),
+                      //   child: const Center(
+                      //     child: Image(
+                      //   image: AssetImage('lib/assets/images/profile.png'),
+                      // )),
+                      // ),
+                    ),
+                  ),
+                ],
+                centerTitle: true,
+                title: InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      PageRouteBuilder(
+                          pageBuilder: (_, __, ___) => const BuyCoinScreen(),
+                          transitionDuration: const Duration(milliseconds: 500),
+                          transitionsBuilder: (_, a, __, c) => FadeTransition(
+                                opacity: a,
+                                child: c,
+                              )),
+                    );
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Image.asset(
+                        'lib/assets/images/coin.png',
+                        width: 25,
+                        height: 25,
+                      ),
+                      Consumer<ProfileState>(
+                        builder: (context, value, child) {
+                          var _formattedNumber =
+                              NumberFormat.compact().format(value.userBalance);
+                          return Text(
+                            _formattedNumber,
+                            //  value.userBalance.toString(),
+                            style: const TextStyle(
+                                fontSize: 14,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600),
+                          );
+                        },
+                      ),
+                    ],
                   ),
                 ),
-              ],
-              centerTitle: true,
-              title: InkWell(
-                onTap: () {
-                  Navigator.of(context).push(
-                    PageRouteBuilder(
-                        pageBuilder: (_, __, ___) => const BuyCoinScreen(),
-                        transitionDuration: const Duration(milliseconds: 500),
-                        transitionsBuilder: (_, a, __, c) => FadeTransition(
-                              opacity: a,
-                              child: c,
-                            )),
-                  );
-                },
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Image.asset(
-                      'lib/assets/images/coin.png',
-                      width: 25,
-                      height: 25,
-                    ),
-                    Consumer<ProfileState>(
-                      builder: (context, value, child) {
-                        var _formattedNumber =
-                            NumberFormat.compact().format(value.userBalance);
-                        return Text(
-                          _formattedNumber,
-                          //  value.userBalance.toString(),
-                          style: const TextStyle(
-                              fontSize: 14,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600),
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ),
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              leading: Padding(
-                padding: const EdgeInsets.all(6.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 10, 21, 94),
-                      borderRadius: BorderRadius.circular(30)),
-                  child: isDrawerOpen
-                      ? GestureDetector(
-                          child: const Image(
-                            image:
-                                AssetImage('lib/assets/images/appbaricon.png'),
-                          ),
-                          onTap: () {
-                            setState(() {
-                              xOffset = 0;
-                              yOffset = 0;
-                              isDrawerOpen = false;
-                              drawerVisible = false;
-                            });
-                            context.read<DrawerState>().changeVisibleTwo();
-                          },
-                        )
-                      : GestureDetector(
-                          child:
-                              Image.asset('lib/assets/images/appbaricon.png'),
-                          onTap: () {
-                            setState(() {
-                              xOffset = 220;
-                              yOffset = 0;
-                              isDrawerOpen = true;
-                              drawerVisible = true;
-                            });
-                            context.read<DrawerState>().changeVisible();
-                          },
-                        ),
-                ),
-              ),
-            ),
-          ),
-          AnimatedContainer(
-            transform: Matrix4.translationValues(xOffset, yOffset, 0)
-              ..scale(isDrawerOpen ? 0.85 : 1.00)
-              ..rotateZ(isDrawerOpen ? -50 : 0),
-            duration: const Duration(milliseconds: 200),
-            decoration: BoxDecoration(
-              borderRadius: isDrawerOpen
-                  ? BorderRadius.circular(40)
-                  : BorderRadius.circular(0),
-            ),
-            child: Column(
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.height - 100,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: const BoxDecoration(
-                    color: Colors.transparent,
-                  ),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          children: [
-                            const SizedBox(
-                              width: 40,
-                            ),
-                            Text(
-                              'iyi haberler',
-                              style: TextStyle(
-                                  color: Colors.grey.shade300, fontSize: 16),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            const Image(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                leading: Padding(
+                  padding: const EdgeInsets.all(6.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 10, 21, 94),
+                        borderRadius: BorderRadius.circular(30)),
+                    child: value.isDrawerOpen
+                        ? GestureDetector(
+                            child: const Image(
                               image: AssetImage(
-                                  'lib/assets/images/mainsticker.png'),
-                              width: 20,
-                            )
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Consumer<BannersState>(
-                          builder: (context, value, child) => Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 30),
-                            child: InkWell(
-                              onTap: () async {
-                                if (!await launchUrl(
-                                    Uri.parse(value.bannersURL[0]))) {
-                                  throw Exception('Could not launch ');
-                                }
-                              },
-                              child: CachedNetworkImage(
-                                width: 342,
-                                height: 166,
-                                imageUrl: value.banners[0],
-                                imageBuilder: (context, imageProvider) =>
-                                    Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    image: DecorationImage(
-                                      image: imageProvider,
-                                      fit: BoxFit.cover,
+                                  'lib/assets/images/appbaricon.png'),
+                            ),
+                            onTap: () {
+                              value.xOffset = 0;
+                              value.yOffset = 0;
+                              value.isDrawerOpen = false;
+                              drawerVisible = false;
+
+                              context.read<DrawerState>().changeVisibleTwo();
+                            },
+                          )
+                        : GestureDetector(
+                            child:
+                                Image.asset('lib/assets/images/appbaricon.png'),
+                            onTap: () {
+                              value.xOffset = 220;
+                              value.yOffset = 0;
+                              value.isDrawerOpen = true;
+                              drawerVisible = true;
+
+                              context.read<DrawerState>().changeVisible();
+                            },
+                          ),
+                  ),
+                ),
+              ),
+            ),
+            AnimatedContainer(
+              transform:
+                  Matrix4.translationValues(value.xOffset, value.yOffset, 0)
+                    ..scale(value.isDrawerOpen ? 0.85 : 1.00)
+                    ..rotateZ(value.isDrawerOpen ? -50 : 0),
+              duration: const Duration(milliseconds: 200),
+              decoration: BoxDecoration(
+                borderRadius: value.isDrawerOpen
+                    ? BorderRadius.circular(40)
+                    : BorderRadius.circular(0),
+              ),
+              child: Column(
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height - 100,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: const BoxDecoration(
+                      color: Colors.transparent,
+                    ),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              const SizedBox(
+                                width: 40,
+                              ),
+                              Text(
+                                'iyi haberler',
+                                style: TextStyle(
+                                    color: Colors.grey.shade300, fontSize: 16),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              const Image(
+                                image: AssetImage(
+                                    'lib/assets/images/mainsticker.png'),
+                                width: 20,
+                              )
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Consumer<BannersState>(
+                            builder: (context, value, child) => Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 30),
+                              child: InkWell(
+                                onTap: () async {
+                                  if (!await launchUrl(
+                                      Uri.parse(value.bannersURL[0]))) {
+                                    throw Exception('Could not launch ');
+                                  }
+                                },
+                                child: CachedNetworkImage(
+                                  width: 342,
+                                  height: 166,
+                                  imageUrl: value.banners[0],
+                                  imageBuilder: (context, imageProvider) =>
+                                      Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      image: DecorationImage(
+                                        image: imageProvider,
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
+                                  placeholder: (context, url) =>
+                                      const CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(Icons.error),
                                 ),
-                                placeholder: (context, url) =>
-                                    const CircularProgressIndicator(),
-                                errorWidget: (context, url, error) =>
-                                    const Icon(Icons.error),
                               ),
-                            ),
 
-                            // Container(
-                            //   width: 300,
-                            //   height: 130,
-                            //   child: Image(
-                            //     image: NetworkImage(value.banners[0]),
-                            //   ),
-                            // ),
+                              // Container(
+                              //   width: 300,
+                              //   height: 130,
+                              //   child: Image(
+                              //     image: NetworkImage(value.banners[0]),
+                              //   ),
+                              // ),
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 18,
-                        ),
-                        AnimationLimiter(
-                          child: AnimationConfiguration.synchronized(
-                            duration: const Duration(milliseconds: 500),
-                            child: SlideAnimation(
-                              verticalOffset: 50.0,
-                              child: FadeInAnimation(
-                                child: RawMaterialButton(
-                                  onPressed: () {
-                                    _showRewardedAd();
-                                  },
-                                  child: Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 10),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Image(
-                                          image: AssetImage(
-                                            _rewardedAd != null
-                                                ? 'lib/assets/images/mainstar.png'
-                                                : 'lib/assets/images/mainstar-grey.png',
-                                          ),
-                                          width: 85,
-                                          height: 89,
-                                        ),
-                                        const SizedBox(
-                                          width: 5,
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Text(
-                                              'Watch the video and get ',
-                                              style: TextStyle(
-                                                color: _rewardedAd != null
-                                                    ? Colors.orange
-                                                    : Colors.orange
-                                                        .withOpacity(0.5),
-                                                fontSize: 18,
-                                              ),
+                          const SizedBox(
+                            height: 18,
+                          ),
+                          AnimationLimiter(
+                            child: AnimationConfiguration.synchronized(
+                              duration: const Duration(milliseconds: 500),
+                              child: SlideAnimation(
+                                verticalOffset: 50.0,
+                                child: FadeInAnimation(
+                                  child: RawMaterialButton(
+                                    onPressed: () {
+                                      _showRewardedAd();
+                                    },
+                                    child: Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 10),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Image(
+                                            image: AssetImage(
+                                              _rewardedAd != null
+                                                  ? 'lib/assets/images/mainstar.png'
+                                                  : 'lib/assets/images/mainstar-grey.png',
                                             ),
-                                            Text('points',
+                                            width: 85,
+                                            height: 89,
+                                          ),
+                                          const SizedBox(
+                                            width: 5,
+                                          ),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Text(
+                                                'Watch the video and get ',
                                                 style: TextStyle(
                                                   color: _rewardedAd != null
                                                       ? Colors.orange
                                                       : Colors.orange
                                                           .withOpacity(0.5),
                                                   fontSize: 18,
-                                                ))
-                                          ],
-                                        )
-                                      ],
+                                                ),
+                                              ),
+                                              Text('points',
+                                                  style: TextStyle(
+                                                    color: _rewardedAd != null
+                                                        ? Colors.orange
+                                                        : Colors.orange
+                                                            .withOpacity(0.5),
+                                                    fontSize: 18,
+                                                  ))
+                                            ],
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 28,
-                        ),
-                        Consumer<ProfileState>(
-                          builder: (context, value, child) => Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 30),
-                            child: AnimationLimiter(
-                              child: Container(
-                                width: 342,
-                                height: 203,
-                                decoration: BoxDecoration(
-                                    image: const DecorationImage(
-                                        image: AssetImage(
-                                            'lib/assets/images/questionbg.png'),
-                                        fit: BoxFit.fill),
-                                    borderRadius: BorderRadius.circular(25)),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    AnimationConfiguration.synchronized(
-                                      duration:
-                                          const Duration(milliseconds: 500),
-                                      child: SlideAnimation(
-                                        verticalOffset: 50.0,
-                                        child: FadeInAnimation(
-                                          child: InkWell(
-                                            onTap: () {
-                                              // Navigator.of(context).push(
-                                              //   PageRouteBuilder(
-                                              //       pageBuilder: (_, __, ___) =>
-                                              //           const QuizScreen(),
-                                              //       transitionDuration:
-                                              //           const Duration(milliseconds: 500),
-                                              //       transitionsBuilder: (_, a, __, c) =>
-                                              //           FadeTransition(
-                                              //             opacity: a,
-                                              //             child: c,
-                                              //           )),
-                                              // );
-                                              ConnectionStatusListener()
-                                                  .checkConnection()
-                                                  .then((value) {
-                                                if (!value) {
-                                                  wifiAlarm(context);
+                          const SizedBox(
+                            height: 28,
+                          ),
+                          Consumer<ProfileState>(
+                            builder: (context, value, child) => Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 30),
+                              child: AnimationLimiter(
+                                child: Container(
+                                  width: 342,
+                                  height: 203,
+                                  decoration: BoxDecoration(
+                                      image: const DecorationImage(
+                                          image: AssetImage(
+                                              'lib/assets/images/questionbg.png'),
+                                          fit: BoxFit.fill),
+                                      borderRadius: BorderRadius.circular(25)),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      AnimationConfiguration.synchronized(
+                                        duration:
+                                            const Duration(milliseconds: 500),
+                                        child: SlideAnimation(
+                                          verticalOffset: 50.0,
+                                          child: FadeInAnimation(
+                                            child: InkWell(
+                                              onTap: () {
+                                                // Navigator.of(context).push(
+                                                //   PageRouteBuilder(
+                                                //       pageBuilder: (_, __, ___) =>
+                                                //           const QuizScreen(),
+                                                //       transitionDuration:
+                                                //           const Duration(milliseconds: 500),
+                                                //       transitionsBuilder: (_, a, __, c) =>
+                                                //           FadeTransition(
+                                                //             opacity: a,
+                                                //             child: c,
+                                                //           )),
+                                                // );
+                                                ConnectionStatusListener()
+                                                    .checkConnection()
+                                                    .then((value) {
+                                                  if (!value) {
+                                                    wifiAlarm(context);
+                                                  }
+                                                });
+                                                if (value.userBalance >= 2) {
+                                                  context
+                                                      .read<QuizState>()
+                                                      .resetCount();
+                                                  StartQuizController.startQuiz(
+                                                      context: context);
+                                                } else {
+                                                  noCoinAlert(context);
                                                 }
-                                              });
-                                              if (value.userBalance >= 2) {
-                                                context
-                                                    .read<QuizState>()
-                                                    .resetCount();
-                                                StartQuizController.startQuiz(
-                                                    context: context);
-                                              } else {
-                                                noCoinAlert(context);
-                                              }
-                                            },
-                                            child: Container(
-                                              width: 285,
-                                              height: 48,
-                                              decoration: const BoxDecoration(
-                                                  image: DecorationImage(
-                                                      image: AssetImage(
-                                                          'lib/assets/images/mainbuttun.png'),
-                                                      fit: BoxFit.fill)),
-                                              child: const Center(
-                                                  child: Text(
-                                                'kelimeyi tahmin et',
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              )),
+                                              },
+                                              child: Container(
+                                                width: 285,
+                                                height: 48,
+                                                decoration: const BoxDecoration(
+                                                    image: DecorationImage(
+                                                        image: AssetImage(
+                                                            'lib/assets/images/mainbuttun.png'),
+                                                        fit: BoxFit.fill)),
+                                                child: const Center(
+                                                    child: Text(
+                                                  'kelimeyi tahmin et',
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                )),
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    AnimationConfiguration.synchronized(
-                                      duration:
-                                          const Duration(milliseconds: 500),
-                                      child: SlideAnimation(
-                                        verticalOffset: 50.0,
-                                        child: FadeInAnimation(
-                                          child: InkWell(
-                                            onTap: () {
-                                              // Navigator.of(context).push(
-                                              //   PageRouteBuilder(
-                                              //       pageBuilder: (_, __, ___) =>
-                                              //           const GemQuizScreen(),
-                                              //       transitionDuration: const Duration(
-                                              //           milliseconds: 500),
-                                              //       transitionsBuilder: (_, a, __, c) =>
-                                              //           FadeTransition(
-                                              //             opacity: a,
-                                              //             child: c,
-                                              //           )),
-                                              // );
-                                            },
-                                            child: Container(
-                                              width: 285,
-                                              height: 48,
-                                              decoration: const BoxDecoration(
-                                                  image: DecorationImage(
-                                                      image: AssetImage(
-                                                          'lib/assets/images/mainbt2.png'),
-                                                      fit: BoxFit.fill)),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      AnimationConfiguration.synchronized(
+                                        duration:
+                                            const Duration(milliseconds: 500),
+                                        child: SlideAnimation(
+                                          verticalOffset: 50.0,
+                                          child: FadeInAnimation(
+                                            child: InkWell(
+                                              onTap: () {
+                                                // Navigator.of(context).push(
+                                                //   PageRouteBuilder(
+                                                //       pageBuilder: (_, __, ___) =>
+                                                //           const GemQuizScreen(),
+                                                //       transitionDuration: const Duration(
+                                                //           milliseconds: 500),
+                                                //       transitionsBuilder: (_, a, __, c) =>
+                                                //           FadeTransition(
+                                                //             opacity: a,
+                                                //             child: c,
+                                                //           )),
+                                                // );
+                                              },
+                                              child: Container(
+                                                width: 285,
+                                                height: 48,
+                                                decoration: const BoxDecoration(
+                                                    image: DecorationImage(
+                                                        image: AssetImage(
+                                                            'lib/assets/images/mainbt2.png'),
+                                                        fit: BoxFit.fill)),
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    )
-                                  ],
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height - 560,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              image: const DecorationImage(
-                                image:
-                                    AssetImage('lib/assets/images/mainbg.png'),
-                                fit: BoxFit.fitWidth,
-                              )),
-                        )
-                      ],
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height - 560,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                image: const DecorationImage(
+                                  image: AssetImage(
+                                      'lib/assets/images/mainbg.png'),
+                                  fit: BoxFit.fitWidth,
+                                )),
+                          )
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
-    );
+          ],
+        ),
+      );
+    });
   }
 }
 

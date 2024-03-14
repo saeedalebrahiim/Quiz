@@ -138,8 +138,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: const WelcomeScreen(),
       theme: ThemeData(
+          fontFamily: "PlusJakartaSans",
           bottomSheetTheme:
-              BottomSheetThemeData(backgroundColor: Colors.transparent)),
+              const BottomSheetThemeData(backgroundColor: Colors.transparent)),
     );
   }
 }
