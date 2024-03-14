@@ -111,7 +111,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         )),
                                 (route) => false,
                               );
-                              context.read<DrawerState>().changeVisibleTwo();
                             },
                             child: Container(
                               width: 50,

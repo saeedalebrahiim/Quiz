@@ -78,15 +78,14 @@ class _RulesScreenState extends State<RulesScreen> {
                 builder: (context, value, child) => Padding(
                   padding: const EdgeInsets.only(top: 20, bottom: 20),
                   child: Container(
-                    height: MediaQuery.of(context).size.height,
-                    width: MediaQuery.of(context).size.width,
+                    width: MediaQuery.sizeOf(context).width,
                     color: Colors.white,
                     child: QuillHtmlEditor(
                       text: value.terms,
                       hintText: 'Hint text goes here',
                       controller: controller,
                       isEnabled: false,
-                      minHeight: 300,
+                      minHeight: MediaQuery.sizeOf(context).height,
                       hintTextAlign: TextAlign.start,
                       padding: const EdgeInsets.only(left: 10, top: 5),
                       hintTextPadding: EdgeInsets.zero,

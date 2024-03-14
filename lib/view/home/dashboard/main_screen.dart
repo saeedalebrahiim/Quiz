@@ -305,7 +305,8 @@ class _MainScreenState extends State<MainScreen> {
                             ),
                             Text(
                               'iyi haberler',
-                              style: TextStyle(color: Colors.grey.shade300),
+                              style: TextStyle(
+                                  color: Colors.grey.shade300, fontSize: 20),
                             ),
                             const SizedBox(
                               width: 10,
@@ -331,8 +332,8 @@ class _MainScreenState extends State<MainScreen> {
                                 }
                               },
                               child: CachedNetworkImage(
-                                width: 300,
-                                height: 150,
+                                width: 342,
+                                height: 166,
                                 imageUrl: value.banners[0],
                                 imageBuilder: (context, imageProvider) =>
                                     Container(
@@ -385,8 +386,8 @@ class _MainScreenState extends State<MainScreen> {
                                                 ? 'lib/assets/images/mainstar.png'
                                                 : 'lib/assets/images/mainstar-grey.png',
                                           ),
-                                          width: 75,
-                                          height: 75,
+                                          width: 85,
+                                          height: 89,
                                         ),
                                         const SizedBox(
                                           width: 5,
@@ -399,17 +400,21 @@ class _MainScreenState extends State<MainScreen> {
                                             Text(
                                               'Watch the video and get ',
                                               style: TextStyle(
-                                                  color: _rewardedAd != null
-                                                      ? Colors.orange
-                                                      : Colors.orange
-                                                          .withOpacity(0.5)),
+                                                color: _rewardedAd != null
+                                                    ? Colors.orange
+                                                    : Colors.orange
+                                                        .withOpacity(0.5),
+                                                fontSize: 18,
+                                              ),
                                             ),
                                             Text('points',
                                                 style: TextStyle(
-                                                    color: _rewardedAd != null
-                                                        ? Colors.orange
-                                                        : Colors.orange
-                                                            .withOpacity(0.5)))
+                                                  color: _rewardedAd != null
+                                                      ? Colors.orange
+                                                      : Colors.orange
+                                                          .withOpacity(0.5),
+                                                  fontSize: 18,
+                                                ))
                                           ],
                                         )
                                       ],
@@ -428,8 +433,8 @@ class _MainScreenState extends State<MainScreen> {
                             padding: const EdgeInsets.symmetric(horizontal: 30),
                             child: AnimationLimiter(
                               child: Container(
-                                width: 300,
-                                height: 150,
+                                width: 342,
+                                height: 203,
                                 decoration: BoxDecoration(
                                     image: const DecorationImage(
                                         image: AssetImage(
@@ -477,8 +482,8 @@ class _MainScreenState extends State<MainScreen> {
                                               }
                                             },
                                             child: Container(
-                                              width: 230,
-                                              height: 30,
+                                              width: 285,
+                                              height: 48,
                                               decoration: const BoxDecoration(
                                                   image: DecorationImage(
                                                       image: AssetImage(
@@ -522,8 +527,8 @@ class _MainScreenState extends State<MainScreen> {
                                               // );
                                             },
                                             child: Container(
-                                              width: 230,
-                                              height: 30,
+                                              width: 285,
+                                              height: 48,
                                               decoration: const BoxDecoration(
                                                   image: DecorationImage(
                                                       image: AssetImage(
