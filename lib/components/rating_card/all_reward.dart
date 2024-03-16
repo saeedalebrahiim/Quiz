@@ -19,8 +19,8 @@ class AllReward extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 280,
-      height: 50,
+      width: 342,
+      height: 54,
       decoration: BoxDecoration(
           color: isMe == true ? Colors.white.withOpacity(0.5) : null,
           image: const DecorationImage(
@@ -52,8 +52,8 @@ class AllReward extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Container(
-                  width: 45,
-                  height: 45,
+                  width: 32,
+                  height: 32,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -62,7 +62,7 @@ class AllReward extends StatelessWidget {
                     imageBuilder: (context, imageProvider) => Container(
                       decoration: BoxDecoration(
                         color: const Color.fromARGB(255, 10, 21, 94),
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(12),
                         image: DecorationImage(
                           image: imageProvider,
                           fit: BoxFit.cover,

@@ -69,409 +69,441 @@ class _TodayScreenState extends State<TodayScreen> {
               image: DecorationImage(
                   image: AssetImage('lib/assets/images/bg2.png'),
                   fit: BoxFit.fill)),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15, top: 45),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.pop(context);
-                        // Navigator.of(context).push(
-                        //   PageRouteBuilder(
-                        //       pageBuilder: (_, __, ___) => const HomeScreen(),
-                        //       transitionDuration:
-                        //           const Duration(milliseconds: 500),
-                        //       transitionsBuilder: (_, a, __, c) => FadeTransition(
-                        //             opacity: a,
-                        //             child: c,
-                        //           )),
-                        // );
-                      },
-                      child: Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            image: const DecorationImage(
-                              image: AssetImage(
-                                  'lib/assets/images/appbaricon.png'),
-                            ),
-                            color: const Color.fromARGB(255, 10, 21, 94),
-                            borderRadius: BorderRadius.circular(30)),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 23),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          PageRouteBuilder(
-                              pageBuilder: (_, __, ___) =>
-                                  const BuyCoinScreen(),
-                              transitionDuration:
-                                  const Duration(milliseconds: 500),
-                              transitionsBuilder: (_, a, __, c) =>
-                                  FadeTransition(
-                                    opacity: a,
-                                    child: c,
-                                  )),
-                        );
-                      },
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Image.asset(
-                            'lib/assets/images/coin.png',
-                            width: 25,
-                            height: 25,
-                          ),
-                          Consumer<ProfileState>(
-                            builder: (context, value, child) {
-                              var _formattedNumber = NumberFormat.compact()
-                                  .format(value.userBalance);
-                              return Text(
-                                _formattedNumber,
-                                //  value.userBalance.toString(),
-                                style: const TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w600),
-                              );
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 15, top: 20),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          PageRouteBuilder(
-                              pageBuilder: (_, __, ___) => const RulesScreen(),
-                              transitionDuration:
-                                  const Duration(milliseconds: 500),
-                              transitionsBuilder: (_, a, __, c) =>
-                                  FadeTransition(
-                                    opacity: a,
-                                    child: c,
-                                  )),
-                        );
-                      },
-                      child: Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            image: const DecorationImage(
-                              image:
-                                  AssetImage('lib/assets/images/questions.png'),
-                            ),
-                            color: const Color.fromARGB(255, 10, 21, 94),
-                            borderRadius: BorderRadius.circular(30)),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-              TabBar(
-                  indicator:
-                      BoxDecoration(borderRadius: BorderRadius.circular(20)),
-                  dividerColor: Colors.transparent,
-                  tabs: [
-                    Tab(
-                      child: Container(
-                        height: 35,
-                        width: 100,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            color: Colors.transparent,
-                            border: Border.all(
-                                color: Colors.white,
-                                width: 2,
-                                style: BorderStyle.solid)),
-                        child: const Center(
-                          child: Text(
-                            "Today",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    ),
-                    RawMaterialButton(
-                      onPressed: () {
-                        Navigator.of(context).pushReplacement(
-                          PageRouteBuilder(
-                              pageBuilder: (_, __, ___) =>
-                                  const OneMonthScreen(),
-                              transitionDuration:
-                                  const Duration(milliseconds: 500),
-                              transitionsBuilder: (_, a, __, c) =>
-                                  FadeTransition(
-                                    opacity: a,
-                                    child: c,
-                                  )),
-                        );
-                      },
-                      child: Container(
-                        height: 35,
-                        width: 100,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            color: const Color.fromARGB(255, 204, 118, 217)),
-                        child: const Center(
-                          child: Text(
-                            "Month",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    ),
-                    RawMaterialButton(
-                      onPressed: () {
-                        Navigator.of(context).pushReplacement(
-                          PageRouteBuilder(
-                              pageBuilder: (_, __, ___) => const AllScreen(),
-                              transitionDuration:
-                                  const Duration(milliseconds: 500),
-                              transitionsBuilder: (_, a, __, c) =>
-                                  FadeTransition(
-                                    opacity: a,
-                                    child: c,
-                                  )),
-                        );
-                      },
-                      child: Container(
-                        height: 35,
-                        width: 100,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            color: const Color.fromARGB(255, 204, 118, 217)),
-                        child: const Center(
-                          child: Text(
-                            "All",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ]),
-              const SizedBox(
-                height: 20,
-              ),
-              Consumer<ScoreState>(
-                builder: (context, value, child) => Container(
-                  width: 280,
-                  height: 50,
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('lib/assets/images/today.png'),
-                          fit: BoxFit.fill)),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 18.0),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        width: 60,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: CachedNetworkImage(
-                          imageUrl: value.userScore != null
-                              ? value.userScore!.applicationUserUserPicUrl
-                                  .toString()
-                              : "",
-                          imageBuilder: (context, imageProvider) => Container(
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15, top: 20),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                            // Navigator.of(context).push(
+                            //   PageRouteBuilder(
+                            //       pageBuilder: (_, __, ___) => const HomeScreen(),
+                            //       transitionDuration:
+                            //           const Duration(milliseconds: 500),
+                            //       transitionsBuilder: (_, a, __, c) => FadeTransition(
+                            //             opacity: a,
+                            //             child: c,
+                            //           )),
+                            // );
+                          },
+                          child: Container(
+                            width: 40,
+                            height: 40,
                             decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 10, 21, 94),
-                              borderRadius: BorderRadius.circular(30),
-                              image: DecorationImage(
-                                image: imageProvider,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
+                                image: const DecorationImage(
+                                  image: AssetImage(
+                                      'lib/assets/images/appbaricon.png'),
+                                ),
+                                color: const Color.fromARGB(255, 10, 21, 94),
+                                borderRadius: BorderRadius.circular(30)),
                           ),
-                          placeholder: (context, url) {
-                            return const CircularProgressIndicator();
-                          },
-                          errorWidget: (context, url, error) {
-                            print(error);
-                            return const Image(
-                              image:
-                                  AssetImage('lib/assets/images/profile.png'),
-                            );
-                          },
                         ),
-                      ),
-                      const SizedBox(
-                        width: 100,
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
+                        padding: const EdgeInsets.only(top: 23),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              PageRouteBuilder(
+                                  pageBuilder: (_, __, ___) =>
+                                      const BuyCoinScreen(),
+                                  transitionDuration:
+                                      const Duration(milliseconds: 500),
+                                  transitionsBuilder: (_, a, __, c) =>
+                                      FadeTransition(
+                                        opacity: a,
+                                        child: c,
+                                      )),
+                            );
+                          },
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Image.asset(
+                                'lib/assets/images/coin.png',
+                                width: 25,
+                                height: 25,
+                              ),
+                              Consumer<ProfileState>(
+                                builder: (context, value, child) {
+                                  var _formattedNumber = NumberFormat.compact()
+                                      .format(value.userBalance);
+                                  return Text(
+                                    _formattedNumber,
+                                    //  value.userBalance.toString(),
+                                    style: const TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w600),
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 15, top: 20),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              PageRouteBuilder(
+                                  pageBuilder: (_, __, ___) =>
+                                      const RulesScreen(),
+                                  transitionDuration:
+                                      const Duration(milliseconds: 500),
+                                  transitionsBuilder: (_, a, __, c) =>
+                                      FadeTransition(
+                                        opacity: a,
+                                        child: c,
+                                      )),
+                            );
+                          },
+                          child: Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                                image: const DecorationImage(
+                                  image: AssetImage(
+                                      'lib/assets/images/questions.png'),
+                                ),
+                                color: const Color.fromARGB(255, 10, 21, 94),
+                                borderRadius: BorderRadius.circular(30)),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                TabBar(
+                    indicator:
+                        BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                    dividerColor: Colors.transparent,
+                    tabs: [
+                      Tab(
+                        child: Container(
+                          height: 35,
+                          width: 100,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25),
+                              color: Colors.transparent,
+                              border: Border.all(
+                                  color: Colors.white,
+                                  width: 2,
+                                  style: BorderStyle.solid)),
+                          child: const Center(
+                            child: Text(
+                              "Today",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                      RawMaterialButton(
+                        onPressed: () {
+                          Navigator.of(context).pushReplacement(
+                            PageRouteBuilder(
+                                pageBuilder: (_, __, ___) =>
+                                    const OneMonthScreen(),
+                                transitionDuration:
+                                    const Duration(milliseconds: 500),
+                                transitionsBuilder: (_, a, __, c) =>
+                                    FadeTransition(
+                                      opacity: a,
+                                      child: c,
+                                    )),
+                          );
+                        },
+                        child: Container(
+                          height: 35,
+                          width: 100,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25),
+                              color: const Color.fromARGB(255, 204, 118, 217)),
+                          child: const Center(
+                            child: Text(
+                              "Month",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                      RawMaterialButton(
+                        onPressed: () {
+                          Navigator.of(context).pushReplacement(
+                            PageRouteBuilder(
+                                pageBuilder: (_, __, ___) => const AllScreen(),
+                                transitionDuration:
+                                    const Duration(milliseconds: 500),
+                                transitionsBuilder: (_, a, __, c) =>
+                                    FadeTransition(
+                                      opacity: a,
+                                      child: c,
+                                    )),
+                          );
+                        },
+                        child: Container(
+                          height: 35,
+                          width: 100,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25),
+                              color: const Color.fromARGB(255, 204, 118, 217)),
+                          child: const Center(
+                            child: Text(
+                              "All",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ]),
+                const SizedBox(
+                  height: 20,
+                ),
+                Consumer<ScoreState>(
+                  builder: (context, value, child) => Container(
+                    width: 342,
+                    height: 72,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('lib/assets/images/today.png'),
+                            fit: BoxFit.fill)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          width: 60,
+                          height: 60,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(21),
+                              color: Colors.black),
+                          child: Container(
+                            width: 50,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(21),
+                            ),
+                            child: CachedNetworkImage(
+                              imageUrl: value.userScore != null
+                                  ? value.userScore!.applicationUserUserPicUrl
+                                      .toString()
+                                  : "",
+                              imageBuilder: (context, imageProvider) =>
+                                  Container(
+                                decoration: BoxDecoration(
+                                  color: const Color.fromARGB(255, 10, 21, 94),
+                                  borderRadius: BorderRadius.circular(30),
+                                  image: DecorationImage(
+                                    image: imageProvider,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              placeholder: (context, url) {
+                                return const CircularProgressIndicator();
+                              },
+                              errorWidget: (context, url, error) {
+                                print(error);
+                                return const Image(
+                                  image: AssetImage(
+                                      'lib/assets/images/profile.png'),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 100,
+                        ),
+                        Column(
                           children: [
-                            Container(
-                              width: 20,
-                              height: 20,
-                              // decoration: BoxDecoration(
-                              //     borderRadius: BorderRadius.circular(12),
-                              //     image: const DecorationImage(
-                              //         image: AssetImage(
-                              //             'lib/assets/images/increase.png'),
-                              //         fit: BoxFit.fill)),
-                              child: Icon(
-                                value.userScore != null
-                                    ? value.userScore!.changes.isNegative
-                                        ? Icons.arrow_drop_down
-                                        : Icons.arrow_drop_up
-                                    : Icons.arrow_drop_up,
-                                color: value.userScore != null
-                                    ? value.userScore!.changes.isNegative
-                                        ? Colors.red
-                                        : Colors.green
-                                    : Colors.green,
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Icon(
+                                    value.userScore != null
+                                        ? value.userScore!.changes.isNegative
+                                            ? Icons.arrow_drop_down
+                                            : Icons.arrow_drop_up
+                                        : Icons.arrow_drop_up,
+                                    color: value.userScore != null
+                                        ? value.userScore!.changes.isNegative
+                                            ? Colors.red
+                                            : Colors.green
+                                        : Colors.green,
+                                    size: 38,
+                                  ),
+                                  Text(
+                                    '${value.userScore != null ? value.userScore!.changes : "0"} +',
+                                    style: TextStyle(
+                                        color: value.userScore != null
+                                            ? value.userScore!.changes
+                                                    .isNegative
+                                                ? Colors.red
+                                                : Colors.green
+                                            : Colors.green,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 24),
+                                  )
+                                ],
                               ),
                             ),
                             const Text(
                               'Your growth',
                               style: TextStyle(
-                                  fontSize: 8, fontWeight: FontWeight.bold),
-                            )
+                                  fontSize: 10, fontWeight: FontWeight.bold),
+                            ),
                           ],
                         ),
-                      ),
-                      Text(
-                        '${value.userScore != null ? value.userScore!.changes : "0"} +',
-                        style: TextStyle(
-                            color: value.userScore != null
-                                ? value.userScore!.changes.isNegative
-                                    ? Colors.red
-                                    : Colors.green
-                                : Colors.green,
-                            fontWeight: FontWeight.bold),
-                      )
-                    ],
+                        const SizedBox(
+                          width: 10,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  const Text(
-                    'Top 10',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(
-                    width: 50,
-                  ),
-                  CountTimer(
-                    format: CountTimerFormat.hoursMinutesSeconds,
-                    timeTextStyle: TextStyle(color: Colors.white),
-                    colonsTextStyle: TextStyle(color: Colors.white),
-                    descriptionTextStyle: TextStyle(color: Colors.white),
-                    enableDescriptions: false,
-                    controller: CountTimerController(
-                      endTime: DateTime(DateTime.now().year,
-                          DateTime.now().month, DateTime.now().day, 23, 59, 59),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    const Text(
+                      'Top 10',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                          fontStyle: FontStyle.italic,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      width: 50,
+                    ),
+                    Column(
+                      children: [
+                        CountTimer(
+                          format: CountTimerFormat.hoursMinutesSeconds,
+                          timeTextStyle:
+                              TextStyle(color: Colors.white, fontSize: 20),
+                          colonsTextStyle: TextStyle(color: Colors.white),
+                          descriptionTextStyle: TextStyle(color: Colors.white),
+                          enableDescriptions: false,
+                          controller: CountTimerController(
+                            endTime: DateTime(
+                                DateTime.now().year,
+                                DateTime.now().month,
+                                DateTime.now().day,
+                                23,
+                                59,
+                                59),
 
-                      //  DateTime.now().add(
-                      //   const Duration(
-                      //     days: 5,
-                      //     hours: 14,
-                      //     minutes: 27,
-                      //     seconds: 34,
-                      //   ),
-                      // ),
-                    ),
-                    onEnd: () {
-                      print("Timer finished");
-                    },
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(
-                    width: 50,
-                  ),
-                  const Text(
-                    'Rank',
-                    style: TextStyle(color: Colors.white, fontSize: 12),
-                  ),
-                  const SizedBox(
-                    width: 30,
-                  ),
-                  const Text('Name',
-                      style: TextStyle(color: Colors.white, fontSize: 12)),
-                  const SizedBox(
-                    width: 80,
-                  ),
-                  Column(
-                    children: [
-                      const Text(
-                        'Time left to grant reward',
-                        style: TextStyle(color: Colors.white, fontSize: 10),
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            width: 20,
-                            height: 20,
-                            decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage(
-                                        'lib/assets/images/allprize.png'))),
+                            //  DateTime.now().add(
+                            //   const Duration(
+                            //     days: 5,
+                            //     hours: 14,
+                            //     minutes: 27,
+                            //     seconds: 34,
+                            //   ),
+                            // ),
                           ),
-                          const Text(
-                            'Prize',
-                            style: TextStyle(color: Colors.white, fontSize: 12),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              Consumer<ScoreState>(builder: (context, value, child) {
-                return Visibility(
-                  visible: value.dailyScores.isNotEmpty,
-                  replacement: const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                  child: Expanded(
-                    child: ListView.builder(
-                      itemCount: value.dailyScores.length,
-                      itemBuilder: (context, index) => Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 8.0, horizontal: 25),
-                        child: AllRatingCard(
-                            showChanges: true,
-                            isPrice: true,
-                            score: value.dailyScores[index],
-                            index: index + 1,
-                            price: value.rewards[index] ?? "0"),
-                      ),
+                          onEnd: () {
+                            print("Timer finished");
+                          },
+                        ),
+                        const Text(
+                          'Time left to grant reward',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
                     ),
-                  ),
-                );
-              }),
-            ],
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    const Text(
+                      'Rank',
+                      style: TextStyle(color: Colors.white, fontSize: 12),
+                    ),
+                    const SizedBox(
+                      width: 30,
+                    ),
+                    const Text('Name',
+                        style: TextStyle(color: Colors.white, fontSize: 12)),
+                    const SizedBox(
+                      width: 80,
+                    ),
+                    Column(
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                              width: 20,
+                              height: 20,
+                              decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                          'lib/assets/images/allprize.png'))),
+                            ),
+                            const Text(
+                              'Prize',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 5,
+                    )
+                  ],
+                ),
+                Consumer<ScoreState>(builder: (context, value, child) {
+                  return Visibility(
+                    visible: value.dailyScores.isNotEmpty,
+                    replacement: const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    child: Column(
+                      children: [
+                        for (var index = 0;
+                            index < value.dailyScores.length;
+                            index++)
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8.0, horizontal: 25),
+                            child: AllRatingCard(
+                                showChanges: true,
+                                isPrice: true,
+                                score: value.dailyScores[index],
+                                index: index + 1,
+                                price: value.rewards[index] ?? "0"),
+                          ),
+                      ],
+                    ),
+                  );
+                }),
+              ],
+            ),
           ),
         ),
       ),

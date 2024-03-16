@@ -28,8 +28,8 @@ class AllRatingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 280,
-      height: 50,
+      width: 342,
+      height: 64,
       decoration: BoxDecoration(
           color: isMe == true ? Colors.white.withOpacity(0.5) : null,
           image: const DecorationImage(
@@ -45,46 +45,51 @@ class AllRatingCard extends StatelessWidget {
               const SizedBox(
                 width: 10,
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    isRank == true ? '${score.id}.' : "$index .",
-                    style: const TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
-                  showChanges == true
-                      ? Visibility(
-                          visible: score.changes > 0,
-                          replacement: Row(
-                            children: [
-                              Icon(
-                                Icons.arrow_drop_down,
-                                color: Colors.red,
-                              ),
-                              Text(
-                                "${score.changes}",
-                                style: const TextStyle(
-                                    color: Colors.red, fontSize: 12),
-                              ),
-                            ],
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.arrow_drop_up,
-                                color: Colors.green,
-                              ),
-                              Text(
-                                "${score.changes}",
-                                style: const TextStyle(
-                                    color: Colors.green, fontSize: 12),
-                              ),
-                            ],
-                          ),
-                        )
-                      : SizedBox(),
-                ],
+              SizedBox(
+                width: 55,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      isRank == true ? '${score.id}.' : "$index .",
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16),
+                    ),
+                    showChanges == true
+                        ? Visibility(
+                            visible: score.changes > 0,
+                            replacement: Row(
+                              children: [
+                                Icon(
+                                  Icons.arrow_drop_down,
+                                  color: Colors.red,
+                                ),
+                                Text(
+                                  "${score.changes}",
+                                  style: const TextStyle(
+                                      color: Colors.red, fontSize: 10),
+                                ),
+                              ],
+                            ),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.arrow_drop_up,
+                                  color: Colors.green,
+                                ),
+                                Text(
+                                  "${score.changes}",
+                                  style: const TextStyle(
+                                      color: Colors.green, fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          )
+                        : SizedBox(),
+                  ],
+                ),
               ),
               const SizedBox(
                 width: 10,
@@ -92,8 +97,8 @@ class AllRatingCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Container(
-                  width: 45,
-                  height: 45,
+                  width: 32,
+                  height: 32,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                   ),
