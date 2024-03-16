@@ -149,4 +149,26 @@ class ProfileController {
       // print(e);
     }
   }
+
+  static Future<bool> removeProfilePhoto(
+      {required BuildContext context}) async {
+    final api = Quiz.create(interceptors: [TokenIndicator()]);
+    bool ret = false;
+    try {
+      await api.apiV1UserManagerRemoveUserProfilePost().then((postResult) {
+        final body = jsonDecode(postResult.bodyString);
+        print(body);
+        print(body["isSuccess"]);
+        if (body["isSuccess"] == true) {
+          ret = true;
+        } else {
+          ret = false;
+        }
+      });
+    } catch (e) {
+      // print(e);
+      ret = false;
+    }
+    return ret;
+  }
 }

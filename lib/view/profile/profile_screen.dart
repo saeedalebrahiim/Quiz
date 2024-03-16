@@ -130,12 +130,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Row(
                       children: [
                         const SizedBox(
-                          width: 15,
+                          width: 40,
                         ),
                         InkWell(
                           onTap: () {
                             showBottomSheet(
                               context: context,
+                              backgroundColor: Colors.white,
                               builder: (context) => SizedBox(
                                 height: 80,
                                 child: Row(
@@ -204,7 +205,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       width: 10,
                                     ),
                                     InkWell(
-                                      onTap: () {},
+                                      onTap: () {
+                                        ProfileController.removeProfilePhoto(
+                                                context: context)
+                                            .then((value) {
+                                          if (value) {
+                                            Navigator.of(context).pop();
+                                            ProfileController.getProfile(
+                                                context: context);
+                                          } else {}
+                                        });
+                                      },
                                       child: Container(
                                         width: 55,
                                         height: 55,
@@ -221,46 +232,57 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             );
                           },
                           child: Container(
-                            width: 80,
-                            height: 80,
+                            width: 120,
+                            height: 120,
+                            padding: const EdgeInsets.all(15),
                             decoration: const BoxDecoration(
-                                // image: DecorationImage(
-                                //   image:
-                                //       AssetImage('lib/assets/images/addprofilebg.png'),
-                                // ),
-                                ),
-                            child: _imgFile != null
-                                ? Image.file(
-                                    File(_imgFile!.path),
-                                  )
-                                : CachedNetworkImage(
-                                    imageUrl: (value.profile != null
-                                        ? value.profile!.userPicUrl
-                                        : ""),
-                                    imageBuilder: (context, imageProvider) =>
-                                        Container(
-                                      decoration: BoxDecoration(
-                                        color: const Color.fromARGB(
-                                            255, 10, 21, 94),
-                                        borderRadius: BorderRadius.circular(30),
-                                        image: DecorationImage(
-                                          image: _imgFile != null
-                                              ? NetworkImage(
-                                                  _imgFile!.path,
-                                                )
-                                              : imageProvider,
-                                          fit: BoxFit.cover,
+                                image: DecorationImage(
+                              image: AssetImage(
+                                  'lib/assets/images/addprofilebg.png'),
+                            )),
+                            child: Container(
+                              width: 85,
+                              height: 85,
+                              decoration: const BoxDecoration(
+                                  // image: DecorationImage(
+                                  //   image:
+                                  //       AssetImage('lib/assets/images/addprofilebg.png'),
+                                  // ),
+                                  ),
+                              child: _imgFile != null
+                                  ? Image.file(
+                                      File(_imgFile!.path),
+                                    )
+                                  : CachedNetworkImage(
+                                      imageUrl: (value.profile != null
+                                          ? value.profile!.userPicUrl
+                                          : ""),
+                                      imageBuilder: (context, imageProvider) =>
+                                          Container(
+                                        decoration: BoxDecoration(
+                                          color: const Color.fromARGB(
+                                              255, 10, 21, 94),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                          image: DecorationImage(
+                                            image: _imgFile != null
+                                                ? NetworkImage(
+                                                    _imgFile!.path,
+                                                  )
+                                                : imageProvider,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
+                                      placeholder: (context, url) =>
+                                          const CircularProgressIndicator(),
+                                      errorWidget: (context, url, error) =>
+                                          const Image(
+                                        image: AssetImage(
+                                            'lib/assets/images/addprofilebg.png'),
+                                      ),
                                     ),
-                                    placeholder: (context, url) =>
-                                        const CircularProgressIndicator(),
-                                    errorWidget: (context, url, error) =>
-                                        const Image(
-                                      image: AssetImage(
-                                          'lib/assets/images/addprofilebg.png'),
-                                    ),
-                                  ),
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -273,14 +295,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               value.profile != null
                                   ? value.profile!.fullName
                                   : "name",
-                              style: const TextStyle(color: Colors.white),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
                             ),
                             Text(
                               //TODO wrf plan
                               value.profile == null
                                   ? value.profile!.fullName
                                   : "Free",
-                              style: const TextStyle(color: Colors.grey),
+                              style: const TextStyle(
+                                color: Colors.grey,
+                                fontSize: 18,
+                              ),
                             )
                           ],
                         )
@@ -290,8 +318,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       height: 50,
                     ),
                     SizedBox(
-                      width: 270,
-                      height: 45,
+                      width: 342,
+                      height: 64,
                       child: TextFormField(
                           obscureText: false,
                           controller: _nameFamilyController,
@@ -307,8 +335,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       height: 10,
                     ),
                     SizedBox(
-                      width: 270,
-                      height: 45,
+                      width: 342,
+                      height: 64,
                       child: TextFormField(
                           controller: _numberController,
                           readOnly: true,
@@ -374,8 +402,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       height: 10,
                     ),
                     SizedBox(
-                      width: 270,
-                      height: 45,
+                      width: 342,
+                      height: 64,
                       child: TextFormField(
                           obscureText: false,
                           controller: _educationController,
@@ -396,7 +424,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           width: 40,
                         ),
                         Text(
-                          "IBAN:",
+                          "Enter Your Iban",
                           style: TextStyle(color: Colors.white),
                         ),
                       ],
@@ -417,7 +445,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           width: 10,
                         ),
                         SizedBox(
-                          width: 220,
+                          width: 342,
+                          height: 64,
                           child: TextField(
                               readOnly: value.profile!.iban.isNotEmpty &&
                                   value.profile!.iban != "",
@@ -428,7 +457,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ],
                     ),
                     const SizedBox(
-                      height: 40,
+                      height: 20,
                     ),
                     Consumer<SettingsState>(
                       builder: (context, value, child) {
@@ -446,7 +475,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ? Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: SizedBox(
-                                    width: 200,
+                                    width: 221,
+                                    height: 48,
                                     child: MatertinoBottomSheetRadio(
                                       list: value.banksTitle!,
                                       selected: bankIdTitleSelected,
@@ -555,8 +585,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             context: context);
                       },
                       child: Container(
-                        width: 170,
-                        height: 40,
+                        width: 221,
+                        height: 48,
                         decoration: const BoxDecoration(
                             image: DecorationImage(
                                 image: AssetImage('lib/assets/images/save.png'),
