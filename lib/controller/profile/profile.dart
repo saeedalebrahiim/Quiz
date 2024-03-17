@@ -1,6 +1,10 @@
 import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
 
+import 'package:bilgimizde/view/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:bilgimizde/model/api/swagger/generated/quiz.swagger.dart';
 import 'package:bilgimizde/model/dto/profile.dart';
@@ -8,6 +12,8 @@ import 'package:bilgimizde/provider/profile.dart';
 import 'package:bilgimizde/services/headers.dart';
 import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
 import 'package:bilgimizde/view/profile/edit_otp_screen.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileController {
   static Future<void> getProfile({required BuildContext context}) async {
@@ -58,6 +64,71 @@ class ProfileController {
       });
     } catch (e) {
       // print(e);
+    }
+  }
+
+  static Future<void> editProfileHTTP(
+      {required String? fullName,
+      XFile? file,
+      String? education,
+      int? bankId,
+      String? iban,
+      required BuildContext context}) async {
+    try {
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+
+//for main image
+      Uint8List? bytes;
+      if (file != null) {
+        var stream = http.ByteStream(file.openRead());
+        bytes = await file.readAsBytes();
+        final int length = await file.length();
+      }
+
+//for gallery image
+      print("this is length");
+
+      List<http.MultipartFile> galleryMultiPartFile = <http.MultipartFile>[];
+      print("this is Multipart");
+
+      final request = http.MultipartRequest(
+          'post',
+          Uri.parse(
+              "https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/EditProfile"))
+        ..fields['FullName'] = fullName.toString()
+        ..fields['Education'] = education ?? ""
+        ..fields['BankId'] = bankId != null ? bankId.toString() : ""
+        ..fields['IBAN'] = iban ?? "";
+
+      if (bytes != null) {
+        request.files.add(http.MultipartFile.fromBytes(
+          "file",
+          bytes,
+          filename: '.png',
+        ));
+      }
+
+      // ..files.add(await http.MultipartFile.fromPath(
+      //     "MainBookImage", dto.mainBookImage!.path));
+
+      // for (var i = 0; i < dto.galleryBookImage!.length; i++) {
+      //   var streamGallery = http.ByteStream(dto.galleryBookImage![i].openRead());
+      //   request.files.add(await http.MultipartFile.fromPath(
+      //       "GalleryBookImage", dto.galleryBookImage![i].path));
+      // }
+
+      request.headers['authorization'] =
+          'Bearer ${sharedPreferences.getString('token')}';
+
+      request.headers['Content-Type'] = 'multipart/form-data';
+
+      http.Response response =
+          await http.Response.fromStream(await request.send());
+      print(response.body);
+      getProfile(context: context);
+    } catch (e) {
+      print(e);
     }
   }
 

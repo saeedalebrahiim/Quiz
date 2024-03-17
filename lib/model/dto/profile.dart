@@ -1,6 +1,6 @@
 class ProfileDto {
   final String fullName;
-  final String userPicUrl;
+  final String? userPicUrl;
   final String education;
   final int bankId;
   final String iban;
@@ -9,7 +9,7 @@ class ProfileDto {
 
   ProfileDto(
       {required this.fullName,
-      required this.userPicUrl,
+      this.userPicUrl,
       required this.education,
       required this.bankId,
       required this.iban,

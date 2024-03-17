@@ -1,4 +1,5 @@
 import 'package:bilgimizde/controller/Quiz/start_quiz.dart';
+import 'package:bilgimizde/controller/profile/profile.dart';
 import 'package:bilgimizde/provider/quiz.dart';
 import 'package:bilgimizde/view/buycoin/buy_coin_screen.dart';
 import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
@@ -117,6 +118,7 @@ class _EndQuizScreenState extends State<EndQuizScreen> {
                   padding: const EdgeInsets.only(top: 20, right: 15),
                   child: InkWell(
                     onTap: () {
+                      ProfileController.getProfile(context: context);
                       Navigator.of(context).push(
                         PageRouteBuilder(
                             pageBuilder: (_, __, ___) => const ProfileScreen(),
@@ -137,8 +139,9 @@ class _EndQuizScreenState extends State<EndQuizScreen> {
                         child: CachedNetworkImage(
                           width: 45,
                           height: 45,
-                          imageUrl: value.profile != null
-                              ? value.profile!.userPicUrl
+                          imageUrl: value.profile != null &&
+                                  value.profile!.userPicUrl != null
+                              ? value.profile!.userPicUrl!
                               : "",
                           imageBuilder: (context, imageProvider) => Container(
                             decoration: BoxDecoration(

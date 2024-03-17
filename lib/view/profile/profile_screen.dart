@@ -30,6 +30,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void initState() {
     super.initState();
     SettingsController.getBanks(context: context);
+    getProfile();
   }
 
   final _nameFamilyController = TextEditingController();
@@ -44,6 +45,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
   int? bankIdSelected;
   String? bankIdTitleSelected;
   CountryCode crCode = CountryCode(code: "+90", name: "TR");
+  getProfile() {
+    if (ProfileState.profileUse == null) {
+      ProfileController.getProfile(context: context);
+    }
+    _nameFamilyController.text = ProfileState.profileUse != null
+        ? ProfileState.profileUse!.fullName
+        : "";
+    _numberController.text = ProfileState.profileUse != null
+        ? ProfileState.profileUse!.username.replaceRange(0, 2, "")
+        : "";
+    _educationController.text = ProfileState.profileUse != null
+        ? ProfileState.profileUse!.education
+        : "";
+    _ibanController.text =
+        ProfileState.profileUse != null ? ProfileState.profileUse!.iban : "";
+    _bankIdController.text = ProfileState.profileUse != null
+        ? ProfileState.profileUse!.bankId.toString()
+        : "";
+    bankIdSelected = ProfileState.profileUse!.bankId;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,22 +80,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: SingleChildScrollView(
           child: Consumer<ProfileState>(
             builder: (context, value, child) {
-              if (value.profile == null) {
-                ProfileController.getProfile(context: context);
-              }
-              _nameFamilyController.text =
-                  value.profile != null ? value.profile!.fullName : "";
-              _numberController.text = value.profile != null
-                  ? value.profile!.username.replaceRange(0, 2, "")
-                  : "";
-              _educationController.text =
-                  value.profile != null ? value.profile!.education : "";
-              _ibanController.text =
-                  value.profile != null ? value.profile!.iban : "";
-              _bankIdController.text =
-                  value.profile != null ? value.profile!.bankId.toString() : "";
-              bankIdSelected = value.profile!.bankId;
-              // getData();
+              // if (value.profile == null) {
+              //   ProfileController.getProfile(context: context);
+              // }
+              // _nameFamilyController.text =
+              //     value.profile != null ? value.profile!.fullName : "";
+              // _numberController.text = value.profile != null
+              //     ? value.profile!.username.replaceRange(0, 2, "")
+              //     : "";
+              // _educationController.text =
+              //     value.profile != null ? value.profile!.education : "";
+              // _ibanController.text =
+              //     value.profile != null ? value.profile!.iban : "";
+              // _bankIdController.text =
+              //     value.profile != null ? value.profile!.bankId.toString() : "";
+              // bankIdSelected = value.profile!.bankId;
+              // // getData();
 
               return Visibility(
                 visible: value.profile != null,
@@ -253,35 +274,41 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ? Image.file(
                                       File(_imgFile!.path),
                                     )
-                                  : CachedNetworkImage(
-                                      imageUrl: (value.profile != null
-                                          ? value.profile!.userPicUrl
-                                          : ""),
-                                      imageBuilder: (context, imageProvider) =>
-                                          Container(
-                                        decoration: BoxDecoration(
-                                          color: const Color.fromARGB(
-                                              255, 10, 21, 94),
-                                          borderRadius:
-                                              BorderRadius.circular(30),
-                                          image: DecorationImage(
-                                            image: _imgFile != null
-                                                ? NetworkImage(
-                                                    _imgFile!.path,
-                                                  )
-                                                : imageProvider,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
-                                      placeholder: (context, url) =>
-                                          const CircularProgressIndicator(),
-                                      errorWidget: (context, url, error) =>
-                                          const Image(
-                                        image: AssetImage(
-                                            'lib/assets/images/addprofilebg.png'),
-                                      ),
-                                    ),
+                                  : value.profile != null &&
+                                          value.profile!.userPicUrl != null
+                                      ? Image(
+                                          image: NetworkImage(
+                                              value.profile!.userPicUrl!))
+                                      : const SizedBox(),
+                              // : CachedNetworkImage(
+                              //     imageUrl: (value.profile != null
+                              //         ? value.profile!.userPicUrl
+                              //         : ""),
+                              //     imageBuilder: (context, imageProvider) =>
+                              //         Container(
+                              //       decoration: BoxDecoration(
+                              //         color: const Color.fromARGB(
+                              //             255, 10, 21, 94),
+                              //         borderRadius:
+                              //             BorderRadius.circular(30),
+                              //         image: DecorationImage(
+                              //           image: _imgFile != null
+                              //               ? NetworkImage(
+                              //                   _imgFile!.path,
+                              //                 )
+                              //               : imageProvider,
+                              //           fit: BoxFit.cover,
+                              //         ),
+                              //       ),
+                              //     ),
+                              //     placeholder: (context, url) =>
+                              //         const CircularProgressIndicator(),
+                              //     errorWidget: (context, url, error) =>
+                              //         const Image(
+                              //       image: AssetImage(
+                              //           'lib/assets/images/addprofilebg.png'),
+                              //     ),
+                              //   ),
                             ),
                           ),
                         ),
@@ -561,28 +588,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     InkWell(
                       onTap: () async {
-                        List<int>? file;
-                        if (_imgFile != null) {
-                          await _imgFile!.readAsBytes().then((value) {
-                            file = value;
-                          });
-                        }
+                        // List<int>? file;
+                        // if (_imgFile != null) {
+                        //   await _imgFile!.readAsBytes().then((value) {
+                        //     file = value;
+                        //   });
+                        // }
                         print("------------------");
                         print(_nameFamilyController.text);
                         print(int.tryParse(_bankIdController.text));
                         print(_educationController.text);
                         print(_ibanController.text);
-                        print(file);
+                        // print(file);
 
                         print("------------------");
-
-                        ProfileController.editProfile(
-                            fullName: _nameFamilyController.text,
-                            bankId: int.tryParse(_bankIdController.text),
-                            education: _educationController.text,
-                            iban: _ibanController.text,
-                            file: file,
-                            context: context);
+                        await ProfileController.editProfileHTTP(
+                                fullName: _nameFamilyController.text,
+                                bankId: int.tryParse(_bankIdController.text),
+                                education: _educationController.text,
+                                iban: _ibanController.text,
+                                file: _imgFile,
+                                context: context)
+                            .then((value) {
+                          setState(() {});
+                        });
+                        // ProfileController.editProfile(
+                        //     fullName: _nameFamilyController.text,
+                        //     bankId: int.tryParse(_bankIdController.text),
+                        //     education: _educationController.text,
+                        //     iban: _ibanController.text,
+                        //     file: file,
+                        //     context: context);
                       },
                       child: Container(
                         width: 221,

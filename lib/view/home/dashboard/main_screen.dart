@@ -135,6 +135,14 @@ class _MainScreenState extends State<MainScreen> {
                         right: 0, left: 0, bottom: 0, top: 0),
                     child: InkWell(
                       onTap: () {
+                        ConnectionStatusListener()
+                            .checkConnection()
+                            .then((value) {
+                          if (!value) {
+                            wifiAlarm(context);
+                          }
+                        });
+                        ProfileController.getProfile(context: context);
                         Navigator.of(context).push(
                           PageRouteBuilder(
                               pageBuilder: (_, __, ___) =>
@@ -159,8 +167,9 @@ class _MainScreenState extends State<MainScreen> {
                             child: CachedNetworkImage(
                               width: 50,
                               height: 50,
-                              imageUrl: value.profile != null
-                                  ? value.profile!.userPicUrl
+                              imageUrl: value.profile != null &&
+                                      value.profile!.userPicUrl != null
+                                  ? value.profile!.userPicUrl!
                                   : "",
                               imageBuilder: (context, imageProvider) =>
                                   Container(
