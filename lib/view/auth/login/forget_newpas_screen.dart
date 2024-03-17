@@ -1,9 +1,16 @@
+import 'package:bilgimizde/controller/auth/auth_controller.dart';
 import 'package:bilgimizde/view/auth/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 
 class ForgetNewPasScreen extends StatefulWidget {
-  const ForgetNewPasScreen({super.key});
+  const ForgetNewPasScreen({
+    super.key,
+    required this.pin,
+    required this.userName,
+  });
+  final String pin;
+  final String userName;
 
   @override
   State<ForgetNewPasScreen> createState() => _ForgetNewPasScreenState();
@@ -27,7 +34,7 @@ class _ForgetNewPasScreenState extends State<ForgetNewPasScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 5),
               child: Container(
-                height: MediaQuery.of(context).size.height * 2 / 3,
+                height: MediaQuery.of(context).size.height * 3 / 4,
                 width: MediaQuery.of(context).size.width,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
@@ -44,7 +51,9 @@ class _ForgetNewPasScreenState extends State<ForgetNewPasScreen> {
                         Text(
                           'Forget Password ',
                           style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 22),
                         ),
                       ],
                     ),
@@ -56,7 +65,7 @@ class _ForgetNewPasScreenState extends State<ForgetNewPasScreen> {
                         Text(
                           'Tayp Password',
                           style: TextStyle(
-                            fontSize: 12,
+                            fontSize: 16,
                             color: Colors.grey,
                           ),
                         ),
@@ -66,8 +75,8 @@ class _ForgetNewPasScreenState extends State<ForgetNewPasScreen> {
                       height: 20,
                     ),
                     SizedBox(
-                      width: 240,
-                      height: 45,
+                      width: 316,
+                      height: 64,
                       child: TextFormField(
                           keyboardType: TextInputType.text,
                           controller: _userPasswordController,
@@ -106,8 +115,8 @@ class _ForgetNewPasScreenState extends State<ForgetNewPasScreen> {
                       height: 10,
                     ),
                     SizedBox(
-                      width: 240,
-                      height: 45,
+                      width: 316,
+                      height: 64,
                       child: TextFormField(
                           obscureText: true,
                           controller: _confirmPasswordController,
@@ -137,11 +146,11 @@ class _ForgetNewPasScreenState extends State<ForgetNewPasScreen> {
                     Navigator.pop(context);
                   },
                   child: Container(
-                    width: 52,
-                    height: 50,
+                    width: 68,
+                    height: 68,
                     decoration: BoxDecoration(
                         color: Colors.grey.shade400,
-                        borderRadius: BorderRadius.circular(22)),
+                        borderRadius: BorderRadius.circular(50)),
                     child: const Icon(
                       Icons.arrow_back,
                       color: Colors.white,
@@ -157,8 +166,8 @@ class _ForgetNewPasScreenState extends State<ForgetNewPasScreen> {
                         position: const StyledToastPosition(
                             align: Alignment.bottomCenter),
                         Container(
-                          width: 250,
-                          height: 55,
+                          width: 144,
+                          height: 68,
                           decoration: const BoxDecoration(
                               image: DecorationImage(
                                   image:
@@ -196,21 +205,27 @@ class _ForgetNewPasScreenState extends State<ForgetNewPasScreen> {
                         isIgnoring: true,
                       );
                     } else {
-                      Navigator.of(context).push(
-                        PageRouteBuilder(
-                            pageBuilder: (_, __, ___) => const LoginScreen(),
-                            transitionDuration:
-                                const Duration(milliseconds: 500),
-                            transitionsBuilder: (_, a, __, c) => FadeTransition(
-                                  opacity: a,
-                                  child: c,
-                                )),
-                      );
+                      AuthController.changePassword(
+                          userName: widget.userName,
+                          verificationCode: widget.pin,
+                          password: _userPasswordController.text,
+                          confirmPassword: _confirmPasswordController.text,
+                          context: context);
+                      // Navigator.of(context).push(
+                      //   PageRouteBuilder(
+                      //       pageBuilder: (_, __, ___) => const LoginScreen(),
+                      //       transitionDuration:
+                      //           const Duration(milliseconds: 500),
+                      //       transitionsBuilder: (_, a, __, c) => FadeTransition(
+                      //             opacity: a,
+                      //             child: c,
+                      //           )),
+                      // );
                     }
                   },
                   child: Container(
-                    width: 90,
-                    height: 50,
+                    width: 144,
+                    height: 68,
                     decoration: BoxDecoration(
                         image: const DecorationImage(
                             image: AssetImage('lib/assets/images/buttun.png')),

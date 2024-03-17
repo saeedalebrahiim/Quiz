@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:bilgimizde/components/alarms_functions/no_account.dart';
+import 'package:bilgimizde/view/auth/login/forgetpw_pincode_screen.dart';
+import 'package:bilgimizde/view/auth/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
@@ -162,7 +164,73 @@ class AuthController {
       print(e);
     }
   }
+
   ///////////////
+  ///
+  static Future<void> forgetPassword(
+      {required String userName, required BuildContext context}) async {
+    final api = Quiz.create(interceptors: []);
+    try {
+      final postResult =
+          await api.apiV1AuthForgotPasswordPost(userName: userName);
+      print(postResult);
+      if (postResult.isSuccessful == true) {
+        //navigate
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (context) => ForgetPwPinCodeScreen(
+                userName: userName,
+              ),
+            ),
+            (route) => false);
+      } else {
+        //show error message
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: "Something went wrong!");
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  ///////////////
+  ///
+  static Future<void> changePassword({
+    required String? userName,
+    required String? verificationCode,
+    required String? password,
+    required String? confirmPassword,
+    required BuildContext context,
+  }) async {
+    final api = Quiz.create(interceptors: []);
+    try {
+      final postResult = await api.apiV1AuthChangePasswordPost(
+          userName: userName,
+          confirmPassword: confirmPassword,
+          password: password,
+          verificationCode: verificationCode);
+      print(postResult);
+      if (postResult.isSuccessful == true) {
+        //navigate
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (context) => LoginScreen(),
+            ),
+            (route) => false);
+      } else {
+        //show error message
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: "Something went wrong!");
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+  //////
 }
 
 
