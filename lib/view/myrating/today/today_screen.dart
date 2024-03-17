@@ -58,9 +58,9 @@ class _TodayScreenState extends State<TodayScreen> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        bottomNavigationBar: _bannerAd != null
-            ? SizedBox(height: 60, child: AdWidget(ad: _bannerAd!))
-            : SizedBox(),
+        // bottomNavigationBar: _bannerAd != null
+        //     ? SizedBox(height: 60, child: AdWidget(ad: _bannerAd!))
+        //     : SizedBox(),
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,

@@ -29,7 +29,7 @@ class AllRatingCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 342,
-      height: 64,
+      height: 58,
       decoration: BoxDecoration(
           color: isMe == true ? Colors.white.withOpacity(0.5) : null,
           image: const DecorationImage(

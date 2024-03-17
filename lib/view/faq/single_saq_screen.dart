@@ -20,36 +20,42 @@ class SingleFaqScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 15, top: 45),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Container(
-                    width: 50,
-                    height: 50,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('lib/assets/images/back.png'))),
-                  ),
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(top: 15),
-                child: Text(
-                  'Quiz FAQ',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18),
-                ),
-              ),
-              const SizedBox(
-                width: 65,
-              )
-            ]),
+            Padding(
+              padding: const EdgeInsets.only(top: 18.0),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15, top: 20),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          width: 50,
+                          height: 50,
+                          decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                      'lib/assets/images/back.png'))),
+                        ),
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 15),
+                      child: Text(
+                        'Quiz FAQ',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 65,
+                    )
+                  ]),
+            ),
             Center(
               child: Padding(
                 padding: const EdgeInsets.only(left: 22, right: 22, top: 10),
