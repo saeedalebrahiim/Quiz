@@ -151,8 +151,10 @@ class RecentTicket extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 25),
+        padding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 25),
         child: Container(
+          width: 342,
+          height: 117,
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             color: Colors.black38,
@@ -161,7 +163,7 @@ class RecentTicket extends StatelessWidget {
               bottom: BorderSide(
                 color: Colors.indigo.shade700,
                 strokeAlign: 2,
-                width: 3,
+                width: 5,
               ),
             ),
           ),
@@ -176,30 +178,34 @@ class RecentTicket extends StatelessWidget {
                       dto.subject.toString(),
                       style: const TextStyle(
                         color: Colors.white,
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     Container(
-                      padding: const EdgeInsets.all(3),
+                      padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                        color: Colors.indigo,
+                        color: dto.ticketState == 3
+                            ? Colors.indigo
+                            : Colors.transparent,
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: dto.ticketState == 1
                           ? const Icon(
                               Icons.hdr_strong,
-                              color: Colors.white,
-                              size: 14,
+                              color: Colors.indigo,
+                              size: 28,
                             )
                           : dto.ticketState == 2
                               ? const Icon(
                                   Icons.chat,
-                                  color: Colors.white,
-                                  size: 14,
+                                  color: Colors.indigo,
+                                  size: 28,
                                 )
                               : const Icon(
                                   Icons.done,
                                   color: Colors.white,
-                                  size: 14,
+                                  size: 28,
                                 ),
                     ),
                   ],
@@ -214,6 +220,7 @@ class RecentTicket extends StatelessWidget {
                       "Bilet kimliği: ",
                       style: TextStyle(
                         color: Colors.white,
+                        fontSize: 17,
                       ),
                     ),
                     Text(
@@ -221,6 +228,7 @@ class RecentTicket extends StatelessWidget {
                       style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
+                        fontSize: 17,
                       ),
                     ),
                   ],
