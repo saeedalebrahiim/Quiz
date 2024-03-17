@@ -276,9 +276,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     )
                                   : value.profile != null &&
                                           value.profile!.userPicUrl != null
-                                      ? Image(
-                                          image: NetworkImage(
-                                              value.profile!.userPicUrl!))
+                                      ? CachedNetworkImage(
+                                          imageUrl:
+                                              value.profile!.userPicUrl ?? "",
+                                          imageBuilder:
+                                              (context, imageProvider) =>
+                                                  Container(
+                                            decoration: BoxDecoration(
+                                              color: const Color.fromARGB(
+                                                  255, 10, 21, 94),
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              image: DecorationImage(
+                                                image: imageProvider,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                          placeholder: (context, url) =>
+                                              const CircularProgressIndicator(),
+                                          errorWidget: (context, url, error) =>
+                                              const Image(
+                                            image: AssetImage(
+                                                'lib/assets/images/profile.png'),
+                                          ),
+                                        )
                                       : const SizedBox(),
                               // : CachedNetworkImage(
                               //     imageUrl: (value.profile != null
