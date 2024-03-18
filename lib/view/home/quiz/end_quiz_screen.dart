@@ -220,7 +220,7 @@ class _EndQuizScreenState extends State<EndQuizScreen> {
                           height: 4,
                         ),
                         Visibility(
-                          visible: value.isTop50 == false,
+                          visible: value.isTop50 == true,
                           replacement: Column(
                             children: [
                               Lottie.asset("lib/assets/images/done.json",
@@ -367,7 +367,7 @@ class _EndQuizScreenState extends State<EndQuizScreen> {
                           ),
                         ),
                         //TODO
-                        // value.isTop50 == false
+                        // value.isTop50 == true
                         //     ? Container(
                         //         width: 150,
                         //         height: 30,
@@ -400,7 +400,7 @@ class _EndQuizScreenState extends State<EndQuizScreen> {
                 height: 5,
               ),
               Consumer<QuizState>(builder: (context, value, child) {
-                return value.isTop50 == false
+                return value.isTop50 == true
                     ? Column(
                         children: [
                           Container(
