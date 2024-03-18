@@ -386,8 +386,9 @@ class _QuizScreenState extends State<QuizScreen> {
                                       'Doğru şıkkı seç:',
                                       style: TextStyle(color: Colors.white),
                                     ),
-                                    Wrap(
-                                      direction: Axis.horizontal,
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         value.eliminateAnswers.isNotEmpty &&
                                                 value.eliminateAnswers
@@ -539,6 +540,12 @@ class _QuizScreenState extends State<QuizScreen> {
                                                   ),
                                                 ),
                                               ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
                                         value.eliminateAnswers.isNotEmpty &&
                                                 value.eliminateAnswers
                                                     .contains(3)

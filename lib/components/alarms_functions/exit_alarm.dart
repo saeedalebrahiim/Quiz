@@ -11,7 +11,7 @@ exitAlarm(BuildContext context) {
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(20)),
         width: MediaQuery.of(context).size.width - 50,
-        height: 150,
+        height: 200,
         child: Column(
           children: [
             const SizedBox(

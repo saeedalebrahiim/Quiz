@@ -294,8 +294,8 @@ class _TodayScreenState extends State<TodayScreen> {
                               borderRadius: BorderRadius.circular(21),
                             ),
                             child: CachedNetworkImage(
-                              imageUrl: value.userScore != null
-                                  ? value.userScore!.applicationUserUserPicUrl
+                              imageUrl: ProfileState.profileUse != null
+                                  ? ProfileState.profileUse!.userPicUrl
                                       .toString()
                                   : "",
                               imageBuilder: (context, imageProvider) =>

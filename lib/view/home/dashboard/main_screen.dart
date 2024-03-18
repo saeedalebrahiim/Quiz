@@ -439,7 +439,7 @@ class _MainScreenState extends State<MainScreen> {
                             ),
                           ),
                           const SizedBox(
-                            height: 28,
+                            height: 18,
                           ),
                           Consumer<ProfileState>(
                             builder: (context, value, child) => Padding(
