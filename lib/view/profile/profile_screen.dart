@@ -255,7 +255,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: Container(
                             width: 120,
                             height: 120,
-                            padding: const EdgeInsets.all(15),
+                            padding: const EdgeInsets.all(10),
                             decoration: const BoxDecoration(
                                 image: DecorationImage(
                               image: AssetImage(
@@ -286,7 +286,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               color: const Color.fromARGB(
                                                   255, 10, 21, 94),
                                               borderRadius:
-                                                  BorderRadius.circular(12),
+                                                  BorderRadius.circular(50),
                                               image: DecorationImage(
                                                 image: imageProvider,
                                                 fit: BoxFit.cover,
