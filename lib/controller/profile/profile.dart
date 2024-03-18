@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:bilgimizde/components/alarms_functions/got_coin.dart';
 import 'package:bilgimizde/view/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -142,6 +143,25 @@ class ProfileController {
         print(body["isSuccess"]);
         if (body["isSuccess"] == true) {
           context.read<ProfileState>().getUserBalance(value: body["data"]);
+        } else {}
+      });
+    } catch (e) {
+      // print(e);
+    }
+  }
+
+  static Future<void> addToBalance(
+      {required int count, required BuildContext context}) async {
+    final api = Quiz.create(interceptors: [TokenIndicator()]);
+
+    try {
+      await api.apiV1UserManagerAddScorePost(count: count).then((postResult) {
+        final body = jsonDecode(postResult.bodyString);
+        print(body);
+        print(body["isSuccess"]);
+        if (body["isSuccess"] == true) {
+          gotCoin(context);
+          getUserBalance(context: context);
         } else {}
       });
     } catch (e) {

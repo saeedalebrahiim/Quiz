@@ -88,16 +88,16 @@ class StartQuizController {
           //reort
           viewUserQuizReport(quizId: userQuizId, context: context);
         } else {
-          Navigator.of(context).pushReplacement(
-            PageRouteBuilder(
-                pageBuilder: (_, __, ___) =>
-                    QuizScreen(index: (questionNumber + 1)),
-                transitionDuration: const Duration(milliseconds: 500),
-                transitionsBuilder: (_, a, __, c) => FadeTransition(
-                      opacity: a,
-                      child: c,
-                    )),
-          );
+          // Navigator.of(context).pushReplacement(
+          //   PageRouteBuilder(
+          //       pageBuilder: (_, __, ___) =>
+          //           QuizScreen(index: (questionNumber + 1)),
+          //       transitionDuration: const Duration(milliseconds: 500),
+          //       transitionsBuilder: (_, a, __, c) => FadeTransition(
+          //             opacity: a,
+          //             child: c,
+          //           )),
+          // );
         }
         // }
       });

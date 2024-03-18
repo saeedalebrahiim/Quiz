@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bilgimizde/components/coin_packages.dart';
+import 'package:bilgimizde/controller/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:intl/intl.dart';
@@ -175,9 +176,16 @@ class _BuyCoinScreenState extends State<BuyCoinScreen> {
                         coinCount: prod.title,
                         price: prod.price,
                         onPress: () {
-                          _iap.buyConsumable(
+                          _iap
+                              .buyConsumable(
                             purchaseParam: PurchaseParam(productDetails: prod),
-                          );
+                          )
+                              .then((value) {
+                            ProfileController.addToBalance(
+                              context: context,
+                              count: int.parse(prod.title),
+                            );
+                          });
                         },
                       ),
                     ],

@@ -230,6 +230,30 @@ class AuthController {
       print(e);
     }
   }
+
+  //////
+  ///
+  static Future<void> isAuth({
+    required BuildContext context,
+  }) async {
+    final api = Quiz.create(interceptors: [TokenIndicator()]);
+    try {
+      final postResult = await api.apiV1AuthIsAuthenticatedGet();
+      print(postResult);
+      if (postResult.isSuccessful == true) {
+        //navigate
+      } else {
+        //show error message
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (context) => LoginScreen(),
+            ),
+            (route) => false);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
   //////
 }
 

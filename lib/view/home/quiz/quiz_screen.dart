@@ -723,12 +723,35 @@ class _QuizScreenState extends State<QuizScreen> {
                                                           questionNumber:
                                                               widget.index,
                                                           context: context);
+
                                                   context
                                                       .read<QuizState>()
                                                       .removePercentHint();
                                                   context
                                                       .read<QuizState>()
                                                       .removeEliminateAnswers();
+                                                  if (isLast) {
+                                                    Navigator.of(context)
+                                                        .pushReplacement(
+                                                      PageRouteBuilder(
+                                                          pageBuilder: (_, __,
+                                                                  ___) =>
+                                                              QuizScreen(
+                                                                  index: (widget
+                                                                          .index +
+                                                                      1)),
+                                                          transitionDuration:
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      500),
+                                                          transitionsBuilder:
+                                                              (_, a, __, c) =>
+                                                                  FadeTransition(
+                                                                    opacity: a,
+                                                                    child: c,
+                                                                  )),
+                                                    );
+                                                  } else {}
                                                 },
                                                 fillColor: const Color.fromARGB(
                                                     255, 8, 194, 104),

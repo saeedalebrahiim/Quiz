@@ -1,5 +1,6 @@
 import 'package:bilgimizde/components/alarms_functions/no_coin.dart';
 import 'package:bilgimizde/components/alarms_functions/wifi_alarm.dart';
+import 'package:bilgimizde/controller/auth/auth_controller.dart';
 import 'package:bilgimizde/provider/quiz.dart';
 import 'package:bilgimizde/services/internet_listener.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -40,7 +41,8 @@ class _MainScreenState extends State<MainScreen> {
     checkWifi();
   }
 
-  checkWifi() {
+  checkWifi() async {
+    await AuthController.isAuth(context: context);
     ConnectionStatusListener().checkConnection().then((value) {
       if (!value) {
         wifiAlarm(context);
@@ -174,8 +176,7 @@ class _MainScreenState extends State<MainScreen> {
                               imageBuilder: (context, imageProvider) =>
                                   Container(
                                 decoration: BoxDecoration(
-                                  color:
-                                      const Color.fromARGB(255, 10, 21, 94),
+                                  color: const Color.fromARGB(255, 10, 21, 94),
                                   borderRadius: BorderRadius.circular(30),
                                   image: DecorationImage(
                                     image: imageProvider,
@@ -185,16 +186,15 @@ class _MainScreenState extends State<MainScreen> {
                               ),
                               placeholder: (context, url) =>
                                   const CircularProgressIndicator(),
-                              errorWidget: (context, url, error) =>
-                                  const Image(
-                                image: AssetImage(
-                                    'lib/assets/images/profile.png'),
+                              errorWidget: (context, url, error) => const Image(
+                                image:
+                                    AssetImage('lib/assets/images/profile.png'),
                               ),
                             ),
                           ),
                         ),
                       ),
-        
+
                       //  Container(
                       //   decoration: BoxDecoration(
                       //       color: const Color.fromARGB(255, 10, 21, 94),
@@ -213,8 +213,7 @@ class _MainScreenState extends State<MainScreen> {
                     Navigator.of(context).push(
                       PageRouteBuilder(
                           pageBuilder: (_, __, ___) => const BuyCoinScreen(),
-                          transitionDuration:
-                              const Duration(milliseconds: 500),
+                          transitionDuration: const Duration(milliseconds: 500),
                           transitionsBuilder: (_, a, __, c) => FadeTransition(
                                 opacity: a,
                                 child: c,
@@ -231,8 +230,8 @@ class _MainScreenState extends State<MainScreen> {
                       ),
                       Consumer<ProfileState>(
                         builder: (context, value, child) {
-                          var _formattedNumber = NumberFormat.compact()
-                              .format(value.userBalance);
+                          var _formattedNumber =
+                              NumberFormat.compact().format(value.userBalance);
                           return Text(
                             _formattedNumber,
                             //  value.userBalance.toString(),
@@ -265,19 +264,19 @@ class _MainScreenState extends State<MainScreen> {
                               value.yOffset = 0;
                               value.isDrawerOpen = false;
                               drawerVisible = false;
-        
+
                               context.read<DrawerState>().changeVisibleTwo();
                             },
                           )
                         : GestureDetector(
-                            child: Image.asset(
-                                'lib/assets/images/appbaricon.png'),
+                            child:
+                                Image.asset('lib/assets/images/appbaricon.png'),
                             onTap: () {
                               value.xOffset = 220;
                               value.yOffset = 0;
                               value.isDrawerOpen = true;
                               drawerVisible = true;
-        
+
                               context.read<DrawerState>().changeVisible();
                             },
                           ),
@@ -319,8 +318,7 @@ class _MainScreenState extends State<MainScreen> {
                               Text(
                                 'iyi haberler',
                                 style: TextStyle(
-                                    color: Colors.grey.shade300,
-                                    fontSize: 16),
+                                    color: Colors.grey.shade300, fontSize: 16),
                               ),
                               const SizedBox(
                                 width: 10,
@@ -366,7 +364,7 @@ class _MainScreenState extends State<MainScreen> {
                                       const Icon(Icons.error),
                                 ),
                               ),
-        
+
                               // Container(
                               //   width: 300,
                               //   height: 130,
@@ -390,8 +388,8 @@ class _MainScreenState extends State<MainScreen> {
                                       _showRewardedAd();
                                     },
                                     child: Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 10),
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 10),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
@@ -456,11 +454,9 @@ class _MainScreenState extends State<MainScreen> {
                                           image: AssetImage(
                                               'lib/assets/images/questionbg.png'),
                                           fit: BoxFit.fill),
-                                      borderRadius:
-                                          BorderRadius.circular(25)),
+                                      borderRadius: BorderRadius.circular(25)),
                                   child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       AnimationConfiguration.synchronized(
                                         duration:
@@ -493,9 +489,8 @@ class _MainScreenState extends State<MainScreen> {
                                                   context
                                                       .read<QuizState>()
                                                       .resetCount();
-                                                  StartQuizController
-                                                      .startQuiz(
-                                                          context: context);
+                                                  StartQuizController.startQuiz(
+                                                      context: context);
                                                   ProfileController
                                                       .getUserBalance(
                                                           context: context);

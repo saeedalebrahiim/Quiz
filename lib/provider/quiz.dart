@@ -1,10 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:bilgimizde/model/dto/quiz.dart';
 
 class QuizState extends ChangeNotifier {
-
-
   QuizDto? quiz;
   int correctCount = 0;
   int falseCount = 0;
@@ -18,6 +15,8 @@ class QuizState extends ChangeNotifier {
   bool usedPercentage = false;
   bool usedEliminate = false;
 
+  List<AnswersDto> answers = [];
+
   getQuiz({required QuizDto value}) {
     quiz = value;
     notifyListeners();
@@ -29,6 +28,8 @@ class QuizState extends ChangeNotifier {
     quiz = null;
     usedPercentage = false;
     usedEliminate = false;
+    answers.clear();
+    answers = [];
     notifyListeners();
   }
 
@@ -100,4 +101,18 @@ class UserPercentageHint {
       id: json['id'],
     );
   }
+}
+
+class AnswersDto {
+  AnswersDto({
+    required this.userQuizId,
+    required this.userDQuizId,
+    required this.questionId,
+    required this.selectedAnswer,
+  });
+
+  final int userQuizId;
+  final int userDQuizId;
+  final int questionId;
+  final int selectedAnswer;
 }
