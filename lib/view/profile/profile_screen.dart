@@ -497,8 +497,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           width: 342,
                           height: 64,
                           child: TextField(
-                              readOnly: value.profile!.iban.isNotEmpty &&
-                                  value.profile!.iban != "",
+                              readOnly: value.profile!.iban.isNotEmpty,
                               style: const TextStyle(color: Colors.white),
                               controller: _ibanController,
                               decoration: const InputDecoration()),
