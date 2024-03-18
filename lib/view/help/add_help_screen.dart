@@ -81,8 +81,8 @@ class AddHelpScreen extends StatelessWidget {
                 ),
                 Center(
                   child: SizedBox(
-                    width: 240,
-                    height: 45,
+                    width: 316,
+                    height: 64,
                     child: TextFormField(
                         controller: _titleController,
                         decoration: InputDecoration(
@@ -117,8 +117,7 @@ class AddHelpScreen extends StatelessWidget {
                 ),
                 Center(
                   child: SizedBox(
-                    width: 240,
-                    height: 140,
+                    width: 316,
                     child: TextFormField(
                         maxLines: 6,
                         controller: _descController,
@@ -141,7 +140,8 @@ class AddHelpScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: SizedBox(
-            width: 300,
+            width: 316,
+            height: 64,
             child: RawMaterialButton(
               onPressed: () {
                 //TODO add ticket
