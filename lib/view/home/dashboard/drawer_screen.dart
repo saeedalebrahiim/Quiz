@@ -389,10 +389,10 @@ class BackgroundPainter extends CustomPainter {
       BlurStyle.normal,
       30,
     );
-    drawShape1(canvas, size, paint, Color.fromARGB(255, 63, 70, 202));
-    drawShape2(canvas, size, paint, const Color.fromARGB(255, 103, 84, 208));
-    drawShape3(canvas, size, paint, const Color.fromARGB(255, 103, 84, 208));
-    drawShape4(canvas, size, paint, const Color.fromARGB(255, 152, 58, 180));
+    drawShape1(canvas, size, paint, Color.fromARGB(105, 63, 70, 202));
+    drawShape2(canvas, size, paint, Color.fromARGB(123, 103, 84, 208));
+    drawShape3(canvas, size, paint, const Color.fromARGB(155, 103, 84, 208));
+    drawShape4(canvas, size, paint, const Color.fromARGB(155, 152, 58, 180));
   }
 
   @override
@@ -412,7 +412,7 @@ class BackgroundPainter extends CustomPainter {
     path.moveTo(size.width, 0);
     path.quadraticBezierTo(
       size.width,
-      -400,
+      -500,
       size.width,
       0,
     );
@@ -433,7 +433,7 @@ class BackgroundPainter extends CustomPainter {
     path.moveTo(-5, -5);
     path.quadraticBezierTo(
       0,
-      -300,
+      -400,
       0,
       0,
     );

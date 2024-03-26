@@ -31,6 +31,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   RewardedAd? _rewardedAd;
+  bool tapedPlay = false;
 
   @override
   void initState() {
@@ -395,8 +396,9 @@ class _MainScreenState extends State<MainScreen> {
                               child: SlideAnimation(
                                 verticalOffset: 50.0,
                                 child: FadeInAnimation(
-                                  child: RawMaterialButton(
-                                    onPressed: () {
+                                  child: InkWell(
+                                    onDoubleTap: () {},
+                                    onTap: () {
                                       _showRewardedAd();
                                     },
                                     child: Padding(
@@ -477,6 +479,7 @@ class _MainScreenState extends State<MainScreen> {
                                           verticalOffset: 50.0,
                                           child: FadeInAnimation(
                                             child: InkWell(
+                                              onDoubleTap: () {},
                                               onTap: () {
                                                 // Navigator.of(context).push(
                                                 //   PageRouteBuilder(
@@ -490,24 +493,34 @@ class _MainScreenState extends State<MainScreen> {
                                                 //             child: c,
                                                 //           )),
                                                 // );
-                                                ConnectionStatusListener()
-                                                    .checkConnection()
-                                                    .then((value) {
-                                                  if (!value) {
-                                                    wifiAlarm(context);
+                                                if (!tapedPlay) {
+                                                  print("tapped $tapedPlay");
+                                                  tapedPlay = true;
+                                                  print("tapped $tapedPlay");
+                                                  ConnectionStatusListener()
+                                                      .checkConnection()
+                                                      .then((value) {
+                                                    if (!value) {
+                                                      wifiAlarm(context);
+                                                    }
+                                                  });
+                                                  if (value.userBalance >= 2) {
+                                                    context
+                                                        .read<QuizState>()
+                                                        .resetCount();
+                                                    StartQuizController
+                                                            .startQuiz(
+                                                                context:
+                                                                    context)
+                                                        .then((value) {
+                                                      ProfileController
+                                                          .getUserBalance(
+                                                              context: context);
+                                                      tapedPlay = false;
+                                                    });
+                                                  } else {
+                                                    noCoinAlert(context);
                                                   }
-                                                });
-                                                if (value.userBalance >= 2) {
-                                                  context
-                                                      .read<QuizState>()
-                                                      .resetCount();
-                                                  StartQuizController.startQuiz(
-                                                      context: context);
-                                                  ProfileController
-                                                      .getUserBalance(
-                                                          context: context);
-                                                } else {
-                                                  noCoinAlert(context);
                                                 }
                                               },
                                               child: Container(

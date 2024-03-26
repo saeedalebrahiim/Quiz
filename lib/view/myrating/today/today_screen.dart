@@ -288,6 +288,7 @@ class _TodayScreenState extends State<TodayScreen> {
                         Container(
                           width: 60,
                           height: 60,
+                          padding: const EdgeInsets.all(6),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(21),
                               color: Colors.black),
@@ -295,7 +296,7 @@ class _TodayScreenState extends State<TodayScreen> {
                             width: 50,
                             height: 50,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(21),
+                              borderRadius: BorderRadius.circular(18),
                             ),
                             child: CachedNetworkImage(
                               imageUrl: ProfileState.profileUse != null
@@ -306,7 +307,7 @@ class _TodayScreenState extends State<TodayScreen> {
                                   Container(
                                 decoration: BoxDecoration(
                                   color: const Color.fromARGB(255, 10, 21, 94),
-                                  borderRadius: BorderRadius.circular(30),
+                                  borderRadius: BorderRadius.circular(18),
                                   image: DecorationImage(
                                     image: imageProvider,
                                     fit: BoxFit.cover,
@@ -350,7 +351,7 @@ class _TodayScreenState extends State<TodayScreen> {
                                     size: 38,
                                   ),
                                   Text(
-                                    '${value.userScore != null ? value.userScore!.changes : "0"} +',
+                                    '${value.userScore!.changes.isNegative ? "" : "+"} ${value.userScore != null ? value.userScore!.changes : "0"}',
                                     style: TextStyle(
                                         color: value.userScore != null
                                             ? value.userScore!.changes
@@ -396,14 +397,23 @@ class _TodayScreenState extends State<TodayScreen> {
                       width: 50,
                     ),
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         CountTimer(
                           format: CountTimerFormat.hoursMinutesSeconds,
-                          timeTextStyle:
-                              TextStyle(color: Colors.white, fontSize: 20),
-                          colonsTextStyle: TextStyle(color: Colors.white),
-                          descriptionTextStyle: TextStyle(color: Colors.white),
+                          timeTextStyle: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          colonsTextStyle: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          descriptionTextStyle:
+                              const TextStyle(color: Colors.white),
                           enableDescriptions: false,
+                          spacerWidth: 2,
                           controller: CountTimerController(
                             endTime: DateTime(
                                 DateTime.now().year,
@@ -427,7 +437,7 @@ class _TodayScreenState extends State<TodayScreen> {
                           },
                         ),
                         const Text(
-                          'Time left to grant reward',
+                          'İlerleyenler ödülüne kalan süre',
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 10,

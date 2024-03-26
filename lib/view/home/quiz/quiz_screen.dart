@@ -34,6 +34,8 @@ class _QuizScreenState extends State<QuizScreen> {
   int selectedIndex = 0;
   bool isSelectedAny = false;
 
+  bool nextTaped = false;
+
   late final AppLifecycleListener _listener;
   final List<String> _states = <String>[];
   late AppLifecycleState? _state;
@@ -201,6 +203,17 @@ class _QuizScreenState extends State<QuizScreen> {
                           ),
                         ),
                       ),
+                      const SizedBox(
+                        width: 23,
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 20, left: 18, right: 8),
+                          child: Icon(
+                            Icons.timer,
+                            color: Colors.white,
+                            size: 24,
+                          ),
+                        ),
+                      ),
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.only(top: 20),
@@ -208,17 +221,12 @@ class _QuizScreenState extends State<QuizScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              const Icon(
-                                Icons.timer,
-                                color: Colors.white,
-                                size: 24,
-                              ),
                               // Text(
                               //   "${secondsElapsed.toString()} s",
                               //   style: const TextStyle(color: Colors.white),
                               // ),
                               Countdown(
-                                seconds: 30,
+                                seconds: 20,
                                 build: (BuildContext context, double time) =>
                                     Row(
                                   children: [
@@ -245,7 +253,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                               : time > 9
                                                   ? Colors.amber
                                                   : Colors.red,
-                                          value: (time / 30),
+                                          value: (time / 20),
                                         ),
                                       ),
                                     )
@@ -278,29 +286,36 @@ class _QuizScreenState extends State<QuizScreen> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 18.0, right: 15),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Image.asset(
-                              'lib/assets/images/coin.png',
-                              width: 25,
-                              height: 25,
-                            ),
-                            Consumer<ProfileState>(
-                              builder: (context, value, child) {
-                                var _formattedNumber = NumberFormat.compact()
-                                    .format(value.userBalance);
-                                return Text(
-                                  _formattedNumber,
-                                  //  value.userBalance.toString(),
-                                  style: const TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600),
-                                );
-                              },
-                            ),
-                          ],
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: const Color.fromRGBO(8, 19, 57, 0.55),
+                            borderRadius: BorderRadius.circular(18),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Image.asset(
+                                'lib/assets/images/coin.png',
+                                width: 25,
+                                height: 25,
+                              ),
+                              Consumer<ProfileState>(
+                                builder: (context, value, child) {
+                                  var _formattedNumber = NumberFormat.compact()
+                                      .format(value.userBalance);
+                                  return Text(
+                                    _formattedNumber,
+                                    //  value.userBalance.toString(),
+                                    style: const TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w600),
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -317,7 +332,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       Flexible(
                         flex: 2,
                         child: AnimationConfiguration.synchronized(
-                          duration: const Duration(milliseconds: 2000),
+                          duration: const Duration(milliseconds: 700),
                           child: SlideAnimation(
                             verticalOffset: 500.0,
                             child: FadeInAnimation(
@@ -359,7 +374,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       Flexible(
                         flex: 5,
                         child: AnimationConfiguration.synchronized(
-                          duration: const Duration(milliseconds: 1000),
+                          duration: const Duration(milliseconds: 500),
                           child: SlideAnimation(
                             verticalOffset: 200.0,
                             child: FadeInAnimation(
@@ -374,17 +389,33 @@ class _QuizScreenState extends State<QuizScreen> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
-                                      "${widget.index + 1} / ${value.quiz!.quizQuestions.length}",
-                                      style:
-                                          const TextStyle(color: Colors.white),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "${widget.index + 1} ",
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          "/ ${value.quiz!.quizQuestions.length}",
+                                          style: const TextStyle(
+                                            color: Color.fromARGB(
+                                                145, 255, 255, 255),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                     const SizedBox(
                                       height: 25,
                                     ),
                                     const Text(
                                       'Doğru şıkkı seç:',
-                                      style: TextStyle(color: Colors.white),
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
                                     ),
                                     Row(
                                       mainAxisAlignment:
@@ -399,8 +430,8 @@ class _QuizScreenState extends State<QuizScreen> {
                                               )
                                             : IgnorePointer(
                                                 ignoring: isSelectedAny,
-                                                child: RawMaterialButton(
-                                                  onPressed: () {
+                                                child: InkWell(
+                                                  onTap: () {
                                                     print("wt");
                                                     setState(() {
                                                       isSelectedAny = true;
@@ -427,9 +458,9 @@ class _QuizScreenState extends State<QuizScreen> {
                                                         .stop();
                                                   },
                                                   child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            3.0),
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
+                                                        horizontal: 3.0),
                                                     child: AnswerCard(
                                                       helpPercentage: value
                                                                   .percentHint !=
@@ -474,11 +505,12 @@ class _QuizScreenState extends State<QuizScreen> {
                                               )
                                             : Padding(
                                                 padding:
-                                                    const EdgeInsets.all(3.0),
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 3.0),
                                                 child: IgnorePointer(
                                                   ignoring: isSelectedAny,
-                                                  child: RawMaterialButton(
-                                                    onPressed: () {
+                                                  child: InkWell(
+                                                    onTap: () {
                                                       setState(() {
                                                         isSelectedAny = true;
 
@@ -555,11 +587,12 @@ class _QuizScreenState extends State<QuizScreen> {
                                               )
                                             : Padding(
                                                 padding:
-                                                    const EdgeInsets.all(3.0),
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 3.0),
                                                 child: IgnorePointer(
                                                   ignoring: isSelectedAny,
-                                                  child: RawMaterialButton(
-                                                    onPressed: () {
+                                                  child: InkWell(
+                                                    onTap: () {
                                                       setState(() {
                                                         isSelectedAny = true;
 
@@ -630,11 +663,12 @@ class _QuizScreenState extends State<QuizScreen> {
                                               )
                                             : Padding(
                                                 padding:
-                                                    const EdgeInsets.all(3.0),
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 3.0),
                                                 child: IgnorePointer(
                                                   ignoring: isSelectedAny,
-                                                  child: RawMaterialButton(
-                                                    onPressed: () {
+                                                  child: InkWell(
+                                                    onTap: () {
                                                       setState(() {
                                                         isSelectedAny = true;
 
@@ -707,58 +741,76 @@ class _QuizScreenState extends State<QuizScreen> {
                                               child: RawMaterialButton(
                                                 onPressed: () {
                                                   //TODO everting should be on report
-                                                  bool isLast =
-                                                      (widget.index + 1) <
-                                                          value
-                                                              .quiz!
-                                                              .quizQuestions
-                                                              .length;
-                                                  StartQuizController
-                                                      .addAwnswer(
-                                                          userQuizId: value
-                                                              .quiz!.quizId,
-                                                          userDQuizId: value
-                                                              .quiz!.dQuizId,
-                                                          isLast: !isLast,
-                                                          questionId: value
-                                                              .quiz!
-                                                              .quizQuestions[
-                                                                  widget.index]
-                                                              .questionId,
-                                                          selectedAnswer:
-                                                              selectedIndex,
-                                                          questionNumber:
-                                                              widget.index,
-                                                          context: context);
+                                                  if (!nextTaped) {
+                                                    nextTaped = true;
+                                                    bool isLast =
+                                                        (widget.index + 1) <
+                                                            value
+                                                                .quiz!
+                                                                .quizQuestions
+                                                                .length;
+                                                    StartQuizController
+                                                        .addAwnswer(
+                                                            userQuizId: value
+                                                                .quiz!.quizId,
+                                                            userDQuizId: value
+                                                                .quiz!.dQuizId,
+                                                            isLast: !isLast,
+                                                            questionId: value
+                                                                .quiz!
+                                                                .quizQuestions[
+                                                                    widget
+                                                                        .index]
+                                                                .questionId,
+                                                            selectedAnswer:
+                                                                selectedIndex,
+                                                            questionNumber:
+                                                                widget.index,
+                                                            context: context);
 
-                                                  context
-                                                      .read<QuizState>()
-                                                      .removePercentHint();
-                                                  context
-                                                      .read<QuizState>()
-                                                      .removeEliminateAnswers();
-                                                  if (isLast) {
-                                                    Navigator.of(context)
-                                                        .pushReplacement(
-                                                      PageRouteBuilder(
-                                                          pageBuilder: (_, __,
-                                                                  ___) =>
-                                                              QuizScreen(
-                                                                  index: (widget
-                                                                          .index +
-                                                                      1)),
-                                                          transitionDuration:
-                                                              const Duration(
-                                                                  milliseconds:
-                                                                      500),
-                                                          transitionsBuilder:
-                                                              (_, a, __, c) =>
-                                                                  FadeTransition(
-                                                                    opacity: a,
-                                                                    child: c,
-                                                                  )),
-                                                    );
-                                                  } else {}
+                                                    context
+                                                        .read<QuizState>()
+                                                        .removePercentHint();
+                                                    context
+                                                        .read<QuizState>()
+                                                        .removeEliminateAnswers();
+                                                    if (isLast) {
+                                                      Navigator.of(context)
+                                                          .pushReplacement(
+                                                        PageRouteBuilder(
+                                                            pageBuilder: (_, __,
+                                                                    ___) =>
+                                                                QuizScreen(
+                                                                    index: (widget
+                                                                            .index +
+                                                                        1)),
+                                                            transitionDuration:
+                                                                const Duration(
+                                                                    milliseconds:
+                                                                        500),
+                                                            transitionsBuilder: (_,
+                                                                    a, __, c) =>
+                                                                FadeTransition(
+                                                                  opacity: a,
+                                                                  child: c,
+                                                                )),
+                                                      );
+                                                    } else {
+                                                      showDialog(
+                                                        context: context,
+                                                        builder: (context) =>
+                                                            AlertDialog(
+                                                          content: SizedBox(
+                                                            height: 500,
+                                                            child: Center(
+                                                              child:
+                                                                  CircularProgressIndicator(),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    }
+                                                  }
                                                 },
                                                 fillColor: const Color.fromARGB(
                                                     255, 8, 194, 104),
@@ -774,6 +826,8 @@ class _QuizScreenState extends State<QuizScreen> {
                                                   "Sıradaki",
                                                   style: TextStyle(
                                                       color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                       fontSize: 20),
                                                 ),
                                               ),

@@ -1,3 +1,4 @@
+import 'package:bilgimizde/components/alarms_functions/no_coin.dart';
 import 'package:bilgimizde/controller/Quiz/start_quiz.dart';
 import 'package:bilgimizde/controller/profile/profile.dart';
 import 'package:bilgimizde/provider/quiz.dart';
@@ -20,6 +21,7 @@ class EndQuizScreen extends StatefulWidget {
 }
 
 class _EndQuizScreenState extends State<EndQuizScreen> {
+  bool tapedPlay = false;
   @override
   void initState() {
     getData();
@@ -54,16 +56,18 @@ class _EndQuizScreenState extends State<EndQuizScreen> {
                       child: InkWell(
                         onTap: () {
                           // Navigator.pop(context);
-                          Navigator.of(context).push(
+                          Navigator.of(context).pushAndRemoveUntil(
                             PageRouteBuilder(
-                                pageBuilder: (_, __, ___) => const HomeScreen(),
-                                transitionDuration:
-                                    const Duration(milliseconds: 500),
-                                transitionsBuilder: (_, a, __, c) =>
-                                    FadeTransition(
-                                      opacity: a,
-                                      child: c,
-                                    )),
+                              pageBuilder: (_, __, ___) => const HomeScreen(),
+                              transitionDuration:
+                                  const Duration(milliseconds: 500),
+                              transitionsBuilder: (_, a, __, c) =>
+                                  FadeTransition(
+                                opacity: a,
+                                child: c,
+                              ),
+                            ),
+                            (route) => false,
                           );
                         },
                         child: Container(
@@ -71,118 +75,11 @@ class _EndQuizScreenState extends State<EndQuizScreen> {
                           height: 40,
                           decoration: BoxDecoration(
                               image: const DecorationImage(
-                                image: AssetImage(
-                                    'lib/assets/images/appbaricon.png'),
+                                image: AssetImage('lib/assets/images/back.png'),
                               ),
                               color: const Color.fromARGB(255, 10, 21, 94),
                               borderRadius: BorderRadius.circular(30)),
                         ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 23),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            PageRouteBuilder(
-                                pageBuilder: (_, __, ___) =>
-                                    const BuyCoinScreen(),
-                                transitionDuration:
-                                    const Duration(milliseconds: 500),
-                                transitionsBuilder: (_, a, __, c) =>
-                                    FadeTransition(
-                                      opacity: a,
-                                      child: c,
-                                    )),
-                          );
-                        },
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Image.asset(
-                              'lib/assets/images/coin.png',
-                              width: 25,
-                              height: 25,
-                            ),
-                            Consumer<ProfileState>(
-                              builder: (context, value, child) {
-                                var _formattedNumber = NumberFormat.compact()
-                                    .format(value.userBalance);
-                                return Text(
-                                  _formattedNumber,
-                                  //  value.userBalance.toString(),
-                                  style: const TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600),
-                                );
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20, right: 15),
-                      child: InkWell(
-                        onTap: () {
-                          ProfileController.getProfile(context: context);
-                          Navigator.of(context).push(
-                            PageRouteBuilder(
-                                pageBuilder: (_, __, ___) =>
-                                    const ProfileScreen(),
-                                transitionDuration:
-                                    const Duration(milliseconds: 500),
-                                transitionsBuilder: (_, a, __, c) =>
-                                    FadeTransition(
-                                      opacity: a,
-                                      child: c,
-                                    )),
-                          );
-                        },
-                        child: Consumer<ProfileState>(
-                          builder: (context, value, child) => Container(
-                            decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 10, 21, 94),
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            child: CachedNetworkImage(
-                              width: 45,
-                              height: 45,
-                              imageUrl: value.profile != null &&
-                                      value.profile!.userPicUrl != null
-                                  ? value.profile!.userPicUrl!
-                                  : "",
-                              imageBuilder: (context, imageProvider) =>
-                                  Container(
-                                decoration: BoxDecoration(
-                                  color: const Color.fromARGB(255, 10, 21, 94),
-                                  borderRadius: BorderRadius.circular(30),
-                                  image: DecorationImage(
-                                    image: imageProvider,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              placeholder: (context, url) =>
-                                  const CircularProgressIndicator(),
-                              errorWidget: (context, url, error) => const Image(
-                                image:
-                                    AssetImage('lib/assets/images/profile.png'),
-                              ),
-                            ),
-                          ),
-                        ),
-
-                        //  Container(
-                        //   decoration: BoxDecoration(
-                        //       color: const Color.fromARGB(255, 10, 21, 94),
-                        //       borderRadius: BorderRadius.circular(30)),
-                        //   child: const Center(
-                        //     child: Image(
-                        //   image: AssetImage('lib/assets/images/profile.png'),
-                        // )),
-                        // ),
                       ),
                     ),
                   ],
@@ -436,37 +333,55 @@ class _EndQuizScreenState extends State<EndQuizScreen> {
               const SizedBox(
                 height: 10,
               ),
-              InkWell(
-                onTap: () {
-                  StartQuizController.startQuiz(context: context);
-                },
-                child: Container(
-                  width: 221,
-                  height: 48,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: const Color.fromARGB(255, 86, 196, 90),
-                  ),
-                  child: const Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.refresh,
-                          color: Colors.white,
-                          size: 20,
-                        ),
-                        SizedBox(
-                          width: 3,
-                        ),
-                        Text(
-                          'Again',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 16),
-                        ),
-                      ],
+              Consumer<ProfileState>(
+                builder: (context, value, child) => InkWell(
+                  onTap: () {
+                    // StartQuizController.startQuiz(context: context);
+                    if (!tapedPlay) {
+                      print("tapped $tapedPlay");
+                      tapedPlay = true;
+                      print("tapped $tapedPlay");
+
+                      if (value.userBalance >= 2) {
+                        context.read<QuizState>().resetCount();
+                        StartQuizController.startQuiz(context: context)
+                            .then((value) {
+                          ProfileController.getUserBalance(context: context);
+                          tapedPlay = false;
+                        });
+                      } else {
+                        noCoinAlert(context);
+                      }
+                    }
+                  },
+                  child: Container(
+                    width: 221,
+                    height: 48,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: const Color.fromARGB(255, 86, 196, 90),
+                    ),
+                    child: const Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.refresh,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                          SizedBox(
+                            width: 3,
+                          ),
+                          Text(
+                            'Again',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 16),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
