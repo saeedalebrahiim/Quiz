@@ -162,9 +162,12 @@ class _MainScreenState extends State<MainScreen> {
                         builder: (context, value, child) => Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 30),
                           child: Container(
+                            width: 56,
+                            height: 56,
+                            padding: const EdgeInsets.all(6),
                             decoration: BoxDecoration(
                               color: const Color.fromARGB(255, 10, 21, 94),
-                              borderRadius: BorderRadius.circular(30),
+                              borderRadius: BorderRadius.circular(18),
                             ),
                             child: CachedNetworkImage(
                               width: 50,
@@ -177,7 +180,7 @@ class _MainScreenState extends State<MainScreen> {
                                   Container(
                                 decoration: BoxDecoration(
                                   color: const Color.fromARGB(255, 10, 21, 94),
-                                  borderRadius: BorderRadius.circular(30),
+                                  borderRadius: BorderRadius.circular(18),
                                   image: DecorationImage(
                                     image: imageProvider,
                                     fit: BoxFit.cover,
@@ -250,9 +253,11 @@ class _MainScreenState extends State<MainScreen> {
                 leading: Padding(
                   padding: const EdgeInsets.all(6.0),
                   child: Container(
+                    width: 56,
+                    height: 56,
                     decoration: BoxDecoration(
                         color: const Color.fromARGB(255, 10, 21, 94),
-                        borderRadius: BorderRadius.circular(30)),
+                        borderRadius: BorderRadius.circular(18)),
                     child: value.isDrawerOpen
                         ? GestureDetector(
                             child: const Image(
@@ -291,6 +296,13 @@ class _MainScreenState extends State<MainScreen> {
                     ..rotateZ(value.isDrawerOpen ? -50 : 0),
               duration: const Duration(milliseconds: 200),
               decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                    "lib/assets/images/mainbg.png",
+                  ),
+                  alignment: Alignment.bottomCenter,
+                  fit: BoxFit.fitWidth,
+                ),
                 borderRadius: value.isDrawerOpen
                     ? BorderRadius.circular(40)
                     : BorderRadius.circular(0),
@@ -504,16 +516,16 @@ class _MainScreenState extends State<MainScreen> {
                                                 decoration: const BoxDecoration(
                                                     image: DecorationImage(
                                                         image: AssetImage(
-                                                            'lib/assets/images/mainbuttun.png'),
+                                                            'lib/assets/images/main-play.png'),
                                                         fit: BoxFit.fill)),
-                                                child: const Center(
-                                                    child: Text(
-                                                  'kelimeyi tahmin et',
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                )),
+                                                // child: const Center(
+                                                //     child: Text(
+                                                //   'kelimeyi tahmin et',
+                                                //   style: TextStyle(
+                                                //       color: Colors.white,
+                                                //       fontWeight:
+                                                //           FontWeight.bold),
+                                                // )),
                                               ),
                                             ),
                                           ),
@@ -562,17 +574,18 @@ class _MainScreenState extends State<MainScreen> {
                               ),
                             ),
                           ),
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height - 560,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                image: const DecorationImage(
-                                  image: AssetImage(
-                                      'lib/assets/images/mainbg.png'),
-                                  fit: BoxFit.fitWidth,
-                                )),
-                          )
+                          //here was money bg
+                          // Container(
+                          //   width: MediaQuery.of(context).size.width,
+                          //   height: MediaQuery.of(context).size.height - 560,
+                          //   decoration: BoxDecoration(
+                          //       borderRadius: BorderRadius.circular(10),
+                          //       image: const DecorationImage(
+                          //         image: AssetImage(
+                          //             'lib/assets/images/mainbg.png'),
+                          //         fit: BoxFit.fitWidth,
+                          //       )),
+                          // )
                         ],
                       ),
                     ),

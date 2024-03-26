@@ -389,9 +389,10 @@ class BackgroundPainter extends CustomPainter {
       BlurStyle.normal,
       30,
     );
-    drawShape1(canvas, size, paint, const Color.fromARGB(255, 6, 11, 111));
-    drawShape2(canvas, size, paint, const Color.fromARGB(255, 0, 3, 66));
-    drawShape3(canvas, size, paint, const Color.fromARGB(255, 58, 65, 180));
+    drawShape1(canvas, size, paint, Color.fromARGB(255, 63, 70, 202));
+    drawShape2(canvas, size, paint, const Color.fromARGB(255, 103, 84, 208));
+    drawShape3(canvas, size, paint, const Color.fromARGB(255, 103, 84, 208));
+    drawShape4(canvas, size, paint, const Color.fromARGB(255, 152, 58, 180));
   }
 
   @override
@@ -410,10 +411,10 @@ class BackgroundPainter extends CustomPainter {
 
     path.moveTo(size.width, 0);
     path.quadraticBezierTo(
-      size.width / 2,
-      size.height / 2,
-      -100,
-      size.height / 4,
+      size.width,
+      -400,
+      size.width,
+      0,
     );
 
     final offset = getOffset(path);
@@ -429,16 +430,16 @@ class BackgroundPainter extends CustomPainter {
     paint.color = color;
     Path path = Path();
 
-    path.moveTo(size.width, size.height);
+    path.moveTo(-5, -5);
     path.quadraticBezierTo(
-      size.width / 2,
-      size.height / 2,
-      size.width * 0.9,
-      size.height * 0.9,
+      0,
+      -300,
+      0,
+      0,
     );
 
     final offset = getOffset(path);
-    canvas.drawCircle(offset, 250, paint);
+    canvas.drawCircle(offset, 150, paint);
   }
 
   void drawShape3(
@@ -450,15 +451,36 @@ class BackgroundPainter extends CustomPainter {
     paint.color = color;
     Path path = Path();
 
-    path.moveTo(0, 0);
+    path.moveTo(0, size.height);
     path.quadraticBezierTo(
       0,
+      size.height + 400,
+      0,
       size.height,
-      size.width / 3,
-      size.height / 3,
     );
 
     final offset = getOffset(path);
-    canvas.drawCircle(offset, 250, paint);
+    canvas.drawCircle(offset, 150, paint);
+  }
+
+  void drawShape4(
+    Canvas canvas,
+    Size size,
+    Paint paint,
+    Color color,
+  ) {
+    paint.color = color;
+    Path path = Path();
+
+    path.moveTo(size.width, size.height);
+    path.quadraticBezierTo(
+      size.width,
+      size.height + 400,
+      size.width,
+      size.height,
+    );
+
+    final offset = getOffset(path);
+    canvas.drawCircle(offset, 150, paint);
   }
 }
