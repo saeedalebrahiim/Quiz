@@ -39,20 +39,25 @@ exitAlarm(BuildContext context) {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(
-                  child: const Center(
-                    child: Text(
-                      'No',
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold),
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Container(
+                    child: const Center(
+                      child: Text(
+                        'No',
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
                     ),
+                    width: 100,
+                    height: 40,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('lib/assets/images/nobtn.png'),
+                            fit: BoxFit.fill)),
                   ),
-                  width: 100,
-                  height: 40,
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('lib/assets/images/nobtn.png'),
-                          fit: BoxFit.fill)),
                 ),
                 RawMaterialButton(
                   onPressed: () {

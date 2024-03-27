@@ -73,7 +73,7 @@ class _QuizScreenState extends State<QuizScreen> {
       _states.add(_state!.name);
     }
     // getStop();
-    // _createRewardedAd();
+    _createRewardedAd();
   }
 
   @override
@@ -768,12 +768,12 @@ class _QuizScreenState extends State<QuizScreen> {
                                                                 widget.index,
                                                             context: context);
 
+                                                    // context
+                                                    //     .read<QuizState>()
+                                                    //     .removeEliminateAnswers();
                                                     context
                                                         .read<QuizState>()
                                                         .removePercentHint();
-                                                    context
-                                                        .read<QuizState>()
-                                                        .removeEliminateAnswers();
                                                     if (isLast) {
                                                       Navigator.of(context)
                                                           .pushReplacement(
@@ -795,16 +795,35 @@ class _QuizScreenState extends State<QuizScreen> {
                                                                   child: c,
                                                                 )),
                                                       );
+                                                      Future.delayed(
+                                                          const Duration(
+                                                              milliseconds:
+                                                                  1000), () {
+                                                        // context
+                                                        //     .read<QuizState>()
+                                                        //     .removePercentHint();
+                                                        context
+                                                            .read<QuizState>()
+                                                            .removeEliminateAnswers();
+                                                      });
                                                     } else {
                                                       showDialog(
                                                         context: context,
                                                         builder: (context) =>
-                                                            AlertDialog(
+                                                            const AlertDialog(
                                                           content: SizedBox(
                                                             height: 500,
                                                             child: Center(
-                                                              child:
+                                                              child: Column(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                children: [
                                                                   CircularProgressIndicator(),
+                                                                  Text(
+                                                                      "Waiting for results"),
+                                                                ],
+                                                              ),
                                                             ),
                                                           ),
                                                         ),
@@ -837,7 +856,8 @@ class _QuizScreenState extends State<QuizScreen> {
                                             height: 65,
                                           ),
                                     Padding(
-                                      padding: const EdgeInsets.all(0),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 6),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
@@ -857,8 +877,8 @@ class _QuizScreenState extends State<QuizScreen> {
                                                         context: context);
                                               },
                                               child: Container(
-                                                width: 100,
-                                                height: 70,
+                                                width: 110,
+                                                height: 74,
                                                 foregroundDecoration:
                                                     isSelectedAny ||
                                                             value.usedEliminate
@@ -868,14 +888,87 @@ class _QuizScreenState extends State<QuizScreen> {
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        10),
+                                                                        16),
                                                           )
                                                         : null,
-                                                decoration: const BoxDecoration(
-                                                  image: DecorationImage(
-                                                      image: AssetImage(
-                                                          'lib/assets/images/1.png'),
-                                                      fit: BoxFit.fill),
+                                                // decoration: const BoxDecoration(
+                                                //   image: DecorationImage(
+                                                //       image: AssetImage(
+                                                //           'lib/assets/images/1.png'),
+                                                //       fit: BoxFit.fill),
+                                                // ),
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      BorderRadius.circular(16),
+                                                  border: Border(
+                                                    bottom: BorderSide(
+                                                        width: 4,
+                                                        color: Colors.orange),
+                                                  ),
+                                                  // image: DecorationImage(
+                                                  //     image: AssetImage(
+                                                  //         'lib/assets/images/4.png'),
+                                                  //     fit: BoxFit.fill)
+                                                ),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceAround,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(1.0),
+                                                          child: Image.asset(
+                                                            'lib/assets/images/bomb.png',
+                                                            width: 35,
+                                                          ),
+                                                        ),
+                                                        Row(
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(1.0),
+                                                              child:
+                                                                  Image.asset(
+                                                                'lib/assets/images/coin.png',
+                                                                width: 20,
+                                                              ),
+                                                            ),
+                                                            Text(
+                                                              "2",
+                                                              style: TextStyle(
+                                                                  fontSize: 18,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    const Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Text(
+                                                          "50:50",
+                                                          style: TextStyle(
+                                                              fontSize: 12,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
                                             ),
@@ -897,8 +990,8 @@ class _QuizScreenState extends State<QuizScreen> {
                                                     context: context);
                                               },
                                               child: Container(
-                                                width: 127,
-                                                height: 70,
+                                                width: 110,
+                                                height: 74,
                                                 foregroundDecoration:
                                                     isSelectedAny ||
                                                             value.usedPercentage
@@ -908,15 +1001,81 @@ class _QuizScreenState extends State<QuizScreen> {
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        12),
+                                                                        16),
                                                           )
                                                         : null,
-                                                decoration: const BoxDecoration(
-                                                  image: DecorationImage(
-                                                    image: AssetImage(
-                                                        'lib/assets/images/2.png'),
-                                                    fit: BoxFit.fill,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      BorderRadius.circular(16),
+                                                  border: Border(
+                                                    bottom: BorderSide(
+                                                        width: 4,
+                                                        color: Colors.orange),
                                                   ),
+                                                  // image: DecorationImage(
+                                                  //     image: AssetImage(
+                                                  //         'lib/assets/images/4.png'),
+                                                  //     fit: BoxFit.fill)
+                                                ),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceAround,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(1.0),
+                                                          child: Image.asset(
+                                                            'lib/assets/images/disk.png',
+                                                            width: 35,
+                                                          ),
+                                                        ),
+                                                        Row(
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(1.0),
+                                                              child:
+                                                                  Image.asset(
+                                                                'lib/assets/images/coin.png',
+                                                                width: 20,
+                                                              ),
+                                                            ),
+                                                            Text(
+                                                              "1",
+                                                              style: TextStyle(
+                                                                  fontSize: 18,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    const Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Text(
+                                                          "İstatistik",
+                                                          style: TextStyle(
+                                                              fontSize: 12,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
                                             ),
@@ -932,8 +1091,8 @@ class _QuizScreenState extends State<QuizScreen> {
                                                     _showRewardedAd();
                                                   },
                                                   child: Container(
-                                                    width: 100,
-                                                    height: 70,
+                                                    width: 110,
+                                                    height: 74,
                                                     foregroundDecoration:
                                                         _rewardedAd == null
                                                             ? BoxDecoration(
@@ -942,39 +1101,66 @@ class _QuizScreenState extends State<QuizScreen> {
                                                                 borderRadius:
                                                                     BorderRadius
                                                                         .circular(
-                                                                            10),
+                                                                            16),
                                                               )
                                                             : null,
                                                     decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10),
-                                                        // border: Border(
-                                                        //   bottom: BorderSide(
-                                                        //       width: 3,
-                                                        //       color: Colors.orange),
-                                                        // ),
-                                                        image: DecorationImage(
-                                                            image: AssetImage(
-                                                                'lib/assets/images/4.png'),
-                                                            fit: BoxFit.fill)),
-                                                    // child: Column(
-                                                    //   children: [
-                                                    //     Padding(
-                                                    //       padding:
-                                                    //           const EdgeInsets.all(1.0),
-                                                    //       child: Image.asset(
-                                                    //         'lib/assets/images/mainstar.png',
-                                                    //         width: 25,
-                                                    //       ),
-                                                    //     ),
-                                                    //     const Text(
-                                                    //       "TL topla",
-                                                    //       style:
-                                                    //           TextStyle(fontSize: 10),
-                                                    //     )
-                                                    //   ],
-                                                    // ),
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              16),
+                                                      border: Border(
+                                                        bottom: BorderSide(
+                                                            width: 4,
+                                                            color:
+                                                                Colors.orange),
+                                                      ),
+                                                      // image: DecorationImage(
+                                                      //     image: AssetImage(
+                                                      //         'lib/assets/images/4.png'),
+                                                      //     fit: BoxFit.fill)
+                                                    ),
+                                                    child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(1.0),
+                                                          child: Image.asset(
+                                                            'lib/assets/images/mainstar.png',
+                                                            width: 25,
+                                                          ),
+                                                        ),
+                                                        const Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Text(
+                                                              "TL ",
+                                                              style: TextStyle(
+                                                                  fontSize: 12,
+                                                                  color: Colors
+                                                                      .orange,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                            Text(
+                                                              " topla",
+                                                              style: TextStyle(
+                                                                  fontSize: 12,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
                                                 )
                                               : InkWell(
@@ -1105,10 +1291,50 @@ class _QuizScreenState extends State<QuizScreen> {
                                                                           .read<
                                                                               QuizState>()
                                                                           .removePercentHint();
-                                                                      context
-                                                                          .read<
-                                                                              QuizState>()
-                                                                          .removeEliminateAnswers();
+                                                                      // context
+                                                                      //     .read<
+                                                                      //         QuizState>()
+                                                                      //     .removeEliminateAnswers();
+                                                                      if (isLast) {
+                                                                        Navigator.of(context)
+                                                                            .pushReplacement(
+                                                                          PageRouteBuilder(
+                                                                              pageBuilder: (_, __, ___) => QuizScreen(index: (widget.index + 1)),
+                                                                              transitionDuration: const Duration(milliseconds: 500),
+                                                                              transitionsBuilder: (_, a, __, c) => FadeTransition(
+                                                                                    opacity: a,
+                                                                                    child: c,
+                                                                                  )),
+                                                                        );
+                                                                        Future.delayed(
+                                                                            const Duration(milliseconds: 1000),
+                                                                            () {
+                                                                          context
+                                                                              .read<QuizState>()
+                                                                              .removeEliminateAnswers();
+                                                                        });
+                                                                      } else {
+                                                                        showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder: (context) =>
+                                                                              const AlertDialog(
+                                                                            content:
+                                                                                SizedBox(
+                                                                              height: 500,
+                                                                              child: Center(
+                                                                                child: Column(
+                                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                                  children: [
+                                                                                    CircularProgressIndicator(),
+                                                                                    Text("Waiting for results"),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        );
+                                                                      }
                                                                     },
                                                                     child:
                                                                         Container(
@@ -1141,13 +1367,62 @@ class _QuizScreenState extends State<QuizScreen> {
                                                     );
                                                   },
                                                   child: Container(
-                                                    width: 100,
-                                                    height: 70,
-                                                    decoration: const BoxDecoration(
-                                                        image: DecorationImage(
-                                                            image: AssetImage(
-                                                                'lib/assets/images/3.png'),
-                                                            fit: BoxFit.fill)),
+                                                    width: 110,
+                                                    height: 74,
+                                                    // decoration:
+                                                    //     const BoxDecoration(
+                                                    //   image: DecorationImage(
+                                                    //       image: AssetImage(
+                                                    //           'lib/assets/images/3.png'),
+                                                    //       fit: BoxFit.fill),
+                                                    // ),
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              16),
+                                                      border: Border(
+                                                        bottom: BorderSide(
+                                                            width: 4,
+                                                            color:
+                                                                Colors.green),
+                                                      ),
+                                                      // image: DecorationImage(
+                                                      //     image: AssetImage(
+                                                      //         'lib/assets/images/4.png'),
+                                                      //     fit: BoxFit.fill)
+                                                    ),
+                                                    child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(1.0),
+                                                          child: Image.asset(
+                                                            'lib/assets/images/report.png',
+                                                            width: 25,
+                                                          ),
+                                                        ),
+                                                        const Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Text(
+                                                              "Report",
+                                                              style: TextStyle(
+                                                                  fontSize: 12,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                         ],
