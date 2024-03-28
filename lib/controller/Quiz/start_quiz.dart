@@ -123,7 +123,7 @@ class StartQuizController {
         print(body);
 
         if (res["isSuccess"] == true) {
-          Navigator.of(context).push(
+          Navigator.of(context).pushReplacement(
             PageRouteBuilder(
                 pageBuilder: (_, __, ___) => const EndQuizScreen(),
                 transitionDuration: const Duration(milliseconds: 500),
