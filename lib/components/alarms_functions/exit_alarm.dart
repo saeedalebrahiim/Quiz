@@ -55,7 +55,7 @@ exitAlarm(BuildContext context) {
                     height: 40,
                     decoration: const BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage('lib/assets/images/nobtn.png'),
+                            image: AssetImage('lib/assets/images/yesbtn.png'),
                             fit: BoxFit.fill)),
                   ),
                 ),
@@ -85,7 +85,7 @@ exitAlarm(BuildContext context) {
                     height: 40,
                     decoration: const BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage('lib/assets/images/yesbtn.png'),
+                            image: AssetImage('lib/assets/images/nobtn.png'),
                             fit: BoxFit.fill)),
                   ),
                 )

@@ -224,11 +224,10 @@ class _QuizScreenState extends State<QuizScreen> {
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          width: 23,
-                          child: Padding(
-                            padding:
-                                EdgeInsets.only(top: 20, left: 18, right: 8),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 20, left: 18, right: 8),
+                          child: SizedBox(
+                            width: 23,
                             child: Icon(
                               Icons.timer,
                               color: Colors.white,
@@ -449,8 +448,8 @@ class _QuizScreenState extends State<QuizScreen> {
                                                   value.eliminateAnswers
                                                       .contains(1)
                                               ? const SizedBox(
-                                                  width: 163,
-                                                  height: 77,
+                                                  width: 172,
+                                                  height: 79,
                                                 )
                                               : IgnorePointer(
                                                   ignoring: isSelectedAny,
@@ -528,8 +527,8 @@ class _QuizScreenState extends State<QuizScreen> {
                                                   value.eliminateAnswers
                                                       .contains(2)
                                               ? const SizedBox(
-                                                  width: 163,
-                                                  height: 77,
+                                                  width: 172,
+                                                  height: 79,
                                                 )
                                               : Padding(
                                                   padding: const EdgeInsets
@@ -615,8 +614,8 @@ class _QuizScreenState extends State<QuizScreen> {
                                                   value.eliminateAnswers
                                                       .contains(3)
                                               ? const SizedBox(
-                                                  width: 163,
-                                                  height: 77,
+                                                  width: 172,
+                                                  height: 79,
                                                 )
                                               : Padding(
                                                   padding: const EdgeInsets
@@ -694,8 +693,8 @@ class _QuizScreenState extends State<QuizScreen> {
                                                   value.eliminateAnswers
                                                       .contains(4)
                                               ? const SizedBox(
-                                                  width: 163,
-                                                  height: 77,
+                                                  width: 172,
+                                                  height: 79,
                                                 )
                                               : Padding(
                                                   padding: const EdgeInsets
@@ -807,13 +806,29 @@ class _QuizScreenState extends State<QuizScreen> {
                                                               questionNumber:
                                                                   widget.index,
                                                               context: context);
-
+                                                      if (selectedIndex == 0) {
+                                                        context
+                                                            .read<QuizState>()
+                                                            .falsePlusCount();
+                                                      }
                                                       // context
                                                       //     .read<QuizState>()
                                                       //     .removeEliminateAnswers();
                                                       context
                                                           .read<QuizState>()
                                                           .removePercentHint();
+                                                      Future.delayed(
+                                                          const Duration(
+                                                              milliseconds:
+                                                                  150), () {
+                                                        // context
+                                                        //     .read<QuizState>()
+                                                        //     .removePercentHint();
+                                                        print("why");
+                                                        context
+                                                            .read<QuizState>()
+                                                            .removeEliminateAnswers();
+                                                      });
                                                       if (isLast) {
                                                         Navigator.of(context)
                                                             .pushReplacement(
@@ -838,17 +853,6 @@ class _QuizScreenState extends State<QuizScreen> {
                                                                     child: c,
                                                                   )),
                                                         );
-                                                        Future.delayed(
-                                                            const Duration(
-                                                                milliseconds:
-                                                                    350), () {
-                                                          // context
-                                                          //     .read<QuizState>()
-                                                          //     .removePercentHint();
-                                                          context
-                                                              .read<QuizState>()
-                                                              .removeEliminateAnswers();
-                                                        });
                                                       } else {
                                                         showDialog(
                                                           context: context,
