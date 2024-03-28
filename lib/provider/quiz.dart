@@ -30,6 +30,8 @@ class QuizState extends ChangeNotifier {
     usedEliminate = false;
     answers.clear();
     answers = [];
+    removePercentHint();
+    removeEliminateAnswers();
     notifyListeners();
   }
 
