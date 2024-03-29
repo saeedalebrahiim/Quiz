@@ -412,9 +412,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   child: Container(
                                     width: 2,
                                     decoration: const BoxDecoration(
-                                        image: DecorationImage(
-                                            image: AssetImage(
-                                                'lib/assets/images/numberedit.png'))),
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                          'lib/assets/images/numberedit.png',
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -486,9 +489,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         const SizedBox(
                           width: 42,
                         ),
-                        const Text(
-                          'TR',
-                          style: TextStyle(color: Colors.white),
+                        const Padding(
+                          padding: EdgeInsets.only(bottom: 12.0),
+                          child: Text(
+                            'TR',
+                            style: TextStyle(color: Colors.white),
+                          ),
                         ),
                         const SizedBox(
                           width: 10,
@@ -500,7 +506,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               readOnly: value.profile!.iban.isNotEmpty,
                               style: const TextStyle(color: Colors.white),
                               controller: _ibanController,
-                              decoration: const InputDecoration()),
+                              decoration: InputDecoration(
+                                  border: value.profile!.iban.isNotEmpty
+                                      ? InputBorder.none
+                                      : null)),
                         )
                       ],
                     ),
