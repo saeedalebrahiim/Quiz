@@ -31,11 +31,13 @@ class AllRatingCard extends StatelessWidget {
       width: 342,
       height: 58,
       decoration: BoxDecoration(
-          color: isMe == true ? Colors.white.withOpacity(0.5) : null,
-          image: const DecorationImage(
-            image: AssetImage('lib/assets/images/ratingcard.png'),
-            fit: BoxFit.fill,
-          ),
+          color: isMe == true
+              ? Colors.white.withOpacity(0.5)
+              : const Color.fromRGBO(28, 28, 28, 0.65),
+          // image: const DecorationImage(
+          //   image: AssetImage('lib/assets/images/ratingcard.png'),
+          //   fit: BoxFit.fill,
+          // ),
           borderRadius: BorderRadius.circular(20)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

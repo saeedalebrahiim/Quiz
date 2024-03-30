@@ -333,7 +333,7 @@ class _TodayScreenState extends State<TodayScreen> {
                         Column(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.all(5.0),
+                              padding: const EdgeInsets.only(top: 5.0),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
@@ -368,7 +368,9 @@ class _TodayScreenState extends State<TodayScreen> {
                             const Text(
                               'Your growth',
                               style: TextStyle(
-                                  fontSize: 10, fontWeight: FontWeight.bold),
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ],
                         ),

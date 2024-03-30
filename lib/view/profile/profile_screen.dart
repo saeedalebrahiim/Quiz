@@ -35,6 +35,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     getProfile();
   }
 
+  bool tapedOnce = false;
+
   final _nameFamilyController = TextEditingController();
 
   final _numberController = TextEditingController();
@@ -650,6 +652,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       height: 20,
                     ),
                     InkWell(
+                      onDoubleTap: () {},
                       onTap: () async {
                         // List<int>? file;
                         // if (_imgFile != null) {
@@ -657,44 +660,49 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         //     file = value;
                         //   });
                         // }
-                        print("------------------");
-                        print(_nameFamilyController.text);
-                        print(bankIdSend);
-                        print(_educationController.text);
-                        print(_ibanController.text);
+                        if (!tapedOnce) {
+                          tapedOnce = true;
+                          print("------------------");
+                          print(_nameFamilyController.text);
+                          print(bankIdSend);
+                          print(_educationController.text);
+                          print(_ibanController.text);
 
-                        // print(file);
+                          // print(file);
 
-                        print("------------------");
-                        await ProfileController.editProfileHTTP(
-                                fullName: _nameFamilyController.text,
-                                bankId: bankIdSend,
-                                education: _educationController.text,
-                                iban: _ibanController.text,
-                                file: _imgFile,
-                                context: context)
-                            .then((value) {
-                          setState(() {});
-                          QuickAlert.show(
-                              context: context,
-                              type: QuickAlertType.success,
-                              onConfirmBtnTap: () {
-                                Navigator.of(context).pushAndRemoveUntil(
-                                  PageRouteBuilder(
-                                    pageBuilder: (_, __, ___) =>
-                                        const HomeScreen(),
-                                    transitionDuration:
-                                        const Duration(milliseconds: 500),
-                                    transitionsBuilder: (_, a, __, c) =>
-                                        FadeTransition(
-                                      opacity: a,
-                                      child: c,
+                          print("------------------");
+                          await ProfileController.editProfileHTTP(
+                                  fullName: _nameFamilyController.text,
+                                  bankId: bankIdSend,
+                                  education: _educationController.text,
+                                  iban: _ibanController.text,
+                                  file: _imgFile,
+                                  context: context)
+                              .then((value) {
+                            setState(() {});
+                            tapedOnce = false;
+                            QuickAlert.show(
+                                context: context,
+                                type: QuickAlertType.success,
+                                onConfirmBtnTap: () {
+                                  Navigator.of(context).pushAndRemoveUntil(
+                                    PageRouteBuilder(
+                                      pageBuilder: (_, __, ___) =>
+                                          const HomeScreen(),
+                                      transitionDuration:
+                                          const Duration(milliseconds: 500),
+                                      transitionsBuilder: (_, a, __, c) =>
+                                          FadeTransition(
+                                        opacity: a,
+                                        child: c,
+                                      ),
                                     ),
-                                  ),
-                                  (route) => false,
-                                );
-                              });
-                        });
+                                    (route) => false,
+                                  );
+                                });
+                          });
+                        }
+
                         // ProfileController.editProfile(
                         //     fullName: _nameFamilyController.text,
                         //     bankId: int.tryParse(_bankIdController.text),
