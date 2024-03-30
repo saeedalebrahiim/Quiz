@@ -263,7 +263,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 10),
                                         child: SizedBox(
-                                          width: 150,
+                                          width: 140,
                                           height: 10,
                                           child: LinearProgressIndicator(
                                             backgroundColor: Colors.black,
@@ -440,334 +440,377 @@ class _QuizScreenState extends State<QuizScreen> {
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold),
                                       ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                      Column(
                                         children: [
-                                          value.eliminateAnswers.isNotEmpty &&
-                                                  value.eliminateAnswers
-                                                      .contains(1)
-                                              ? const SizedBox(
-                                                  width: 172,
-                                                  height: 79,
-                                                )
-                                              : IgnorePointer(
-                                                  ignoring: isSelectedAny,
-                                                  child: InkWell(
-                                                    onTap: () {
-                                                      print("wt");
-                                                      setState(() {
-                                                        isSelectedAny = true;
-                                                        selectedIndex = 1;
-                                                      });
-                                                      if (selectedIndex ==
-                                                          value
-                                                              .quiz!
-                                                              .quizQuestions[
-                                                                  widget.index]
-                                                              .currectAnswer) {
-                                                        context
-                                                            .read<QuizState>()
-                                                            .plusCount();
-                                                      } else {
-                                                        context
-                                                            .read<QuizState>()
-                                                            .falsePlusCount();
-                                                      }
-                                                      // stopWatchProvider!.stop();
-                                                      context
-                                                          .read<
-                                                              StopWatchProvider>()
-                                                          .stop();
-                                                    },
-                                                    child: Padding(
-                                                      padding: const EdgeInsets
-                                                          .symmetric(
-                                                        horizontal: 3.0,
-                                                        vertical: 2,
+                                          SizedBox(
+                                            width: 366,
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                value.eliminateAnswers
+                                                            .isNotEmpty &&
+                                                        value.eliminateAnswers
+                                                            .contains(1)
+                                                    ? const SizedBox(
+                                                        width: 172,
+                                                        height: 79,
+                                                      )
+                                                    : IgnorePointer(
+                                                        ignoring: isSelectedAny,
+                                                        child: InkWell(
+                                                          onTap: () {
+                                                            print("wt");
+                                                            setState(() {
+                                                              isSelectedAny =
+                                                                  true;
+                                                              selectedIndex = 1;
+                                                            });
+                                                            if (selectedIndex ==
+                                                                value
+                                                                    .quiz!
+                                                                    .quizQuestions[
+                                                                        widget
+                                                                            .index]
+                                                                    .currectAnswer) {
+                                                              context
+                                                                  .read<
+                                                                      QuizState>()
+                                                                  .plusCount();
+                                                            } else {
+                                                              context
+                                                                  .read<
+                                                                      QuizState>()
+                                                                  .falsePlusCount();
+                                                            }
+                                                            // stopWatchProvider!.stop();
+                                                            context
+                                                                .read<
+                                                                    StopWatchProvider>()
+                                                                .stop();
+                                                          },
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .symmetric(
+                                                              horizontal: 3.0,
+                                                              vertical: 4,
+                                                            ),
+                                                            child: AnswerCard(
+                                                              helpPercentage: value
+                                                                          .percentHint !=
+                                                                      null
+                                                                  ? value.percentHint!
+                                                                          .selectedAnswer1Count /
+                                                                      (value.percentHint!.selectedAnswer1Count +
+                                                                          value
+                                                                              .percentHint!
+                                                                              .selectedAnswer2Count +
+                                                                          value
+                                                                              .percentHint!
+                                                                              .selectedAnswer3Count +
+                                                                          value
+                                                                              .percentHint!
+                                                                              .selectedAnswer4Count)
+                                                                  : null,
+                                                              question: value
+                                                                  .quiz!
+                                                                  .quizQuestions[
+                                                                      widget
+                                                                          .index]
+                                                                  .answer1,
+                                                              isSelected:
+                                                                  selectedIndex ==
+                                                                      1,
+                                                              correctAnswerIndex: value
+                                                                  .quiz!
+                                                                  .quizQuestions[
+                                                                      widget
+                                                                          .index]
+                                                                  .currectAnswer,
+                                                              currentIndex: 1,
+                                                            ),
+                                                          ),
+                                                        ),
                                                       ),
-                                                      child: AnswerCard(
-                                                        helpPercentage: value
-                                                                    .percentHint !=
-                                                                null
-                                                            ? value.percentHint!
-                                                                    .selectedAnswer1Count /
-                                                                (value
-                                                                        .percentHint!
-                                                                        .selectedAnswer1Count +
-                                                                    value.percentHint!
-                                                                        .selectedAnswer2Count +
-                                                                    value
-                                                                        .percentHint!
-                                                                        .selectedAnswer3Count +
-                                                                    value
-                                                                        .percentHint!
-                                                                        .selectedAnswer4Count)
-                                                            : null,
-                                                        question: value
-                                                            .quiz!
-                                                            .quizQuestions[
-                                                                widget.index]
-                                                            .answer1,
-                                                        isSelected:
-                                                            selectedIndex == 1,
-                                                        correctAnswerIndex:
-                                                            value
-                                                                .quiz!
-                                                                .quizQuestions[
-                                                                    widget
-                                                                        .index]
-                                                                .currectAnswer,
-                                                        currentIndex: 1,
+                                                value.eliminateAnswers
+                                                            .isNotEmpty &&
+                                                        value.eliminateAnswers
+                                                            .contains(2)
+                                                    ? const SizedBox(
+                                                        width: 172,
+                                                        height: 79,
+                                                      )
+                                                    : Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .symmetric(
+                                                          horizontal: 3.0,
+                                                          vertical: 4,
+                                                        ),
+                                                        child: IgnorePointer(
+                                                          ignoring:
+                                                              isSelectedAny,
+                                                          child: InkWell(
+                                                            onTap: () {
+                                                              setState(() {
+                                                                isSelectedAny =
+                                                                    true;
+
+                                                                selectedIndex =
+                                                                    2;
+                                                              });
+
+                                                              if (selectedIndex ==
+                                                                  value
+                                                                      .quiz!
+                                                                      .quizQuestions[
+                                                                          widget
+                                                                              .index]
+                                                                      .currectAnswer) {
+                                                                context
+                                                                    .read<
+                                                                        QuizState>()
+                                                                    .plusCount();
+                                                              } else {
+                                                                context
+                                                                    .read<
+                                                                        QuizState>()
+                                                                    .falsePlusCount();
+                                                              }
+                                                              // stopWatchProvider!.stop();
+                                                              context
+                                                                  .read<
+                                                                      StopWatchProvider>()
+                                                                  .stop();
+                                                            },
+                                                            child: AnswerCard(
+                                                              helpPercentage: value
+                                                                          .percentHint !=
+                                                                      null
+                                                                  ? value.percentHint!
+                                                                          .selectedAnswer2Count /
+                                                                      (value.percentHint!.selectedAnswer1Count +
+                                                                          value
+                                                                              .percentHint!
+                                                                              .selectedAnswer2Count +
+                                                                          value
+                                                                              .percentHint!
+                                                                              .selectedAnswer3Count +
+                                                                          value
+                                                                              .percentHint!
+                                                                              .selectedAnswer4Count)
+                                                                  : null,
+                                                              question: value
+                                                                  .quiz!
+                                                                  .quizQuestions[
+                                                                      widget
+                                                                          .index]
+                                                                  .answer2,
+                                                              isSelected:
+                                                                  selectedIndex ==
+                                                                      2,
+                                                              correctAnswerIndex: value
+                                                                  .quiz!
+                                                                  .quizQuestions[
+                                                                      widget
+                                                                          .index]
+                                                                  .currectAnswer,
+                                                              currentIndex: 2,
+                                                            ),
+                                                          ),
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ),
-                                                ),
-                                          value.eliminateAnswers.isNotEmpty &&
-                                                  value.eliminateAnswers
-                                                      .contains(2)
-                                              ? const SizedBox(
-                                                  width: 172,
-                                                  height: 79,
-                                                )
-                                              : Padding(
-                                                  padding: const EdgeInsets
-                                                      .symmetric(
-                                                    horizontal: 3.0,
-                                                    vertical: 2,
-                                                  ),
-                                                  child: IgnorePointer(
-                                                    ignoring: isSelectedAny,
-                                                    child: InkWell(
-                                                      onTap: () {
-                                                        setState(() {
-                                                          isSelectedAny = true;
+                                              ],
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 366,
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                value.eliminateAnswers
+                                                            .isNotEmpty &&
+                                                        value.eliminateAnswers
+                                                            .contains(3)
+                                                    ? const SizedBox(
+                                                        width: 172,
+                                                        height: 79,
+                                                      )
+                                                    : Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .symmetric(
+                                                          horizontal: 3.0,
+                                                          vertical: 4,
+                                                        ),
+                                                        child: IgnorePointer(
+                                                          ignoring:
+                                                              isSelectedAny,
+                                                          child: InkWell(
+                                                            onTap: () {
+                                                              setState(() {
+                                                                isSelectedAny =
+                                                                    true;
 
-                                                          selectedIndex = 2;
-                                                        });
+                                                                selectedIndex =
+                                                                    3;
+                                                              });
 
-                                                        if (selectedIndex ==
-                                                            value
-                                                                .quiz!
-                                                                .quizQuestions[
-                                                                    widget
-                                                                        .index]
-                                                                .currectAnswer) {
-                                                          context
-                                                              .read<QuizState>()
-                                                              .plusCount();
-                                                        } else {
-                                                          context
-                                                              .read<QuizState>()
-                                                              .falsePlusCount();
-                                                        }
-                                                        // stopWatchProvider!.stop();
-                                                        context
-                                                            .read<
-                                                                StopWatchProvider>()
-                                                            .stop();
-                                                      },
-                                                      child: AnswerCard(
-                                                        helpPercentage: value
-                                                                    .percentHint !=
-                                                                null
-                                                            ? value.percentHint!
-                                                                    .selectedAnswer2Count /
-                                                                (value
-                                                                        .percentHint!
-                                                                        .selectedAnswer1Count +
-                                                                    value.percentHint!
-                                                                        .selectedAnswer2Count +
-                                                                    value
-                                                                        .percentHint!
-                                                                        .selectedAnswer3Count +
-                                                                    value
-                                                                        .percentHint!
-                                                                        .selectedAnswer4Count)
-                                                            : null,
-                                                        question: value
-                                                            .quiz!
-                                                            .quizQuestions[
-                                                                widget.index]
-                                                            .answer2,
-                                                        isSelected:
-                                                            selectedIndex == 2,
-                                                        correctAnswerIndex:
-                                                            value
-                                                                .quiz!
-                                                                .quizQuestions[
-                                                                    widget
-                                                                        .index]
-                                                                .currectAnswer,
-                                                        currentIndex: 2,
+                                                              if (selectedIndex ==
+                                                                  value
+                                                                      .quiz!
+                                                                      .quizQuestions[
+                                                                          widget
+                                                                              .index]
+                                                                      .currectAnswer) {
+                                                                context
+                                                                    .read<
+                                                                        QuizState>()
+                                                                    .plusCount();
+                                                              } else {
+                                                                context
+                                                                    .read<
+                                                                        QuizState>()
+                                                                    .falsePlusCount();
+                                                              }
+                                                              // stopWatchProvider!.stop();
+                                                              context
+                                                                  .read<
+                                                                      StopWatchProvider>()
+                                                                  .stop();
+                                                            },
+                                                            child: AnswerCard(
+                                                              helpPercentage: value
+                                                                          .percentHint !=
+                                                                      null
+                                                                  ? value.percentHint!
+                                                                          .selectedAnswer3Count /
+                                                                      (value.percentHint!.selectedAnswer1Count +
+                                                                          value
+                                                                              .percentHint!
+                                                                              .selectedAnswer2Count +
+                                                                          value
+                                                                              .percentHint!
+                                                                              .selectedAnswer3Count +
+                                                                          value
+                                                                              .percentHint!
+                                                                              .selectedAnswer4Count)
+                                                                  : null,
+                                                              question: value
+                                                                  .quiz!
+                                                                  .quizQuestions[
+                                                                      widget
+                                                                          .index]
+                                                                  .answer3,
+                                                              isSelected:
+                                                                  selectedIndex ==
+                                                                      3,
+                                                              correctAnswerIndex: value
+                                                                  .quiz!
+                                                                  .quizQuestions[
+                                                                      widget
+                                                                          .index]
+                                                                  .currectAnswer,
+                                                              currentIndex: 3,
+                                                            ),
+                                                          ),
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ),
-                                                ),
-                                        ],
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          value.eliminateAnswers.isNotEmpty &&
-                                                  value.eliminateAnswers
-                                                      .contains(3)
-                                              ? const SizedBox(
-                                                  width: 172,
-                                                  height: 79,
-                                                )
-                                              : Padding(
-                                                  padding: const EdgeInsets
-                                                      .symmetric(
-                                                      horizontal: 3.0),
-                                                  child: IgnorePointer(
-                                                    ignoring: isSelectedAny,
-                                                    child: InkWell(
-                                                      onTap: () {
-                                                        setState(() {
-                                                          isSelectedAny = true;
+                                                value.eliminateAnswers
+                                                            .isNotEmpty &&
+                                                        value.eliminateAnswers
+                                                            .contains(4)
+                                                    ? const SizedBox(
+                                                        width: 172,
+                                                        height: 79,
+                                                      )
+                                                    : Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .symmetric(
+                                                          horizontal: 3.0,
+                                                          vertical: 4,
+                                                        ),
+                                                        child: IgnorePointer(
+                                                          ignoring:
+                                                              isSelectedAny,
+                                                          child: InkWell(
+                                                            onTap: () {
+                                                              setState(() {
+                                                                isSelectedAny =
+                                                                    true;
 
-                                                          selectedIndex = 3;
-                                                        });
+                                                                selectedIndex =
+                                                                    4;
+                                                              });
 
-                                                        if (selectedIndex ==
-                                                            value
-                                                                .quiz!
-                                                                .quizQuestions[
-                                                                    widget
-                                                                        .index]
-                                                                .currectAnswer) {
-                                                          context
-                                                              .read<QuizState>()
-                                                              .plusCount();
-                                                        } else {
-                                                          context
-                                                              .read<QuizState>()
-                                                              .falsePlusCount();
-                                                        }
-                                                        // stopWatchProvider!.stop();
-                                                        context
-                                                            .read<
-                                                                StopWatchProvider>()
-                                                            .stop();
-                                                      },
-                                                      child: AnswerCard(
-                                                        helpPercentage: value
-                                                                    .percentHint !=
-                                                                null
-                                                            ? value.percentHint!
-                                                                    .selectedAnswer3Count /
-                                                                (value
-                                                                        .percentHint!
-                                                                        .selectedAnswer1Count +
-                                                                    value.percentHint!
-                                                                        .selectedAnswer2Count +
-                                                                    value
-                                                                        .percentHint!
-                                                                        .selectedAnswer3Count +
-                                                                    value
-                                                                        .percentHint!
-                                                                        .selectedAnswer4Count)
-                                                            : null,
-                                                        question: value
-                                                            .quiz!
-                                                            .quizQuestions[
-                                                                widget.index]
-                                                            .answer3,
-                                                        isSelected:
-                                                            selectedIndex == 3,
-                                                        correctAnswerIndex:
-                                                            value
-                                                                .quiz!
-                                                                .quizQuestions[
-                                                                    widget
-                                                                        .index]
-                                                                .currectAnswer,
-                                                        currentIndex: 3,
+                                                              if (selectedIndex ==
+                                                                  value
+                                                                      .quiz!
+                                                                      .quizQuestions[
+                                                                          widget
+                                                                              .index]
+                                                                      .currectAnswer) {
+                                                                context
+                                                                    .read<
+                                                                        QuizState>()
+                                                                    .plusCount();
+                                                              } else {
+                                                                context
+                                                                    .read<
+                                                                        QuizState>()
+                                                                    .falsePlusCount();
+                                                              }
+                                                              // stopWatchProvider!.stop();
+                                                              context
+                                                                  .read<
+                                                                      StopWatchProvider>()
+                                                                  .stop();
+                                                            },
+                                                            child: AnswerCard(
+                                                              helpPercentage: value
+                                                                          .percentHint !=
+                                                                      null
+                                                                  ? value.percentHint!
+                                                                          .selectedAnswer4Count /
+                                                                      (value.percentHint!.selectedAnswer1Count +
+                                                                          value
+                                                                              .percentHint!
+                                                                              .selectedAnswer2Count +
+                                                                          value
+                                                                              .percentHint!
+                                                                              .selectedAnswer3Count +
+                                                                          value
+                                                                              .percentHint!
+                                                                              .selectedAnswer4Count)
+                                                                  : null,
+                                                              question: value
+                                                                  .quiz!
+                                                                  .quizQuestions[
+                                                                      widget
+                                                                          .index]
+                                                                  .answer4,
+                                                              isSelected:
+                                                                  selectedIndex ==
+                                                                      4,
+                                                              correctAnswerIndex: value
+                                                                  .quiz!
+                                                                  .quizQuestions[
+                                                                      widget
+                                                                          .index]
+                                                                  .currectAnswer,
+                                                              currentIndex: 4,
+                                                            ),
+                                                          ),
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ),
-                                                ),
-                                          value.eliminateAnswers.isNotEmpty &&
-                                                  value.eliminateAnswers
-                                                      .contains(4)
-                                              ? const SizedBox(
-                                                  width: 172,
-                                                  height: 79,
-                                                )
-                                              : Padding(
-                                                  padding: const EdgeInsets
-                                                      .symmetric(
-                                                      horizontal: 3.0),
-                                                  child: IgnorePointer(
-                                                    ignoring: isSelectedAny,
-                                                    child: InkWell(
-                                                      onTap: () {
-                                                        setState(() {
-                                                          isSelectedAny = true;
-
-                                                          selectedIndex = 4;
-                                                        });
-
-                                                        if (selectedIndex ==
-                                                            value
-                                                                .quiz!
-                                                                .quizQuestions[
-                                                                    widget
-                                                                        .index]
-                                                                .currectAnswer) {
-                                                          context
-                                                              .read<QuizState>()
-                                                              .plusCount();
-                                                        } else {
-                                                          context
-                                                              .read<QuizState>()
-                                                              .falsePlusCount();
-                                                        }
-                                                        // stopWatchProvider!.stop();
-                                                        context
-                                                            .read<
-                                                                StopWatchProvider>()
-                                                            .stop();
-                                                      },
-                                                      child: AnswerCard(
-                                                        helpPercentage: value
-                                                                    .percentHint !=
-                                                                null
-                                                            ? value.percentHint!
-                                                                    .selectedAnswer4Count /
-                                                                (value
-                                                                        .percentHint!
-                                                                        .selectedAnswer1Count +
-                                                                    value.percentHint!
-                                                                        .selectedAnswer2Count +
-                                                                    value
-                                                                        .percentHint!
-                                                                        .selectedAnswer3Count +
-                                                                    value
-                                                                        .percentHint!
-                                                                        .selectedAnswer4Count)
-                                                            : null,
-                                                        question: value
-                                                            .quiz!
-                                                            .quizQuestions[
-                                                                widget.index]
-                                                            .answer4,
-                                                        isSelected:
-                                                            selectedIndex == 4,
-                                                        correctAnswerIndex:
-                                                            value
-                                                                .quiz!
-                                                                .quizQuestions[
-                                                                    widget
-                                                                        .index]
-                                                                .currectAnswer,
-                                                        currentIndex: 4,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
+                                              ],
+                                            ),
+                                          ),
                                         ],
                                       ),
                                       isSelectedAny
@@ -976,12 +1019,43 @@ class _QuizScreenState extends State<QuizScreen> {
                                                             padding:
                                                                 const EdgeInsets
                                                                     .all(1.0),
-                                                            child: Image.asset(
-                                                              'lib/assets/images/bomb.png',
-                                                              width: 35,
+                                                            child: SizedBox(
+                                                              height: 40,
+                                                              width: 50,
+                                                              child: Stack(
+                                                                children: [
+                                                                  Align(
+                                                                    alignment:
+                                                                        Alignment
+                                                                            .topRight,
+                                                                    child: Image
+                                                                        .asset(
+                                                                      'lib/assets/images/bomb2.png',
+                                                                      width: 40,
+                                                                      height:
+                                                                          40,
+                                                                    ),
+                                                                  ),
+                                                                  Align(
+                                                                    alignment:
+                                                                        Alignment
+                                                                            .bottomLeft,
+                                                                    child: Image
+                                                                        .asset(
+                                                                      'lib/assets/images/bomb.png',
+                                                                      width: 35,
+                                                                      height:
+                                                                          35,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
                                                             ),
                                                           ),
                                                           Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
                                                             children: [
                                                               Padding(
                                                                 padding:
