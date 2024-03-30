@@ -36,8 +36,8 @@ class _ChangePwScreenState extends State<ChangePwScreen> {
                       Navigator.pop(context);
                     },
                     child: Container(
-                      width: 50,
-                      height: 50,
+                      width: 54,
+                      height: 54,
                       decoration: const BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage('lib/assets/images/back.png'))),
@@ -60,7 +60,9 @@ class _ChangePwScreenState extends State<ChangePwScreen> {
                     Text(
                       'Edit Phone Number',
                       style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.w600),
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18),
                     ),
                     Text(
                       'Add Phone',
@@ -77,8 +79,8 @@ class _ChangePwScreenState extends State<ChangePwScreen> {
             ),
             Center(
               child: SizedBox(
-                width: 240,
-                height: 45,
+                width: 316,
+                height: 64,
                 child: TextFormField(
                     controller: numberController,
                     maxLength: 10,
@@ -121,8 +123,8 @@ class _ChangePwScreenState extends State<ChangePwScreen> {
                     Navigator.pop(context);
                   },
                   child: Container(
-                    width: 52,
-                    height: 50,
+                    width: 64,
+                    height: 64,
                     decoration: BoxDecoration(
                         color: Colors.grey.shade400,
                         borderRadius: BorderRadius.circular(22)),
@@ -139,8 +141,8 @@ class _ChangePwScreenState extends State<ChangePwScreen> {
                         number: numberController.text, context: context);
                   },
                   child: Container(
-                    width: 90,
-                    height: 50,
+                    width: 144,
+                    height: 64,
                     decoration: BoxDecoration(
                         image: const DecorationImage(
                             image: AssetImage('lib/assets/images/buttun.png')),

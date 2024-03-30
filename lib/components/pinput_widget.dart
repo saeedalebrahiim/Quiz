@@ -24,8 +24,8 @@ class _PinputWidgetState extends State<PinputWidget> {
   @override
   Widget build(BuildContext context) {
     final defaultPinTheme = PinTheme(
-      width: 45,
-      height: 45,
+      width: 50,
+      height: 50,
       textStyle: const TextStyle(
         fontSize: 22,
         color: Color.fromRGBO(30, 60, 87, 1),

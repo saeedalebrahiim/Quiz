@@ -30,8 +30,8 @@ class EditPwOtpScreen extends StatelessWidget {
                       Navigator.pop(context);
                     },
                     child: Container(
-                      width: 50,
-                      height: 50,
+                      width: 54,
+                      height: 54,
                       decoration: const BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage('lib/assets/images/back.png'))),
@@ -54,7 +54,9 @@ class EditPwOtpScreen extends StatelessWidget {
                 Text(
                   'Forget Password ',
                   style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18),
                 ),
               ],
             ),
@@ -66,7 +68,7 @@ class EditPwOtpScreen extends StatelessWidget {
                 Text(
                   'Enter Code',
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 16,
                     color: Colors.grey,
                   ),
                 ),
@@ -79,33 +81,33 @@ class EditPwOtpScreen extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            Row(
-              children: [
-                const SizedBox(
-                  width: 45,
-                ),
-                InkWell(
-                  onTap: () {},
-                  child: const Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.refresh,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        'Send Code',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+            // Row(
+            //   children: [
+            //     const SizedBox(
+            //       width: 45,
+            //     ),
+            //     InkWell(
+            //       onTap: () {},
+            //       child: const Row(
+            //         mainAxisSize: MainAxisSize.min,
+            //         children: [
+            //           Icon(
+            //             Icons.refresh,
+            //             color: Colors.white,
+            //             size: 20,
+            //           ),
+            //           SizedBox(
+            //             width: 5,
+            //           ),
+            //           Text(
+            //             'Send Code',
+            //             style: TextStyle(color: Colors.white),
+            //           ),
+            //         ],
+            //       ),
+            //     ),
+            //   ],
+            // ),
             const SizedBox(
               height: 130,
             ),
@@ -117,8 +119,8 @@ class EditPwOtpScreen extends StatelessWidget {
                     Navigator.pop(context);
                   },
                   child: Container(
-                    width: 52,
-                    height: 50,
+                    width: 64,
+                    height: 64,
                     decoration: BoxDecoration(
                         color: Colors.grey.shade400,
                         borderRadius: BorderRadius.circular(22)),
@@ -146,8 +148,8 @@ class EditPwOtpScreen extends StatelessWidget {
                         context: context);
                   },
                   child: Container(
-                    width: 90,
-                    height: 50,
+                    width: 144,
+                    height: 64,
                     decoration: BoxDecoration(
                         image: const DecorationImage(
                             image: AssetImage('lib/assets/images/buttun.png')),

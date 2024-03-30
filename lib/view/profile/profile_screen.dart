@@ -16,6 +16,8 @@ import 'package:bilgimizde/provider/profile.dart';
 import 'package:bilgimizde/provider/settings.dart';
 import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
 import 'package:bilgimizde/view/profile/edit_pw_screen.dart';
+import 'package:quickalert/models/quickalert_type.dart';
+import 'package:quickalert/widgets/quickalert_dialog.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -44,25 +46,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final _bankIdController = TextEditingController();
   int? bankIdSelected;
   String? bankIdTitleSelected;
+  int? bankIdSend;
   CountryCode crCode = CountryCode(code: "+90", name: "TR");
   getProfile() {
     if (ProfileState.profileUse == null) {
       ProfileController.getProfile(context: context);
     }
     _nameFamilyController.text = ProfileState.profileUse != null
-        ? ProfileState.profileUse!.fullName
+        ? ProfileState.profileUse!.fullName ?? ""
         : "";
     _numberController.text = ProfileState.profileUse != null
-        ? ProfileState.profileUse!.username.replaceRange(0, 2, "")
+        ? (ProfileState.profileUse!.username ?? "").replaceRange(0, 2, "")
         : "";
     _educationController.text = ProfileState.profileUse != null
-        ? ProfileState.profileUse!.education
+        ? ProfileState.profileUse!.education ?? ""
         : "";
-    _ibanController.text =
-        ProfileState.profileUse != null ? ProfileState.profileUse!.iban : "";
-    _bankIdController.text = ProfileState.profileUse != null
-        ? ProfileState.profileUse!.bankId.toString()
+    _ibanController.text = ProfileState.profileUse != null
+        ? ProfileState.profileUse!.iban ?? ""
         : "";
+    bankIdSend = ProfileState.profileUse != null
+        ? ProfileState.profileUse!.bankId
+        : null;
+
     bankIdSelected = ProfileState.profileUse!.bankId;
   }
 
@@ -208,6 +213,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           setState(() {
                                             _imgFile = XFile(img.path);
                                           });
+                                          Navigator.of(context).pop();
                                         } catch (e) {
                                           print(e);
                                         }
@@ -233,7 +239,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           if (value) {
                                             Navigator.of(context).pop();
                                             ProfileController.getProfile(
-                                                context: context);
+                                                    context: context)
+                                                .then((value) {
+                                              setState(() {});
+                                            });
                                           } else {}
                                         });
                                       },
@@ -271,12 +280,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   // ),
                                   ),
                               child: _imgFile != null
-                                  ? Image.file(
-                                      File(_imgFile!.path),
+                                  ? Container(
+                                      decoration: BoxDecoration(
+                                        color: const Color.fromARGB(
+                                            255, 10, 21, 94),
+                                        borderRadius: BorderRadius.circular(50),
+                                        image: DecorationImage(
+                                          image: FileImage(
+                                            File(_imgFile!.path),
+                                          ),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
                                     )
                                   : value.profile != null &&
                                           value.profile!.userPicUrl != null
                                       ? CachedNetworkImage(
+                                          cacheKey: value.profile!.userPicUrl
+                                                  .toString() +
+                                              DateTime.now().toString(),
                                           imageUrl:
                                               value.profile!.userPicUrl ?? "",
                                           imageBuilder:
@@ -296,10 +318,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           placeholder: (context, url) =>
                                               const CircularProgressIndicator(),
                                           errorWidget: (context, url, error) =>
-                                              const Image(
-                                            image: AssetImage(
-                                                'lib/assets/images/profile.png'),
-                                          ),
+                                              const SizedBox(),
                                         )
                                       : const SizedBox(),
                               // : CachedNetworkImage(
@@ -342,7 +361,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           children: [
                             Text(
                               value.profile != null
-                                  ? value.profile!.fullName
+                                  ? value.profile!.fullName ?? "name"
                                   : "name",
                               style: const TextStyle(
                                 color: Colors.white,
@@ -352,7 +371,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             Text(
                               //TODO wrf plan
                               value.profile == null
-                                  ? value.profile!.fullName
+                                  ? value.profile!.fullName ?? "Free"
                                   : "Free",
                               style: const TextStyle(
                                 color: Colors.grey,
@@ -503,11 +522,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           width: 342,
                           height: 64,
                           child: TextField(
-                              readOnly: value.profile!.iban.isNotEmpty,
+                              readOnly: value.profile!.iban != null &&
+                                  value.profile!.iban!.isNotEmpty,
                               style: const TextStyle(color: Colors.white),
                               controller: _ibanController,
                               decoration: InputDecoration(
-                                  border: value.profile!.iban.isNotEmpty
+                                  border: value.profile!.iban != null &&
+                                          value.profile!.iban!.isNotEmpty
                                       ? InputBorder.none
                                       : null)),
                         )
@@ -518,7 +539,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     Consumer<SettingsState>(
                       builder: (context, value, child) {
-                        bankIdTitleSelected == null && value.banks != null
+                        bankIdTitleSelected == null &&
+                                value.banks != null &&
+                                bankIdSelected != null
                             ? bankIdTitleSelected = value.banks!
                                 .firstWhere(
                                   (element) => element.id == bankIdSelected,
@@ -539,8 +562,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       selected: bankIdTitleSelected,
                                       onSelect: (val) {
                                         // int index = SettingsState.banksTitle!.indexOf(val!);
+
+                                        bankIdTitleSelected = val;
+                                        bankIdSend = value.banks!
+                                            .firstWhere(
+                                              (element) =>
+                                                  element.title ==
+                                                  bankIdTitleSelected,
+                                            )
+                                            .id;
                                         setState(() {
-                                          bankIdTitleSelected = val;
+                                          bankIdTitleSelected;
+                                          bankIdSend;
                                           // bankIdSelected = SettingsState.banksID![index];
                                         });
                                       },
@@ -626,21 +659,41 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         // }
                         print("------------------");
                         print(_nameFamilyController.text);
-                        print(int.tryParse(_bankIdController.text));
+                        print(bankIdSend);
                         print(_educationController.text);
                         print(_ibanController.text);
+
                         // print(file);
 
                         print("------------------");
                         await ProfileController.editProfileHTTP(
                                 fullName: _nameFamilyController.text,
-                                bankId: int.tryParse(_bankIdController.text),
+                                bankId: bankIdSend,
                                 education: _educationController.text,
                                 iban: _ibanController.text,
                                 file: _imgFile,
                                 context: context)
                             .then((value) {
                           setState(() {});
+                          QuickAlert.show(
+                              context: context,
+                              type: QuickAlertType.success,
+                              onConfirmBtnTap: () {
+                                Navigator.of(context).pushAndRemoveUntil(
+                                  PageRouteBuilder(
+                                    pageBuilder: (_, __, ___) =>
+                                        const HomeScreen(),
+                                    transitionDuration:
+                                        const Duration(milliseconds: 500),
+                                    transitionsBuilder: (_, a, __, c) =>
+                                        FadeTransition(
+                                      opacity: a,
+                                      child: c,
+                                    ),
+                                  ),
+                                  (route) => false,
+                                );
+                              });
                         });
                         // ProfileController.editProfile(
                         //     fullName: _nameFamilyController.text,

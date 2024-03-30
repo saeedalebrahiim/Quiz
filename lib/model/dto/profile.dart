@@ -1,20 +1,20 @@
 class ProfileDto {
-  final String fullName;
+  final String? fullName;
   final String? userPicUrl;
-  final String education;
-  final int bankId;
-  final String iban;
-  final String username;
-  final int id;
+  final String? education;
+  final int? bankId;
+  final String? iban;
+  final String? username;
+  final int? id;
 
   ProfileDto(
-      {required this.fullName,
+      {this.fullName,
       this.userPicUrl,
-      required this.education,
-      required this.bankId,
-      required this.iban,
-      required this.username,
-      required this.id});
+      this.education,
+      this.bankId,
+      this.iban,
+      this.username,
+      this.id});
 
   static ProfileDto fromJson(json) {
     return ProfileDto(
