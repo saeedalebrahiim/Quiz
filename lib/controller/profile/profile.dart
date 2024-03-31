@@ -14,6 +14,8 @@ import 'package:bilgimizde/services/headers.dart';
 import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
 import 'package:bilgimizde/view/profile/edit_otp_screen.dart';
 import 'package:http/http.dart' as http;
+import 'package:quickalert/models/quickalert_type.dart';
+import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileController {
@@ -234,7 +236,13 @@ class ProfileController {
                 builder: (context) => const HomeScreen(),
               ),
               (route) => false);
-        } else {}
+        } else {
+          QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: "Something went wrong!",
+          );
+        }
       });
     } catch (e) {
       // print(e);

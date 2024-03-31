@@ -528,7 +528,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   value.profile!.iban!.isNotEmpty,
                               style: const TextStyle(color: Colors.white),
                               controller: _ibanController,
+                              maxLength: 28,
                               decoration: InputDecoration(
+                                  counterText: "",
                                   border: value.profile!.iban != null &&
                                           value.profile!.iban!.isNotEmpty
                                       ? InputBorder.none
@@ -675,7 +677,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   fullName: _nameFamilyController.text,
                                   bankId: bankIdSend,
                                   education: _educationController.text,
-                                  iban: _ibanController.text,
+                                  iban: _ibanController.text.trim(),
                                   file: _imgFile,
                                   context: context)
                               .then((value) {
