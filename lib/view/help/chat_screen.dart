@@ -97,7 +97,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     size: 24,
                   ),
                   onPressed: () {
-                    TicketController.addTicket(
+                    TicketController.addTicketAnswer(
                       context: context,
                       subject: widget.subject,
                       desc: textController.text,
@@ -108,6 +108,8 @@ class _ChatScreenState extends State<ChatScreen> {
                         desc: textController.text,
                         isClient: true,
                       ));
+                      textController.text = "";
+                      setState(() {});
                     });
                   },
                 ),

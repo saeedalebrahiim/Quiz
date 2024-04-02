@@ -130,8 +130,9 @@ class AllRatingCard extends StatelessWidget {
                 children: [
                   Text(
                     score.applicationUserFullName ??
-                        score.applicationUserUserName ??
-                        "-",
+                        (score.applicationUserUserName!
+                                .replaceRange(0, 7, "XXXXXXXX") ??
+                            "-"),
                     style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,

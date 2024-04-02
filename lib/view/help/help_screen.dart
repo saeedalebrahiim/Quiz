@@ -183,12 +183,12 @@ class RecentTicket extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      padding: const EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(5),
                       decoration: BoxDecoration(
                         color: dto.ticketState == 3
                             ? Colors.indigo
                             : Colors.transparent,
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(30),
                       ),
                       child: dto.ticketState == 1
                           ? const Icon(

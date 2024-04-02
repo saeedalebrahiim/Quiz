@@ -123,6 +123,8 @@ class ScoreController {
     }
   }
 
+  //all
+
   //ALL
 
   static Future<void> getAllScores({
@@ -130,7 +132,11 @@ class ScoreController {
   }) async {
     final api = Quiz.create(interceptors: [TokenIndicator()]);
     try {
-      await api.apiV1ScoreMaxScoreOfMonthScoreGet(count: 50).then((postResult) {
+      await api
+          .apiV1ScoreMaxScoreOfMonthScoreGet(
+        count: 50,
+      )
+          .then((postResult) {
         print("called Month");
 
         final body = jsonDecode(postResult.bodyString)["data"];

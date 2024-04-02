@@ -94,11 +94,17 @@ class TicketController {
       required int? id}) async {
     final api = Quiz.create(interceptors: [TokenIndicator()]);
     try {
+      print(id);
+      print(desc);
+      print(subject);
+
       await api
           .apiV1TicketCreateTicketByUserPost(
               desc: desc, id: id, subject: subject)
           .then((postResult) {
         final body = jsonDecode(postResult.bodyString);
+        print(body);
+        print(body["message"]);
 
         if (body["isSuccess"] == true) {
           print("one");
@@ -120,7 +126,34 @@ class TicketController {
         }
       });
     } catch (e) {
-      print("faq error $e");
+      print("add error $e");
+    }
+  }
+
+  static Future<void> addTicketAnswer(
+      {required BuildContext context,
+      required String? subject,
+      required String? desc,
+      required int? id}) async {
+    final api = Quiz.create(interceptors: [TokenIndicator()]);
+    try {
+      print(id);
+      print(desc);
+      print(subject);
+
+      await api
+          .apiV1TicketAddTicketAnswerByUserPost(desc: desc, id: 0, ticketId: id)
+          .then((postResult) {
+        final body = jsonDecode(postResult.bodyString);
+        print(body);
+        print(body["message"]);
+
+        if (body["isSuccess"] == true) {
+          print("one");
+        }
+      });
+    } catch (e) {
+      print("add error $e");
     }
   }
 }

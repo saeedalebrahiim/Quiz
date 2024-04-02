@@ -238,8 +238,10 @@ class AuthController {
   }) async {
     final api = Quiz.create(interceptors: [TokenIndicator()]);
     try {
+      print(" this is isAuth");
+
       final postResult = await api.apiV1AuthIsAuthenticatedGet();
-      print(postResult);
+      print("$postResult this is isAuth");
       if (postResult.isSuccessful == true) {
         //navigate
       } else {
