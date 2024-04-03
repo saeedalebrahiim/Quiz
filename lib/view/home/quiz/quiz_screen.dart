@@ -872,30 +872,36 @@ class _QuizScreenState extends State<QuizScreen> {
                                                             .read<QuizState>()
                                                             .removeEliminateAnswers();
                                                       });
+
                                                       if (isLast) {
-                                                        Navigator.of(context)
-                                                            .pushReplacement(
-                                                          PageRouteBuilder(
-                                                              pageBuilder: (_,
-                                                                      __,
-                                                                      ___) =>
-                                                                  QuizScreen(
-                                                                      index: (widget
-                                                                              .index +
-                                                                          1)),
-                                                              transitionDuration:
-                                                                  const Duration(
-                                                                      milliseconds:
-                                                                          1000),
-                                                              transitionsBuilder: (_,
-                                                                      a,
-                                                                      __,
-                                                                      c) =>
-                                                                  FadeTransition(
-                                                                    opacity: a,
-                                                                    child: c,
-                                                                  )),
-                                                        );
+                                                        Future.delayed(
+                                                            const Duration(
+                                                                milliseconds:
+                                                                    150), () {
+                                                          Navigator.of(context)
+                                                              .pushReplacement(
+                                                            PageRouteBuilder(
+                                                                pageBuilder: (_,
+                                                                        __,
+                                                                        ___) =>
+                                                                    QuizScreen(
+                                                                        index: (widget.index +
+                                                                            1)),
+                                                                transitionDuration:
+                                                                    const Duration(
+                                                                        milliseconds:
+                                                                            200),
+                                                                transitionsBuilder: (_,
+                                                                        a,
+                                                                        __,
+                                                                        c) =>
+                                                                    FadeTransition(
+                                                                      opacity:
+                                                                          a,
+                                                                      child: c,
+                                                                    )),
+                                                          );
+                                                        });
                                                       } else {
                                                         showDialog(
                                                           context: context,
