@@ -819,8 +819,8 @@ class _QuizScreenState extends State<QuizScreen> {
                                               child: SizedBox(
                                                 width: 346,
                                                 height: 65,
-                                                child: RawMaterialButton(
-                                                  onPressed: () {
+                                                child: InkWell(
+                                                  onTap: () {
                                                     //TODO everting should be on report
                                                     if (!nextTaped) {
                                                       nextTaped = true;
@@ -886,7 +886,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                                               transitionDuration:
                                                                   const Duration(
                                                                       milliseconds:
-                                                                          500),
+                                                                          1000),
                                                               transitionsBuilder: (_,
                                                                       a,
                                                                       __,
@@ -921,25 +921,29 @@ class _QuizScreenState extends State<QuizScreen> {
                                                       }
                                                     }
                                                   },
-                                                  fillColor:
-                                                      const Color.fromARGB(
-                                                          255, 8, 194, 104),
-                                                  shape: RoundedRectangleBorder(
-                                                    side: BorderSide(
-                                                        color: Colors
-                                                            .green.shade200,
-                                                        width: 3),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12),
-                                                  ),
-                                                  child: const Text(
-                                                    "Sıradaki",
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 20),
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                      color:
+                                                          const Color.fromARGB(
+                                                              255, 8, 194, 104),
+                                                      border: Border.all(
+                                                          color: Colors
+                                                              .green.shade200,
+                                                          width: 3),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12),
+                                                    ),
+                                                    child: const Center(
+                                                      child: Text(
+                                                        "Sıradaki",
+                                                        style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 20),
+                                                      ),
+                                                    ),
                                                   ),
                                                 ),
                                               ),

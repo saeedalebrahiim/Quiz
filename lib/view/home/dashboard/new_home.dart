@@ -247,6 +247,13 @@ class _NewMainScreenState extends State<NewMainScreen> {
                           );
                         },
                       ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: const Icon(
+                          Icons.add_circle_outline,
+                          color: Colors.amber,
+                        ),
+                      )
                     ],
                   ),
                 ),
@@ -480,6 +487,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                           SizedBox(
                                             width: 180,
                                             child: LinearProgressIndicator(
+                                              value: 0.6,
                                               color: Colors.amber,
                                               minHeight: 8,
                                               borderRadius:
@@ -520,6 +528,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                         SizedBox(
                                           width: 180,
                                           child: LinearProgressIndicator(
+                                            value: 0.2,
                                             color: Colors.red,
                                             minHeight: 8,
                                             borderRadius:
