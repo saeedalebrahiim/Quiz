@@ -162,7 +162,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                       },
                       child: Consumer<ProfileState>(
                         builder: (context, value, child) => Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 30),
+                          padding: const EdgeInsets.symmetric(horizontal: 6),
                           child: Container(
                             width: 56,
                             height: 56,
@@ -213,50 +213,50 @@ class _NewMainScreenState extends State<NewMainScreen> {
                   ),
                 ],
                 centerTitle: true,
-                title: InkWell(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => const BuyCoinScreen(),
-                          transitionDuration: const Duration(milliseconds: 500),
-                          transitionsBuilder: (_, a, __, c) => FadeTransition(
-                                opacity: a,
-                                child: c,
-                              )),
-                    );
-                  },
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Image.asset(
-                        'lib/assets/images/coin.png',
-                        width: 25,
-                        height: 25,
-                      ),
-                      Consumer<ProfileState>(
-                        builder: (context, value, child) {
-                          var _formattedNumber =
-                              NumberFormat.compact().format(value.userBalance);
-                          return Text(
-                            _formattedNumber,
-                            //  value.userBalance.toString(),
-                            style: const TextStyle(
-                                fontSize: 14,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600),
-                          );
-                        },
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: const Icon(
-                          Icons.add_circle_outline,
-                          color: Colors.amber,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+                // title: InkWell(
+                //   onTap: () {
+                //     Navigator.of(context).push(
+                //       PageRouteBuilder(
+                //           pageBuilder: (_, __, ___) => const BuyCoinScreen(),
+                //           transitionDuration: const Duration(milliseconds: 500),
+                //           transitionsBuilder: (_, a, __, c) => FadeTransition(
+                //                 opacity: a,
+                //                 child: c,
+                //               )),
+                //     );
+                //   },
+                //   child: Row(
+                //     mainAxisSize: MainAxisSize.min,
+                //     children: [
+                //       Image.asset(
+                //         'lib/assets/images/coin.png',
+                //         width: 25,
+                //         height: 25,
+                //       ),
+                //       Consumer<ProfileState>(
+                //         builder: (context, value, child) {
+                //           var _formattedNumber =
+                //               NumberFormat.compact().format(value.userBalance);
+                //           return Text(
+                //             _formattedNumber,
+                //             //  value.userBalance.toString(),
+                //             style: const TextStyle(
+                //                 fontSize: 14,
+                //                 color: Colors.white,
+                //                 fontWeight: FontWeight.w600),
+                //           );
+                //         },
+                //       ),
+                //       Padding(
+                //         padding: const EdgeInsets.only(left: 8.0),
+                //         child: const Icon(
+                //           Icons.add_circle_outline,
+                //           color: Colors.amber,
+                //         ),
+                //       )
+                //     ],
+                //   ),
+                // ),
                 backgroundColor: Colors.transparent,
                 elevation: 0,
                 leading: Padding(
@@ -482,12 +482,12 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                             ),
                                           ),
                                           const SizedBox(
-                                            width: 14,
+                                            width: 10,
                                           ),
                                           SizedBox(
                                             width: 180,
                                             child: LinearProgressIndicator(
-                                              value: 0.6,
+                                              value: value.userBalance / 500,
                                               color: Colors.amber,
                                               minHeight: 8,
                                               borderRadius:
@@ -495,7 +495,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                             ),
                                           ),
                                           const SizedBox(
-                                            width: 24,
+                                            width: 10,
                                           ),
                                           Text(
                                             "${value.userBalance} ",
@@ -504,7 +504,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                                 fontWeight: FontWeight.bold),
                                           ),
                                           Text(
-                                            "/ 1K",
+                                            "/ 500",
                                             style: const TextStyle(
                                               color: Color.fromARGB(
                                                   145, 255, 255, 255),
@@ -523,7 +523,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                           ),
                                         ),
                                         const SizedBox(
-                                          width: 14,
+                                          width: 10,
                                         ),
                                         SizedBox(
                                           width: 180,
@@ -536,7 +536,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                           ),
                                         ),
                                         const SizedBox(
-                                          width: 24,
+                                          width: 10,
                                         ),
                                         Text(
                                           "${value.userBalance} ",
@@ -545,7 +545,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                               fontWeight: FontWeight.bold),
                                         ),
                                         Text(
-                                          "/ 1K",
+                                          "/ 500",
                                           style: const TextStyle(
                                             color: Color.fromARGB(
                                                 145, 255, 255, 255),
