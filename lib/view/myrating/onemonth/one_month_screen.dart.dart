@@ -291,13 +291,10 @@ class _OneMonthScreenState extends State<OneMonthScreen> {
                               vertical: 8.0, horizontal: 25),
                           child: AllRatingCard(
                               score: value.monthlyScores[index],
-                              index: index + 1,
-                              isMe: value.monthlyScores[index]
-                                          .applicationUserUserName ==
-                                      ProfileState.profileUse!.username ||
-                                  value.monthlyScores[index]
-                                          .applicationUserFullName ==
-                                      ProfileState.profileUse!.fullName,
+                              index: index + 2,
+                              isMe: value
+                                      .monthlyScores[index].applicationUserId ==
+                                  ProfileState.profileUse!.id,
                               isRank: true,
                               price: value.monthlyScores[index].sumCurrectAnswer
                                       .toString() ??

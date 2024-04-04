@@ -32,7 +32,7 @@ class AllRatingCard extends StatelessWidget {
       height: 58,
       decoration: BoxDecoration(
           color: isMe == true
-              ? Colors.white.withOpacity(0.5)
+              ? Colors.white.withOpacity(0.25)
               : const Color.fromRGBO(28, 28, 28, 0.65),
           // image: const DecorationImage(
           //   image: AssetImage('lib/assets/images/ratingcard.png'),
@@ -109,7 +109,7 @@ class AllRatingCard extends StatelessWidget {
                     imageBuilder: (context, imageProvider) => Container(
                       decoration: BoxDecoration(
                         color: const Color.fromARGB(255, 10, 21, 94),
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(12),
                         image: DecorationImage(
                           image: imageProvider,
                           fit: BoxFit.cover,
@@ -128,16 +128,37 @@ class AllRatingCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    score.applicationUserFullName ??
-                        (score.applicationUserUserName!
-                                .replaceRange(0, 7, "XXXXXXXX") ??
-                            "-"),
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12,
+                  SizedBox(
+                    width: 100,
+                    child: RichText(
+                      overflow: TextOverflow.ellipsis,
+                      text: TextSpan(
+                          style: DefaultTextStyle.of(context).style,
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: score.applicationUserFullName ??
+                                  (score.applicationUserUserName!
+                                          .replaceRange(0, 7, "XXXXXXXX") ??
+                                      "-"),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ]),
                     ),
+                    // child: Text(
+                    //   score.applicationUserFullName ??
+                    //       (score.applicationUserUserName!
+                    //               .replaceRange(0, 7, "XXXXXXXX") ??
+                    //           "-"),
+                    //   style: const TextStyle(
+                    //     color: Colors.white,
+                    //     fontWeight: FontWeight.bold,
+                    //     fontSize: 12,
+                    //   ),
+                    // ),
                   ),
                   isMe == true
                       ? Container(
@@ -178,7 +199,7 @@ class AllRatingCard extends StatelessWidget {
                       ),
                 Text(
                   isPrice == true
-                      ? '${price ?? ""} TL'
+                      ? '${price ?? ""} ${price != null && price != "" ? "TL" : ""}'
                       : '${score.sumCurrectAnswer}',
                   style: const TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),

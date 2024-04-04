@@ -510,6 +510,9 @@ class _TodayScreenState extends State<TodayScreen> {
                             child: AllRatingCard(
                                 showChanges: true,
                                 isPrice: true,
+                                isMe: value
+                                        .dailyScores[index].applicationUserId ==
+                                    ProfileState.profileUse!.id,
                                 score: value.dailyScores[index],
                                 index: index + 1,
                                 price: value.rewards[index] ?? "0"),

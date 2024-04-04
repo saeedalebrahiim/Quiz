@@ -284,8 +284,15 @@ class _AllScreenState extends State<AllScreen> {
                                     color: Colors.white, fontSize: 12),
                                 enableDescriptions: true,
                                 controller: CountTimerController(
-                                  endTime: DateTime(DateTime.now().year,
-                                      DateTime.now().month, 30, 23, 59, 59),
+                                  endTime: DateTime(
+                                      DateTime.now().year,
+                                      DateTime.now().month,
+                                      DateTime(DateTime.now().year,
+                                              DateTime.now().month + 1, 0)
+                                          .day,
+                                      23,
+                                      59,
+                                      59),
 
                                   //  DateTime.now().add(
                                   //   const Duration(
