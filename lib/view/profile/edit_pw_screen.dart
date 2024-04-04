@@ -85,6 +85,7 @@ class _ChangePwScreenState extends State<ChangePwScreen> {
                   height: 64,
                   child: TextFormField(
                       controller: numberController,
+                      keyboardType: TextInputType.phone,
                       maxLength: 10,
                       decoration: InputDecoration(
                           counterText: "",

@@ -72,8 +72,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       height: 64,
                       child: TextFormField(
                           controller: _numberController,
+                          maxLength: 10,
                           keyboardType: TextInputType.phone,
                           decoration: InputDecoration(
+                              counterText: "",
                               prefixIcon: Padding(
                                 padding: const EdgeInsets.only(right: 10),
                                 child: Container(
@@ -137,7 +139,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     });
                     // login(context: context, userName: _numberController.text)
                     //     .then((value) {});
-                    String number = "+98${_numberController.text}";
+                    String number = "$crCode${_numberController.text}";
                     AuthController.register(userName: number, context: context)
                         .then((value) => (value) => visible = true);
                   },

@@ -11,6 +11,7 @@ class RegisterStepTwoScreen extends StatefulWidget {
 
 class _RegisterStepTwoScreenState extends State<RegisterStepTwoScreen> {
   bool _passwordVisible = false;
+  bool _passwordConfVisible = false;
 
   final _confirmPasswordController = TextEditingController();
 
@@ -71,7 +72,7 @@ class _RegisterStepTwoScreenState extends State<RegisterStepTwoScreen> {
                       width: 316,
                       height: 64,
                       child: TextFormField(
-                          keyboardType: TextInputType.text,
+                          keyboardType: TextInputType.number,
                           controller: _userPasswordController,
                           obscureText: !_passwordVisible,
                           decoration: InputDecoration(
@@ -111,9 +112,33 @@ class _RegisterStepTwoScreenState extends State<RegisterStepTwoScreen> {
                       width: 316,
                       height: 64,
                       child: TextFormField(
-                          obscureText: true,
+                          obscureText: !_passwordConfVisible,
+                          keyboardType: TextInputType.number,
                           controller: _confirmPasswordController,
                           decoration: InputDecoration(
+                              suffixIcon: InkWell(
+                                onTap: () {
+                                  // Update the state i.e. toogle the state of passwordVisible variable
+                                  setState(() {
+                                    _passwordConfVisible =
+                                        !_passwordConfVisible;
+                                  });
+                                },
+                                child: Container(
+                                  width: 1,
+                                  height: 1,
+                                  decoration: BoxDecoration(
+                                      image: _passwordVisible
+                                          ? const DecorationImage(
+                                              image: AssetImage(
+                                                  'lib/assets/images/show.png'),
+                                            )
+                                          : const DecorationImage(
+                                              image: AssetImage(
+                                                  'lib/assets/images/hide.png'),
+                                            )),
+                                ),
+                              ),
                               hintText: 'Comfrem Password',
                               border: OutlineInputBorder(
                                   borderSide: BorderSide.none,
