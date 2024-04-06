@@ -44,6 +44,12 @@ exitAlarm(BuildContext context) {
                     Navigator.of(context).pop();
                   },
                   child: Container(
+                    width: 100,
+                    height: 40,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('lib/assets/images/yesbtn.png'),
+                            fit: BoxFit.fill)),
                     child: const Center(
                       child: Text(
                         'No',
@@ -51,12 +57,6 @@ exitAlarm(BuildContext context) {
                             color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                     ),
-                    width: 100,
-                    height: 40,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('lib/assets/images/yesbtn.png'),
-                            fit: BoxFit.fill)),
                   ),
                 ),
                 RawMaterialButton(
@@ -74,6 +74,12 @@ exitAlarm(BuildContext context) {
                         (route) => false);
                   },
                   child: Container(
+                    width: 100,
+                    height: 40,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('lib/assets/images/nobtn.png'),
+                            fit: BoxFit.fill)),
                     child: const Center(
                       child: Text(
                         'Yes',
@@ -81,12 +87,6 @@ exitAlarm(BuildContext context) {
                             color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                     ),
-                    width: 100,
-                    height: 40,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('lib/assets/images/nobtn.png'),
-                            fit: BoxFit.fill)),
                   ),
                 )
               ],

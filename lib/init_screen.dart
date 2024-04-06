@@ -1,5 +1,3 @@
-import 'package:bilgimizde/components/alarms_functions/wifi_alarm.dart';
-import 'package:bilgimizde/services/internet_listener.dart';
 import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
 import 'package:bilgimizde/view/welcome/enter_screen.dart';
 import 'package:flutter/material.dart';

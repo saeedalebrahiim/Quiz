@@ -96,15 +96,15 @@ class AllReward extends StatelessWidget {
                             color: Colors.white.withOpacity(0.6),
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          child: Text(
+                          child: const Text(
                             "YOU",
-                            style: const TextStyle(
+                            style: TextStyle(
                               color: Colors.white,
                               fontSize: 10,
                             ),
                           ),
                         )
-                      : SizedBox(),
+                      : const SizedBox(),
                 ],
               ),
               const SizedBox(
@@ -117,7 +117,7 @@ class AllReward extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  '${reward} TL',
+                  '$reward TL',
                   style: const TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),

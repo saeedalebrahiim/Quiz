@@ -3,7 +3,7 @@ import 'package:bilgimizde/view/auth/login/forget_newpas_screen.dart';
 import 'package:flutter/material.dart';
 
 class ForgetPwPinCodeScreen extends StatefulWidget {
-  ForgetPwPinCodeScreen({super.key, required this.userName});
+  const ForgetPwPinCodeScreen({super.key, required this.userName});
   final String userName;
 
   @override

@@ -7,7 +7,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:bilgimizde/controller/Quiz/start_quiz.dart';
 import 'package:bilgimizde/controller/banners/banners.dart';
@@ -17,8 +16,6 @@ import 'package:bilgimizde/provider/banners.dart';
 import 'package:bilgimizde/provider/drawer_state.dart';
 import 'package:bilgimizde/provider/profile.dart';
 import 'package:bilgimizde/services/admob.dart';
-import 'package:bilgimizde/view/buycoin/buy_coin_screen.dart';
-import 'package:bilgimizde/view/gem_quiz/gem_quiz_screen.dart';
 import 'package:bilgimizde/view/profile/profile_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -305,7 +302,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                     ..rotateZ(value.isDrawerOpen ? -50 : 0),
               duration: const Duration(milliseconds: 200),
               decoration: BoxDecoration(
-                image: DecorationImage(
+                image: const DecorationImage(
                   image: AssetImage(
                     "lib/assets/images/mainbg.png",
                   ),
@@ -391,7 +388,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                       width: 342,
                                       child: Padding(
                                         padding:
-                                            EdgeInsets.symmetric(horizontal: 0),
+                                            const EdgeInsets.symmetric(horizontal: 0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -466,15 +463,15 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                                 value.profile!.username
                                                     .toString(),
                                             style:
-                                                TextStyle(color: Colors.white),
+                                                const TextStyle(color: Colors.white),
                                           )
-                                        : SizedBox(),
+                                        : const SizedBox(),
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 10.0),
                                       child: Row(
                                         children: [
-                                          Image(
+                                          const Image(
                                             width: 35,
                                             height: 35,
                                             image: AssetImage(
@@ -503,9 +500,9 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                          Text(
+                                          const Text(
                                             "/ 500",
-                                            style: const TextStyle(
+                                            style: TextStyle(
                                               color: Color.fromARGB(
                                                   145, 255, 255, 255),
                                             ),
@@ -515,7 +512,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                     ),
                                     Row(
                                       children: [
-                                        Image(
+                                        const Image(
                                           width: 35,
                                           height: 35,
                                           image: AssetImage(
@@ -544,9 +541,9 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                               color: Colors.white,
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        Text(
+                                        const Text(
                                           "/ 500",
-                                          style: const TextStyle(
+                                          style: TextStyle(
                                             color: Color.fromARGB(
                                                 145, 255, 255, 255),
                                           ),
@@ -611,8 +608,8 @@ class _NewMainScreenState extends State<NewMainScreen> {
                               ),
                               child: Column(
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 4.0),
+                                  const Padding(
+                                    padding: EdgeInsets.only(top: 4.0),
                                     child: Text(
                                       "Play",
                                       style: TextStyle(
@@ -688,17 +685,17 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                                   borderRadius:
                                                       BorderRadius.circular(10),
                                                 ),
-                                                child: Icon(
+                                                child: const Icon(
                                                   Icons.question_mark,
                                                   color: Colors.amber,
                                                   size: 40,
                                                 ),
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 4,
                                             ),
-                                            Text(
+                                            const Text(
                                               "kelimeyi tahmin et",
                                               style: TextStyle(
                                                 fontSize: 14,
@@ -723,16 +720,16 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                               ),
-                                              child: Icon(
+                                              child: const Icon(
                                                 Icons.text_rotate_up_rounded,
                                                 color: Colors.red,
                                                 size: 40,
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 4,
                                             ),
-                                            Text(
+                                            const Text(
                                               "Ölçek",
                                               style: TextStyle(
                                                 fontSize: 18,

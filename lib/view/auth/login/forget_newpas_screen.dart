@@ -1,5 +1,4 @@
 import 'package:bilgimizde/controller/auth/auth_controller.dart';
-import 'package:bilgimizde/view/auth/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 

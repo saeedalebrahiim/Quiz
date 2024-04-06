@@ -2,10 +2,9 @@ import 'package:bilgimizde/controller/auth/auth_controller.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:bilgimizde/view/auth/login/forgetpw_pincode_screen.dart';
 
 class ForgetPwScreen extends StatefulWidget {
-  ForgetPwScreen({super.key});
+  const ForgetPwScreen({super.key});
 
   @override
   State<ForgetPwScreen> createState() => _ForgetPwScreenState();

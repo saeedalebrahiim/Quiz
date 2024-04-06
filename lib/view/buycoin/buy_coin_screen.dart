@@ -21,7 +21,7 @@ class _BuyCoinScreenState extends State<BuyCoinScreen> {
 
   bool _isAvailable = true;
   List<ProductDetails> _products = [];
-  List<PurchaseDetails> _purchases = [];
+  final List<PurchaseDetails> _purchases = [];
   StreamSubscription? _subscription;
 
   @override
@@ -136,10 +136,10 @@ class _BuyCoinScreenState extends State<BuyCoinScreen> {
                     ),
                     Consumer<ProfileState>(
                       builder: (context, value, child) {
-                        var _formattedNumber =
+                        var formattedNumber =
                             NumberFormat.compact().format(value.userBalance);
                         return Text(
-                          _formattedNumber,
+                          formattedNumber,
                           //  value.userBalance.toString(),
                           style: const TextStyle(
                               fontSize: 30,

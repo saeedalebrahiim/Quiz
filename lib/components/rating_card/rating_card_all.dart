@@ -64,7 +64,7 @@ class AllRatingCard extends StatelessWidget {
                             visible: score.changes > 0,
                             replacement: Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.arrow_drop_down,
                                   color: Colors.red,
                                 ),
@@ -77,7 +77,7 @@ class AllRatingCard extends StatelessWidget {
                             ),
                             child: Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.arrow_drop_up,
                                   color: Colors.green,
                                 ),
@@ -89,7 +89,7 @@ class AllRatingCard extends StatelessWidget {
                               ],
                             ),
                           )
-                        : SizedBox(),
+                        : const SizedBox(),
                   ],
                 ),
               ),
@@ -167,15 +167,15 @@ class AllRatingCard extends StatelessWidget {
                             color: Colors.white.withOpacity(0.6),
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          child: Text(
+                          child: const Text(
                             "YOU",
-                            style: const TextStyle(
+                            style: TextStyle(
                               color: Colors.white,
                               fontSize: 10,
                             ),
                           ),
                         )
-                      : SizedBox(),
+                      : const SizedBox(),
                 ],
               ),
               const SizedBox(
@@ -190,7 +190,7 @@ class AllRatingCard extends StatelessWidget {
                 isPrice == true
                     ? const SizedBox()
                     : const Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Icon(
                           Icons.circle,
                           color: Colors.green,

@@ -91,15 +91,15 @@ class GemQuizScreen extends StatelessWidget {
                     height: 16,
                   ),
                 ),
-                Text(
+                const Text(
                   'go to the wallet',
                   style: TextStyle(
-                      color: const Color.fromARGB(255, 246, 176, 71),
+                      color: Color.fromARGB(255, 246, 176, 71),
                       fontWeight: FontWeight.w600),
                 )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             SizedBox(
@@ -108,7 +108,7 @@ class GemQuizScreen extends StatelessWidget {
               child: ListView.builder(
                 scrollDirection: Axis.vertical,
                 itemCount: 1,
-                itemBuilder: (context, index) => GemListComponents(
+                itemBuilder: (context, index) => const GemListComponents(
                   price: '350',
                   gemCount: '60',
                 ),
@@ -132,14 +132,25 @@ class GemListComponents extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Container(
+        height: 70,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: const Color.fromARGB(255, 75, 86, 191),
+              width: 2,
+            ),
+            color: const Color.fromARGB(255, 18, 36, 192),
+            image: const DecorationImage(
+                image: AssetImage('lib/assets/images/gemlistbg.png'),
+                fit: BoxFit.fill)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: Text(
-                price + 'TL',
-                style: TextStyle(
+                '${price}TL',
+                style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 18),
@@ -151,55 +162,44 @@ class GemListComponents extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 15, bottom: 5),
                   child: Container(
+                    width: 80,
+                    height: 26,
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                            width: 2, color: const Color.fromARGB(255, 223, 72, 123)),
+                        borderRadius: BorderRadius.circular(50),
+                        image: const DecorationImage(
+                            image:
+                                AssetImage('lib/assets/images/gemlistbtn.png'),
+                            fit: BoxFit.fill),
+                        color: const Color.fromARGB(255, 224, 33, 98)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.diamond,
                           size: 16,
                           color: Colors.white,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 2,
                         ),
                         Text(
                           gemCount,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.white,
                               fontSize: 14,
                               fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
-                    width: 80,
-                    height: 26,
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            width: 2, color: Color.fromARGB(255, 223, 72, 123)),
-                        borderRadius: BorderRadius.circular(50),
-                        image: DecorationImage(
-                            image:
-                                AssetImage('lib/assets/images/gemlistbtn.png'),
-                            fit: BoxFit.fill),
-                        color: Color.fromARGB(255, 224, 33, 98)),
                   ),
                 )
               ],
             )
           ],
         ),
-        height: 70,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: Color.fromARGB(255, 75, 86, 191),
-              width: 2,
-            ),
-            color: Color.fromARGB(255, 18, 36, 192),
-            image: DecorationImage(
-                image: AssetImage('lib/assets/images/gemlistbg.png'),
-                fit: BoxFit.fill)),
       ),
     );
   }

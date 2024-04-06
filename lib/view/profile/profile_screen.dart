@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:bilgimizde/provider/drawer_state.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/cupertino.dart';
@@ -675,7 +674,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           // print(file);
                           if (_ibanController.text.isNotEmpty &&
                               _nameFamilyController.text.isEmpty) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                 content: Text(
                                     "You Should have name to save your iban")));
                           }

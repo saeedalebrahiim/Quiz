@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:bilgimizde/controller/auth/auth_controller.dart';
 import 'package:bilgimizde/view/auth/login/forgetpw_screen.dart';
-import 'package:bilgimizde/view/auth/register/register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -139,7 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ),
                               hintText: 'Password',
-                              hintStyle: TextStyle(color: Colors.grey),
+                              hintStyle: const TextStyle(color: Colors.grey),
                               border: OutlineInputBorder(
                                   borderSide: BorderSide.none,
                                   borderRadius: BorderRadius.circular(30)),
@@ -158,7 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           onTap: () {
                             Navigator.of(context).push(
                               PageRouteBuilder(
-                                  pageBuilder: (_, __, ___) => ForgetPwScreen(),
+                                  pageBuilder: (_, __, ___) => const ForgetPwScreen(),
                                   transitionDuration:
                                       const Duration(milliseconds: 500),
                                   transitionsBuilder: (_, a, __, c) =>

@@ -29,8 +29,8 @@ class CoinPackages extends StatelessWidget {
           children: [
             Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
                   child: Image(
                     image: AssetImage('lib/assets/images/coin.png'),
                   ),
@@ -39,7 +39,7 @@ class CoinPackages extends StatelessWidget {
                   width: 5,
                 ),
                 Text(
-                  "$coinCount",
+                  coinCount,
                   style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -66,7 +66,7 @@ class CoinPackages extends StatelessWidget {
                 fillColor: Colors.green,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
-                child: Text(
+                child: const Text(
                   "Purchase",
                   style: TextStyle(color: Colors.white),
                 ),

@@ -1,12 +1,10 @@
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:bilgimizde/components/alarms_functions/exit_alarm.dart';
 import 'package:bilgimizde/controller/profile/profile.dart';
 import 'package:bilgimizde/services/admob.dart';
 import 'package:bilgimizde/services/background.dart';
 import 'package:bilgimizde/view/home/dashboard/drawer_screen.dart';
-import 'package:easy_count_timer/easy_count_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -14,11 +12,9 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:bilgimizde/controller/Quiz/start_quiz.dart';
-import 'package:bilgimizde/global.dart';
 import 'package:bilgimizde/provider/profile.dart';
 import 'package:bilgimizde/provider/quiz.dart';
 import 'package:bilgimizde/provider/stop_watch.dart';
-import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
 import 'package:bilgimizde/view/home/quiz/answer_card.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 
@@ -188,7 +184,7 @@ class _QuizScreenState extends State<QuizScreen> {
           body: Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 // color: primaryColor,
                 // image: const DecorationImage(
                 //     image: AssetImage('lib/assets/images/bg2.png'),
@@ -281,7 +277,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                       )
                                     ],
                                   ),
-                                  interval: Duration(milliseconds: 100),
+                                  interval: const Duration(milliseconds: 100),
                                   onFinished: () {
                                     print('Timer is done!');
                                     setState(() {
@@ -324,11 +320,11 @@ class _QuizScreenState extends State<QuizScreen> {
                                 ),
                                 Consumer<ProfileState>(
                                   builder: (context, value, child) {
-                                    var _formattedNumber =
+                                    var formattedNumber =
                                         NumberFormat.compact()
                                             .format(value.userBalance);
                                     return Text(
-                                      _formattedNumber,
+                                      formattedNumber,
                                       //  value.userBalance.toString(),
                                       style: const TextStyle(
                                           fontSize: 14,
@@ -1011,7 +1007,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             16),
-                                                    border: Border(
+                                                    border: const Border(
                                                       bottom: BorderSide(
                                                           width: 4,
                                                           color: Colors.orange),
@@ -1084,7 +1080,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                                                   width: 20,
                                                                 ),
                                                               ),
-                                                              Text(
+                                                              const Text(
                                                                 "2",
                                                                 style: TextStyle(
                                                                     fontSize:
@@ -1155,7 +1151,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             16),
-                                                    border: Border(
+                                                    border: const Border(
                                                       bottom: BorderSide(
                                                           width: 4,
                                                           color: Colors.orange),
@@ -1197,7 +1193,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                                                   width: 20,
                                                                 ),
                                                               ),
-                                                              Text(
+                                                              const Text(
                                                                 "1",
                                                                 style: TextStyle(
                                                                     fontSize:
@@ -1259,7 +1255,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(16),
-                                                        border: Border(
+                                                        border: const Border(
                                                           bottom: BorderSide(
                                                               width: 4,
                                                               color: Colors
@@ -1511,7 +1507,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(16),
-                                                        border: Border(
+                                                        border: const Border(
                                                           bottom: BorderSide(
                                                               width: 4,
                                                               color:

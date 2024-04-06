@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:bilgimizde/services/admob.dart';
 import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
@@ -45,8 +44,8 @@ class _TodayScreenState extends State<TodayScreen> {
       _bannerAd = BannerAd(
           size: AdSize.fullBanner,
           adUnitId: AdMobService.bannerAdUnitId!,
-          listener: BannerAdListener(),
-          request: AdRequest())
+          listener: const BannerAdListener(),
+          request: const AdRequest())
         ..load();
     } catch (e) {
       print("error $e");
@@ -137,10 +136,10 @@ class _TodayScreenState extends State<TodayScreen> {
                               ),
                               Consumer<ProfileState>(
                                 builder: (context, value, child) {
-                                  var _formattedNumber = NumberFormat.compact()
+                                  var formattedNumber = NumberFormat.compact()
                                       .format(value.userBalance);
                                   return Text(
-                                    _formattedNumber,
+                                    formattedNumber,
                                     //  value.userBalance.toString(),
                                     style: const TextStyle(
                                         fontSize: 14,
@@ -488,7 +487,7 @@ class _TodayScreenState extends State<TodayScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     )
                   ],

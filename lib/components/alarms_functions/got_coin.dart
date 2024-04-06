@@ -54,18 +54,18 @@ gotCoin(BuildContext context) {
             ),
             InkWell(
               child: Container(
-                child: const Center(
-                  child: Text(
-                    'Got it',
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
-                  ),
-                ),
                 width: 100,
                 height: 30,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage('lib/assets/images/alarmsuccess.png'),
                         fit: BoxFit.fill)),
+                child: const Center(
+                  child: Text(
+                    'Got it',
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
+                  ),
+                ),
               ),
             )
           ],

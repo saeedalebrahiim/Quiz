@@ -25,19 +25,19 @@ noCoinAlert(BuildContext context) {
                   child: Container(
                     width: 40,
                     height: 40,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         image: DecorationImage(
                             image:
                                 AssetImage('lib/assets/images/alarmexit.png'),
                             fit: BoxFit.fill)),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
@@ -48,29 +48,29 @@ noCoinAlert(BuildContext context) {
                 width: MediaQuery.of(context).size.width - 50,
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     Container(
                       width: 60,
                       height: 60,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage(
                                   'lib/assets/images/alarmcoins.png'),
                               fit: BoxFit.fill)),
                     ),
-                    Text(
+                    const Text(
                       'You do not want to buy any',
                       style: TextStyle(
                           color: Colors.black, fontWeight: FontWeight.w700),
                     ),
-                    Text(
+                    const Text(
                       'coins ?',
                       style: TextStyle(
                           color: Colors.black, fontWeight: FontWeight.w700),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     InkWell(
@@ -91,7 +91,10 @@ noCoinAlert(BuildContext context) {
                       child: Container(
                         width: 100,
                         height: 35,
-                        child: Center(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: Colors.black),
+                        child: const Center(
                           child: Text(
                             'Buy Coin',
                             style: TextStyle(
@@ -100,9 +103,6 @@ noCoinAlert(BuildContext context) {
                                 color: Colors.orange),
                           ),
                         ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: Colors.black),
                       ),
                     )
                   ],

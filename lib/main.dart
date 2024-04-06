@@ -1,11 +1,9 @@
 import 'package:bilgimizde/services/admob.dart';
-import 'package:bilgimizde/services/internet_listener.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
-import 'package:bilgimizde/init_screen.dart';
 import 'package:bilgimizde/provider/banners.dart';
 import 'package:bilgimizde/provider/drawer_state.dart';
 import 'package:bilgimizde/provider/faq.dart';

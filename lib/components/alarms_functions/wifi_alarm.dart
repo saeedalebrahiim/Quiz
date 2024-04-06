@@ -24,49 +24,49 @@ wifiAlarm(BuildContext context) {
                   child: Container(
                     width: 40,
                     height: 40,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         image: DecorationImage(
                             image:
                                 AssetImage('lib/assets/images/alarmexit.png'),
                             fit: BoxFit.fill)),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(25)),
+                height: 150,
+                width: MediaQuery.of(context).size.width - 50,
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Container(
                       width: 50,
                       height: 50,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage(
                                   'lib/assets/images/alarmwifi.png'))),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                    Text(
+                    const Text(
                       'Check your internet',
                       style: TextStyle(fontWeight: FontWeight.w700),
                     )
                   ],
-                ),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(25)),
-                height: 150,
-                width: MediaQuery.of(context).size.width - 50),
+                )),
           ],
         ),
       ),

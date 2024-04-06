@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class PinCodeScreen extends StatefulWidget {
-  PinCodeScreen({super.key, required this.userName});
+  const PinCodeScreen({super.key, required this.userName});
   final String userName;
 
   @override

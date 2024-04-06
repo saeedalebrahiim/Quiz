@@ -1,7 +1,5 @@
 import 'dart:ui';
 
-import 'package:bilgimizde/view/myrating/all/all_screen.dart.dart';
-import 'package:bilgimizde/view/myrating/onemonth/one_month_screen.dart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:bilgimizde/controller/FAQ/faq.dart';
@@ -24,7 +22,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
   @override
   Widget build(BuildContext context) {
     return BackgroundShapes(
-      child: Container(
+      child: SizedBox(
         height: MediaQuery.of(context).size.height,
         // decoration: BoxDecoration(
         //   color: primaryColor,
@@ -338,7 +336,7 @@ class _BackgroundShapesState extends State<BackgroundShapes>
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Color.fromARGB(255, 0, 3, 66),
+      color: const Color.fromARGB(255, 0, 3, 66),
       child: Stack(
         children: [
           AnimatedBuilder(
@@ -389,8 +387,8 @@ class BackgroundPainter extends CustomPainter {
       BlurStyle.normal,
       30,
     );
-    drawShape1(canvas, size, paint, Color.fromARGB(105, 63, 70, 202));
-    drawShape2(canvas, size, paint, Color.fromARGB(123, 103, 84, 208));
+    drawShape1(canvas, size, paint, const Color.fromARGB(105, 63, 70, 202));
+    drawShape2(canvas, size, paint, const Color.fromARGB(123, 103, 84, 208));
     drawShape3(canvas, size, paint, const Color.fromARGB(155, 103, 84, 208));
     drawShape4(canvas, size, paint, const Color.fromARGB(155, 152, 58, 180));
   }

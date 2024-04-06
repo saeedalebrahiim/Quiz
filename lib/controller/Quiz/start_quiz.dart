@@ -10,7 +10,6 @@ import 'package:bilgimizde/model/dto/quiz.dart';
 import 'package:bilgimizde/provider/quiz.dart';
 import 'package:bilgimizde/services/headers.dart';
 import 'package:bilgimizde/view/home/quiz/quiz_screen.dart';
-import 'package:bilgimizde/view/home/quiz/result.dart';
 
 class StartQuizController {
   static Future<void> startQuiz({required BuildContext context}) async {

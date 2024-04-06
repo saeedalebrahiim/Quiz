@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:bilgimizde/components/rating_card/all_reward.dart';
-import 'package:bilgimizde/components/rating_card/rating_card_all.dart';
 import 'package:bilgimizde/controller/score/score.dart';
 import 'package:bilgimizde/provider/profile.dart';
 import 'package:bilgimizde/provider/score.dart';
@@ -113,10 +112,10 @@ class _AllScreenState extends State<AllScreen> {
                               ),
                               Consumer<ProfileState>(
                                 builder: (context, value, child) {
-                                  var _formattedNumber = NumberFormat.compact()
+                                  var formattedNumber = NumberFormat.compact()
                                       .format(value.userBalance);
                                   return Text(
-                                    _formattedNumber,
+                                    formattedNumber,
                                     //  value.userBalance.toString(),
                                     style: const TextStyle(
                                         fontSize: 14,

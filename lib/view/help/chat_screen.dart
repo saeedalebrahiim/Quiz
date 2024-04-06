@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:bilgimizde/controller/ticket/ticket.dart';
 import 'package:bilgimizde/global.dart';
-import 'package:bilgimizde/model/api/swagger/generated/quiz.models.swagger.dart';
 import 'package:bilgimizde/model/dto/ticket.dart';
 import 'package:bilgimizde/provider/ticket.dart';
-import 'package:bilgimizde/view/help/add_help_screen.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen(
@@ -42,7 +40,7 @@ class _ChatScreenState extends State<ChatScreen> {
         child: Container(
           height: 70,
           decoration: BoxDecoration(
-              color: Color.fromARGB(255, 83, 94, 159),
+              color: const Color.fromARGB(255, 83, 94, 159),
               borderRadius: BorderRadius.circular(50)),
           child: Row(
             mainAxisSize: MainAxisSize.max,
@@ -151,7 +149,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 18),
+                    padding: const EdgeInsets.only(top: 18),
                     child: Text(
                       widget.subject,
                       style: const TextStyle(
@@ -160,7 +158,7 @@ class _ChatScreenState extends State<ChatScreen> {
                           fontSize: 18),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 50,
                   ),
                 ],
@@ -246,7 +244,7 @@ class RecentTicket extends StatelessWidget {
                   children: [
                     Text(
                       dto.subject.toString(),
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                       ),
                     ),
@@ -256,7 +254,7 @@ class RecentTicket extends StatelessWidget {
                         color: Colors.indigo,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.done,
                         color: Colors.white,
                         size: 14,
@@ -270,7 +268,7 @@ class RecentTicket extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       "Bilet kimliği: ",
                       style: TextStyle(
                         color: Colors.white,
@@ -278,7 +276,7 @@ class RecentTicket extends StatelessWidget {
                     ),
                     Text(
                       "${dto.id}",
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),

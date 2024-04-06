@@ -1,9 +1,7 @@
-import 'package:bilgimizde/provider/drawer_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:bilgimizde/controller/ticket/ticket.dart';
 import 'package:bilgimizde/global.dart';
-import 'package:bilgimizde/model/api/swagger/generated/quiz.models.swagger.dart';
 import 'package:bilgimizde/model/dto/ticket.dart';
 import 'package:bilgimizde/provider/ticket.dart';
 import 'package:bilgimizde/view/help/add_help_screen.dart';

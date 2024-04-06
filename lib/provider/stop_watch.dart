@@ -1,9 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:bilgimizde/controller/Quiz/start_quiz.dart';
-import 'package:bilgimizde/provider/quiz.dart';
 
 class StopWatchProvider with ChangeNotifier {
   Stream timeStream = Stream.periodic(const Duration(seconds: 1));

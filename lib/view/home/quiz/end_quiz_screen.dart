@@ -2,16 +2,12 @@ import 'package:bilgimizde/components/alarms_functions/no_coin.dart';
 import 'package:bilgimizde/controller/Quiz/start_quiz.dart';
 import 'package:bilgimizde/controller/profile/profile.dart';
 import 'package:bilgimizde/provider/quiz.dart';
-import 'package:bilgimizde/view/buycoin/buy_coin_screen.dart';
 import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
 import 'package:bilgimizde/view/myrating/all/all_screen.dart.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:bilgimizde/provider/profile.dart';
-import 'package:bilgimizde/view/profile/profile_screen.dart';
 
 class EndQuizScreen extends StatefulWidget {
   const EndQuizScreen({super.key});

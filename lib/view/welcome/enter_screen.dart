@@ -57,7 +57,7 @@ class _EnterScreenState extends State<EnterScreen> {
                   height: 20,
                 ),
                 const Padding(
-                  padding: const EdgeInsets.only(left: 28.0),
+                  padding: EdgeInsets.only(left: 28.0),
                   child: Text(
                     'Gücümüz bilgimizdedir.',
                     textAlign: TextAlign.start,
@@ -65,7 +65,7 @@ class _EnterScreenState extends State<EnterScreen> {
                   ),
                 ),
                 const Padding(
-                  padding: const EdgeInsets.only(left: 28.0),
+                  padding: EdgeInsets.only(left: 28.0),
                   child: Text(
                     'Öğrenelim ve ödül kazanalım.',
                     textAlign: TextAlign.start,

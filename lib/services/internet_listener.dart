@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:bilgimizde/components/alarms_functions/wifi_alarm.dart';
-import 'package:bilgimizde/main.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 class ConnectionStatusListener {

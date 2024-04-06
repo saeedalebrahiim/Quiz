@@ -24,25 +24,30 @@ alert(BuildContext context) {
                   child: Container(
                     width: 40,
                     height: 40,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         image: DecorationImage(
                             image:
                                 AssetImage('lib/assets/images/alarmexit.png'),
                             fit: BoxFit.fill)),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(25)),
+                height: 190,
+                width: MediaQuery.of(context).size.width - 50,
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     Row(
@@ -51,15 +56,15 @@ alert(BuildContext context) {
                         Container(
                           width: 40,
                           height: 40,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               image: DecorationImage(
                                   image: AssetImage(
                                       'lib/assets/images/alarmsticker.png'))),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 15,
                         ),
-                        Column(
+                        const Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -81,7 +86,7 @@ alert(BuildContext context) {
                         )
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 50,
                     ),
                     Row(
@@ -92,44 +97,39 @@ alert(BuildContext context) {
                           child: Container(
                             width: 40,
                             height: 40,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 image: DecorationImage(
                                     image: AssetImage(
                                         'lib/assets/images/alarmback.png'),
                                     fit: BoxFit.fill)),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 40,
                         ),
                         InkWell(
                           onTap: () {},
                           child: Container(
-                            child: Center(
+                            width: 100,
+                            height: 40,
+                            decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage(
+                                        'lib/assets/images/alarmsignupbtn.png'),
+                                    fit: BoxFit.fill)),
+                            child: const Center(
                                 child: Text(
                               'Signup',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w500),
                             )),
-                            width: 100,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage(
-                                        'lib/assets/images/alarmsignupbtn.png'),
-                                    fit: BoxFit.fill)),
                           ),
                         ),
                       ],
                     )
                   ],
-                ),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(25)),
-                height: 190,
-                width: MediaQuery.of(context).size.width - 50),
+                )),
           ],
         ),
       ),
@@ -159,49 +159,49 @@ alert(BuildContext context) {
                   child: Container(
                     width: 40,
                     height: 40,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         image: DecorationImage(
                             image:
                                 AssetImage('lib/assets/images/alarmexit.png'),
                             fit: BoxFit.fill)),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(25)),
+                height: 150,
+                width: MediaQuery.of(context).size.width - 50,
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Container(
                       width: 50,
                       height: 50,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage(
                                   'lib/assets/images/alarmwifi.png'))),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                    Text(
+                    const Text(
                       'Check your internet',
                       style: TextStyle(fontWeight: FontWeight.w700),
                     )
                   ],
-                ),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(25)),
-                height: 150,
-                width: MediaQuery.of(context).size.width - 50),
+                )),
           ],
         ),
       ),
@@ -214,19 +214,23 @@ alert(BuildContext context) {
     builder: (context) => AlertDialog(
       backgroundColor: Colors.transparent,
       content: Container(
+        decoration: BoxDecoration(
+            color: Colors.white, borderRadius: BorderRadius.circular(20)),
+        width: MediaQuery.of(context).size.width - 50,
+        height: 150,
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
-            Text(
+            const Text(
               'Successfully',
               style: TextStyle(
                   color: Colors.green,
                   fontWeight: FontWeight.bold,
                   fontSize: 20),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
@@ -235,48 +239,44 @@ alert(BuildContext context) {
                 Container(
                   width: 20,
                   height: 20,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage('lib/assets/images/coin.png'))),
                 ),
-                Text(
+                const Text(
                   '10',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 3,
                 ),
-                Text(
+                const Text(
                   'Added in your wallet to use',
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
                 )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             InkWell(
               child: Container(
-                child: Center(
+                width: 100,
+                height: 30,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('lib/assets/images/alarmsuccess.png'),
+                        fit: BoxFit.fill)),
+                child: const Center(
                   child: Text(
                     'Got it',
                     style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
                   ),
                 ),
-                width: 100,
-                height: 30,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('lib/assets/images/alarmsuccess.png'),
-                        fit: BoxFit.fill)),
               ),
             )
           ],
         ),
-        decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(20)),
-        width: MediaQuery.of(context).size.width - 50,
-        height: 150,
       ),
     ),
   );
@@ -287,13 +287,17 @@ alert(BuildContext context) {
     builder: (context) => AlertDialog(
       backgroundColor: Colors.transparent,
       content: Container(
+        decoration: BoxDecoration(
+            color: Colors.white, borderRadius: BorderRadius.circular(20)),
+        width: MediaQuery.of(context).size.width - 50,
+        height: 150,
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
+            const Padding(
+              padding: EdgeInsets.all(10.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -308,50 +312,46 @@ alert(BuildContext context) {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Container(
-                  child: Center(
+                  width: 100,
+                  height: 40,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('lib/assets/images/nobtn.png'),
+                          fit: BoxFit.fill)),
+                  child: const Center(
                     child: Text(
                       'No',
                       style: TextStyle(
                           color: Colors.white, fontWeight: FontWeight.bold),
                     ),
                   ),
-                  width: 100,
-                  height: 40,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('lib/assets/images/nobtn.png'),
-                          fit: BoxFit.fill)),
                 ),
                 Container(
-                  child: Center(
+                  width: 100,
+                  height: 40,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('lib/assets/images/yesbtn.png'),
+                          fit: BoxFit.fill)),
+                  child: const Center(
                     child: Text(
                       'Yes',
                       style: TextStyle(
                           color: Colors.white, fontWeight: FontWeight.bold),
                     ),
                   ),
-                  width: 100,
-                  height: 40,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('lib/assets/images/yesbtn.png'),
-                          fit: BoxFit.fill)),
                 )
               ],
             )
           ],
         ),
-        decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(20)),
-        width: MediaQuery.of(context).size.width - 50,
-        height: 150,
       ),
     ),
   );

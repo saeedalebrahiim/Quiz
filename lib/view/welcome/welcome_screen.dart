@@ -1,4 +1,3 @@
-import 'package:bilgimizde/services/internet_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:bilgimizde/init_screen.dart';
 

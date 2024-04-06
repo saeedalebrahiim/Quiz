@@ -181,10 +181,10 @@ class _QuizScreenState extends State<QuizScreen> {
                           ),
                           Consumer<ProfileState>(
                             builder: (context, value, child) {
-                              var _formattedNumber = NumberFormat.compact()
+                              var formattedNumber = NumberFormat.compact()
                                   .format(value.userBalance);
                               return Text(
-                                _formattedNumber,
+                                formattedNumber,
                                 //  value.userBalance.toString(),
                                 style: const TextStyle(
                                     fontSize: 14,
@@ -616,7 +616,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                               decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(10),
-                                                border: Border(
+                                                border: const Border(
                                                   bottom: BorderSide(
                                                       width: 3,
                                                       color: Colors.orange),

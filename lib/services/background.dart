@@ -17,7 +17,7 @@ class BackgroundServices {
         if (secondsElapsed <= 0) {
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(
-                builder: (context) => HomeScreen(),
+                builder: (context) => const HomeScreen(),
               ),
               (route) => false);
           stop();
