@@ -1237,15 +1237,15 @@ class _QuizScreenState extends State<QuizScreen> {
                                               width: 10,
                                             ),
                                             isSelectedAny
-                                                ? InkWell(
-                                                    onTap: () {
-                                                      //see ads
-                                                      // _createRewardedAd();
-                                                      _showRewardedAd();
-                                                    },
-                                                    child: Consumer(builder:
-                                                        (context, c, v) {
-                                                      return Container(
+                                                ? Consumer(
+                                                    builder: (context, c, v) =>
+                                                        InkWell(
+                                                      onTap: () {
+                                                        //see ads
+                                                        // _createRewardedAd();
+                                                        _showRewardedAd();
+                                                      },
+                                                      child: Container(
                                                         width: 110,
                                                         height: 74,
                                                         foregroundDecoration:
@@ -1320,8 +1320,8 @@ class _QuizScreenState extends State<QuizScreen> {
                                                             ),
                                                           ],
                                                         ),
-                                                      );
-                                                    }),
+                                                      ),
+                                                    ),
                                                   )
                                                 : InkWell(
                                                     onTap: () {

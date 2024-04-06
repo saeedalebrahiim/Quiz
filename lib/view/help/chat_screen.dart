@@ -166,42 +166,43 @@ class _ChatScreenState extends State<ChatScreen> {
               const SizedBox(
                 height: 20,
               ),
-              SizedBox(
-                height: MediaQuery.sizeOf(context).height,
-                child: Consumer<TicketStateProvider>(
-                    builder: (context, value, child) {
-                  return Expanded(
-                    child: ListView.builder(
-                      itemCount: theChats.length,
-                      itemBuilder: (context, index) => Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: theChats[index].isClient == true
-                              ? MainAxisAlignment.end
-                              : MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                color: theChats[index].isClient == true
-                                    ? const Color.fromARGB(255, 83, 94, 159)
-                                    : Colors.white,
-                                borderRadius: BorderRadius.circular(20),
+              Consumer<TicketStateProvider>(
+                builder: (context, value, child) {
+                  return SizedBox(
+                    height: MediaQuery.sizeOf(context).height,
+                    child: Expanded(
+                      child: ListView.builder(
+                        itemCount: theChats.length,
+                        itemBuilder: (context, index) => Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: theChats[index].isClient == true
+                                ? MainAxisAlignment.end
+                                : MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  color: theChats[index].isClient == true
+                                      ? const Color.fromARGB(255, 83, 94, 159)
+                                      : Colors.white,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Text(
+                                  theChats[index].desc.toString(),
+                                  style: TextStyle(
+                                      color: theChats[index].isClient == true
+                                          ? Colors.white
+                                          : Colors.black),
+                                ),
                               ),
-                              child: Text(
-                                theChats[index].desc.toString(),
-                                style: TextStyle(
-                                    color: theChats[index].isClient == true
-                                        ? Colors.white
-                                        : Colors.black),
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   );
-                }),
+                },
               ),
             ],
           ),

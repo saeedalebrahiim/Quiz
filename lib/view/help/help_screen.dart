@@ -91,7 +91,7 @@ class HelpScreen extends StatelessWidget {
               ),
               Consumer<TicketStateProvider>(builder: (context, value, child) {
                 return Visibility(
-                  visible: value.tickets.isNotEmpty && value.gotList  ,
+                  visible: value.gotList,
                   replacement: const Center(
                     child: CircularProgressIndicator(),
                   ),
