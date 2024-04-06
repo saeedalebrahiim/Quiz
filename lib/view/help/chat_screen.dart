@@ -40,6 +40,7 @@ class _ChatScreenState extends State<ChatScreen> {
       bottomSheet: Padding(
         padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 16, 12),
         child: Container(
+          height: 70,
           decoration: BoxDecoration(
               color: Color.fromARGB(255, 83, 94, 159),
               borderRadius: BorderRadius.circular(50)),
