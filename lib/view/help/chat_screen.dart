@@ -39,13 +39,15 @@ class _ChatScreenState extends State<ChatScreen> {
         padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 16, 12),
         child: Container(
           height: 70,
+          width: 400,
           decoration: BoxDecoration(
               color: const Color.fromARGB(255, 83, 94, 159),
               borderRadius: BorderRadius.circular(50)),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Expanded(
+              SizedBox(
+                width: 300,
                 child: TextFormField(
                   controller: textController,
                   onChanged: (_) {},
@@ -169,35 +171,34 @@ class _ChatScreenState extends State<ChatScreen> {
               Consumer<TicketStateProvider>(
                 builder: (context, value, child) {
                   return SizedBox(
-                    height: MediaQuery.sizeOf(context).height,
-                    child: Expanded(
-                      child: ListView.builder(
-                        itemCount: theChats.length,
-                        itemBuilder: (context, index) => Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: theChats[index].isClient == true
-                                ? MainAxisAlignment.end
-                                : MainAxisAlignment.start,
-                            children: [
-                              Container(
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  color: theChats[index].isClient == true
-                                      ? const Color.fromARGB(255, 83, 94, 159)
-                                      : Colors.white,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Text(
-                                  theChats[index].desc.toString(),
-                                  style: TextStyle(
-                                      color: theChats[index].isClient == true
-                                          ? Colors.white
-                                          : Colors.black),
-                                ),
+                    height: MediaQuery.sizeOf(context).height - 200,
+                    width: MediaQuery.sizeOf(context).width,
+                    child: ListView.builder(
+                      itemCount: theChats.length,
+                      itemBuilder: (context, index) => Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: theChats[index].isClient == true
+                              ? MainAxisAlignment.end
+                              : MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                color: theChats[index].isClient == true
+                                    ? const Color.fromARGB(255, 83, 94, 159)
+                                    : Colors.white,
+                                borderRadius: BorderRadius.circular(20),
                               ),
-                            ],
-                          ),
+                              child: Text(
+                                theChats[index].desc.toString(),
+                                style: TextStyle(
+                                    color: theChats[index].isClient == true
+                                        ? Colors.white
+                                        : Colors.black),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),

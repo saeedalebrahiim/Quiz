@@ -405,14 +405,16 @@ class _EndQuizScreenState extends State<EndQuizScreen> {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.of(context).push(
+                    Navigator.of(context).pushAndRemoveUntil(
                       PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => const HomeScreen(),
-                          transitionDuration: const Duration(milliseconds: 500),
-                          transitionsBuilder: (_, a, __, c) => FadeTransition(
-                                opacity: a,
-                                child: c,
-                              )),
+                        pageBuilder: (_, __, ___) => const HomeScreen(),
+                        transitionDuration: const Duration(milliseconds: 500),
+                        transitionsBuilder: (_, a, __, c) => FadeTransition(
+                          opacity: a,
+                          child: c,
+                        ),
+                      ),
+                      (route) => false,
                     );
                   },
                   child: Container(

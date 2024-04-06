@@ -1237,8 +1237,9 @@ class _QuizScreenState extends State<QuizScreen> {
                                               width: 10,
                                             ),
                                             isSelectedAny
-                                                ? Consumer(
-                                                    builder: (context, c, v) =>
+                                                ? Consumer<AdState>(
+                                                    builder: (context, value,
+                                                            child) =>
                                                         InkWell(
                                                       onTap: () {
                                                         //see ads

@@ -1,3 +1,4 @@
+import 'package:bilgimizde/provider/ad.dart';
 import 'package:bilgimizde/services/admob.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -118,6 +119,9 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (context) => TicketStateProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => AdState(),
         ),
       ],
       child: const MyApp(),
