@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bilgimizde/components/alarms_functions/exit_alarm.dart';
 import 'package:bilgimizde/controller/profile/profile.dart';
+import 'package:bilgimizde/provider/ad.dart';
 import 'package:bilgimizde/services/admob.dart';
 import 'package:bilgimizde/services/background.dart';
 import 'package:bilgimizde/view/home/dashboard/drawer_screen.dart';
@@ -45,7 +46,7 @@ class _QuizScreenState extends State<QuizScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _createRewardedAd();
+    _createAd();
 
     _state = SchedulerBinding.instance.lifecycleState;
     _listener = AppLifecycleListener(
@@ -115,29 +116,35 @@ class _QuizScreenState extends State<QuizScreen> {
   //   super.dispose();
   // }
 
-  RewardedAd? _rewardedAd;
+  // RewardedAd? _rewardedAd;
 
-  _createRewardedAd() {
-    try {
-      RewardedAd.load(
-        adUnitId: AdMobService.rewardedAdUnitId2!,
-        request: const AdRequest(),
-        rewardedAdLoadCallback: RewardedAdLoadCallback(
-          onAdLoaded: (ad) {
-            _rewardedAd = ad;
-            print("loaaaaaded");
-          },
-          onAdFailedToLoad: (error) => _rewardedAd = null,
-        ),
-      );
-      // _showRewardedAd();
-    } catch (e) {
-      print("error $e");
+  // _createRewardedAd() {
+  //   try {
+  //     RewardedAd.load(
+  //       adUnitId: AdMobService.rewardedAdUnitId2!,
+  //       request: const AdRequest(),
+  //       rewardedAdLoadCallback: RewardedAdLoadCallback(
+  //         onAdLoaded: (ad) {
+  //           _rewardedAd = ad;
+  //           print("loaaaaaded");
+  //         },
+  //         onAdFailedToLoad: (error) => _rewardedAd = null,
+  //       ),
+  //     );
+  //     // _showRewardedAd();
+  //   } catch (e) {
+  //     print("error $e");
+  //   }
+  // }
+
+  _createAd() {
+    if (AdState.rewardedAd == null) {
+      context.read<AdState>().createRewardedAd();
     }
   }
 
   _showRewardedAd() {
-    print(_rewardedAd);
+    // print(_rewardedAd);
     // RewardedAd.load(
     //   adUnitId: AdMobService.rewardedAdUnitId2!,
     //   request: const AdRequest(),
@@ -146,8 +153,8 @@ class _QuizScreenState extends State<QuizScreen> {
     //     onAdFailedToLoad: (error) => _rewardedAd = null,
     //   ),
     // );
-    if (_rewardedAd != null) {
-      _rewardedAd!.fullScreenContentCallback = FullScreenContentCallback(
+    if (AdState.rewardedAd != null) {
+      AdState.rewardedAd!.fullScreenContentCallback = FullScreenContentCallback(
         onAdDismissedFullScreenContent: (ad) {
           ad.dispose();
           // _createRewardedAd();
@@ -159,12 +166,13 @@ class _QuizScreenState extends State<QuizScreen> {
           ProfileController.getUserBalance(context: context);
         },
       );
-      _rewardedAd!.show(
+      AdState.rewardedAd!.show(
         onUserEarnedReward: (ad, reward) =>
             ProfileController.addToWatchScore(context: context),
       );
 
-      _rewardedAd = null;
+      // _rewardedAd = null;
+      context.read<AdState>().makeItNull();
     } else {
       return false;
     }
@@ -320,9 +328,8 @@ class _QuizScreenState extends State<QuizScreen> {
                                 ),
                                 Consumer<ProfileState>(
                                   builder: (context, value, child) {
-                                    var formattedNumber =
-                                        NumberFormat.compact()
-                                            .format(value.userBalance);
+                                    var formattedNumber = NumberFormat.compact()
+                                        .format(value.userBalance);
                                     return Text(
                                       formattedNumber,
                                       //  value.userBalance.toString(),
@@ -1236,80 +1243,85 @@ class _QuizScreenState extends State<QuizScreen> {
                                                       // _createRewardedAd();
                                                       _showRewardedAd();
                                                     },
-                                                    child: Container(
-                                                      width: 110,
-                                                      height: 74,
-                                                      foregroundDecoration:
-                                                          _rewardedAd == null
-                                                              ? BoxDecoration(
-                                                                  color: Colors
-                                                                      .black26,
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              16),
-                                                                )
-                                                              : null,
-                                                      decoration: BoxDecoration(
-                                                        color: Colors.white,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(16),
-                                                        border: const Border(
-                                                          bottom: BorderSide(
-                                                              width: 4,
-                                                              color: Colors
-                                                                  .orange),
-                                                        ),
-                                                        // image: DecorationImage(
-                                                        //     image: AssetImage(
-                                                        //         'lib/assets/images/4.png'),
-                                                        //     fit: BoxFit.fill)
-                                                      ),
-                                                      child: Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .all(1.0),
-                                                            child: Image.asset(
-                                                              'lib/assets/images/mainstar.png',
-                                                              width: 25,
-                                                            ),
-                                                          ),
-                                                          const Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Text(
-                                                                "TL ",
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        12,
+                                                    child: Consumer(builder:
+                                                        (context, c, v) {
+                                                      return Container(
+                                                        width: 110,
+                                                        height: 74,
+                                                        foregroundDecoration:
+                                                            AdState.rewardedAd ==
+                                                                    null
+                                                                ? BoxDecoration(
                                                                     color: Colors
-                                                                        .orange,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold),
-                                                              ),
-                                                              Text(
-                                                                " topla",
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        12,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold),
-                                                              ),
-                                                            ],
+                                                                        .black26,
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            16),
+                                                                  )
+                                                                : null,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: Colors.white,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(16),
+                                                          border: const Border(
+                                                            bottom: BorderSide(
+                                                                width: 4,
+                                                                color: Colors
+                                                                    .orange),
                                                           ),
-                                                        ],
-                                                      ),
-                                                    ),
+                                                          // image: DecorationImage(
+                                                          //     image: AssetImage(
+                                                          //         'lib/assets/images/4.png'),
+                                                          //     fit: BoxFit.fill)
+                                                        ),
+                                                        child: Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(1.0),
+                                                              child:
+                                                                  Image.asset(
+                                                                'lib/assets/images/mainstar.png',
+                                                                width: 25,
+                                                              ),
+                                                            ),
+                                                            const Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                Text(
+                                                                  "TL ",
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          12,
+                                                                      color: Colors
+                                                                          .orange,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold),
+                                                                ),
+                                                                Text(
+                                                                  " topla",
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          12,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      );
+                                                    }),
                                                   )
                                                 : InkWell(
                                                     onTap: () {
