@@ -669,15 +669,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           print(bankIdSend);
                           print(_educationController.text);
                           print(_ibanController.text);
-
+                          print(_ibanController.text.trim());
+                          var iban = _ibanController.text.trim();
+                          print(iban);
                           // print(file);
+                          if (_ibanController.text.isNotEmpty &&
+                              _nameFamilyController.text.isEmpty) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text(
+                                    "You Should have name to save your iban")));
+                          }
 
                           print("------------------");
                           await ProfileController.editProfileHTTP(
                                   fullName: _nameFamilyController.text,
                                   bankId: bankIdSend,
                                   education: _educationController.text,
-                                  iban: _ibanController.text.trim(),
+                                  iban: iban,
                                   file: _imgFile,
                                   context: context)
                               .then((value) {

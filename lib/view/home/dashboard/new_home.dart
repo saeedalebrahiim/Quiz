@@ -446,7 +446,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                           ),
                           Container(
                             width: 342,
-                            height: 146,
+                            height: 166,
                             decoration: BoxDecoration(
                               border: Border.all(
                                 width: 2,
@@ -553,6 +553,45 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                         ),
                                       ],
                                     ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          width: 150,
+                                          height: 20,
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Image(
+                                                width: 15,
+                                                height: 15,
+                                                image: AssetImage(
+                                                  "lib/assets/images/gem.png",
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 4,
+                                              ),
+                                              Text(
+                                                "Claim 1 Gem",
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    )
                                   ],
                                 ),
                               ),

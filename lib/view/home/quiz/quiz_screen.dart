@@ -40,6 +40,7 @@ class _QuizScreenState extends State<QuizScreen> {
   final List<String> _states = <String>[];
   late AppLifecycleState? _state;
   bool? res;
+  bool eliminatedOnce = false;
   // Stream timeStream = Stream.periodic(const Duration(seconds: 1));
   // StreamSubscription? streamSubscription;
   // int secondsElapsed = 30;
@@ -862,8 +863,8 @@ class _QuizScreenState extends State<QuizScreen> {
                                                           .removePercentHint();
                                                       Future.delayed(
                                                           const Duration(
-                                                              milliseconds:
-                                                                  150), () {
+                                                              milliseconds: 50),
+                                                          () {
                                                         // context
                                                         //     .read<QuizState>()
                                                         //     .removePercentHint();
@@ -968,15 +969,20 @@ class _QuizScreenState extends State<QuizScreen> {
                                               ignoring: isSelectedAny ||
                                                   value.usedEliminate,
                                               child: InkWell(
+                                                onDoubleTap: () {},
                                                 onTap: () {
-                                                  StartQuizController
-                                                      .hinteliminate(
-                                                          questionId: value
-                                                              .quiz!
-                                                              .quizQuestions[
-                                                                  widget.index]
-                                                              .questionId,
-                                                          context: context);
+                                                  if (!eliminatedOnce) {
+                                                    eliminatedOnce = true;
+                                                    StartQuizController
+                                                        .hinteliminate(
+                                                            questionId: value
+                                                                .quiz!
+                                                                .quizQuestions[
+                                                                    widget
+                                                                        .index]
+                                                                .questionId,
+                                                            context: context);
+                                                  }
                                                 },
                                                 child: Container(
                                                   width: 110,
