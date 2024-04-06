@@ -446,7 +446,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                           ),
                           Container(
                             width: 342,
-                            height: 166,
+                            height: 156,
                             decoration: BoxDecoration(
                               border: Border.all(
                                 width: 2,
@@ -565,7 +565,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                             borderRadius:
                                                 BorderRadius.circular(20),
                                           ),
-                                          child: Row(
+                                          child: const Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
@@ -576,7 +576,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                                   "lib/assets/images/gem.png",
                                                 ),
                                               ),
-                                              const SizedBox(
+                                              SizedBox(
                                                 width: 4,
                                               ),
                                               Text(
@@ -674,6 +674,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                                     });
                                                   } else {
                                                     noCoinAlert(context);
+                                                    tapedPlay = false;
                                                   }
                                                 }
                                               },
