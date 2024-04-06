@@ -135,6 +135,7 @@ class ScoreController {
       await api
           .apiV1ScoreMaxScoreOfMonthScoreGet(
         count: 50,
+        dateTime: DateTime(DateTime.now().year, DateTime.now().month, 1),
       )
           .then((postResult) {
         print("called Month");
