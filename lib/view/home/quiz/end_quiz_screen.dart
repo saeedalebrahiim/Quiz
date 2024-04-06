@@ -4,6 +4,7 @@ import 'package:bilgimizde/controller/profile/profile.dart';
 import 'package:bilgimizde/provider/quiz.dart';
 import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
 import 'package:bilgimizde/view/myrating/all/all_screen.dart.dart';
+import 'package:bilgimizde/view/myrating/today/today_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
@@ -258,7 +259,7 @@ class _EndQuizScreenState extends State<EndQuizScreen> {
                                 Navigator.of(context).pushAndRemoveUntil(
                                     PageRouteBuilder(
                                         pageBuilder: (_, __, ___) =>
-                                            const AllScreen(),
+                                            const TodayScreen(),
                                         transitionDuration:
                                             const Duration(milliseconds: 500),
                                         transitionsBuilder: (_, a, __, c) =>
@@ -403,38 +404,38 @@ class _EndQuizScreenState extends State<EndQuizScreen> {
                 const SizedBox(
                   height: 15,
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.of(context).pushAndRemoveUntil(
-                      PageRouteBuilder(
-                        pageBuilder: (_, __, ___) => const HomeScreen(),
-                        transitionDuration: const Duration(milliseconds: 500),
-                        transitionsBuilder: (_, a, __, c) => FadeTransition(
-                          opacity: a,
-                          child: c,
-                        ),
-                      ),
-                      (route) => false,
-                    );
-                  },
-                  child: Container(
-                    width: 221,
-                    height: 48,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.black,
-                    ),
-                    child: const Center(
-                      child: Text(
-                        'Home',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 16),
-                      ),
-                    ),
-                  ),
-                )
+                // InkWell(
+                //   onTap: () {
+                //     Navigator.of(context).pushAndRemoveUntil(
+                //       PageRouteBuilder(
+                //         pageBuilder: (_, __, ___) => const HomeScreen(),
+                //         transitionDuration: const Duration(milliseconds: 500),
+                //         transitionsBuilder: (_, a, __, c) => FadeTransition(
+                //           opacity: a,
+                //           child: c,
+                //         ),
+                //       ),
+                //       (route) => false,
+                //     );
+                //   },
+                //   child: Container(
+                //     width: 221,
+                //     height: 48,
+                //     decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(20),
+                //       color: Colors.black,
+                //     ),
+                //     child: const Center(
+                //       child: Text(
+                //         'Home',
+                //         style: TextStyle(
+                //             color: Colors.white,
+                //             fontWeight: FontWeight.w700,
+                //             fontSize: 16),
+                //       ),
+                //     ),
+                //   ),
+                // )
               ],
             ),
           ),

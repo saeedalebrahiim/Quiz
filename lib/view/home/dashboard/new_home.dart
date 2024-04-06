@@ -7,6 +7,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:bilgimizde/controller/Quiz/start_quiz.dart';
 import 'package:bilgimizde/controller/banners/banners.dart';
@@ -387,8 +388,8 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                     child: SizedBox(
                                       width: 342,
                                       child: Padding(
-                                        padding:
-                                            const EdgeInsets.symmetric(horizontal: 0),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -462,8 +463,8 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                             value.profile!.fullName ??
                                                 value.profile!.username
                                                     .toString(),
-                                            style:
-                                                const TextStyle(color: Colors.white),
+                                            style: const TextStyle(
+                                                color: Colors.white),
                                           )
                                         : const SizedBox(),
                                     Padding(
@@ -495,7 +496,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                             width: 10,
                                           ),
                                           Text(
-                                            "${value.userBalance} ",
+                                            "${NumberFormat.compact().format(value.userBalance)} ",
                                             style: const TextStyle(
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.bold),
@@ -525,7 +526,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                         SizedBox(
                                           width: 180,
                                           child: LinearProgressIndicator(
-                                            value: 0.2,
+                                            value: 0.1,
                                             color: Colors.red,
                                             minHeight: 8,
                                             borderRadius:
@@ -536,13 +537,13 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                           width: 10,
                                         ),
                                         Text(
-                                          "${value.userBalance} ",
+                                          "0 ",
                                           style: const TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.bold),
                                         ),
                                         const Text(
-                                          "/ 500",
+                                          "/ 1K",
                                           style: TextStyle(
                                             color: Color.fromARGB(
                                                 145, 255, 255, 255),

@@ -59,7 +59,10 @@ class AuthController {
     try {
       //save token
       SharedPreferences sp = await SharedPreferences.getInstance();
-      sp.clear();
+      await sp.remove("token");
+      await sp.clear();
+      await sp.reload();
+
       //navigate
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
@@ -135,14 +138,14 @@ class AuthController {
       {required String password,
       required String confirmPassword,
       required BuildContext context}) async {
-    final api = Quiz.create(interceptors: [TokenIndicator()]);
+    final api = Quiz.create();
     try {
       final postResult = await api.apiV1AuthSelectPasswordPost(
         confirmPassword: confirmPassword,
         password: password,
       );
       print(postResult);
-      if (postResult.isSuccessful == true) {
+      if (postResult.body["isSuccess"] == true) {
         //save token
         SharedPreferences sp = await SharedPreferences.getInstance();
         String token = postResult.body["access_token"];
