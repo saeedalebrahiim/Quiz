@@ -556,10 +556,10 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                           MainAxisAlignment.center,
                                       children: [
                                         Container(
-                                          width: 150,
+                                          width: 250,
                                           height: 20,
                                           decoration: BoxDecoration(
-                                            color: Colors.white,
+                                            // color: Colors.white,
                                             borderRadius:
                                                 BorderRadius.circular(20),
                                           ),
@@ -567,21 +567,22 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
-                                              Image(
-                                                width: 15,
-                                                height: 15,
-                                                image: AssetImage(
-                                                  "lib/assets/images/gem.png",
-                                                ),
-                                              ),
+                                              // Image(
+                                              //   width: 15,
+                                              //   height: 15,
+                                              //   image: AssetImage(
+                                              //     "lib/assets/images/gem.png",
+                                              //   ),
+                                              // ),
                                               SizedBox(
                                                 width: 4,
                                               ),
                                               Text(
-                                                "Claim 1 Gem",
+                                                "Claim 1 Gem every 1000 right answers",
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                     fontSize: 12,
+                                                    color: Colors.white,
                                                     fontWeight:
                                                         FontWeight.w400),
                                               ),

@@ -109,9 +109,9 @@ class AuthController {
     try {
       final postResult = await api.apiV1AuthAccountVerificationPost(
           body: AuthConfirmDto(
-              userName: userName, verificationCode: verificationCode));
+              userName: userName, verificationCode: verificationCode, id: 0));
       print(postResult);
-      if (postResult.isSuccessful == true) {
+      if (postResult.body["isSuccess"] == true) {
         //send to select password
         Navigator.of(context).push(
           PageRouteBuilder(
