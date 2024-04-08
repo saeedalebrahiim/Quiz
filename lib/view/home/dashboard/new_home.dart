@@ -3,6 +3,7 @@ import 'package:bilgimizde/components/alarms_functions/wifi_alarm.dart';
 import 'package:bilgimizde/controller/auth/auth_controller.dart';
 import 'package:bilgimizde/provider/quiz.dart';
 import 'package:bilgimizde/services/internet_listener.dart';
+import 'package:bilgimizde/view/buycoin/buy_coin_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -211,50 +212,50 @@ class _NewMainScreenState extends State<NewMainScreen> {
                   ),
                 ],
                 centerTitle: true,
-                // title: InkWell(
-                //   onTap: () {
-                //     Navigator.of(context).push(
-                //       PageRouteBuilder(
-                //           pageBuilder: (_, __, ___) => const BuyCoinScreen(),
-                //           transitionDuration: const Duration(milliseconds: 500),
-                //           transitionsBuilder: (_, a, __, c) => FadeTransition(
-                //                 opacity: a,
-                //                 child: c,
-                //               )),
-                //     );
-                //   },
-                //   child: Row(
-                //     mainAxisSize: MainAxisSize.min,
-                //     children: [
-                //       Image.asset(
-                //         'lib/assets/images/coin.png',
-                //         width: 25,
-                //         height: 25,
-                //       ),
-                //       Consumer<ProfileState>(
-                //         builder: (context, value, child) {
-                //           var _formattedNumber =
-                //               NumberFormat.compact().format(value.userBalance);
-                //           return Text(
-                //             _formattedNumber,
-                //             //  value.userBalance.toString(),
-                //             style: const TextStyle(
-                //                 fontSize: 14,
-                //                 color: Colors.white,
-                //                 fontWeight: FontWeight.w600),
-                //           );
-                //         },
-                //       ),
-                //       Padding(
-                //         padding: const EdgeInsets.only(left: 8.0),
-                //         child: const Icon(
-                //           Icons.add_circle_outline,
-                //           color: Colors.amber,
-                //         ),
-                //       )
-                //     ],
-                //   ),
-                // ),
+                title: InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      PageRouteBuilder(
+                          pageBuilder: (_, __, ___) => const BuyCoinScreen(),
+                          transitionDuration: const Duration(milliseconds: 500),
+                          transitionsBuilder: (_, a, __, c) => FadeTransition(
+                                opacity: a,
+                                child: c,
+                              )),
+                    );
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Image.asset(
+                        'lib/assets/images/coin.png',
+                        width: 25,
+                        height: 25,
+                      ),
+                      Consumer<ProfileState>(
+                        builder: (context, value, child) {
+                          var _formattedNumber =
+                              NumberFormat.compact().format(value.userBalance);
+                          return Text(
+                            _formattedNumber,
+                            //  value.userBalance.toString(),
+                            style: const TextStyle(
+                                fontSize: 14,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600),
+                          );
+                        },
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: const Icon(
+                          Icons.add_circle_outline,
+                          color: Colors.amber,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
                 backgroundColor: Colors.transparent,
                 elevation: 0,
                 leading: Padding(

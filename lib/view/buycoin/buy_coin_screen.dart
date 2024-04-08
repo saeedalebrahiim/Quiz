@@ -41,7 +41,7 @@ class _BuyCoinScreenState extends State<BuyCoinScreen> {
     print("in here");
     try {
       _isAvailable = await _iap.isAvailable();
-
+      // print(_iap.)
       print(_isAvailable);
       if (_isAvailable) {
         await _getProducts();
@@ -57,18 +57,24 @@ class _BuyCoinScreenState extends State<BuyCoinScreen> {
         "10.p",
         "50.p",
         "80.p",
-        "100.p",
+        "100",
         "150.p",
         "180.p",
+        "10.P",
+        "50.P",
+        "80.P",
+        "100.P",
+        "150.P",
+        "180.P",
       };
       ProductDetailsResponse response = await _iap.queryProductDetails(ids);
       setState(() {
         _products = response.productDetails;
       });
 
-      print("${response.productDetails}  products");
-      print("${response.error}  products");
-      print("${response.notFoundIDs}  products");
+      print("${response.productDetails}  products details");
+      print("${response.error}  products error");
+      print("${response.notFoundIDs}  products notFound");
     } catch (e) {
       print(e);
     }

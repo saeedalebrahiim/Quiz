@@ -54,5 +54,6 @@
 
     <!-- Permissions options for the `notification` group -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="com.android.vending.BILLING" />
 
 </manifest>
