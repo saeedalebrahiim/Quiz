@@ -270,7 +270,7 @@ class _AllScreenState extends State<AllScreen> {
                                 height: 80,
                               ),
                               const Text(
-                                'Remaining time for monthly reward payment',
+                                'Aylık ödül ödemesi için kalan süre',
                                 style: TextStyle(
                                     color: Colors.yellow, fontSize: 12),
                               ),
@@ -328,7 +328,7 @@ class _AllScreenState extends State<AllScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       const Text(
-                        'Winners',
+                        'Kazanıyorlar',
                         style: TextStyle(color: Colors.white),
                       ),
                       const SizedBox(),
@@ -343,7 +343,7 @@ class _AllScreenState extends State<AllScreen> {
                                         'lib/assets/images/allprize.png'))),
                           ),
                           const Text(
-                            'Prize',
+                            'Ödül',
                             style: TextStyle(color: Colors.white, fontSize: 12),
                           ),
                         ],

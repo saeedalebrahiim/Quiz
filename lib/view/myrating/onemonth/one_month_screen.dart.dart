@@ -255,19 +255,19 @@ class _OneMonthScreenState extends State<OneMonthScreen> {
                       width: 28,
                     ),
                     Text(
-                      'Rank',
+                      'Sıra',
                       style: TextStyle(color: Colors.white, fontSize: 12),
                     ),
                     SizedBox(
                       width: 30,
                     ),
-                    Text('Name',
+                    Text('Kullanıcı',
                         style: TextStyle(color: Colors.white, fontSize: 12)),
                     SizedBox(
                       width: 80,
                     ),
                     Text(
-                      'True Awnsers',
+                      'Doğru sayısı',
                       style: TextStyle(color: Colors.white, fontSize: 12),
                     ),
                     SizedBox(
