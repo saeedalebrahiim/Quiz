@@ -1298,7 +1298,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                                                       .center,
                                                               children: [
                                                                 Text(
-                                                                  "TL ",
+                                                                  "1 Coin ",
                                                                   style: TextStyle(
                                                                       fontSize:
                                                                           12,

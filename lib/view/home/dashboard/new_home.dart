@@ -413,7 +413,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
                                                 Text(
-                                                  'Watch the video and get ',
+                                                  'Reklam izleyerek 1 coin al',
                                                   style: TextStyle(
                                                     color: _rewardedAd != null
                                                         ? Colors.orange
@@ -422,14 +422,14 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                                     fontSize: 16,
                                                   ),
                                                 ),
-                                                Text('points',
-                                                    style: TextStyle(
-                                                      color: _rewardedAd != null
-                                                          ? Colors.orange
-                                                          : Colors.orange
-                                                              .withOpacity(0.5),
-                                                      fontSize: 16,
-                                                    ))
+                                                // Text('points',
+                                                //     style: TextStyle(
+                                                //       color: _rewardedAd != null
+                                                //           ? Colors.orange
+                                                //           : Colors.orange
+                                                //               .withOpacity(0.5),
+                                                //       fontSize: 16,
+                                                //     ))
                                               ],
                                             )
                                           ],
