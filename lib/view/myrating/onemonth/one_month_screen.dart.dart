@@ -1,4 +1,3 @@
-
 import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
 import 'package:bilgimizde/view/rules/rules_screen.dart';
 import 'package:flutter/material.dart';
@@ -164,12 +163,16 @@ class _OneMonthScreenState extends State<OneMonthScreen> {
                 const SizedBox(
                   height: 25,
                 ),
-                TabBar(
-                    indicator:
-                        BoxDecoration(borderRadius: BorderRadius.circular(20)),
-                    dividerColor: Colors.transparent,
-                    tabs: [
-                      RawMaterialButton(
+                Row(children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 4.0),
+                    child: Container(
+                      height: 35,
+                      width: 120,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          color: const Color.fromARGB(255, 204, 118, 217)),
+                      child: RawMaterialButton(
                         onPressed: () {
                           Navigator.of(context).pushReplacement(
                             PageRouteBuilder(
@@ -184,68 +187,64 @@ class _OneMonthScreenState extends State<OneMonthScreen> {
                                     )),
                           );
                         },
-                        child: Container(
-                          height: 35,
-                          width: 100,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25),
-                              color: const Color.fromARGB(255, 204, 118, 217)),
-                          child: const Center(
-                            child: Text(
-                              "Today",
-                              style: TextStyle(color: Colors.white),
-                            ),
+                        child: const Center(
+                          child: Text(
+                            "Günlük Ödül",
+                            style: TextStyle(color: Colors.white),
                           ),
                         ),
                       ),
-                      Tab(
-                        child: Container(
-                          height: 35,
-                          width: 100,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25),
-                              color: Colors.transparent,
-                              border: Border.all(
-                                  color: Colors.white,
-                                  width: 2,
-                                  style: BorderStyle.solid)),
-                          child: const Center(
-                            child: Text(
-                              "Month",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 4.0),
+                    child: Container(
+                      height: 35,
+                      width: 120,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          color: Colors.transparent,
+                          border: Border.all(
+                              color: Colors.white,
+                              width: 2,
+                              style: BorderStyle.solid)),
+                      child: const Center(
+                        child: Text(
+                          "Aylık sıralamam",
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
-                      RawMaterialButton(
-                        onPressed: () {
-                          Navigator.of(context).pushReplacement(
-                            PageRouteBuilder(
-                                pageBuilder: (_, __, ___) => const AllScreen(),
-                                transitionDuration:
-                                    const Duration(milliseconds: 500),
-                                transitionsBuilder: (_, a, __, c) =>
-                                    FadeTransition(
-                                      opacity: a,
-                                      child: c,
-                                    )),
-                          );
-                        },
-                        child: Container(
-                          height: 35,
-                          width: 100,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25),
-                              color: const Color.fromARGB(255, 204, 118, 217)),
-                          child: const Center(
-                            child: Text(
-                              "All",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
+                    ),
+                  ),
+                  Container(
+                    height: 35,
+                    width: 100,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: const Color.fromARGB(255, 204, 118, 217)),
+                    child: RawMaterialButton(
+                      onPressed: () {
+                        Navigator.of(context).pushReplacement(
+                          PageRouteBuilder(
+                              pageBuilder: (_, __, ___) => const AllScreen(),
+                              transitionDuration:
+                                  const Duration(milliseconds: 500),
+                              transitionsBuilder: (_, a, __, c) =>
+                                  FadeTransition(
+                                    opacity: a,
+                                    child: c,
+                                  )),
+                        );
+                      },
+                      child: const Center(
+                        child: Text(
+                          "Aylık Ödül",
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
-                    ]),
+                    ),
+                  ),
+                ]),
                 const SizedBox(
                   height: 20,
                 ),

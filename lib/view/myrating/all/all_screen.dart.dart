@@ -164,12 +164,16 @@ class _AllScreenState extends State<AllScreen> {
                 const SizedBox(
                   height: 25,
                 ),
-                TabBar(
-                    indicator:
-                        BoxDecoration(borderRadius: BorderRadius.circular(20)),
-                    dividerColor: Colors.transparent,
-                    tabs: [
-                      RawMaterialButton(
+                Row(children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 4.0),
+                    child: Container(
+                      height: 35,
+                      width: 120,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          color: const Color.fromARGB(255, 204, 118, 217)),
+                      child: RawMaterialButton(
                         onPressed: () {
                           Navigator.of(context).pushReplacement(
                             PageRouteBuilder(
@@ -184,21 +188,24 @@ class _AllScreenState extends State<AllScreen> {
                                     )),
                           );
                         },
-                        child: Container(
-                          height: 35,
-                          width: 100,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25),
-                              color: const Color.fromARGB(255, 204, 118, 217)),
-                          child: const Center(
-                            child: Text(
-                              "Today",
-                              style: TextStyle(color: Colors.white),
-                            ),
+                        child: const Center(
+                          child: Text(
+                            "Günlük Ödül",
+                            style: TextStyle(color: Colors.white),
                           ),
                         ),
                       ),
-                      RawMaterialButton(
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 4.0),
+                    child: Container(
+                      height: 35,
+                      width: 120,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          color: const Color.fromARGB(255, 204, 118, 217)),
+                      child: RawMaterialButton(
                         onPressed: () {
                           Navigator.of(context).pushReplacement(
                             PageRouteBuilder(
@@ -213,40 +220,35 @@ class _AllScreenState extends State<AllScreen> {
                                     )),
                           );
                         },
-                        child: Container(
-                          height: 35,
-                          width: 100,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25),
-                              color: const Color.fromARGB(255, 204, 118, 217)),
-                          child: const Center(
-                            child: Text(
-                              "Month",
-                              style: TextStyle(color: Colors.white),
-                            ),
+                        child: const Center(
+                          child: Text(
+                            "Aylık sıralamam",
+                            style: TextStyle(color: Colors.white),
                           ),
                         ),
                       ),
-                      Tab(
-                        child: Container(
-                          height: 35,
-                          width: 100,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25),
-                              color: Colors.transparent,
-                              border: Border.all(
-                                  color: Colors.white,
-                                  width: 2,
-                                  style: BorderStyle.solid)),
-                          child: const Center(
-                            child: Text(
-                              "ALL",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
+                    ),
+                  ),
+                  Tab(
+                    child: Container(
+                      height: 35,
+                      width: 100,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          color: Colors.transparent,
+                          border: Border.all(
+                              color: Colors.white,
+                              width: 2,
+                              style: BorderStyle.solid)),
+                      child: const Center(
+                        child: Text(
+                          "Aylık Ödül",
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
-                    ]),
+                    ),
+                  ),
+                ]),
                 const SizedBox(
                   height: 30,
                 ),

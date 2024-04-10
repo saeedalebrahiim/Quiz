@@ -1,4 +1,3 @@
-
 import 'package:bilgimizde/services/admob.dart';
 import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
 import 'package:bilgimizde/view/rules/rules_screen.dart';
@@ -188,31 +187,36 @@ class _TodayScreenState extends State<TodayScreen> {
                 const SizedBox(
                   height: 25,
                 ),
-                TabBar(
-                    indicator:
-                        BoxDecoration(borderRadius: BorderRadius.circular(20)),
-                    dividerColor: Colors.transparent,
-                    tabs: [
-                      Tab(
-                        child: Container(
-                          height: 35,
-                          width: 100,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25),
-                              color: Colors.transparent,
-                              border: Border.all(
-                                  color: Colors.white,
-                                  width: 2,
-                                  style: BorderStyle.solid)),
-                          child: const Center(
-                            child: Text(
-                              "Today",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
+                Row(children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 4.0),
+                    child: Container(
+                      height: 35,
+                      width: 110,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          color: Colors.transparent,
+                          border: Border.all(
+                              color: Colors.white,
+                              width: 2,
+                              style: BorderStyle.solid)),
+                      child: const Center(
+                        child: Text(
+                          "Günlük Ödül",
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
-                      RawMaterialButton(
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 4.0),
+                    child: Container(
+                      height: 35,
+                      width: 120,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          color: const Color.fromARGB(255, 204, 118, 217)),
+                      child: RawMaterialButton(
                         onPressed: () {
                           Navigator.of(context).pushReplacement(
                             PageRouteBuilder(
@@ -227,21 +231,24 @@ class _TodayScreenState extends State<TodayScreen> {
                                     )),
                           );
                         },
-                        child: Container(
-                          height: 35,
-                          width: 100,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25),
-                              color: const Color.fromARGB(255, 204, 118, 217)),
-                          child: const Center(
-                            child: Text(
-                              "Month",
-                              style: TextStyle(color: Colors.white),
-                            ),
+                        child: const Center(
+                          child: Text(
+                            "Aylık sıralamam",
+                            style: TextStyle(color: Colors.white),
                           ),
                         ),
                       ),
-                      RawMaterialButton(
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 4.0),
+                    child: Container(
+                      height: 35,
+                      width: 100,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          color: const Color.fromARGB(255, 204, 118, 217)),
+                      child: RawMaterialButton(
                         onPressed: () {
                           Navigator.of(context).pushReplacement(
                             PageRouteBuilder(
@@ -255,21 +262,16 @@ class _TodayScreenState extends State<TodayScreen> {
                                     )),
                           );
                         },
-                        child: Container(
-                          height: 35,
-                          width: 100,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25),
-                              color: const Color.fromARGB(255, 204, 118, 217)),
-                          child: const Center(
-                            child: Text(
-                              "All",
-                              style: TextStyle(color: Colors.white),
-                            ),
+                        child: const Center(
+                          child: Text(
+                            "Aylık Ödül",
+                            style: TextStyle(color: Colors.white),
                           ),
                         ),
                       ),
-                    ]),
+                    ),
+                  ),
+                ]),
                 const SizedBox(
                   height: 20,
                 ),
@@ -365,7 +367,7 @@ class _TodayScreenState extends State<TodayScreen> {
                               ),
                             ),
                             const Text(
-                              'Your growth',
+                              'Bugünkü ilerlemem',
                               style: TextStyle(
                                 fontSize: 10,
                                 fontWeight: FontWeight.bold,
@@ -387,15 +389,15 @@ class _TodayScreenState extends State<TodayScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     const Text(
-                      'Top 10',
+                      'İlerliyorlar (En iyi 10) ',
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 24,
+                          fontSize: 18,
                           fontStyle: FontStyle.italic,
                           fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(
-                      width: 50,
+                      width: 5,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -455,13 +457,13 @@ class _TodayScreenState extends State<TodayScreen> {
                       width: 5,
                     ),
                     const Text(
-                      'Rank',
+                      'Sıra',
                       style: TextStyle(color: Colors.white, fontSize: 12),
                     ),
                     const SizedBox(
                       width: 30,
                     ),
-                    const Text('Name',
+                    const Text('Kullanıcı',
                         style: TextStyle(color: Colors.white, fontSize: 12)),
                     const SizedBox(
                       width: 80,
@@ -479,7 +481,7 @@ class _TodayScreenState extends State<TodayScreen> {
                                           'lib/assets/images/allprize.png'))),
                             ),
                             const Text(
-                              'Prize',
+                              'Ödül',
                               style:
                                   TextStyle(color: Colors.white, fontSize: 12),
                             ),

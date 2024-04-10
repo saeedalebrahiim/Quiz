@@ -129,7 +129,7 @@ class AllRatingCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width: 100,
+                    width: 90,
                     child: RichText(
                       overflow: TextOverflow.ellipsis,
                       text: TextSpan(
@@ -168,7 +168,7 @@ class AllRatingCard extends StatelessWidget {
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: const Text(
-                            "YOU",
+                            "Buradayım",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 10,
