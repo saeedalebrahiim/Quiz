@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-gotCoin(BuildContext context) {
+gotCoin(BuildContext context, int count) {
 //  successfully coin alarm
   showDialog(
     context: context,
@@ -36,8 +36,8 @@ gotCoin(BuildContext context) {
                       image: DecorationImage(
                           image: AssetImage('lib/assets/images/coin.png'))),
                 ),
-                const Text(
-                  '10',
+                Text(
+                  count.toString(),
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                 ),
                 const SizedBox(
@@ -53,6 +53,9 @@ gotCoin(BuildContext context) {
               height: 20,
             ),
             InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
               child: Container(
                 width: 100,
                 height: 30,

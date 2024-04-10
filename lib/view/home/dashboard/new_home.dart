@@ -4,6 +4,7 @@ import 'package:bilgimizde/controller/auth/auth_controller.dart';
 import 'package:bilgimizde/provider/quiz.dart';
 import 'package:bilgimizde/services/internet_listener.dart';
 import 'package:bilgimizde/view/buycoin/buy_coin_screen.dart';
+import 'package:bilgimizde/view/buycoin/buy_coin_test.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -216,7 +217,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                   onTap: () {
                     Navigator.of(context).push(
                       PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => const BuyCoinScreen(),
+                          pageBuilder: (_, __, ___) => const BuyCoin(),
                           transitionDuration: const Duration(milliseconds: 500),
                           transitionsBuilder: (_, a, __, c) => FadeTransition(
                                 opacity: a,

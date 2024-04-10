@@ -9,7 +9,7 @@ class CoinPackages extends StatelessWidget {
   });
   final String coinCount;
   final String price;
-  final Function onPress;
+  final Function()? onPress;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -38,14 +38,14 @@ class CoinPackages extends StatelessWidget {
                 const SizedBox(
                   width: 5,
                 ),
-                Text(
-                  coinCount,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                )
+                // Text(
+                //   coinCount,
+                //   style: const TextStyle(
+                //     color: Colors.white,
+                //     fontWeight: FontWeight.bold,
+                //     fontSize: 18,
+                //   ),
+                // )
               ],
             ),
             Text(
@@ -60,9 +60,7 @@ class CoinPackages extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 12.0),
               child: RawMaterialButton(
-                onPressed: () {
-                  onPress;
-                },
+                onPressed: onPress,
                 fillColor: Colors.green,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),

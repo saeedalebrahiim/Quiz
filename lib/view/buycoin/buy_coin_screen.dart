@@ -57,15 +57,7 @@ class _BuyCoinScreenState extends State<BuyCoinScreen> {
         "10.p",
         "50.p",
         "80.p",
-        "100",
-        "150.p",
-        "180.p",
-        "10.P",
-        "50.P",
-        "80.P",
-        "100.P",
-        "150.P",
-        "180.P",
+        "100.p",
       };
       ProductDetailsResponse response = await _iap.queryProductDetails(ids);
       setState(() {
@@ -182,15 +174,21 @@ class _BuyCoinScreenState extends State<BuyCoinScreen> {
                         coinCount: prod.title,
                         price: prod.price,
                         onPress: () {
+                          print("clicked");
                           _iap
                               .buyConsumable(
-                            purchaseParam: PurchaseParam(productDetails: prod),
+                            purchaseParam: PurchaseParam(
+                              productDetails: prod,
+                            ),
                           )
                               .then((value) {
-                            ProfileController.addToBalance(
-                              context: context,
-                              count: int.parse(prod.title),
-                            );
+                            print(value.toString() + " " + "consumed");
+                            if (value) {
+                              ProfileController.addToBalance(
+                                context: context,
+                                count: int.parse(prod.title),
+                              );
+                            }
                           });
                         },
                       ),

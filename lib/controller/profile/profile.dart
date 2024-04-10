@@ -160,7 +160,7 @@ class ProfileController {
         print(body);
         print(body["isSuccess"]);
         if (body["isSuccess"] == true) {
-          gotCoin(context);
+          gotCoin(context, count);
           getUserBalance(context: context);
         } else {}
       });
