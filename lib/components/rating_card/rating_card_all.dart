@@ -129,7 +129,7 @@ class AllRatingCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width: 90,
+                    width: 95,
                     child: RichText(
                       overflow: TextOverflow.ellipsis,
                       text: TextSpan(
@@ -138,7 +138,7 @@ class AllRatingCard extends StatelessWidget {
                             TextSpan(
                               text: score.applicationUserFullName ??
                                   (score.applicationUserUserName!
-                                          .replaceRange(0, 7, "XXXXXXXX") ??
+                                          .replaceRange(0, 7, "XXXXXXX") ??
                                       "-"),
                               style: const TextStyle(
                                 color: Colors.white,
