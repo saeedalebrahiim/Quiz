@@ -62,7 +62,7 @@ wifiAlarm(BuildContext context) {
                       height: 10,
                     ),
                     const Text(
-                      'Check your internet',
+                      'internet bağlantınızı kontrol edininternet',
                       style: TextStyle(fontWeight: FontWeight.w700),
                     )
                   ],

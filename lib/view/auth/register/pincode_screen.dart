@@ -56,7 +56,7 @@ class _PinCodeScreenState extends State<PinCodeScreen> {
                           width: 40,
                         ),
                         Text(
-                          'Enter Code',
+                          'Kodu girin',
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.grey,
@@ -174,7 +174,7 @@ class _PinCodeScreenState extends State<PinCodeScreen> {
                           borderRadius: BorderRadius.circular(22)),
                       child: const Center(
                           child: Text(
-                        'Next',
+                        'sonraki',
                         style: TextStyle(color: Colors.white),
                       )),
                     ),

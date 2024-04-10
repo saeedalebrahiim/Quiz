@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           width: 40,
                         ),
                         Text(
-                          'Login',
+                          'giriş',
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -58,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           width: 40,
                         ),
                         Text(
-                          'Whit Namber',
+                          'numara ve şifre ile',
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.grey,
@@ -157,7 +157,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           onTap: () {
                             Navigator.of(context).push(
                               PageRouteBuilder(
-                                  pageBuilder: (_, __, ___) => const ForgetPwScreen(),
+                                  pageBuilder: (_, __, ___) =>
+                                      const ForgetPwScreen(),
                                   transitionDuration:
                                       const Duration(milliseconds: 500),
                                   transitionsBuilder: (_, a, __, c) =>
@@ -168,7 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             );
                           },
                           child: const Text(
-                            'Forget Password ?',
+                            'Parolanızı mı unuttunuz',
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 18,
@@ -280,7 +281,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           borderRadius: BorderRadius.circular(22)),
                       child: const Center(
                           child: Text(
-                        'Next',
+                        'sonraki',
                         style: TextStyle(color: Colors.white),
                       )),
                     ),

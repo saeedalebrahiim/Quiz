@@ -65,7 +65,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                   width: 10,
                                 ),
                                 Text(
-                                  'Home',
+                                  'ana sayfa',
                                   style: TextStyle(color: Colors.white),
                                 )
                               ],
@@ -106,7 +106,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                   width: 10,
                                 ),
                                 Text(
-                                  'Profile',
+                                  'Profil',
                                   style: TextStyle(color: Colors.white),
                                 )
                               ],
@@ -147,7 +147,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                   width: 10,
                                 ),
                                 Text(
-                                  'My Rating',
+                                  'İstatistik ',
                                   style: TextStyle(color: Colors.white),
                                 )
                               ],
@@ -190,7 +190,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                   width: 10,
                                 ),
                                 Text(
-                                  'Questions',
+                                  'sık sorulan sorular',
                                   style: TextStyle(color: Colors.white),
                                 )
                               ],
@@ -231,7 +231,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                   width: 10,
                                 ),
                                 Text(
-                                  'Rules',
+                                  'Kurallar',
                                   style: TextStyle(color: Colors.white),
                                 )
                               ],
@@ -272,7 +272,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                   width: 10,
                                 ),
                                 Text(
-                                  'Help',
+                                  'Bize Ulaşın',
                                   style: TextStyle(color: Colors.white),
                                 )
                               ],

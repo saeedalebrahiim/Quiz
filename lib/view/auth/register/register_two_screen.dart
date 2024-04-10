@@ -43,7 +43,7 @@ class _RegisterStepTwoScreenState extends State<RegisterStepTwoScreen> {
                           width: 40,
                         ),
                         Text(
-                          'Signup',
+                          'Kayıt ',
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -244,7 +244,7 @@ class _RegisterStepTwoScreenState extends State<RegisterStepTwoScreen> {
                         borderRadius: BorderRadius.circular(22)),
                     child: const Center(
                         child: Text(
-                      'Next',
+                      'sonraki',
                       style: TextStyle(color: Colors.white),
                     )),
                   ),

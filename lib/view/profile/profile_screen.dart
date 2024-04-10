@@ -393,7 +393,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           obscureText: false,
                           controller: _nameFamilyController,
                           decoration: InputDecoration(
-                              hintText: 'Name & Family',
+                              hintText: 'Adı ve soyadı',
                               border: OutlineInputBorder(
                                   borderSide: BorderSide.none,
                                   borderRadius: BorderRadius.circular(30)),
@@ -480,7 +480,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           obscureText: false,
                           controller: _educationController,
                           decoration: InputDecoration(
-                              hintText: 'Education',
+                              hintText: 'Eğitim',
                               border: OutlineInputBorder(
                                   borderSide: BorderSide.none,
                                   borderRadius: BorderRadius.circular(30)),
@@ -496,7 +496,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           width: 40,
                         ),
                         Text(
-                          "Enter Your Iban",
+                          "IBAN'ınızı girin",
                           style: TextStyle(color: Colors.white),
                         ),
                       ],
@@ -584,7 +584,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         onTap: null,
                                         controller: TextEditingController(
                                             text: bankIdTitleSelected),
-                                        placeholder: "Select Item",
+                                        placeholder: "banka ekle",
                                         enabled: false,
                                         suffix:
                                             const Icon(Icons.arrow_drop_down),
@@ -730,7 +730,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 fit: BoxFit.fill)),
                         child: const Center(
                           child: Text(
-                            'Save',
+                            'kayıt etmek',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold),
@@ -771,7 +771,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             width: 5,
                           ),
                           const Text(
-                            'Logout',
+                            'Çıkış',
                             style: TextStyle(
                                 color: Colors.red, fontWeight: FontWeight.w600),
                           )
@@ -783,7 +783,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     InkWell(
                       onTap: () {
-                        AuthController.logOut(context: context);
+                        // AuthController.logOut(context: context);
                         AuthController.deleteAccount(context: context);
                       },
                       child: SizedBox(

@@ -62,7 +62,7 @@ class _RulesScreenState extends State<RulesScreen> {
                   const Padding(
                     padding: EdgeInsets.only(top: 38),
                     child: Text(
-                      'Rules',
+                      'Kurallar',
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,

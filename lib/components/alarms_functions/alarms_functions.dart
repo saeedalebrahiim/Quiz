@@ -197,7 +197,7 @@ alert(BuildContext context) {
                       height: 10,
                     ),
                     const Text(
-                      'Check your internet',
+                      'internet bağlantınızı kontrol edin',
                       style: TextStyle(fontWeight: FontWeight.w700),
                     )
                   ],

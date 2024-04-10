@@ -69,19 +69,19 @@ noAccountAlarm(BuildContext context) {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              'You have not createt',
+                              'bu numara ile herhangi bir hesap yok',
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 13),
                             ),
-                            Text(
-                              'an account  !!',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 13),
-                            )
+                            // Text(
+                            //   'an account  !!',
+                            //   style: TextStyle(
+                            //       color: Colors.black,
+                            //       fontWeight: FontWeight.w600,
+                            //       fontSize: 13),
+                            // )
                           ],
                         )
                       ],
@@ -127,7 +127,7 @@ noAccountAlarm(BuildContext context) {
                                     fit: BoxFit.fill)),
                             child: const Center(
                                 child: Text(
-                              'Signup',
+                              'üye ol',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w500),

@@ -48,7 +48,7 @@ class FaqScreen extends StatelessWidget {
                     const Padding(
                       padding: EdgeInsets.only(top: 15),
                       child: Text(
-                        'Quiz FAQ',
+                        'İletişim',
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w600,

@@ -50,7 +50,7 @@ class HelpScreen extends StatelessWidget {
                     const Padding(
                       padding: EdgeInsets.only(top: 18),
                       child: Text(
-                        'Help',
+                        'İletişim',
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w600,

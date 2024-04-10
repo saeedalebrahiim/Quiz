@@ -156,7 +156,7 @@ class _ChangePwScreenState extends State<ChangePwScreen> {
                           borderRadius: BorderRadius.circular(22)),
                       child: const Center(
                           child: Text(
-                        'Next',
+                        'sonraki',
                         style: TextStyle(
                             color: Colors.black, fontWeight: FontWeight.bold),
                       )),

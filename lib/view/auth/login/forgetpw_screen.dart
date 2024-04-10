@@ -42,7 +42,7 @@ class _ForgetPwScreenState extends State<ForgetPwScreen> {
                           width: 40,
                         ),
                         Text(
-                          'Forget Password ',
+                          'Parolanızı mı unuttunuz',
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -164,7 +164,7 @@ class _ForgetPwScreenState extends State<ForgetPwScreen> {
                           borderRadius: BorderRadius.circular(22)),
                       child: const Center(
                           child: Text(
-                        'Next',
+                        'sonraki',
                         style: TextStyle(color: Colors.white),
                       )),
                     ),

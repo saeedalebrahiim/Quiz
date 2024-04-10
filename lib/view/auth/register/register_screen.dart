@@ -166,7 +166,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           borderRadius: BorderRadius.circular(22)),
                       child: const Center(
                           child: Text(
-                        'Next',
+                        'sonraki',
                         style: TextStyle(color: Colors.white),
                       )),
                     ),
