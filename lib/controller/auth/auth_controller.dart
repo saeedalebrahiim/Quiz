@@ -75,6 +75,28 @@ class AuthController {
     }
   }
 
+  static Future<void> deleteAccount({required BuildContext context}) async {
+    try {
+      //save token
+      final api = Quiz.create();
+      final postResult = await api.apiV1UserManagerBlockUserGet();
+      SharedPreferences sp = await SharedPreferences.getInstance();
+      await sp.remove("token");
+      await sp.clear();
+      await sp.reload();
+
+      //navigate
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (context) => const EnterScreen(),
+          ),
+          (route) => false);
+      //show error message
+    } catch (e) {
+      print(e);
+    }
+  }
+
   static Future<void> register(
       {required String userName, required BuildContext context}) async {
     final api = Quiz.create();

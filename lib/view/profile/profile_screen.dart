@@ -674,9 +674,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           // print(file);
                           if (_ibanController.text.isNotEmpty &&
                               _nameFamilyController.text.isEmpty) {
-                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                                content: Text(
-                                    "You Should have name to save your iban")));
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text(
+                                        "You Should have name to save your iban")));
                           }
 
                           print("------------------");
@@ -771,6 +772,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                           const Text(
                             'Logout',
+                            style: TextStyle(
+                                color: Colors.red, fontWeight: FontWeight.w600),
+                          )
+                        ]),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        AuthController.logOut(context: context);
+                        AuthController.deleteAccount(context: context);
+                      },
+                      child: SizedBox(
+                        width: 100,
+                        height: 34,
+                        child: Row(children: [
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          const Text(
+                            'Delete Account',
                             style: TextStyle(
                                 color: Colors.red, fontWeight: FontWeight.w600),
                           )
