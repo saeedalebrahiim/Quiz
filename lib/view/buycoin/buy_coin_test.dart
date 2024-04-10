@@ -6,12 +6,16 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:bilgimizde/controller/profile/profile.dart';
+import 'package:bilgimizde/global.dart';
+import 'package:bilgimizde/provider/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:in_app_purchase_android/billing_client_wrappers.dart';
 import 'package:in_app_purchase_android/in_app_purchase_android.dart';
 import 'package:in_app_purchase_storekit/in_app_purchase_storekit.dart';
 import 'package:in_app_purchase_storekit/store_kit_wrappers.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 // Auto-consume must be true on iOS.
 // To try without auto-consume on another platform, change `true` to `false` here.
@@ -154,10 +158,10 @@ class BuyCoinState extends State<BuyCoin> {
       stack.add(
         ListView(
           children: <Widget>[
-            _buildConnectionCheckTile(),
+            // _buildConnectionCheckTile(),
             _buildProductList(),
-            _buildConsumableBox(),
-            _buildRestoreButton(),
+            // _buildConsumableBox(),
+            // _buildRestoreButton(),
           ],
         ),
       );
@@ -182,13 +186,159 @@ class BuyCoinState extends State<BuyCoin> {
       );
     }
 
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('IAP Example'),
-        ),
-        body: Stack(
-          children: stack,
+    return Scaffold(
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+            color: primaryColor,
+            image: const DecorationImage(
+                image: AssetImage('lib/assets/images/bg1.png'),
+                fit: BoxFit.fill)),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15, top: 45),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image:
+                                    AssetImage('lib/assets/images/back.png'))),
+                      ),
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 18),
+                    child: Text(
+                      'Buy Coin',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 65,
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 18,
+              ),
+              Center(
+                child: Column(
+                  children: [
+                    Image.asset(
+                      'lib/assets/images/coin.png',
+                      width: 25,
+                      height: 25,
+                    ),
+                    Consumer<ProfileState>(
+                      builder: (context, value, child) {
+                        var formattedNumber =
+                            NumberFormat.compact().format(value.userBalance);
+                        return Text(
+                          formattedNumber,
+                          //  value.userBalance.toString(),
+                          style: const TextStyle(
+                              fontSize: 30,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600),
+                        );
+                      },
+                    ),
+                    const Text(
+                      'Available to use',
+                      style: TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 10),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const Text(
+                      'Coins Packages',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    // ListView(
+                    //   shrinkWrap: true,
+                    //   children: <Widget>[
+                    // _buildConnectionCheckTile(),
+                    _buildProductList(),
+                    // _buildConsumableBox(),
+                    // _buildRestoreButton(),
+                    //   ],
+                    // ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    // for (var prod in stack) ...[prod],
+                    const Text(
+                      'How trust us?',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 20),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Image.asset(
+                      'lib/assets/images/buycoinimg.png',
+                      width: 200,
+                      height: 100,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 25, right: 25),
+                      child: Text(
+                        maxLines: 10,
+                        'At Bilgimizdeh, we understand that trust is an important factor when making in-app purchases. Thats why we use Google Pay, a secure and reliable payment platform trusted by millions of users worldwide.',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 12),
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 25, right: 25, top: 10),
+                      child: Text(
+                        maxLines: 10,
+                        'At Bilgimizdeh, we understand that trust is an important factor when making in-app purchases. Thats why we use Google Pay, a secure and reliable payment platform trusted by millions of users worldwide.',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 12),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 100,
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -230,17 +380,17 @@ class BuyCoinState extends State<BuyCoin> {
               title: Text('Fetching products...')));
     }
     if (!_isAvailable) {
-      return const Card();
+      // return const Card();
     }
-    const ListTile productHeader = ListTile(title: Text('Products for Sale'));
-    final List<ListTile> productList = <ListTile>[];
-    if (_notFoundIds.isNotEmpty) {
-      productList.add(ListTile(
-          title: Text('[${_notFoundIds.join(", ")}] not found',
-              style: TextStyle(color: ThemeData.light().colorScheme.error)),
-          subtitle: const Text(
-              'This app needs special configuration to run. Please see example/README.md for instructions.')));
-    }
+    // const ListTile productHeader = ListTile(title: Text('Products for Sale'));
+    final List<Widget> productList = [];
+    // if (_notFoundIds.isNotEmpty) {
+    //   productList.add(ListTile(
+    //       title: Text('[${_notFoundIds.join(", ")}] not found',
+    //           style: TextStyle(color: ThemeData.light().colorScheme.error)),
+    //       subtitle: const Text(
+    //           'This app needs special configuration to run. Please see example/README.md for instructions.')));
+    // }
 
     // This loading previous purchases code is just a demo. Please do not use this as it is.
     // In your app you should always verify the purchase data using the `verificationData` inside the [PurchaseDetails] object before trusting it.
@@ -256,66 +406,100 @@ class BuyCoinState extends State<BuyCoin> {
     productList.addAll(_products.map(
       (ProductDetails productDetails) {
         final PurchaseDetails? previousPurchase = purchases[productDetails.id];
-        return ListTile(
-          title: Text(
-            productDetails.title,
-          ),
-          subtitle: Text(
-            productDetails.description,
-          ),
-          trailing: previousPurchase != null && Platform.isIOS
-              ? IconButton(
-                  onPressed: () => confirmPriceChange(context),
-                  icon: const Icon(Icons.upgrade))
-              : TextButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: Colors.green[800],
-                    foregroundColor: Colors.white,
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.3),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: ListTile(
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Image(
+                          width: 25,
+                          image: AssetImage(
+                            'lib/assets/images/coin.png',
+                          ),
+                        ),
+                      ),
+                      Text(
+                        productDetails.title
+                            .replaceAll("(Bilgimizde | Bil para kazan)", ""),
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
                   ),
-                  onPressed: () {
-                    late PurchaseParam purchaseParam;
+                  Text(
+                    "${productDetails.rawPrice} TL",
+                    style: const TextStyle(
+                        color: Colors.green, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(),
+                ],
+              ),
+              // subtitle: Text(
+              //   productDetails.description,
+              // ),
+              trailing: previousPurchase != null && Platform.isIOS
+                  ? IconButton(
+                      onPressed: () => confirmPriceChange(context),
+                      icon: const Icon(Icons.upgrade))
+                  : TextButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: Colors.green[800],
+                        foregroundColor: Colors.white,
+                      ),
+                      onPressed: () {
+                        late PurchaseParam purchaseParam;
 
-                    if (Platform.isAndroid) {
-                      // NOTE: If you are making a subscription purchase/upgrade/downgrade, we recommend you to
-                      // verify the latest status of you your subscription by using server side receipt validation
-                      // and update the UI accordingly. The subscription purchase status shown
-                      // inside the app may not be accurate.
-                      final GooglePlayPurchaseDetails? oldSubscription =
-                          _getOldSubscription(productDetails, purchases);
+                        if (Platform.isAndroid) {
+                          // NOTE: If you are making a subscription purchase/upgrade/downgrade, we recommend you to
+                          // verify the latest status of you your subscription by using server side receipt validation
+                          // and update the UI accordingly. The subscription purchase status shown
+                          // inside the app may not be accurate.
+                          final GooglePlayPurchaseDetails? oldSubscription =
+                              _getOldSubscription(productDetails, purchases);
 
-                      purchaseParam = GooglePlayPurchaseParam(
-                          productDetails: productDetails,
-                          changeSubscriptionParam: (oldSubscription != null)
-                              ? ChangeSubscriptionParam(
-                                  oldPurchaseDetails: oldSubscription,
-                                  prorationMode:
-                                      ProrationMode.immediateWithTimeProration,
-                                )
-                              : null);
-                    } else {
-                      purchaseParam = PurchaseParam(
-                        productDetails: productDetails,
-                      );
-                    }
+                          purchaseParam = GooglePlayPurchaseParam(
+                              productDetails: productDetails,
+                              changeSubscriptionParam: (oldSubscription != null)
+                                  ? ChangeSubscriptionParam(
+                                      oldPurchaseDetails: oldSubscription,
+                                      prorationMode: ProrationMode
+                                          .immediateWithTimeProration,
+                                    )
+                                  : null);
+                        } else {
+                          purchaseParam = PurchaseParam(
+                            productDetails: productDetails,
+                          );
+                        }
 
-                    // if (productDetails.id == _kConsumableId) {
-                    _inAppPurchase.buyConsumable(
-                        purchaseParam: purchaseParam,
-                        autoConsume: _kAutoConsume);
-                    // } else {
-                    //   _inAppPurchase.buyNonConsumable(
-                    //       purchaseParam: purchaseParam);
-                    // }
-                  },
-                  child: Text(productDetails.price),
-                ),
+                        // if (productDetails.id == _kConsumableId) {
+                        _inAppPurchase.buyConsumable(
+                            purchaseParam: purchaseParam,
+                            autoConsume: _kAutoConsume);
+                        // } else {
+                        //   _inAppPurchase.buyNonConsumable(
+                        //       purchaseParam: purchaseParam);
+                        // }
+                      },
+                      child: Text("Purchase"),
+                    ),
+            ),
+          ),
         );
       },
     ));
 
     return Card(
-        child: Column(
-            children: <Widget>[productHeader, const Divider()] + productList));
+        color: Colors.transparent, child: Column(children: productList));
   }
 
   Card _buildConsumableBox() {
