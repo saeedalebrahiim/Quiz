@@ -120,7 +120,7 @@ class _EndQuizScreenState extends State<EndQuizScreen> {
                             height: 10,
                           ),
                           const Text(
-                            'End of the Test',
+                            'Test sonucu',
                             style: TextStyle(
                                 color: Color.fromARGB(255, 96, 131, 255),
                                 fontWeight: FontWeight.bold,
@@ -139,7 +139,7 @@ class _EndQuizScreenState extends State<EndQuizScreen> {
                                   height: 2,
                                 ),
                                 const Text(
-                                  "Successfuly",
+                                  "Başarıyla",
                                   style: TextStyle(
                                     fontSize: 24,
                                     color: Colors.green,
@@ -149,7 +149,7 @@ class _EndQuizScreenState extends State<EndQuizScreen> {
                                 const Padding(
                                   padding: EdgeInsets.all(8.0),
                                   child: Text(
-                                    "You are too close to be among 50 best players and grant Prize",
+                                    "Heeey! En iyi 50 oyuncu arasına girip ödül almaya çok yaklaştın! Belki de günlük ödülü kazandın.",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontSize: 14,
@@ -167,41 +167,41 @@ class _EndQuizScreenState extends State<EndQuizScreen> {
                                   height: 2,
                                 ),
                                 const Text(
-                                  'Congrats!',
+                                  'Tebrikler!',
                                   style: TextStyle(
                                       color: Colors.orange,
                                       fontWeight: FontWeight.w700,
                                       fontSize: 18),
                                 ),
-                                const Text(
-                                  'You are among',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 12),
-                                ),
                                 const Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
+                                    const Text(
+                                      'Artık ',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 12),
+                                    ),
                                     Text(
-                                      'best 50 players , ',
+                                      'en iyi 50 kişi  ',
                                       style: TextStyle(
                                           color:
                                               Color.fromARGB(255, 96, 131, 255),
                                           fontWeight: FontWeight.bold,
                                           fontSize: 12),
                                     ),
-                                    Text(
-                                      'So  you grant',
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 12),
-                                    ),
                                   ],
                                 ),
+                                Text(
+                                  'arasındasın, böyle devam ',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12),
+                                ),
                                 const Text(
-                                  'prize at end of the season',
+                                  'edersen ay sonunda nakit ödül alacaksın',
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold,
@@ -274,7 +274,7 @@ class _EndQuizScreenState extends State<EndQuizScreen> {
                                 borderRadius: BorderRadius.circular(50),
                               ),
                               child: const Text(
-                                "See top 50 Players",
+                                "Ödüllere git",
                               ),
                             ),
                           ),
@@ -328,7 +328,7 @@ class _EndQuizScreenState extends State<EndQuizScreen> {
                               height: 20,
                             ),
                             const Text(
-                              'Try to stay among 50 players to grant prize',
+                              'Ay sonunda ödülü alan ilk 50 kişiden olmak için denemeye devam et.',
                               style: TextStyle(
                                   color: Colors.orange,
                                   fontWeight: FontWeight.w600,
