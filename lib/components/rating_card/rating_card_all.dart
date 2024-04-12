@@ -32,8 +32,8 @@ class AllRatingCard extends StatelessWidget {
       height: 58,
       decoration: BoxDecoration(
           color: isMe == true
-              ? Colors.white.withOpacity(0.25)
-              : const Color.fromRGBO(28, 28, 28, 0.65),
+              ? Colors.white.withOpacity(0.15)
+              : const Color.fromRGBO(28, 28, 28, 0.70),
           // image: const DecorationImage(
           //   image: AssetImage('lib/assets/images/ratingcard.png'),
           //   fit: BoxFit.fill,

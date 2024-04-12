@@ -147,7 +147,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                   width: 10,
                                 ),
                                 Text(
-                                  'İstatistik ',
+                                  'Ödüllere git ',
                                   style: TextStyle(color: Colors.white),
                                 )
                               ],
@@ -231,7 +231,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                   width: 10,
                                 ),
                                 Text(
-                                  'Kurallar',
+                                  'Nasıl kazanabilirsin',
                                   style: TextStyle(color: Colors.white),
                                 )
                               ],

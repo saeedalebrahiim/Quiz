@@ -7,7 +7,7 @@ class DrawerState extends ChangeNotifier {
   bool isDrawerOpen = false;
 
   changeVisible() {
-    xOffset = 220;
+    xOffset = 320;
     yOffset = 0;
     drawerVisible = true;
     isDrawerOpen = true;

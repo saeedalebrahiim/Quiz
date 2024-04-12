@@ -61,15 +61,15 @@ noCoinAlert(BuildContext context) {
                               fit: BoxFit.fill)),
                     ),
                     const Text(
-                      'You do not want to buy any',
+                      'Coin bakiyeniz yetersiz',
                       style: TextStyle(
                           color: Colors.black, fontWeight: FontWeight.w700),
                     ),
-                    const Text(
-                      'coins ?',
-                      style: TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.w700),
-                    ),
+                    // const Text(
+                    //   'coins ?',
+                    //   style: TextStyle(
+                    //       color: Colors.black, fontWeight: FontWeight.w700),
+                    // ),
                     const SizedBox(
                       height: 10,
                     ),
@@ -96,7 +96,7 @@ noCoinAlert(BuildContext context) {
                             color: Colors.black),
                         child: const Center(
                           child: Text(
-                            'Buy Coin',
+                            'Coin paketleri',
                             style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w700,

@@ -109,7 +109,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
         onPanUpdate: (details) {
           // Swiping in right direction.
           if (details.delta.dx > 0) {
-            value.xOffset = 220;
+            value.xOffset = 320;
             value.yOffset = 0;
             value.isDrawerOpen = true;
             drawerVisible = true;
@@ -213,57 +213,57 @@ class _NewMainScreenState extends State<NewMainScreen> {
                   ),
                 ],
                 centerTitle: true,
-                title: InkWell(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => const BuyCoin(),
-                          transitionDuration: const Duration(milliseconds: 500),
-                          transitionsBuilder: (_, a, __, c) => FadeTransition(
-                                opacity: a,
-                                child: c,
-                              )),
-                    );
-                  },
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Image.asset(
-                        'lib/assets/images/coin.png',
-                        width: 25,
-                        height: 25,
-                      ),
-                      Consumer<ProfileState>(
-                        builder: (context, value, child) {
-                          var _formattedNumber =
-                              NumberFormat.compact().format(value.userBalance);
-                          return Text(
-                            _formattedNumber,
-                            //  value.userBalance.toString(),
-                            style: const TextStyle(
-                                fontSize: 14,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600),
-                          );
-                        },
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: const Icon(
-                          Icons.add_circle_outline,
-                          color: Colors.amber,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+                // title: InkWell(
+                //   onTap: () {
+                //     Navigator.of(context).push(
+                //       PageRouteBuilder(
+                //           pageBuilder: (_, __, ___) => const BuyCoin(),
+                //           transitionDuration: const Duration(milliseconds: 500),
+                //           transitionsBuilder: (_, a, __, c) => FadeTransition(
+                //                 opacity: a,
+                //                 child: c,
+                //               )),
+                //     );
+                //   },
+                //   child: Row(
+                //     mainAxisSize: MainAxisSize.min,
+                //     children: [
+                //       Image.asset(
+                //         'lib/assets/images/coin.png',
+                //         width: 25,
+                //         height: 25,
+                //       ),
+                //       Consumer<ProfileState>(
+                //         builder: (context, value, child) {
+                //           var _formattedNumber =
+                //               NumberFormat.compact().format(value.userBalance);
+                //           return Text(
+                //             _formattedNumber,
+                //             //  value.userBalance.toString(),
+                //             style: const TextStyle(
+                //                 fontSize: 14,
+                //                 color: Colors.white,
+                //                 fontWeight: FontWeight.w600),
+                //           );
+                //         },
+                //       ),
+                //       Padding(
+                //         padding: const EdgeInsets.only(left: 8.0),
+                //         child: const Icon(
+                //           Icons.add_circle_outline,
+                //           color: Colors.amber,
+                //         ),
+                //       )
+                //     ],
+                //   ),
+                // ),
                 backgroundColor: Colors.transparent,
                 elevation: 0,
                 leading: Padding(
-                  padding: const EdgeInsets.all(6.0),
+                  padding: const EdgeInsets.all(2.0),
                   child: Container(
-                    width: 56,
-                    height: 56,
+                    width: 66,
+                    height: 66,
                     decoration: BoxDecoration(
                         color: const Color.fromARGB(255, 10, 21, 94),
                         borderRadius: BorderRadius.circular(18)),
@@ -286,7 +286,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                             child:
                                 Image.asset('lib/assets/images/appbaricon.png'),
                             onTap: () {
-                              value.xOffset = 220;
+                              value.xOffset = 320;
                               value.yOffset = 0;
                               value.isDrawerOpen = true;
                               drawerVisible = true;
@@ -488,7 +488,9 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                             width: 180,
                                             child: LinearProgressIndicator(
                                               value: value.userBalance / 500,
-                                              color: Colors.amber,
+                                              color: value.userBalance >= 500
+                                                  ? Colors.red
+                                                  : Colors.amber,
                                               minHeight: 8,
                                               borderRadius:
                                                   BorderRadius.circular(20),
@@ -545,7 +547,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                               fontWeight: FontWeight.bold),
                                         ),
                                         const Text(
-                                          "/ 1K",
+                                          "/ 1000",
                                           style: TextStyle(
                                             color: Color.fromARGB(
                                                 145, 255, 255, 255),
@@ -700,7 +702,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                               height: 4,
                                             ),
                                             const Text(
-                                              "kelimeyi tahmin et",
+                                              "Günlük ve aylık para",
                                               style: TextStyle(
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.bold,
@@ -734,7 +736,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                               height: 4,
                                             ),
                                             const Text(
-                                              "Ölçek",
+                                              "Anlık para",
                                               style: TextStyle(
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold,

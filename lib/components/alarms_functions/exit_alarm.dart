@@ -45,7 +45,7 @@ exitAlarm(BuildContext context) {
                   borderRadius: BorderRadius.circular(50),
                 ),
                 child: const Text(
-                  "See top 50 Players",
+                  "Ödüllere git",
                 ),
               ),
             ),

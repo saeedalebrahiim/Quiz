@@ -183,6 +183,7 @@ class _ChatScreenState extends State<ChatScreen> {
                               : MainAxisAlignment.start,
                           children: [
                             Container(
+                              width: 300,
                               padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
                                 color: theChats[index].isClient == true
@@ -192,6 +193,7 @@ class _ChatScreenState extends State<ChatScreen> {
                               ),
                               child: Text(
                                 theChats[index].desc.toString(),
+                                softWrap: true,
                                 style: TextStyle(
                                     color: theChats[index].isClient == true
                                         ? Colors.white

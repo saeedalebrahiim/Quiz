@@ -30,6 +30,8 @@ const List<String> _kProductIds = <String>[
   "50.p",
   "80.p",
   "100.p",
+  "150.p",
+  "180.p",
   // _kConsumableId,
   // _kUpgradeId,
   // _kSilverSubscriptionId,

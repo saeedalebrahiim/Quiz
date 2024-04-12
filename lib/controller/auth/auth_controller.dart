@@ -133,8 +133,11 @@ class AuthController {
           body: AuthConfirmDto(
               userName: userName, verificationCode: verificationCode, id: 0));
       print(postResult);
-      if (postResult.body["isSuccess"] == true) {
+      if (postResult.body["access_token"] != "") {
         //send to select password
+        SharedPreferences sp = await SharedPreferences.getInstance();
+        String token = postResult.body["access_token"];
+        sp.setString("token", token);
         Navigator.of(context).push(
           PageRouteBuilder(
               pageBuilder: (_, __, ___) => const RegisterStepTwoScreen(),
@@ -169,9 +172,9 @@ class AuthController {
       print(postResult);
       if (postResult.body["isSuccess"] == true) {
         //save token
-        SharedPreferences sp = await SharedPreferences.getInstance();
-        String token = postResult.body["access_token"];
-        sp.setString("token", token);
+        // SharedPreferences sp = await SharedPreferences.getInstance();
+        // String token = postResult.body["access_token"];
+        // sp.setString("token", token);
         //navigate
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(

@@ -678,6 +678,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 const SnackBar(
                                     content: Text(
                                         "You Should have name to save your iban")));
+                            return;
                           }
 
                           print("------------------");
