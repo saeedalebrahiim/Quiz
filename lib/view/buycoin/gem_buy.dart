@@ -268,7 +268,7 @@ class BuyGemState extends State<BuyGem> {
                       height: 20,
                     ),
                     const Text(
-                      'Coins Packages',
+                      'Gem Packages',
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
@@ -423,7 +423,7 @@ class BuyGemState extends State<BuyGem> {
                         child: Image(
                           width: 25,
                           image: AssetImage(
-                            'lib/assets/images/coin.png',
+                            'lib/assets/images/gem.png',
                           ),
                         ),
                       ),

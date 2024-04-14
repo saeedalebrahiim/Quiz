@@ -531,7 +531,11 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                         SizedBox(
                                           width: 180,
                                           child: LinearProgressIndicator(
-                                            value: 0.1,
+                                            value: (value.profile != null
+                                                    ? value.profile!
+                                                        .userScoreBalance
+                                                    : 0)! /
+                                                1000,
                                             color: Colors.red,
                                             minHeight: 8,
                                             borderRadius:
@@ -542,7 +546,10 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                           width: 10,
                                         ),
                                         Text(
-                                          "0 ",
+                                          value.profile != null
+                                              ? value.profile!.userScoreBalance
+                                                  .toString()
+                                              : "0",
                                           style: const TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.bold),

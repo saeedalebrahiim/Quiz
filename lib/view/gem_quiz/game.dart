@@ -1,18 +1,31 @@
+import 'package:bilgimizde/components/alarms_functions/wifi_alarm.dart';
+import 'package:bilgimizde/controller/auth/auth_controller.dart';
 import 'package:bilgimizde/controller/phase2/game.dart';
+import 'package:bilgimizde/controller/profile/profile.dart';
 import 'package:bilgimizde/provider/profile.dart';
+import 'package:bilgimizde/services/internet_listener.dart';
 import 'package:bilgimizde/view/buycoin/buy_coin_screen.dart';
 import 'package:bilgimizde/view/buycoin/gem_buy.dart';
 import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
+import 'package:bilgimizde/view/profile/profile_screen.dart';
 import 'package:bilgimizde/view/rules/rules_screen.dart';
 import 'package:bilgimizde/view/wallete/wallete.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:bilgimizde/global.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:timer_count_down/timer_count_down.dart';
 
-class GemQuizScreen extends StatelessWidget {
-  const GemQuizScreen({super.key});
+class WordGame extends StatefulWidget {
+  const WordGame({super.key});
 
+  @override
+  State<WordGame> createState() => _WordGameState();
+}
+
+class _WordGameState extends State<WordGame> {
+  bool gameStarted = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -110,13 +123,23 @@ class GemQuizScreen extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 15, top: 20),
+                      padding: const EdgeInsets.only(
+                          right: 10, left: 0, bottom: 0, top: 15),
                       child: InkWell(
                         onTap: () {
+                          AuthController.isAuth(context: context);
+                          ConnectionStatusListener()
+                              .checkConnection()
+                              .then((value) {
+                            if (!value) {
+                              wifiAlarm(context);
+                            }
+                          });
+                          ProfileController.getProfile(context: context);
                           Navigator.of(context).push(
                             PageRouteBuilder(
                                 pageBuilder: (_, __, ___) =>
-                                    const RulesScreen(),
+                                    const ProfileScreen(),
                                 transitionDuration:
                                     const Duration(milliseconds: 500),
                                 transitionsBuilder: (_, a, __, c) =>
@@ -126,17 +149,57 @@ class GemQuizScreen extends StatelessWidget {
                                     )),
                           );
                         },
-                        child: Container(
-                          width: 50,
-                          height: 50,
-                          decoration: BoxDecoration(
-                              image: const DecorationImage(
-                                image: AssetImage(
-                                    'lib/assets/images/questions.png'),
+                        child: Consumer<ProfileState>(
+                          builder: (context, value, child) => Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 6),
+                            child: Container(
+                              width: 50,
+                              height: 50,
+                              padding: const EdgeInsets.all(6),
+                              decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 10, 21, 94),
+                                borderRadius: BorderRadius.circular(18),
                               ),
-                              color: const Color.fromARGB(255, 10, 21, 94),
-                              borderRadius: BorderRadius.circular(30)),
+                              child: CachedNetworkImage(
+                                width: 50,
+                                height: 50,
+                                imageUrl: value.profile != null &&
+                                        value.profile!.userPicUrl != null
+                                    ? value.profile!.userPicUrl!
+                                    : "",
+                                imageBuilder: (context, imageProvider) =>
+                                    Container(
+                                  decoration: BoxDecoration(
+                                    color:
+                                        const Color.fromARGB(255, 10, 21, 94),
+                                    borderRadius: BorderRadius.circular(18),
+                                    image: DecorationImage(
+                                      image: imageProvider,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                placeholder: (context, url) =>
+                                    const CircularProgressIndicator(),
+                                errorWidget: (context, url, error) =>
+                                    const Image(
+                                  image: AssetImage(
+                                      'lib/assets/images/profile.png'),
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
+
+                        //  Container(
+                        //   decoration: BoxDecoration(
+                        //       color: const Color.fromARGB(255, 10, 21, 94),
+                        //       borderRadius: BorderRadius.circular(30)),
+                        //   child: const Center(
+                        //     child: Image(
+                        //   image: AssetImage('lib/assets/images/profile.png'),
+                        // )),
+                        // ),
                       ),
                     ),
                   ],
@@ -145,161 +208,33 @@ class GemQuizScreen extends StatelessWidget {
               const SizedBox(
                 height: 3.0,
               ),
-              InkWell(
-                onTap: () {
-                  Navigator.of(context).push(
-                    PageRouteBuilder(
-                        pageBuilder: (_, __, ___) => const WalleteScreen(),
-                        transitionDuration: const Duration(milliseconds: 500),
-                        transitionsBuilder: (_, a, __, c) => FadeTransition(
-                              opacity: a,
-                              child: c,
-                            )),
-                  );
-                },
-                child: Container(
-                  width: 300,
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.15),
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 4),
-                        child: Image.asset(
-                          'lib/assets/images/wallettext.png',
-                          width: 35,
-                          height: 16,
-                        ),
-                      ),
-                      const Text(
-                        'go to the wallet',
-                        style: TextStyle(
-                            color: Color.fromARGB(255, 246, 176, 71),
-                            fontWeight: FontWeight.w600),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-              const GemListComponents(
-                price: '50',
-                gemCount: '25',
-                id: 1,
-              ),
-              const GemListComponents(
-                price: '150',
-                gemCount: '60',
-                id: 2,
-              ),
-              const GemListComponents(
-                price: '350',
-                gemCount: '105',
-                id: 3,
-              ),
-              const GemListComponents(
-                price: '850',
-                gemCount: '170',
-                id: 4,
-              ),
-              const GemListComponents(
-                price: '1500',
-                gemCount: '225',
-                id: 5,
-              ),
-              const GemListComponents(
-                price: '3000',
-                gemCount: '300',
-                id: 6,
-              ),
-              // SizedBox(
-              //   width: MediaQuery.of(context).size.width - 20,
-              //   height: 200,
-              //   child: ListView.builder(
-              //     scrollDirection: Axis.vertical,
-              //     itemCount: 1,
-              //     itemBuilder: (context, index) => const GemListComponents(
-              //       price: '350',
-              //       gemCount: '60',
-              //     ),
-              //   ),
-              // )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class GemListComponents extends StatelessWidget {
-  final String price, gemCount;
-  final int id;
-  final Function()? onTap;
-  const GemListComponents(
-      {super.key,
-      required this.price,
-      required this.gemCount,
-      this.onTap,
-      required this.id});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 20,
-        vertical: 10,
-      ),
-      child: InkWell(
-        onTap: () {
-          WordController.startWordGame(context: context, lvlId: id);
-        },
-        child: Container(
-          height: 85,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(22),
-            gradient: LinearGradient(colors: [
-              Color.fromRGBO(22, 35, 146, 1),
-              Color.fromRGBO(217, 12, 196, 0.5),
-            ]),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: Text(
-                  '${price}TL Kazan',
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 18.0),
+              Container(
+                width: 340,
+                height: 113,
+                decoration: BoxDecoration(
+                    color: Colors.black87,
+                    borderRadius: BorderRadius.circular(27)),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(
-                      Icons.diamond,
-                      size: 22,
-                      color: Colors.white,
-                    ),
-                    const SizedBox(
-                      width: 2,
-                    ),
-                    Text(
-                      gemCount,
-                      style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
+                    Countdown(
+                      seconds: 15,
+                      build: (BuildContext context, double time) => Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Text(
+                              "${time.toInt()} S",
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 24),
+                            ),
+                          ),
+                        ],
+                      ),
+                      interval: const Duration(milliseconds: 100),
+                      onFinished: () {
+                        print('Timer is done!');
+                      },
                     ),
                   ],
                 ),

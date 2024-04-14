@@ -1,4 +1,5 @@
 import 'package:bilgimizde/provider/ad.dart';
+import 'package:bilgimizde/provider/request_state.dart';
 import 'package:bilgimizde/services/admob.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -122,6 +123,9 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (context) => AdState(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => RequestState(),
         ),
       ],
       child: const MyApp(),

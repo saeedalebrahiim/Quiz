@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:bilgimizde/controller/profile/profile.dart';
+import 'package:bilgimizde/view/gem_quiz/game.dart';
 import 'package:bilgimizde/view/home/quiz/end_quiz_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,6 +24,38 @@ class WordController {
         levelId: lvlId,
       )
           .then((postResult) {
+        print("called start");
+        ProfileController.getProfile(context: context);
+
+        final body = jsonDecode(postResult.bodyString)["data"];
+        final res = jsonDecode(postResult.bodyString);
+        print(res);
+        print(body);
+
+        if (res["isSuccess"] == true) {
+          Navigator.of(context).push(
+            PageRouteBuilder(
+                pageBuilder: (_, __, ___) => const WordGame(),
+                transitionDuration: const Duration(milliseconds: 500),
+                transitionsBuilder: (_, a, __, c) => FadeTransition(
+                      opacity: a,
+                      child: c,
+                    )),
+          );
+        }
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  static Future<void> guessWordGame({
+    required String word,
+    required BuildContext context,
+  }) async {
+    final api = Quiz.create(interceptors: [TokenIndicator()]);
+    try {
+      await api.apiV1WordGameGuessTheWordPost(word: word).then((postResult) {
         print("called start");
 
         final body = jsonDecode(postResult.bodyString)["data"];
