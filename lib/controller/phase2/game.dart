@@ -27,7 +27,7 @@ class WordController {
         print("called start");
         ProfileController.getProfile(context: context);
 
-        final body = jsonDecode(postResult.bodyString)["data"];
+        final String body = jsonDecode(postResult.bodyString)["data"];
         final res = jsonDecode(postResult.bodyString);
         print(res);
         print(body);
@@ -35,7 +35,10 @@ class WordController {
         if (res["isSuccess"] == true) {
           Navigator.of(context).push(
             PageRouteBuilder(
-                pageBuilder: (_, __, ___) => const WordGame(),
+                pageBuilder: (_, __, ___) => WordGame(
+                      word: body.toString(),
+                      price: "850",
+                    ),
                 transitionDuration: const Duration(milliseconds: 500),
                 transitionsBuilder: (_, a, __, c) => FadeTransition(
                       opacity: a,
