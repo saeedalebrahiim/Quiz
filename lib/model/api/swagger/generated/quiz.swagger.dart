@@ -1,5 +1,8 @@
 // ignore_for_file: type=lint
 
+import 'package:json_annotation/json_annotation.dart';
+import 'package:collection/collection.dart';
+import 'dart:convert';
 
 import 'quiz.models.swagger.dart';
 import 'package:chopper/chopper.dart';
@@ -7,6 +10,7 @@ import 'package:chopper/chopper.dart';
 import 'client_mapping.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart' show MultipartFile;
 import 'package:chopper/chopper.dart' as chopper;
 import 'quiz.enums.swagger.dart' as enums;
 export 'quiz.enums.swagger.dart';
@@ -43,6 +47,29 @@ abstract class Quiz extends ChopperService {
         baseUrl: baseUrl ?? Uri.parse('http://'));
     return _$Quiz(newClient);
   }
+
+  ///
+  ///@param Number
+  ///@param Code
+  Future<chopper.Response> apiV1AuthGwtTestPost({
+    String? number,
+    String? code,
+  }) {
+    return _apiV1AuthGwtTestPost(number: number, code: code);
+  }
+
+  ///
+  ///@param Number
+  ///@param Code
+  @Post(
+    path:
+        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/GwtTest',
+    optionalBody: true,
+  )
+  Future<chopper.Response> _apiV1AuthGwtTestPost({
+    @Query('Number') String? number,
+    @Query('Code') String? code,
+  });
 
   ///
   Future<chopper.Response> apiV1AuthTokenPost({
@@ -90,7 +117,8 @@ abstract class Quiz extends ChopperService {
 
   ///Register
   @Post(
-    path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/Register',
+    path:
+        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/Register',
     optionalBody: true,
   )
   Future<chopper.Response> _apiV1AuthRegisterPost(
@@ -104,7 +132,8 @@ abstract class Quiz extends ChopperService {
 
   ///
   @Post(
-    path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/AccountVerification',
+    path:
+        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/AccountVerification',
     optionalBody: true,
   )
   Future<chopper.Response> _apiV1AuthAccountVerificationPost(
@@ -121,7 +150,8 @@ abstract class Quiz extends ChopperService {
 
   ///
   @Post(
-    path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/SelectPassword',
+    path:
+        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/SelectPassword',
     optionalBody: true,
   )
   @Multipart()
@@ -137,7 +167,8 @@ abstract class Quiz extends ChopperService {
 
   ///Send Code
   @Post(
-    path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/SendCode',
+    path:
+        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/SendCode',
     optionalBody: true,
   )
   Future<chopper.Response> _apiV1AuthSendCodePost(
@@ -166,7 +197,8 @@ abstract class Quiz extends ChopperService {
 
   ///select recovery type by PhoneNumber and GenerateCodeConfirmed
   @Post(
-    path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/ForgotPassword',
+    path:
+        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/ForgotPassword',
     optionalBody: true,
   )
   @Multipart()
@@ -191,7 +223,8 @@ abstract class Quiz extends ChopperService {
 
   ///Change Password by Phonenumber
   @Post(
-    path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/ChangePassword',
+    path:
+        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/ChangePassword',
     optionalBody: true,
   )
   @Multipart()
@@ -208,7 +241,9 @@ abstract class Quiz extends ChopperService {
   }
 
   ///
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/IsAuthenticated')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Auth/IsAuthenticated')
   Future<chopper.Response> _apiV1AuthIsAuthenticatedGet();
 
   ///
@@ -217,7 +252,9 @@ abstract class Quiz extends ChopperService {
   }
 
   ///
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Baner/GetBanner')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Baner/GetBanner')
   Future<chopper.Response> _apiV1BanerGetBannerGet();
 
   ///Creates a ContactUs
@@ -272,7 +309,9 @@ abstract class Quiz extends ChopperService {
   ///
   ///@param PageNumber
   ///@param PageSize
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/FAQ/PagedList')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/FAQ/PagedList')
   Future<chopper.Response<List<FAQSelectDto>>> _apiV1FAQPagedListGet({
     @Query('PageNumber') int? pageNumber,
     @Query('PageSize') int? pageSize,
@@ -288,7 +327,8 @@ abstract class Quiz extends ChopperService {
   ///
   ///@param QuestionId
   @Post(
-    path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/ReportQuestion/SubmitReport',
+    path:
+        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/ReportQuestion/SubmitReport',
     optionalBody: true,
   )
   Future<chopper.Response> _apiV1ReportQuestionSubmitReportPost(
@@ -300,7 +340,9 @@ abstract class Quiz extends ChopperService {
   }
 
   ///
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetRewardList')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetRewardList')
   Future<chopper.Response> _apiV1ScoreGetRewardListGet();
 
   ///
@@ -309,7 +351,9 @@ abstract class Quiz extends ChopperService {
   }
 
   ///
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetDailyRewardList')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetDailyRewardList')
   Future<chopper.Response> _apiV1ScoreGetDailyRewardListGet();
 
   ///
@@ -318,7 +362,9 @@ abstract class Quiz extends ChopperService {
   }
 
   ///
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetUserChangeScoreDayList')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetUserChangeScoreDayList')
   Future<chopper.Response> _apiV1ScoreGetUserChangeScoreDayListGet();
 
   ///
@@ -327,7 +373,9 @@ abstract class Quiz extends ChopperService {
   }
 
   ///
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetUserChangeScoreDayList_V0')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetUserChangeScoreDayList_V0')
   Future<chopper.Response> _apiV1ScoreGetUserChangeScoreDayListV0Get();
 
   ///
@@ -336,7 +384,9 @@ abstract class Quiz extends ChopperService {
   }
 
   ///
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetUserChangeScoreDay')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetUserChangeScoreDay')
   Future<chopper.Response> _apiV1ScoreGetUserChangeScoreDayGet();
 
   ///
@@ -345,7 +395,9 @@ abstract class Quiz extends ChopperService {
   }
 
   ///
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetUserChangeScoreMonthList')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetUserChangeScoreMonthList')
   Future<chopper.Response> _apiV1ScoreGetUserChangeScoreMonthListGet();
 
   ///
@@ -354,7 +406,9 @@ abstract class Quiz extends ChopperService {
   }
 
   ///
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/UserRankingisLowerThan50')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/UserRankingisLowerThan50')
   Future<chopper.Response> _apiV1ScoreUserRankingisLowerThan50Get();
 
   ///
@@ -363,7 +417,9 @@ abstract class Quiz extends ChopperService {
   }
 
   ///
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetUserRank')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetUserRank')
   Future<chopper.Response> _apiV1ScoreGetUserRankGet();
 
   ///
@@ -375,7 +431,8 @@ abstract class Quiz extends ChopperService {
   ///
   ///@param IsWatchAds
   @Post(
-    path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/AddScore',
+    path:
+        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/AddScore',
     optionalBody: true,
   )
   Future<chopper.Response> _apiV1ScoreAddScorePost(
@@ -394,7 +451,9 @@ abstract class Quiz extends ChopperService {
   ///
   ///@param dateTime
   ///@param count
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/MaxScoreOfMonthScore')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/MaxScoreOfMonthScore')
   Future<chopper.Response> _apiV1ScoreMaxScoreOfMonthScoreGet({
     @Query('dateTime') DateTime? dateTime,
     @Query('count') int? count,
@@ -409,7 +468,9 @@ abstract class Quiz extends ChopperService {
 
   ///مشاهده امتیاز کسب شده من در ماه
   ///@param dateTime
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetMyScoreInMonth')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetMyScoreInMonth')
   Future<chopper.Response> _apiV1ScoreGetMyScoreInMonthGet(
       {@Query('dateTime') DateTime? dateTime});
 
@@ -419,7 +480,9 @@ abstract class Quiz extends ChopperService {
   }
 
   ///
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetUserBalance')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetUserBalance')
   Future<chopper.Response> _apiV1ScoreGetUserBalanceGet();
 
   ///
@@ -430,7 +493,9 @@ abstract class Quiz extends ChopperService {
 
   ///
   ///@param dateTime
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetMyMonthState')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Score/GetMyMonthState')
   Future<chopper.Response> _apiV1ScoreGetMyMonthStateGet(
       {@Query('dateTime') DateTime? dateTime});
 
@@ -440,7 +505,9 @@ abstract class Quiz extends ChopperService {
   }
 
   ///
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Setting/GetBanks')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Setting/GetBanks')
   Future<chopper.Response> _apiV1SettingGetBanksGet();
 
   ///Retrieves a Setting by unique id
@@ -449,20 +516,31 @@ abstract class Quiz extends ChopperService {
   }
 
   ///Retrieves a Setting by unique id
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Setting/GetSetting')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Setting/GetSetting')
   Future<chopper.Response> _apiV1SettingGetSettingGet();
 
   ///
   ///@param key
-  Future<chopper.Response> apiV1StartQuizSetStTaGet({String? key}) {
-    return _apiV1StartQuizSetStTaGet(key: key);
+  ///@param qu
+  Future<chopper.Response> apiV1StartQuizSetStTaGet({
+    String? key,
+    String? qu,
+  }) {
+    return _apiV1StartQuizSetStTaGet(key: key, qu: qu);
   }
 
   ///
   ///@param key
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/setStTa')
-  Future<chopper.Response> _apiV1StartQuizSetStTaGet(
-      {@Query('key') String? key});
+  ///@param qu
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/setStTa')
+  Future<chopper.Response> _apiV1StartQuizSetStTaGet({
+    @Query('key') String? key,
+    @Query('qu') String? qu,
+  });
 
   ///
   ///@param key
@@ -477,7 +555,9 @@ abstract class Quiz extends ChopperService {
   ///
   ///@param key
   ///@param cou
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/deUDQQ')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/deUDQQ')
   Future<chopper.Response> _apiV1StartQuizDeUDQQGet({
     @Query('key') String? key,
     @Query('cou') int? cou,
@@ -496,7 +576,9 @@ abstract class Quiz extends ChopperService {
   ///
   ///@param key
   ///@param cou
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/deUQQ')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/deUQQ')
   Future<chopper.Response> _apiV1StartQuizDeUQQGet({
     @Query('key') String? key,
     @Query('cou') int? cou,
@@ -510,7 +592,9 @@ abstract class Quiz extends ChopperService {
 
   ///
   ///@param key
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/setStTa11')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/setStTa11')
   Future<chopper.Response> _apiV1StartQuizSetStTa11Get(
       {@Query('key') String? key});
 
@@ -520,7 +604,9 @@ abstract class Quiz extends ChopperService {
   }
 
   ///شروع کوئیز و اختصاص سوال به کاربر
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/StartQuiz')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/StartQuiz')
   Future<chopper.Response> _apiV1StartQuizStartQuizGet();
 
   ///ثبت جواب کاربر
@@ -547,7 +633,8 @@ abstract class Quiz extends ChopperService {
   ///@param QuestionId
   ///@param SelectedAnswer
   @Post(
-    path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/AddAnswer',
+    path:
+        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/AddAnswer',
     optionalBody: true,
   )
   Future<chopper.Response> _apiV1StartQuizAddAnswerPost({
@@ -557,18 +644,27 @@ abstract class Quiz extends ChopperService {
     @Query('SelectedAnswer') int? selectedAnswer,
   });
 
-  ///کسر امتیاز و مشاهده درصد
+  ///
   ///@param QuestionId
-  Future<chopper.Response> apiV1StartQuizShowPercentSelectedAnswerGet(
-      {int? questionId}) {
-    return _apiV1StartQuizShowPercentSelectedAnswerGet(questionId: questionId);
+  ///@param ReduceCoin
+  Future<chopper.Response> apiV1StartQuizShowPercentSelectedAnswerGet({
+    int? questionId,
+    bool? reduceCoin,
+  }) {
+    return _apiV1StartQuizShowPercentSelectedAnswerGet(
+        questionId: questionId, reduceCoin: reduceCoin);
   }
 
-  ///کسر امتیاز و مشاهده درصد
+  ///
   ///@param QuestionId
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/ShowPercentSelectedAnswer')
-  Future<chopper.Response> _apiV1StartQuizShowPercentSelectedAnswerGet(
-      {@Query('QuestionId') int? questionId});
+  ///@param ReduceCoin
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/ShowPercentSelectedAnswer')
+  Future<chopper.Response> _apiV1StartQuizShowPercentSelectedAnswerGet({
+    @Query('QuestionId') int? questionId,
+    @Query('ReduceCoin') bool? reduceCoin,
+  });
 
   ///کسر امتیاز و مشاهده اشتباه
   ///@param QuestionId
@@ -578,7 +674,9 @@ abstract class Quiz extends ChopperService {
 
   ///کسر امتیاز و مشاهده اشتباه
   ///@param QuestionId
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/ShowWrongAnswer')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/ShowWrongAnswer')
   Future<chopper.Response> _apiV1StartQuizShowWrongAnswerGet(
       {@Query('QuestionId') int? questionId});
 
@@ -588,7 +686,9 @@ abstract class Quiz extends ChopperService {
   }
 
   ///
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/TodayMyQuizState')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/TodayMyQuizState')
   Future<chopper.Response> _apiV1StartQuizTodayMyQuizStateGet();
 
   ///
@@ -597,7 +697,9 @@ abstract class Quiz extends ChopperService {
   }
 
   ///
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/MonthMyQuizState')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/MonthMyQuizState')
   Future<chopper.Response> _apiV1StartQuizMonthMyQuizStateGet();
 
   ///فیلتر وضعیت کوئیز با تاریخ و تعداد جواب صحیح کوئیز
@@ -614,7 +716,9 @@ abstract class Quiz extends ChopperService {
   ///فیلتر وضعیت کوئیز با تاریخ و تعداد جواب صحیح کوئیز
   ///@param dateTime
   ///@param CurrectAnswer
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/ShowUserByAnswerCount')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/ShowUserByAnswerCount')
   Future<chopper.Response> _apiV1StartQuizShowUserByAnswerCountGet({
     @Query('dateTime') DateTime? dateTime,
     @Query('CurrectAnswer') int? currectAnswer,
@@ -629,7 +733,9 @@ abstract class Quiz extends ChopperService {
 
   ///وضعیت کوئیز با تاریخ و چند نفر چندتا رو درست گفتن
   ///@param dateTime
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/ShowUserAnswerCount')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/ShowUserAnswerCount')
   Future<chopper.Response> _apiV1StartQuizShowUserAnswerCountGet(
       {@Query('dateTime') DateTime? dateTime});
 
@@ -642,7 +748,9 @@ abstract class Quiz extends ChopperService {
 
   ///
   ///@param dateTime
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/ShowUserWrongAnserCount')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/ShowUserWrongAnserCount')
   Future<chopper.Response> _apiV1StartQuizShowUserWrongAnserCountGet(
       {@Query('dateTime') DateTime? dateTime});
 
@@ -655,7 +763,9 @@ abstract class Quiz extends ChopperService {
 
   ///
   ///@param QuizId
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/ViewUserQuizReportByQuizId')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/ViewUserQuizReportByQuizId')
   Future<chopper.Response> _apiV1StartQuizViewUserQuizReportByQuizIdGet(
       {@Query('QuizId') int? quizId});
 
@@ -669,7 +779,9 @@ abstract class Quiz extends ChopperService {
 
   ///
   ///@param selecteddatetime
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/AnsweredCountInMonthList')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/StartQuiz/AnsweredCountInMonthList')
   Future<chopper.Response> _apiV1StartQuizAnsweredCountInMonthListGet(
       {@Query('selecteddatetime') DateTime? selecteddatetime});
 
@@ -679,7 +791,9 @@ abstract class Quiz extends ChopperService {
   }
 
   ///
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/testUser')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/testUser')
   Future<chopper.Response> _apiV1TicketTestUserGet();
 
   ///
@@ -695,7 +809,8 @@ abstract class Quiz extends ChopperService {
 
   ///
   @Post(
-    path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/testUserw',
+    path:
+        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/testUserw',
     optionalBody: true,
   )
   @Multipart()
@@ -721,7 +836,8 @@ abstract class Quiz extends ChopperService {
 
   ///ارسال تیکت توسط کاربر
   @Post(
-    path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/CreateTicketByUser',
+    path:
+        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/CreateTicketByUser',
     optionalBody: true,
   )
   @Multipart()
@@ -746,7 +862,8 @@ abstract class Quiz extends ChopperService {
   ///اضافه کردن جواب تیکت توسط کاربر
   ///@param ticketId
   @Post(
-    path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/AddTicketAnswerByUser',
+    path:
+        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/AddTicketAnswerByUser',
     optionalBody: true,
   )
   @Multipart()
@@ -778,7 +895,9 @@ abstract class Quiz extends ChopperService {
   ///@param ticketState
   ///@param PageNumber
   ///@param PageSize
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/UserTicketList')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/UserTicketList')
   Future<chopper.Response<List<TicketSelectDto>>>
       _apiV1TicketUserTicketListGet({
     @Query('ticketState') String? ticketState,
@@ -794,7 +913,9 @@ abstract class Quiz extends ChopperService {
 
   ///جزئیات Ticket و لیست TicketAnswer
   ///@param ticketId
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/TicketDetail')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/TicketDetail')
   Future<chopper.Response> _apiV1TicketTicketDetailGet(
       {@Query('ticketId') int? ticketId});
 
@@ -806,7 +927,8 @@ abstract class Quiz extends ChopperService {
 
   ///
   @Post(
-    path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/SeenTicket',
+    path:
+        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/SeenTicket',
     optionalBody: true,
   )
   Future<chopper.Response> _apiV1TicketSeenTicketPost(
@@ -819,7 +941,8 @@ abstract class Quiz extends ChopperService {
 
   ///
   @Post(
-    path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/UnreadedTicketCount',
+    path:
+        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/Ticket/UnreadedTicketCount',
     optionalBody: true,
   )
   Future<chopper.Response> _apiV1TicketUnreadedTicketCountPost();
@@ -830,7 +953,9 @@ abstract class Quiz extends ChopperService {
   }
 
   ///
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/ViewProfile')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/ViewProfile')
   Future<chopper.Response> _apiV1UserManagerViewProfileGet();
 
   ///
@@ -842,7 +967,8 @@ abstract class Quiz extends ChopperService {
   ///
   ///@param count
   @Post(
-    path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/AddScore',
+    path:
+        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/AddScore',
     optionalBody: true,
   )
   Future<chopper.Response> _apiV1UserManagerAddScorePost(
@@ -866,7 +992,8 @@ abstract class Quiz extends ChopperService {
 
   ///
   @Post(
-    path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/EditProfile',
+    path:
+        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/EditProfile',
     optionalBody: true,
   )
   @Multipart()
@@ -884,7 +1011,9 @@ abstract class Quiz extends ChopperService {
   }
 
   ///
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/BlockUser')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/BlockUser')
   Future<chopper.Response> _apiV1UserManagerBlockUserGet();
 
   ///
@@ -901,7 +1030,9 @@ abstract class Quiz extends ChopperService {
   ///
   ///@param NewPhonenumber
   ///@param auto_code
-  @Get(path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/UpdatePhoneNumber')
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/UpdatePhoneNumber')
   Future<chopper.Response> _apiV1UserManagerUpdatePhoneNumberGet({
     @Query('NewPhonenumber') String? newPhonenumber,
     @Query('auto_code') String? autoCode,
@@ -915,7 +1046,8 @@ abstract class Quiz extends ChopperService {
 
   ///
   @Post(
-    path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/UpdatePhoneNumber',
+    path:
+        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/UpdatePhoneNumber',
     optionalBody: true,
   )
   Future<chopper.Response> _apiV1UserManagerUpdatePhoneNumberPost(
@@ -928,10 +1060,102 @@ abstract class Quiz extends ChopperService {
 
   ///
   @Post(
-    path: 'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/RemoveUserProfile',
+    path:
+        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/UserManager/RemoveUserProfile',
     optionalBody: true,
   )
   Future<chopper.Response> _apiV1UserManagerRemoveUserProfilePost();
+
+  ///
+  ///@param LevelId
+  ///@param Desc
+  Future<chopper.Response> apiV1WordGameStartWordGamePost({
+    int? levelId,
+    String? desc,
+  }) {
+    return _apiV1WordGameStartWordGamePost(levelId: levelId, desc: desc);
+  }
+
+  ///
+  ///@param LevelId
+  ///@param Desc
+  @Post(
+    path:
+        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/WordGame/StartWordGame',
+    optionalBody: true,
+  )
+  Future<chopper.Response> _apiV1WordGameStartWordGamePost({
+    @Query('LevelId') int? levelId,
+    @Query('Desc') String? desc,
+  });
+
+  ///
+  Future<chopper.Response> apiV1WordGameUserRequestPaymentListPost() {
+    return _apiV1WordGameUserRequestPaymentListPost();
+  }
+
+  ///
+  @Post(
+    path:
+        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/WordGame/UserRequestPaymentList',
+    optionalBody: true,
+  )
+  Future<chopper.Response> _apiV1WordGameUserRequestPaymentListPost();
+
+  ///
+  Future<chopper.Response> apiV1WordGameRequestPaymentPost() {
+    return _apiV1WordGameRequestPaymentPost();
+  }
+
+  ///
+  @Post(
+    path:
+        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/WordGame/RequestPayment',
+    optionalBody: true,
+  )
+  Future<chopper.Response> _apiV1WordGameRequestPaymentPost();
+
+  ///
+  ///@param Word
+  Future<chopper.Response> apiV1WordGameGuessTheWordPost({String? word}) {
+    return _apiV1WordGameGuessTheWordPost(word: word);
+  }
+
+  ///
+  ///@param Word
+  @Post(
+    path:
+        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/WordGame/GuessTheWord',
+    optionalBody: true,
+  )
+  Future<chopper.Response> _apiV1WordGameGuessTheWordPost(
+      {@Query('Word') String? word});
+
+  ///
+  Future<chopper.Response> apiV1WordGameViewUserLastWordGameGet() {
+    return _apiV1WordGameViewUserLastWordGameGet();
+  }
+
+  ///
+  @Get(
+      path:
+          'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/WordGame/ViewUserLastWordGame')
+  Future<chopper.Response> _apiV1WordGameViewUserLastWordGameGet();
+
+  ///
+  Future<chopper.Response> apiV1WordGameAddInAppPurchasePost(
+      {required VerifyPaymentClass? body}) {
+    return _apiV1WordGameAddInAppPurchasePost(body: body);
+  }
+
+  ///
+  @Post(
+    path:
+        'https://s6kbp78g353qcceapplication.bilgimizde.com/api/v1/WordGame/AddInAppPurchase',
+    optionalBody: true,
+  )
+  Future<chopper.Response> _apiV1WordGameAddInAppPurchasePost(
+      {@Body() required VerifyPaymentClass? body});
 }
 
 typedef $JsonFactory<T> = T Function(Map<String, dynamic> json);

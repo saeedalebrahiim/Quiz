@@ -6,6 +6,9 @@ class ProfileDto {
   final String? iban;
   final String? username;
   final int? id;
+  final int? userScoreBalance;
+  final int? userWalletBalance;
+  final int? userGemBalance;
 
   ProfileDto(
       {this.fullName,
@@ -14,6 +17,9 @@ class ProfileDto {
       this.bankId,
       this.iban,
       this.username,
+      this.userScoreBalance,
+      this.userWalletBalance,
+      this.userGemBalance,
       this.id});
 
   static ProfileDto fromJson(json) {
@@ -24,6 +30,9 @@ class ProfileDto {
       bankId: json['bankId'],
       iban: json['iban'],
       username: json['username'],
+      userScoreBalance: json['userScoreBalance'],
+      userWalletBalance: json['userWalletBalance'],
+      userGemBalance: json['userGemBalance'],
       id: json['id'],
     );
   }

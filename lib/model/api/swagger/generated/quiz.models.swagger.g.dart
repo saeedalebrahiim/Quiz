@@ -207,6 +207,28 @@ Map<String, dynamic> _$UpdatePhoneNumberDtoToJson(
       'verifyCode': instance.verifyCode,
     };
 
+VerifyPaymentClass _$VerifyPaymentClassFromJson(Map<String, dynamic> json) =>
+    VerifyPaymentClass(
+      subscriptionId: json['subscriptionId'] as String?,
+      token: json['token'] as String?,
+      levelId: json['levelId'] as int?,
+    );
+
+Map<String, dynamic> _$VerifyPaymentClassToJson(VerifyPaymentClass instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('subscriptionId', instance.subscriptionId);
+  writeNotNull('token', instance.token);
+  writeNotNull('levelId', instance.levelId);
+  return val;
+}
+
 ApiV1AuthTokenPost$RequestBody _$ApiV1AuthTokenPost$RequestBodyFromJson(
         Map<String, dynamic> json) =>
     ApiV1AuthTokenPost$RequestBody(

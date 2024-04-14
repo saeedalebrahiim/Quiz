@@ -5,6 +5,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:bilgimizde/controller/phase2/game.dart';
 import 'package:bilgimizde/controller/profile/profile.dart';
 import 'package:bilgimizde/global.dart';
 import 'package:bilgimizde/provider/profile.dart';
@@ -26,26 +27,23 @@ final bool _kAutoConsume = Platform.isIOS || true;
 // const String _kSilverSubscriptionId = 'subscription_silver';
 // const String _kGoldSubscriptionId = 'subscription_gold';
 const List<String> _kProductIds = <String>[
-  "10.p",
-  "50.p",
-  "80.p",
-  "100.p",
-  "150.p",
-  "180.p",
+  "50gem",
+  "100gem",
+  "200gem",
   // _kConsumableId,
   // _kUpgradeId,
   // _kSilverSubscriptionId,
   // _kGoldSubscriptionId,
 ];
 
-class BuyCoin extends StatefulWidget {
-  const BuyCoin({super.key});
+class BuyGem extends StatefulWidget {
+  const BuyGem({super.key});
 
   @override
-  State<BuyCoin> createState() => BuyCoinState();
+  State<BuyGem> createState() => BuyGemState();
 }
 
-class BuyCoinState extends State<BuyCoin> {
+class BuyGemState extends State<BuyGem> {
   final InAppPurchase _inAppPurchase = InAppPurchase.instance;
   late StreamSubscription<List<PurchaseDetails>> _subscription;
   List<String> _notFoundIds = <String>[];
@@ -126,12 +124,9 @@ class BuyCoinState extends State<BuyCoin> {
     }
 
     final List<String> consumables = [
-      "10.p",
-      "50.p",
-      "80.p",
-      "100.p",
-      "150.p",
-      "180.p",
+      "50gem",
+      "100gem",
+      "200gem",
     ];
     setState(() {
       _isAvailable = isAvailable;
@@ -225,7 +220,7 @@ class BuyCoinState extends State<BuyCoin> {
                   const Padding(
                     padding: EdgeInsets.only(top: 18),
                     child: Text(
-                      'Buy Coin',
+                      'Buy Gem',
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
@@ -244,14 +239,14 @@ class BuyCoinState extends State<BuyCoin> {
                 child: Column(
                   children: [
                     Image.asset(
-                      'lib/assets/images/coin.png',
+                      'lib/assets/images/gem.png',
                       width: 25,
                       height: 25,
                     ),
                     Consumer<ProfileState>(
                       builder: (context, value, child) {
-                        var formattedNumber =
-                            NumberFormat.compact().format(value.userBalance);
+                        var formattedNumber = NumberFormat.compact()
+                            .format(value.profile!.userGemBalance);
                         return Text(
                           formattedNumber,
                           //  value.userBalance.toString(),
@@ -570,12 +565,9 @@ class BuyCoinState extends State<BuyCoin> {
   Future<void> consume(String id) async {
     // await ConsumableStore.consume(id);
     final List<String> consumables = [
-      "10.p",
-      "50.p",
-      "80.p",
-      "100.p",
-      "150.p",
-      "180.p",
+      "50gem",
+      "100gem",
+      "200gem",
     ];
     setState(() {
       _consumables = consumables;
@@ -593,12 +585,9 @@ class BuyCoinState extends State<BuyCoin> {
     // if (purchaseDetails.productID == _kConsumableId) {
     // await ConsumableStore.save(purchaseDetails.purchaseID!);
     final List<String> consumables = [
-      "10.p",
-      "50.p",
-      "80.p",
-      "100.p",
-      "150.p",
-      "180.p",
+      "50gem",
+      "100gem",
+      "200gem",
     ];
     setState(() {
       _purchasePending = false;
@@ -657,12 +646,7 @@ class BuyCoinState extends State<BuyCoin> {
         if (purchaseDetails.pendingCompletePurchase) {
           await _inAppPurchase.completePurchase(purchaseDetails);
           // print(purchaseDetails.productID.toString() + " thisis");
-          await ProfileController.addToBalance(
-            context: context,
-            count: int.parse(
-              purchaseDetails.productID.replaceAll(".p", ""),
-            ),
-          );
+          await WordController.addInAppPurchase(lvlId: 6, context: context);
         }
       }
     }

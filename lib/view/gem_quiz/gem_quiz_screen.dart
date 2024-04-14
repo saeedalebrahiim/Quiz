@@ -1,5 +1,13 @@
+import 'package:bilgimizde/controller/phase2/game.dart';
+import 'package:bilgimizde/provider/profile.dart';
+import 'package:bilgimizde/view/buycoin/buy_coin_screen.dart';
+import 'package:bilgimizde/view/buycoin/gem_buy.dart';
+import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
+import 'package:bilgimizde/view/rules/rules_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:bilgimizde/global.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class GemQuizScreen extends StatelessWidget {
   const GemQuizScreen({super.key});
@@ -15,106 +23,203 @@ class GemQuizScreen extends StatelessWidget {
             image: const DecorationImage(
                 image: AssetImage('lib/assets/images/gembg.png'),
                 fit: BoxFit.fill)),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(25),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Container(
-                      width: 23,
-                      height: 25,
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage(
-                          'lib/assets/images/shopicon.png',
-                        )),
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {},
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 1),
-                          child: Image.asset(
-                            'lib/assets/images/gem.png',
-                            width: 15,
-                            height: 15,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 18.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15, top: 20),
+                      child: InkWell(
+                        onTap: () {
+                          // Navigator.pop(context);
+                          Navigator.of(context).pushAndRemoveUntil(
+                            PageRouteBuilder(
+                              pageBuilder: (_, __, ___) => const HomeScreen(),
+                              transitionDuration:
+                                  const Duration(milliseconds: 500),
+                              transitionsBuilder: (_, a, __, c) =>
+                                  FadeTransition(
+                                opacity: a,
+                                child: c,
+                              ),
+                            ),
+                            (route) => false,
+                          );
+                        },
+                        child: Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                              color: const Color.fromARGB(255, 10, 21, 94),
+                              borderRadius: BorderRadius.circular(30)),
+                          child: Icon(
+                            Icons.home_filled,
+                            color: Colors.white,
+                            size: 24,
                           ),
                         ),
-                        const SizedBox(
-                          width: 7,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 23),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            PageRouteBuilder(
+                                pageBuilder: (_, __, ___) => const BuyGem(),
+                                transitionDuration:
+                                    const Duration(milliseconds: 500),
+                                transitionsBuilder: (_, a, __, c) =>
+                                    FadeTransition(
+                                      opacity: a,
+                                      child: c,
+                                    )),
+                          );
+                        },
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Image.asset(
+                              'lib/assets/images/gem.png',
+                              width: 25,
+                              height: 25,
+                            ),
+                            Consumer<ProfileState>(
+                              builder: (context, value, child) {
+                                var formattedNumber = NumberFormat.compact()
+                                    .format(value.profile != null
+                                        ? value.profile!.userGemBalance
+                                        : 0);
+                                return Text(
+                                  formattedNumber,
+                                  //  value.userBalance.toString(),
+                                  style: const TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600),
+                                );
+                              },
+                            ),
+                          ],
                         ),
-                        const Text(
-                          '3012',
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
-                        )
-                      ],
+                      ),
                     ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      
-                    },
-                    child: Container(
-                      width: 23,
-                      height: 25,
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage(
-                                  'lib/assets/images/questions.png'))),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 15, top: 20),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            PageRouteBuilder(
+                                pageBuilder: (_, __, ___) =>
+                                    const RulesScreen(),
+                                transitionDuration:
+                                    const Duration(milliseconds: 500),
+                                transitionsBuilder: (_, a, __, c) =>
+                                    FadeTransition(
+                                      opacity: a,
+                                      child: c,
+                                    )),
+                          );
+                        },
+                        child: Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                              image: const DecorationImage(
+                                image: AssetImage(
+                                    'lib/assets/images/questions.png'),
+                              ),
+                              color: const Color.fromARGB(255, 10, 21, 94),
+                              borderRadius: BorderRadius.circular(30)),
+                        ),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 3.0,
-            ),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 4),
-                  child: Image.asset(
-                    'lib/assets/images/wallettext.png',
-                    width: 35,
-                    height: 16,
-                  ),
-                ),
-                const Text(
-                  'go to the wallet',
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 246, 176, 71),
-                      fontWeight: FontWeight.w600),
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 50,
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width - 20,
-              height: 200,
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: 1,
-                itemBuilder: (context, index) => const GemListComponents(
-                  price: '350',
-                  gemCount: '60',
+                  ],
                 ),
               ),
-            )
-          ],
+              const SizedBox(
+                height: 3.0,
+              ),
+              InkWell(
+                child: Container(
+                  width: 300,
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.15),
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4),
+                        child: Image.asset(
+                          'lib/assets/images/wallettext.png',
+                          width: 35,
+                          height: 16,
+                        ),
+                      ),
+                      const Text(
+                        'go to the wallet',
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 246, 176, 71),
+                            fontWeight: FontWeight.w600),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              const GemListComponents(
+                price: '50',
+                gemCount: '25',
+                id: 1,
+              ),
+              const GemListComponents(
+                price: '150',
+                gemCount: '60',
+                id: 2,
+              ),
+              const GemListComponents(
+                price: '350',
+                gemCount: '105',
+                id: 3,
+              ),
+              const GemListComponents(
+                price: '850',
+                gemCount: '170',
+                id: 4,
+              ),
+              const GemListComponents(
+                price: '1500',
+                gemCount: '225',
+                id: 5,
+              ),
+              const GemListComponents(
+                price: '3000',
+                gemCount: '300',
+                id: 6,
+              ),
+              // SizedBox(
+              //   width: MediaQuery.of(context).size.width - 20,
+              //   height: 200,
+              //   child: ListView.builder(
+              //     scrollDirection: Axis.vertical,
+              //     itemCount: 1,
+              //     itemBuilder: (context, index) => const GemListComponents(
+              //       price: '350',
+              //       gemCount: '60',
+              //     ),
+              //   ),
+              // )
+            ],
+          ),
         ),
       ),
     );
@@ -123,82 +228,72 @@ class GemQuizScreen extends StatelessWidget {
 
 class GemListComponents extends StatelessWidget {
   final String price, gemCount;
+  final int id;
   final Function()? onTap;
   const GemListComponents(
-      {super.key, required this.price, required this.gemCount, this.onTap});
+      {super.key,
+      required this.price,
+      required this.gemCount,
+      this.onTap,
+      required this.id});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Container(
-        height: 70,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: const Color.fromARGB(255, 75, 86, 191),
-              width: 2,
-            ),
-            color: const Color.fromARGB(255, 18, 36, 192),
-            image: const DecorationImage(
-                image: AssetImage('lib/assets/images/gemlistbg.png'),
-                fit: BoxFit.fill)),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: Text(
-                '${price}TL',
-                style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: 10,
+      ),
+      child: InkWell(
+        onTap: () {
+          WordController.startWordGame(context: context, lvlId: id);
+        },
+        child: Container(
+          height: 85,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(22),
+            gradient: LinearGradient(colors: [
+              Color.fromRGBO(22, 35, 146, 1),
+              Color.fromRGBO(217, 12, 196, 0.5),
+            ]),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Text(
+                  '${price}TL Kazan',
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18),
+                ),
               ),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 15, bottom: 5),
-                  child: Container(
-                    width: 80,
-                    height: 26,
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            width: 2, color: const Color.fromARGB(255, 223, 72, 123)),
-                        borderRadius: BorderRadius.circular(50),
-                        image: const DecorationImage(
-                            image:
-                                AssetImage('lib/assets/images/gemlistbtn.png'),
-                            fit: BoxFit.fill),
-                        color: const Color.fromARGB(255, 224, 33, 98)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Icon(
-                          Icons.diamond,
-                          size: 16,
-                          color: Colors.white,
-                        ),
-                        const SizedBox(
-                          width: 2,
-                        ),
-                        Text(
-                          gemCount,
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
+              Padding(
+                padding: const EdgeInsets.only(right: 18.0),
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.diamond,
+                      size: 22,
+                      color: Colors.white,
                     ),
-                  ),
-                )
-              ],
-            )
-          ],
+                    const SizedBox(
+                      width: 2,
+                    ),
+                    Text(
+                      gemCount,
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

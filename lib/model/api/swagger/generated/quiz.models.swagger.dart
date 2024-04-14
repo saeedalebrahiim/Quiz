@@ -697,6 +697,74 @@ extension $UpdatePhoneNumberDtoExtension on UpdatePhoneNumberDto {
 }
 
 @JsonSerializable(explicitToJson: true)
+class VerifyPaymentClass {
+  const VerifyPaymentClass({
+    this.subscriptionId,
+    this.token,
+    this.levelId,
+  });
+
+  factory VerifyPaymentClass.fromJson(Map<String, dynamic> json) =>
+      _$VerifyPaymentClassFromJson(json);
+
+  static const toJsonFactory = _$VerifyPaymentClassToJson;
+  Map<String, dynamic> toJson() => _$VerifyPaymentClassToJson(this);
+
+  @JsonKey(name: 'subscriptionId', includeIfNull: false)
+  final String? subscriptionId;
+  @JsonKey(name: 'token', includeIfNull: false)
+  final String? token;
+  @JsonKey(name: 'levelId', includeIfNull: false)
+  final int? levelId;
+  static const fromJsonFactory = _$VerifyPaymentClassFromJson;
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is VerifyPaymentClass &&
+            (identical(other.subscriptionId, subscriptionId) ||
+                const DeepCollectionEquality()
+                    .equals(other.subscriptionId, subscriptionId)) &&
+            (identical(other.token, token) ||
+                const DeepCollectionEquality().equals(other.token, token)) &&
+            (identical(other.levelId, levelId) ||
+                const DeepCollectionEquality().equals(other.levelId, levelId)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(subscriptionId) ^
+      const DeepCollectionEquality().hash(token) ^
+      const DeepCollectionEquality().hash(levelId) ^
+      runtimeType.hashCode;
+}
+
+extension $VerifyPaymentClassExtension on VerifyPaymentClass {
+  VerifyPaymentClass copyWith(
+      {String? subscriptionId, String? token, int? levelId}) {
+    return VerifyPaymentClass(
+        subscriptionId: subscriptionId ?? this.subscriptionId,
+        token: token ?? this.token,
+        levelId: levelId ?? this.levelId);
+  }
+
+  VerifyPaymentClass copyWithWrapped(
+      {Wrapped<String?>? subscriptionId,
+      Wrapped<String?>? token,
+      Wrapped<int?>? levelId}) {
+    return VerifyPaymentClass(
+        subscriptionId: (subscriptionId != null
+            ? subscriptionId.value
+            : this.subscriptionId),
+        token: (token != null ? token.value : this.token),
+        levelId: (levelId != null ? levelId.value : this.levelId));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class ApiV1AuthTokenPost$RequestBody {
   const ApiV1AuthTokenPost$RequestBody({
     this.grantType,

@@ -5,6 +5,41 @@
     "version": "v1"
   },
   "paths": {
+    "/api/v1/Auth/GwtTest": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "parameters": [
+          {
+            "name": "Number",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "Code",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
     "/api/v1/Auth/Token": {
       "post": {
         "tags": [
@@ -1037,6 +1072,14 @@
               "type": "string",
               "nullable": true
             }
+          },
+          {
+            "name": "qu",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
           }
         ],
         "responses": {
@@ -1232,7 +1275,6 @@
         "tags": [
           "StartQuiz"
         ],
-        "summary": "کسر امتیاز و مشاهده درصد",
         "parameters": [
           {
             "name": "QuestionId",
@@ -1240,6 +1282,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "ReduceCoin",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": true
             }
           }
         ],
@@ -2260,6 +2310,215 @@
           }
         ]
       }
+    },
+    "/api/v1/WordGame/StartWordGame": {
+      "post": {
+        "tags": [
+          "WordGame"
+        ],
+        "parameters": [
+          {
+            "name": "LevelId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Desc",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/WordGame/UserRequestPaymentList": {
+      "post": {
+        "tags": [
+          "WordGame"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/WordGame/RequestPayment": {
+      "post": {
+        "tags": [
+          "WordGame"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/WordGame/GuessTheWord": {
+      "post": {
+        "tags": [
+          "WordGame"
+        ],
+        "parameters": [
+          {
+            "name": "Word",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/WordGame/ViewUserLastWordGame": {
+      "get": {
+        "tags": [
+          "WordGame"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/WordGame/AddInAppPurchase": {
+      "post": {
+        "tags": [
+          "WordGame"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyPaymentClass"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyPaymentClass"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyPaymentClass"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyPaymentClass"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [ ]
+          },
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -2502,6 +2761,24 @@
           },
           "verifyCode": {
             "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "VerifyPaymentClass": {
+        "type": "object",
+        "properties": {
+          "subscriptionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "token": {
+            "type": "string",
+            "nullable": true
+          },
+          "levelId": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
