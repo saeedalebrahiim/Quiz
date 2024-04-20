@@ -10,6 +10,8 @@ import 'package:bilgimizde/model/dto/quiz.dart';
 import 'package:bilgimizde/provider/quiz.dart';
 import 'package:bilgimizde/services/headers.dart';
 import 'package:bilgimizde/view/home/quiz/quiz_screen.dart';
+import 'package:quickalert/models/quickalert_type.dart';
+import 'package:quickalert/widgets/quickalert_dialog.dart';
 
 class RequestController {
   static Future<void> requestList({
@@ -44,7 +46,8 @@ class RequestController {
         final res = jsonDecode(postResult.bodyString);
         print(res);
         print(body);
-
+        QuickAlert.show(
+            context: context, type: QuickAlertType.info, title: res["message"]);
         if (res["isSuccess"] == true) {}
       });
     } catch (e) {

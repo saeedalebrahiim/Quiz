@@ -4,7 +4,7 @@ import 'package:bilgimizde/view/buycoin/buy_coin_screen.dart';
 import 'package:bilgimizde/view/buycoin/gem_buy.dart';
 import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
 import 'package:bilgimizde/view/rules/rules_screen.dart';
-import 'package:bilgimizde/view/wallete/wallete.dart';
+import 'package:bilgimizde/view/wallet/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:bilgimizde/global.dart';
 import 'package:intl/intl.dart';

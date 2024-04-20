@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:bilgimizde/global.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:quickalert/widgets/quickalert_dialog.dart';
 
 class WalleteScreen extends StatefulWidget {
   const WalleteScreen({super.key});
@@ -25,6 +26,7 @@ class WalleteScreen extends StatefulWidget {
 }
 
 class _WalleteScreenState extends State<WalleteScreen> {
+  bool requested = false;
   @override
   void initState() {
     // TODO: implement initState
@@ -193,21 +195,40 @@ class _WalleteScreenState extends State<WalleteScreen> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Container(
-                          width: 70,
-                          height: 40,
-                          decoration: BoxDecoration(
-                            color: Colors.red.withOpacity(0.6),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Text(
-                            "-",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 28,
+                      child: InkWell(
+                        onTap: () {
+                          if (!requested) {
+                            setState(() {
+                              requested = true;
+                            });
+                            RequestController.addRequest(context: context)
+                                .whenComplete(() {
+                              setState(() {
+                                requested = false;
+                              });
+                            });
+                          }
+                        },
+                        child: Container(
+                            width: 70,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: Colors.red.withOpacity(0.6),
+                              borderRadius: BorderRadius.circular(20),
                             ),
-                          )),
+                            child: !requested
+                                ? Text(
+                                    "-",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 28,
+                                    ),
+                                  )
+                                : SizedBox(
+                                    width: 20,
+                                    child: CircularProgressIndicator())),
+                      ),
                     ),
                   ],
                 ),
