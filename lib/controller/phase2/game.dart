@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:bilgimizde/components/alarms_functions/phase2/lost.dart';
+import 'package:bilgimizde/components/alarms_functions/phase2/win.dart';
 import 'package:bilgimizde/controller/profile/profile.dart';
 import 'package:bilgimizde/provider/wordguess.dart';
 import 'package:bilgimizde/view/gem_quiz/game.dart';
@@ -68,9 +70,21 @@ class WordController {
         final res = jsonDecode(postResult.bodyString);
         print(res);
         print(body);
-        res["isSuccess"] == true
-            ? context.read<WordGameState>().rightAnswerd(index: index)
-            : context.read<WordGameState>().wrongAnswerd(index: index);
+        if (res["isSuccess"] == true) {
+          context.read<WordGameState>().rightAnswerd(index: index);
+          win(context);
+        } else {
+          context.read<WordGameState>().wrongAnswerd(index: index);
+          if (index == 4) {
+            lost(context);
+          }
+        }
+        // res["isSuccess"] == true
+        //     ? context.read<WordGameState>().rightAnswerd(index: index)
+        //     : context.read<WordGameState>().wrongAnswerd(index: index);
+        // if (index == 4) {
+        //   res["isSuccess"] == false ? lost(context) : win(context);
+        // }
 
         if (res["isSuccess"] == true) {}
       });
