@@ -140,12 +140,14 @@ class StartQuizController {
 
   static Future<void> hintPercent({
     required int questionId,
+    required bool reduceCoin,
     required BuildContext context,
   }) async {
     final api = Quiz.create(interceptors: [TokenIndicator()]);
     try {
       await api
-          .apiV1StartQuizShowPercentSelectedAnswerGet(questionId: questionId)
+          .apiV1StartQuizShowPercentSelectedAnswerGet(
+              questionId: questionId, reduceCoin: reduceCoin)
           .then((postResult) {
         print("called percent hint");
 

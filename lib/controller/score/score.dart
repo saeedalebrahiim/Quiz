@@ -125,17 +125,15 @@ class ScoreController {
 
   //all
 
-  //ALL
-
-  static Future<void> getAllScores({
+  static Future<void> getTab3({
     required BuildContext context,
   }) async {
     final api = Quiz.create(interceptors: [TokenIndicator()]);
     try {
       await api
-          .apiV1ScoreMaxScoreOfMonthScoreGet(
-        count: 50,
-        dateTime: DateTime(DateTime.now().year, DateTime.now().month, 1),
+          .apiV1StartQuizAnsweredCountInMonthListGet(
+        selecteddatetime:
+            DateTime(DateTime.now().year, DateTime.now().month, 1),
       )
           .then((postResult) {
         print("called Month");
@@ -151,7 +149,7 @@ class ScoreController {
           List listScores = body;
           print(listScores);
           for (var element in listScores) {
-            RewardScore score = RewardScore.fromJson(element);
+            AllRewardScore score = AllRewardScore.fromJson(element);
             context.read<ScoreState>().getAllUsers(value: score);
           }
         }
@@ -160,6 +158,42 @@ class ScoreController {
       print(e);
     }
   }
+
+  //ALL
+
+  // static Future<void> getAllScores({
+  //   required BuildContext context,
+  // }) async {
+  //   final api = Quiz.create(interceptors: [TokenIndicator()]);
+  //   try {
+  //     await api
+  //         .apiV1ScoreMaxScoreOfMonthScoreGet(
+  //       count: 50,
+  //       dateTime: DateTime(DateTime.now().year, DateTime.now().month, 1),
+  //     )
+  //         .then((postResult) {
+  //       print("called Month");
+
+  //       final body = jsonDecode(postResult.bodyString)["data"];
+  //       final res = jsonDecode(postResult.bodyString);
+  //       print(res);
+  //       print(body);
+
+  //       if (res["isSuccess"] == true) {
+  //         context.read<ScoreState>().resetAllUsers();
+
+  //         List listScores = body;
+  //         print(listScores);
+  //         for (var element in listScores) {
+  //           RewardScore score = RewardScore.fromJson(element);
+  //           context.read<ScoreState>().getAllUsers(value: score);
+  //         }
+  //       }
+  //     });
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
 
   static Future<void> getAllRewards({
     required BuildContext context,

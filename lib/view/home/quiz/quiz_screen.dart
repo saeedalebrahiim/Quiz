@@ -253,38 +253,54 @@ class _QuizScreenState extends State<QuizScreen> {
                                 // ),
                                 Countdown(
                                   seconds: 20,
-                                  build: (BuildContext context, double time) =>
-                                      Row(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(4.0),
-                                        child: Text(
-                                          "${time.toInt()} S",
-                                          style: const TextStyle(
-                                              color: Colors.white),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 10),
-                                        child: SizedBox(
-                                          width: 140,
-                                          height: 10,
-                                          child: LinearProgressIndicator(
-                                            backgroundColor: Colors.black,
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            color: time > 15
-                                                ? Colors.green
-                                                : time > 9
-                                                    ? Colors.amber
-                                                    : Colors.red,
-                                            value: (time / 20),
+                                  build: (BuildContext context, double time) {
+                                    if (time == 12) {
+                                      StartQuizController.hintPercent(
+                                          reduceCoin: true,
+                                          questionId: context
+                                              .watch<QuizState>()
+                                              .quiz!
+                                              .quizQuestions[widget.index]
+                                              .questionId
+                                          //  value
+                                          //     .quiz!
+                                          //     .quizQuestions[widget.index]
+                                          //     .questionId
+                                          ,
+                                          context: context);
+                                    }
+                                    return Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(4.0),
+                                          child: Text(
+                                            "${time.toInt()} S",
+                                            style: const TextStyle(
+                                                color: Colors.white),
                                           ),
                                         ),
-                                      )
-                                    ],
-                                  ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 10),
+                                          child: SizedBox(
+                                            width: 140,
+                                            height: 10,
+                                            child: LinearProgressIndicator(
+                                              backgroundColor: Colors.black,
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              color: time > 15
+                                                  ? Colors.green
+                                                  : time > 9
+                                                      ? Colors.amber
+                                                      : Colors.red,
+                                              value: (time / 20),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    );
+                                  },
                                   interval: const Duration(milliseconds: 100),
                                   onFinished: () {
                                     print('Timer is done!');
@@ -1130,6 +1146,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                                 onTap: () {
                                                   StartQuizController
                                                       .hintPercent(
+                                                          reduceCoin: true,
                                                           questionId: value
                                                               .quiz!
                                                               .quizQuestions[

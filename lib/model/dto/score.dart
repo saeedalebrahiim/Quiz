@@ -67,3 +67,26 @@ class RewardScore {
     );
   }
 }
+
+class AllRewardScore {
+  final String? calculatedAward;
+  final String? applicationUserUserName;
+  final String? applicationUserUserPicUrl;
+  final String? applicationUserFullName;
+
+  AllRewardScore({
+    this.calculatedAward,
+    this.applicationUserFullName,
+    this.applicationUserUserName,
+    this.applicationUserUserPicUrl,
+  });
+
+  static AllRewardScore fromJson(json) {
+    return AllRewardScore(
+      calculatedAward: json['calculatedAward'],
+      applicationUserFullName: json['applicationUserFullName'],
+      applicationUserUserName: json['applicationUserUserName'],
+      applicationUserUserPicUrl: json['applicationUserUserPicUrl'],
+    );
+  }
+}

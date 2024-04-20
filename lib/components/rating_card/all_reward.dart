@@ -11,7 +11,7 @@ class AllReward extends StatelessWidget {
     required this.reward,
   });
 
-  final RewardScore score;
+  final AllRewardScore score;
   final int index;
   final bool? isMe;
   final String reward;
@@ -117,7 +117,7 @@ class AllReward extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  '$reward TL',
+                  '${score.calculatedAward} TL',
                   style: const TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),

@@ -28,7 +28,8 @@ class _AllScreenState extends State<AllScreen> {
   }
 
   getData() {
-    ScoreController.getAllScores(context: context);
+    // ScoreController.getAllScores(context: context);
+    ScoreController.getTab3(context: context);
     ScoreController.getAllRewards(context: context);
   }
 
