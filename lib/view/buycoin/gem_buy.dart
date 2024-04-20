@@ -435,7 +435,7 @@ class BuyGemState extends State<BuyGem> {
                     ],
                   ),
                   Text(
-                    "${productDetails.rawPrice} TL",
+                    "${productDetails.price}",
                     style: const TextStyle(
                         color: Colors.green, fontWeight: FontWeight.bold),
                   ),

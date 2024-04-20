@@ -23,9 +23,9 @@ import 'package:provider/provider.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 
 class WordGame extends StatefulWidget {
-  const WordGame({super.key, required this.word, required this.price});
+  const WordGame({super.key, required this.word, required this.lvlId});
   final String word;
-  final String price;
+  final int lvlId;
 
   @override
   State<WordGame> createState() => _WordGameState();
@@ -136,6 +136,12 @@ class _WordGameState extends State<WordGame> {
     }
   }
 
+  bool tapedPlay = false;
+  String price1 = "";
+  String price2 = "";
+  String price3 = "";
+  String price4 = "";
+
   @override
   Widget build(BuildContext context) {
     final defaultPinTheme = PinTheme(
@@ -168,6 +174,53 @@ class _WordGameState extends State<WordGame> {
         color: Color.fromARGB(99, 10, 140, 23),
         borderRadius: BorderRadius.circular(9),
         border: Border(bottom: BorderSide(width: 4, color: Colors.green)));
+    switch (widget.lvlId) {
+      case 1:
+        {
+          price1 = "50";
+          price2 = "25";
+          price3 = "15";
+          price4 = "10";
+        }
+      case 2:
+        {
+          price1 = "150";
+          price2 = "100";
+          price3 = "50";
+          price4 = "25";
+        }
+      case 3:
+        {
+          price1 = "350";
+          price2 = "200";
+          price3 = "100";
+          price4 = "50";
+        }
+      case 4:
+        {
+          price1 = "850";
+          price2 = "500";
+          price3 = "300";
+          price4 = "200";
+        }
+      case 5:
+        {
+          price1 = "1500";
+          price2 = "750";
+          price3 = "500";
+          price4 = "250";
+        }
+      case 6:
+        {
+          price1 = "3000";
+          price2 = "1500";
+          price3 = "1000";
+          price4 = "500";
+        }
+
+        break;
+      default:
+    }
     return Form(
       onWillPop: () async {
         exitAlarm2(context);
@@ -477,7 +530,7 @@ class _WordGameState extends State<WordGame> {
                                                   'lib/assets/images/allprize.png'))),
                                     ),
                                     Text(
-                                      '${widget.price} TL',
+                                      '${price1} TL',
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 12),
                                     ),
@@ -699,7 +752,7 @@ class _WordGameState extends State<WordGame> {
                                                   'lib/assets/images/allprize.png'))),
                                     ),
                                     Text(
-                                      '${widget.price} TL',
+                                      '${price2} TL',
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 12),
                                     ),
@@ -869,7 +922,7 @@ class _WordGameState extends State<WordGame> {
                                                   'lib/assets/images/allprize.png'))),
                                     ),
                                     Text(
-                                      '${widget.price} TL',
+                                      '${price3} TL',
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 12),
                                     ),
@@ -1039,7 +1092,7 @@ class _WordGameState extends State<WordGame> {
                                                   'lib/assets/images/allprize.png'))),
                                     ),
                                     Text(
-                                      '${widget.price} TL',
+                                      '${price4} TL',
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 12),
                                     ),
@@ -1260,6 +1313,54 @@ class _WordGameState extends State<WordGame> {
                                         children: [
                                           Text(
                                             'Gems',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 16),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    // StartQuizController.startQuiz(context: context);
+                                    if (!tapedPlay) {
+                                      print("tapped $tapedPlay");
+                                      tapedPlay = true;
+                                      print("tapped $tapedPlay");
+
+                                      WordController.startWordGame(
+                                          context: context,
+                                          lvlId: widget.lvlId);
+
+                                      tapedPlay = false;
+                                    }
+                                  },
+                                  child: Container(
+                                    width: 221,
+                                    height: 48,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: const Color.fromARGB(
+                                          255, 86, 196, 90),
+                                    ),
+                                    child: const Center(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.refresh,
+                                            color: Colors.white,
+                                            size: 20,
+                                          ),
+                                          SizedBox(
+                                            width: 3,
+                                          ),
+                                          Text(
+                                            'Again',
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.w700,

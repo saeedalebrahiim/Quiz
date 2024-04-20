@@ -440,7 +440,7 @@ class BuyCoinState extends State<BuyCoin> {
                     ],
                   ),
                   Text(
-                    "${productDetails.rawPrice} TL",
+                    "${productDetails.price}",
                     style: const TextStyle(
                         color: Colors.green, fontWeight: FontWeight.bold),
                   ),

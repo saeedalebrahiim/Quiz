@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:bilgimizde/components/alarms_functions/phase2/got_gem.dart';
 import 'package:bilgimizde/components/alarms_functions/phase2/lost.dart';
 import 'package:bilgimizde/components/alarms_functions/phase2/win.dart';
 import 'package:bilgimizde/controller/profile/profile.dart';
@@ -14,6 +15,8 @@ import 'package:bilgimizde/model/dto/quiz.dart';
 import 'package:bilgimizde/provider/quiz.dart';
 import 'package:bilgimizde/services/headers.dart';
 import 'package:bilgimizde/view/home/quiz/quiz_screen.dart';
+import 'package:quickalert/models/quickalert_type.dart';
+import 'package:quickalert/widgets/quickalert_dialog.dart';
 
 class WordController {
   static Future<void> startWordGame({
@@ -29,7 +32,15 @@ class WordController {
           .then((postResult) {
         print("called start");
         ProfileController.getProfile(context: context);
-
+        print(postResult);
+        if (postResult.isSuccessful == false) {
+          String message = jsonDecode(postResult.error.toString())["message"];
+          QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            title: message,
+          );
+        }
         final String body = jsonDecode(postResult.bodyString)["data"];
         final res = jsonDecode(postResult.bodyString);
         print(res);
@@ -40,7 +51,7 @@ class WordController {
             PageRouteBuilder(
                 pageBuilder: (_, __, ___) => WordGame(
                       word: body.toString(),
-                      price: "850",
+                      lvlId: lvlId,
                     ),
                 transitionDuration: const Duration(milliseconds: 500),
                 transitionsBuilder: (_, a, __, c) => FadeTransition(
@@ -115,6 +126,9 @@ class WordController {
 
         if (res["isSuccess"] == true) {
           ProfileController.getProfile(context: context);
+          gotGem(
+            context,
+          );
         }
       });
     } catch (e) {
