@@ -45,7 +45,7 @@ class _WalleteScreenState extends State<WalleteScreen> {
         decoration: BoxDecoration(
             color: primaryColor,
             image: const DecorationImage(
-                image: AssetImage('lib/assets/images/gembg.png'),
+                image: AssetImage('lib/assets/images/bg2.png'),
                 fit: BoxFit.fill)),
         child: SingleChildScrollView(
           child: Column(

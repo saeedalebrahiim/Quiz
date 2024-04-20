@@ -645,8 +645,12 @@ class BuyGemState extends State<BuyGem> {
         }
         if (purchaseDetails.pendingCompletePurchase) {
           await _inAppPurchase.completePurchase(purchaseDetails);
+          print(purchaseDetails.purchaseID.toString() + " this is");
           // print(purchaseDetails.productID.toString() + " thisis");
-          await WordController.addInAppPurchase(lvlId: 6, context: context);
+          await WordController.addInAppPurchase(
+              context: context,
+              subscriptionId: purchaseDetails.purchaseID,
+              lvlId: 6);
         }
       }
     }

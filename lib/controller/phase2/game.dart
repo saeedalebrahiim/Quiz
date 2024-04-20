@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:bilgimizde/controller/profile/profile.dart';
+import 'package:bilgimizde/provider/wordguess.dart';
 import 'package:bilgimizde/view/gem_quiz/game.dart';
 import 'package:bilgimizde/view/home/quiz/end_quiz_screen.dart';
 import 'package:flutter/material.dart';
@@ -54,17 +55,22 @@ class WordController {
 
   static Future<void> guessWordGame({
     required String word,
+    required int index,
     required BuildContext context,
   }) async {
     final api = Quiz.create(interceptors: [TokenIndicator()]);
     try {
+      print("this i parameter $word");
       await api.apiV1WordGameGuessTheWordPost(word: word).then((postResult) {
-        print("called start");
+        print("called ey voy");
 
         final body = jsonDecode(postResult.bodyString)["data"];
         final res = jsonDecode(postResult.bodyString);
         print(res);
         print(body);
+        res["isSuccess"] == true
+            ? context.read<WordGameState>().rightAnswerd(index: index)
+            : context.read<WordGameState>().wrongAnswerd(index: index);
 
         if (res["isSuccess"] == true) {}
       });
@@ -74,14 +80,16 @@ class WordController {
   }
 
   static Future<void> addInAppPurchase({
-    required int lvlId,
+    required String? subscriptionId,
+    required int? lvlId,
     required BuildContext context,
   }) async {
     final api = Quiz.create(interceptors: [TokenIndicator()]);
     try {
       await api
           .apiV1WordGameAddInAppPurchasePost(
-        body: VerifyPaymentClass(levelId: lvlId),
+        body:
+            VerifyPaymentClass(subscriptionId: subscriptionId, levelId: lvlId),
       )
           .then((postResult) {
         print("called start");

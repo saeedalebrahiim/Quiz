@@ -2,6 +2,7 @@ import 'package:bilgimizde/components/alarms_functions/no_coin.dart';
 import 'package:bilgimizde/components/alarms_functions/wifi_alarm.dart';
 import 'package:bilgimizde/controller/auth/auth_controller.dart';
 import 'package:bilgimizde/provider/quiz.dart';
+import 'package:bilgimizde/provider/wordguess.dart';
 import 'package:bilgimizde/services/internet_listener.dart';
 import 'package:bilgimizde/view/buycoin/buy_coin_screen.dart';
 import 'package:bilgimizde/view/buycoin/buy_coin_test.dart';
@@ -727,6 +728,9 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                           children: [
                                             InkWell(
                                               onTap: () {
+                                                context
+                                                    .read<WordGameState>()
+                                                    .startGame();
                                                 Navigator.push(
                                                   context,
                                                   MaterialPageRoute(

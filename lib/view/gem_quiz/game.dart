@@ -104,6 +104,15 @@ class _WordGameState extends State<WordGame> {
     TextEditingController()
   ];
 
+  List<TextEditingController> controller5 = [
+    TextEditingController(),
+    TextEditingController(),
+    TextEditingController(),
+    TextEditingController(),
+    TextEditingController(),
+    TextEditingController()
+  ];
+
   @override
   void initState() {
     // TODO: implement initState
@@ -140,6 +149,24 @@ class _WordGameState extends State<WordGame> {
           borderRadius: BorderRadius.circular(9),
           border: Border(bottom: BorderSide(width: 4, color: Colors.indigo))),
     );
+
+    final lockTheme = BoxDecoration(
+        color: Colors.grey.withOpacity(0.7),
+        borderRadius: BorderRadius.circular(9),
+        border: Border(bottom: BorderSide(width: 4, color: Colors.indigo)));
+    final normalTheme = BoxDecoration(
+        color: Color.fromARGB(100, 10, 21, 140),
+        borderRadius: BorderRadius.circular(9),
+        border: Border(bottom: BorderSide(width: 4, color: Colors.indigo)));
+
+    final redTheme = BoxDecoration(
+        color: Color.fromARGB(99, 140, 10, 10),
+        borderRadius: BorderRadius.circular(9),
+        border: Border(bottom: BorderSide(width: 4, color: Colors.red)));
+    final successTheme = BoxDecoration(
+        color: Color.fromARGB(99, 10, 140, 23),
+        borderRadius: BorderRadius.circular(9),
+        border: Border(bottom: BorderSide(width: 4, color: Colors.green)));
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -147,7 +174,7 @@ class _WordGameState extends State<WordGame> {
         decoration: BoxDecoration(
             color: primaryColor,
             image: const DecorationImage(
-                image: AssetImage('lib/assets/images/gembg.png'),
+                image: AssetImage('lib/assets/images/bg2.png'),
                 fit: BoxFit.fill)),
         child: SingleChildScrollView(
           child: Consumer<WordGameState>(builder: (context, value, child) {
@@ -359,12 +386,11 @@ class _WordGameState extends State<WordGame> {
                   height: 10,
                 ),
                 IgnorePointer(
-                  ignoring: value.canFirstGuess == false &&
+                  ignoring: value.canFirstGuess == false ||
                       value.canSecondGuess == true,
                   child: Container(
                     width: 340,
-                    foregroundDecoration: value.canFirstGuess == false &&
-                            value.canSecondGuess == true
+                    foregroundDecoration: value.canFirstGuess == false
                         ? BoxDecoration(
                             color: Colors.grey.withOpacity(0.4),
                             image: DecorationImage(
@@ -380,7 +406,7 @@ class _WordGameState extends State<WordGame> {
                             children: [
                               value.canFirstGuess == true
                                   ? Countdown(
-                                      seconds: 15,
+                                      seconds: 10,
                                       build:
                                           (BuildContext context, double time) =>
                                               Row(
@@ -400,16 +426,35 @@ class _WordGameState extends State<WordGame> {
                                           const Duration(milliseconds: 100),
                                       onFinished: () {
                                         print('Timer is done!');
-                                        context
-                                            .read<WordGameState>()
-                                            .openSecond();
+
+                                        if (value.canSecondGuess == false) {
+                                          String word = '';
+                                          controller2.forEach(
+                                            (element) => word += element.text,
+                                          );
+                                          context
+                                              .read<WordGameState>()
+                                              .openSecond();
+                                          WordController.guessWordGame(
+                                              index: 1,
+                                              word: word,
+                                              context: context);
+                                        }
                                       },
                                     )
-                                  : const Text(
-                                      "10s",
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 14),
-                                    ),
+                                  : value.canSecondGuess == false
+                                      ? const Text(
+                                          "0s",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14),
+                                        )
+                                      : const Text(
+                                          "10s",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14),
+                                        ),
                               const SizedBox(),
                               Row(
                                 children: [
@@ -439,17 +484,15 @@ class _WordGameState extends State<WordGame> {
                                     child: Container(
                                       width: 50,
                                       height: 50,
-                                      decoration: BoxDecoration(
-                                          color: index == lockNumber
-                                              ? Colors.grey.withOpacity(0.7)
-                                              : Color.fromARGB(
-                                                  100, 10, 21, 140),
-                                          borderRadius:
-                                              BorderRadius.circular(9),
-                                          border: Border(
-                                              bottom: BorderSide(
-                                                  width: 4,
-                                                  color: Colors.indigo))),
+                                      decoration: index == lockNumber
+                                          ? lockTheme
+                                          : (value.canSecondGuess == true &&
+                                                  value.isRight1 == false)
+                                              ? redTheme
+                                              : (value.canSecondGuess == true &&
+                                                      value.isRight1 == true)
+                                                  ? successTheme
+                                                  : normalTheme,
                                       child: TextFormField(
                                         controller: controller1[index],
                                         maxLength: 1,
@@ -472,11 +515,20 @@ class _WordGameState extends State<WordGame> {
                                           } else {
                                             foc1[index].previousFocus();
                                           }
-                                          if (index == 5) {
+                                          if (index == 5 ||
+                                              (index == 4 && lockNumber == 5)) {
                                             String word = '';
                                             controller1.forEach(
                                               (element) => word += element.text,
                                             );
+                                            context
+                                                .read<WordGameState>()
+                                                .openSecond();
+                                            WordController.guessWordGame(
+                                                index: 1,
+                                                word: word,
+                                                context: context);
+
                                             print(word);
                                           }
                                         },
@@ -552,12 +604,11 @@ class _WordGameState extends State<WordGame> {
                   height: 10,
                 ),
                 IgnorePointer(
-                  ignoring: value.canSecondGuess == false &&
+                  ignoring: value.canSecondGuess == false ||
                       value.canThirdGuess == true,
                   child: Container(
                     width: 340,
-                    foregroundDecoration: value.canSecondGuess == false &&
-                            value.canThirdGuess == true
+                    foregroundDecoration: value.canSecondGuess == false
                         ? BoxDecoration(
                             color: Colors.grey.withOpacity(0.4),
                             image: DecorationImage(
@@ -593,16 +644,34 @@ class _WordGameState extends State<WordGame> {
                                           const Duration(milliseconds: 100),
                                       onFinished: () {
                                         print('Timer is done!');
-                                        context
-                                            .read<WordGameState>()
-                                            .openThird();
+                                        if (value.canThirdGuess == false) {
+                                          String word = '';
+                                          controller2.forEach(
+                                            (element) => word += element.text,
+                                          );
+                                          context
+                                              .read<WordGameState>()
+                                              .openThird();
+                                          WordController.guessWordGame(
+                                              index: 2,
+                                              word: word,
+                                              context: context);
+                                        }
                                       },
                                     )
-                                  : const Text(
-                                      "10s",
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 14),
-                                    ),
+                                  : value.canThirdGuess == false
+                                      ? const Text(
+                                          "0s",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14),
+                                        )
+                                      : const Text(
+                                          "10s",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14),
+                                        ),
                               const SizedBox(),
                               Row(
                                 children: [
@@ -632,17 +701,15 @@ class _WordGameState extends State<WordGame> {
                                     child: Container(
                                       width: 50,
                                       height: 50,
-                                      decoration: BoxDecoration(
-                                          color: index == lockNumber
-                                              ? Colors.grey.withOpacity(0.7)
-                                              : Color.fromARGB(
-                                                  100, 10, 21, 140),
-                                          borderRadius:
-                                              BorderRadius.circular(9),
-                                          border: Border(
-                                              bottom: BorderSide(
-                                                  width: 4,
-                                                  color: Colors.indigo))),
+                                      decoration: index == lockNumber
+                                          ? lockTheme
+                                          : (value.canThirdGuess == true &&
+                                                  value.isRight2 == false)
+                                              ? redTheme
+                                              : (value.canThirdGuess == true &&
+                                                      value.isRight2 == true)
+                                                  ? successTheme
+                                                  : normalTheme,
                                       child: TextFormField(
                                         controller: controller2[index],
                                         maxLength: 1,
@@ -665,11 +732,20 @@ class _WordGameState extends State<WordGame> {
                                           } else {
                                             foc2[index].previousFocus();
                                           }
-                                          if (index == 5) {
+                                          if (index == 5 ||
+                                              (index == 4 && lockNumber == 5)) {
                                             String word = '';
                                             controller2.forEach(
                                               (element) => word += element.text,
                                             );
+                                            context
+                                                .read<WordGameState>()
+                                                .openThird();
+                                            WordController.guessWordGame(
+                                                index: 2,
+                                                word: word,
+                                                context: context);
+
                                             print(word);
                                           }
                                         },
@@ -688,6 +764,492 @@ class _WordGameState extends State<WordGame> {
                       ],
                     ),
                   ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                IgnorePointer(
+                  ignoring: value.canThirdGuess == false ||
+                      value.canFourthGuess == true,
+                  child: Container(
+                    width: 340,
+                    foregroundDecoration: value.canThirdGuess == false
+                        ? BoxDecoration(
+                            color: Colors.grey.withOpacity(0.4),
+                            image: DecorationImage(
+                                image:
+                                    AssetImage("lib/assets/images/lock.png")))
+                        : null,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 18.0, bottom: 9),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              value.canThirdGuess == true
+                                  ? Countdown(
+                                      seconds: 15,
+                                      build:
+                                          (BuildContext context, double time) =>
+                                              Row(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(4.0),
+                                            child: Text(
+                                              "${time.toInt()} S",
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 14),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      interval:
+                                          const Duration(milliseconds: 100),
+                                      onFinished: () {
+                                        print('Timer is done!');
+                                        if (value.canFourthGuess == false) {
+                                          String word = '';
+                                          controller3.forEach(
+                                            (element) => word += element.text,
+                                          );
+                                          context
+                                              .read<WordGameState>()
+                                              .openFourth();
+                                          WordController.guessWordGame(
+                                              index: 3,
+                                              word: word,
+                                              context: context);
+                                        }
+                                      },
+                                    )
+                                  : value.canFourthGuess == false
+                                      ? const Text(
+                                          "0s",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14),
+                                        )
+                                      : const Text(
+                                          "10s",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14),
+                                        ),
+                              const SizedBox(),
+                              Row(
+                                children: [
+                                  Container(
+                                    width: 20,
+                                    height: 20,
+                                    decoration: const BoxDecoration(
+                                        image: DecorationImage(
+                                            image: AssetImage(
+                                                'lib/assets/images/allprize.png'))),
+                                  ),
+                                  Text(
+                                    '${widget.price} TL',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 12),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        Row(
+                          children: List.generate(
+                              6,
+                              (index) => Padding(
+                                    padding: const EdgeInsets.all(3.0),
+                                    child: Container(
+                                      width: 50,
+                                      height: 50,
+                                      decoration: index == lockNumber
+                                          ? lockTheme
+                                          : (value.canFourthGuess == true &&
+                                                  value.isRight3 == false)
+                                              ? redTheme
+                                              : (value.canFourthGuess == true &&
+                                                      value.isRight3 == true)
+                                                  ? successTheme
+                                                  : normalTheme,
+                                      child: TextFormField(
+                                        controller: controller3[index],
+                                        maxLength: 1,
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(
+                                          fontSize: 22,
+                                          color: Colors.white,
+                                        ),
+                                        focusNode: foc3[index],
+                                        autofocus: false,
+                                        showCursor: true,
+                                        onChanged: (value) {
+                                          if (controller3[index]
+                                              .text
+                                              .isNotEmpty) {
+                                            foc3[index].nextFocus();
+                                            if (index + 1 == lockNumber) {
+                                              foc3[index].nextFocus();
+                                            }
+                                          } else {
+                                            foc3[index].previousFocus();
+                                          }
+                                          if (index == 5 ||
+                                              (index == 4 && lockNumber == 5)) {
+                                            String word = '';
+                                            controller3.forEach(
+                                              (element) => word += element.text,
+                                            );
+                                            context
+                                                .read<WordGameState>()
+                                                .openFourth();
+                                            WordController.guessWordGame(
+                                                index: 3,
+                                                word: word,
+                                                context: context);
+
+                                            print(word);
+                                          }
+                                        },
+                                        readOnly: index == lockNumber,
+                                        contextMenuBuilder:
+                                            (context, editableTextState) =>
+                                                SizedBox(),
+                                        decoration: InputDecoration(
+                                          counterText: "",
+                                          border: InputBorder.none,
+                                        ),
+                                      ),
+                                    ),
+                                  )),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                IgnorePointer(
+                  ignoring:
+                      value.canFourthGuess == false || value.endTheGame == true,
+                  child: Container(
+                    width: 340,
+                    foregroundDecoration: value.canFourthGuess == false
+                        ? BoxDecoration(
+                            color: Colors.grey.withOpacity(0.4),
+                            image: DecorationImage(
+                                image:
+                                    AssetImage("lib/assets/images/lock.png")))
+                        : null,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 18.0, bottom: 9),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              value.canFourthGuess == true
+                                  ? Countdown(
+                                      seconds: 15,
+                                      build:
+                                          (BuildContext context, double time) =>
+                                              Row(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(4.0),
+                                            child: Text(
+                                              "${time.toInt()} S",
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 14),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      interval:
+                                          const Duration(milliseconds: 100),
+                                      onFinished: () {
+                                        print('Timer is done!');
+                                        if (value.endTheGame == false) {
+                                          String word = '';
+                                          controller4.forEach(
+                                            (element) => word += element.text,
+                                          );
+                                          context
+                                              .read<WordGameState>()
+                                              .endGame();
+                                          WordController.guessWordGame(
+                                              index: 4,
+                                              word: word,
+                                              context: context);
+                                        }
+                                      },
+                                    )
+                                  : value.endTheGame == false
+                                      ? const Text(
+                                          "0s",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14),
+                                        )
+                                      : const Text(
+                                          "10s",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14),
+                                        ),
+                              const SizedBox(),
+                              Row(
+                                children: [
+                                  Container(
+                                    width: 20,
+                                    height: 20,
+                                    decoration: const BoxDecoration(
+                                        image: DecorationImage(
+                                            image: AssetImage(
+                                                'lib/assets/images/allprize.png'))),
+                                  ),
+                                  Text(
+                                    '${widget.price} TL',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 12),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        Row(
+                          children: List.generate(
+                              6,
+                              (index) => Padding(
+                                    padding: const EdgeInsets.all(3.0),
+                                    child: Container(
+                                      width: 50,
+                                      height: 50,
+                                      decoration: index == lockNumber
+                                          ? lockTheme
+                                          : (value.endTheGame == true &&
+                                                  value.isRight4 == false)
+                                              ? redTheme
+                                              : (value.endTheGame == true &&
+                                                      value.isRight4 == true)
+                                                  ? successTheme
+                                                  : normalTheme,
+                                      child: TextFormField(
+                                        controller: controller4[index],
+                                        maxLength: 1,
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(
+                                          fontSize: 22,
+                                          color: Colors.white,
+                                        ),
+                                        focusNode: foc4[index],
+                                        autofocus: false,
+                                        showCursor: true,
+                                        onChanged: (value) {
+                                          if (controller4[index]
+                                              .text
+                                              .isNotEmpty) {
+                                            foc4[index].nextFocus();
+                                            if (index + 1 == lockNumber) {
+                                              foc4[index].nextFocus();
+                                            }
+                                          } else {
+                                            foc4[index].previousFocus();
+                                          }
+                                          if (index == 5 ||
+                                              (index == 4 && lockNumber == 5)) {
+                                            String word = '';
+                                            controller4.forEach(
+                                              (element) => word += element.text,
+                                            );
+                                            context
+                                                .read<WordGameState>()
+                                                .endGame();
+                                            WordController.guessWordGame(
+                                                index: 4,
+                                                word: word,
+                                                context: context);
+
+                                            print(word);
+                                          }
+                                        },
+                                        readOnly: index == lockNumber,
+                                        contextMenuBuilder:
+                                            (context, editableTextState) =>
+                                                SizedBox(),
+                                        decoration: InputDecoration(
+                                          counterText: "",
+                                          border: InputBorder.none,
+                                        ),
+                                      ),
+                                    ),
+                                  )),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                IgnorePointer(
+                  ignoring: true,
+                  child: Container(
+                    width: 340,
+                    child: Column(
+                      children: [
+                        Row(
+                          children: List.generate(
+                              6,
+                              (index) => Padding(
+                                    padding: const EdgeInsets.all(3.0),
+                                    child: Container(
+                                      width: 50,
+                                      height: 50,
+                                      decoration: successTheme,
+                                      child: TextFormField(
+                                        controller: controller5[index],
+                                        maxLength: 1,
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(
+                                          fontSize: 22,
+                                          color: Colors.white,
+                                        ),
+                                        autofocus: false,
+                                        showCursor: false,
+                                        onChanged: (value) {},
+                                        readOnly: true,
+                                        contextMenuBuilder:
+                                            (context, editableTextState) =>
+                                                SizedBox(),
+                                        decoration: InputDecoration(
+                                          counterText: "",
+                                          border: InputBorder.none,
+                                        ),
+                                      ),
+                                    ),
+                                  )),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+
+                value.endTheGame == true
+                    ? Column(
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                PageRouteBuilder(
+                                    pageBuilder: (_, __, ___) =>
+                                        const WalleteScreen(),
+                                    transitionDuration:
+                                        const Duration(milliseconds: 500),
+                                    transitionsBuilder: (_, a, __, c) =>
+                                        FadeTransition(
+                                          opacity: a,
+                                          child: c,
+                                        )),
+                              );
+                            },
+                            child: Container(
+                              width: 300,
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(0.15),
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 4),
+                                    child: Image.asset(
+                                      'lib/assets/images/wallettext.png',
+                                      width: 35,
+                                      height: 16,
+                                    ),
+                                  ),
+                                  const Text(
+                                    'go to the wallet',
+                                    style: TextStyle(
+                                        color:
+                                            Color.fromARGB(255, 246, 176, 71),
+                                        fontWeight: FontWeight.w600),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 25,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  // StartQuizController.startQuiz(context: context);
+                                  // if (!tapedPlay) {
+                                  //   print("tapped $tapedPlay");
+                                  //   tapedPlay = true;
+                                  //   print("tapped $tapedPlay");
+
+                                  //   if (value.userBalance >= 2) {
+                                  //     context.read<QuizState>().resetCount();
+                                  //     StartQuizController.startQuiz(
+                                  //             context: context)
+                                  //         .then((value) {
+                                  //       ProfileController.getUserBalance(
+                                  //           context: context);
+                                  //       tapedPlay = false;
+                                  //     });
+                                  //   } else {
+                                  //     noCoinAlert(context);
+                                  //   }
+                                  // }
+                                },
+                                child: Container(
+                                  width: 200,
+                                  height: 48,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Color.fromARGB(255, 0, 0, 0),
+                                  ),
+                                  child: const Center(
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'Gems',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 16),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      )
+                    : const SizedBox(),
+                const SizedBox(
+                  height: 25,
                 ),
                 // const SizedBox(
                 //   height: 20,
