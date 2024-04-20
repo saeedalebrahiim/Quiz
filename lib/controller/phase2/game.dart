@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:bilgimizde/components/alarms_functions/phase2/got_gem.dart';
 import 'package:bilgimizde/components/alarms_functions/phase2/lost.dart';
+import 'package:bilgimizde/components/alarms_functions/phase2/no_gem.dart';
 import 'package:bilgimizde/components/alarms_functions/phase2/win.dart';
 import 'package:bilgimizde/controller/profile/profile.dart';
 import 'package:bilgimizde/provider/wordguess.dart';
@@ -34,12 +35,7 @@ class WordController {
         ProfileController.getProfile(context: context);
         print(postResult);
         if (postResult.isSuccessful == false) {
-          String message = jsonDecode(postResult.error.toString())["message"];
-          QuickAlert.show(
-            context: context,
-            type: QuickAlertType.error,
-            title: message,
-          );
+          noGemAlert(context);
         }
         final String body = jsonDecode(postResult.bodyString)["data"];
         final res = jsonDecode(postResult.bodyString);

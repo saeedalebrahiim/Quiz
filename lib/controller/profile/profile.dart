@@ -26,7 +26,6 @@ class ProfileController {
         print(body);
         print(body["isSuccess"]);
         if (body["isSuccess"] == true) {
-          print("wtf");
           final data = body["data"];
           print(data);
           print(data['fullName']);
