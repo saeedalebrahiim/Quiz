@@ -267,6 +267,7 @@ class _WalleteScreenState extends State<WalleteScreen> {
                   children: [
                     for (var index = 0; index < value.requests.length; index++)
                       SizedBox()
+                    // TransAction(),
                   ],
                 );
 
@@ -294,70 +295,81 @@ class _WalleteScreenState extends State<WalleteScreen> {
   }
 }
 
-class GemListComponents extends StatelessWidget {
-  final String price, gemCount;
-  final int id;
-  final Function()? onTap;
-  const GemListComponents(
-      {super.key,
-      required this.price,
-      required this.gemCount,
-      this.onTap,
-      required this.id});
+class TransAction extends StatelessWidget {
+  const TransAction({
+    super.key,
+    required this.amount,
+    required this.date,
+    required this.state,
+  });
+  final String amount, date, state;
 
   @override
   Widget build(BuildContext context) {
+    Color color = state == "pending"
+        ? Colors.grey
+        : state == "Competition prize"
+            ? Colors.green
+            : Colors.red;
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 20,
         vertical: 10,
       ),
       child: InkWell(
-        onTap: () {
-          WordController.startWordGame(context: context, lvlId: id);
-        },
+        onTap: () {},
         child: Container(
           height: 85,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(22),
-            gradient: LinearGradient(colors: [
-              Color.fromRGBO(22, 35, 146, 1),
-              Color.fromRGBO(217, 12, 196, 0.5),
-            ]),
+            color: Color.fromARGB(154, 28, 28, 28),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: Text(
-                  '${price}TL Kazan',
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18),
+                padding: const EdgeInsets.only(left: 18.0, top: 12),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          state == "pending"
+                              ? Icons.arrow_right
+                              : state == "Competition prize"
+                                  ? Icons.arrow_drop_up
+                                  : Icons.arrow_drop_down,
+                          color: color,
+                        ),
+                        const SizedBox(
+                          width: 2,
+                        ),
+                        Text(
+                          '${amount} TL',
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      '$date',
+                      style: const TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14),
+                    ),
+                  ],
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 18.0),
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.diamond,
-                      size: 22,
-                      color: Colors.white,
-                    ),
-                    const SizedBox(
-                      width: 2,
-                    ),
-                    Text(
-                      gemCount,
-                      style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],
+                child: Text(
+                  "$state",
+                  style: TextStyle(
+                      color: color, fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
             ],
