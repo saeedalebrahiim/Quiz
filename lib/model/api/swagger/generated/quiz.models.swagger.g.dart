@@ -211,7 +211,7 @@ VerifyPaymentClass _$VerifyPaymentClassFromJson(Map<String, dynamic> json) =>
     VerifyPaymentClass(
       subscriptionId: json['subscriptionId'] as String?,
       token: json['token'] as String?,
-      levelId: json['levelId'] as int?,
+      countOfGems: json['countOfGems'] as int?,
     );
 
 Map<String, dynamic> _$VerifyPaymentClassToJson(VerifyPaymentClass instance) {
@@ -225,7 +225,7 @@ Map<String, dynamic> _$VerifyPaymentClassToJson(VerifyPaymentClass instance) {
 
   writeNotNull('subscriptionId', instance.subscriptionId);
   writeNotNull('token', instance.token);
-  writeNotNull('levelId', instance.levelId);
+  writeNotNull('countOfGems', instance.countOfGems);
   return val;
 }
 

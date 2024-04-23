@@ -62,7 +62,7 @@ class WordController {
     }
   }
 
-  static Future<void> guessWordGame({
+  static Future<String?> guessWordGame({
     required String word,
     required int index,
     required BuildContext context,
@@ -80,10 +80,12 @@ class WordController {
         if (res["isSuccess"] == true) {
           context.read<WordGameState>().rightAnswerd(index: index);
           win(context);
+          context.read<WordGameState>().getWord(word);
         } else {
           context.read<WordGameState>().wrongAnswerd(index: index);
           if (index == 4) {
             lost(context);
+            context.read<WordGameState>().getWord(res['message']);
           }
         }
         // res["isSuccess"] == true
@@ -102,15 +104,15 @@ class WordController {
 
   static Future<void> addInAppPurchase({
     required String? subscriptionId,
-    required int? lvlId,
+    required int? count,
     required BuildContext context,
   }) async {
     final api = Quiz.create(interceptors: [TokenIndicator()]);
     try {
       await api
           .apiV1WordGameAddInAppPurchasePost(
-        body:
-            VerifyPaymentClass(subscriptionId: subscriptionId, levelId: lvlId),
+        body: VerifyPaymentClass(
+            subscriptionId: subscriptionId, countOfGems: count),
       )
           .then((postResult) {
         print("called start");

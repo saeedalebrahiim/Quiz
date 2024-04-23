@@ -1194,7 +1194,10 @@ class _WordGameState extends State<WordGame> {
                                         height: 50,
                                         decoration: successTheme,
                                         child: TextFormField(
-                                          controller: controller5[index],
+                                          controller: TextEditingController(
+                                              text: value.word.isNotEmpty
+                                                  ? value.word[index]
+                                                  : ""),
                                           maxLength: 1,
                                           textAlign: TextAlign.center,
                                           style: const TextStyle(
@@ -1275,7 +1278,7 @@ class _WordGameState extends State<WordGame> {
                               height: 25,
                             ),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 InkWell(
                                   onTap: () {
@@ -1300,7 +1303,7 @@ class _WordGameState extends State<WordGame> {
                                     // }
                                   },
                                   child: Container(
-                                    width: 200,
+                                    width: 150,
                                     height: 48,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
@@ -1339,7 +1342,7 @@ class _WordGameState extends State<WordGame> {
                                     }
                                   },
                                   child: Container(
-                                    width: 221,
+                                    width: 150,
                                     height: 48,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),

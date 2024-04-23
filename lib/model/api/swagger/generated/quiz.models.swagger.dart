@@ -701,7 +701,7 @@ class VerifyPaymentClass {
   const VerifyPaymentClass({
     this.subscriptionId,
     this.token,
-    this.levelId,
+    this.countOfGems,
   });
 
   factory VerifyPaymentClass.fromJson(Map<String, dynamic> json) =>
@@ -714,8 +714,8 @@ class VerifyPaymentClass {
   final String? subscriptionId;
   @JsonKey(name: 'token', includeIfNull: false)
   final String? token;
-  @JsonKey(name: 'levelId', includeIfNull: false)
-  final int? levelId;
+  @JsonKey(name: 'countOfGems', includeIfNull: false)
+  final int? countOfGems;
   static const fromJsonFactory = _$VerifyPaymentClassFromJson;
 
   @override
@@ -727,8 +727,9 @@ class VerifyPaymentClass {
                     .equals(other.subscriptionId, subscriptionId)) &&
             (identical(other.token, token) ||
                 const DeepCollectionEquality().equals(other.token, token)) &&
-            (identical(other.levelId, levelId) ||
-                const DeepCollectionEquality().equals(other.levelId, levelId)));
+            (identical(other.countOfGems, countOfGems) ||
+                const DeepCollectionEquality()
+                    .equals(other.countOfGems, countOfGems)));
   }
 
   @override
@@ -738,29 +739,30 @@ class VerifyPaymentClass {
   int get hashCode =>
       const DeepCollectionEquality().hash(subscriptionId) ^
       const DeepCollectionEquality().hash(token) ^
-      const DeepCollectionEquality().hash(levelId) ^
+      const DeepCollectionEquality().hash(countOfGems) ^
       runtimeType.hashCode;
 }
 
 extension $VerifyPaymentClassExtension on VerifyPaymentClass {
   VerifyPaymentClass copyWith(
-      {String? subscriptionId, String? token, int? levelId}) {
+      {String? subscriptionId, String? token, int? countOfGems}) {
     return VerifyPaymentClass(
         subscriptionId: subscriptionId ?? this.subscriptionId,
         token: token ?? this.token,
-        levelId: levelId ?? this.levelId);
+        countOfGems: countOfGems ?? this.countOfGems);
   }
 
   VerifyPaymentClass copyWithWrapped(
       {Wrapped<String?>? subscriptionId,
       Wrapped<String?>? token,
-      Wrapped<int?>? levelId}) {
+      Wrapped<int?>? countOfGems}) {
     return VerifyPaymentClass(
         subscriptionId: (subscriptionId != null
             ? subscriptionId.value
             : this.subscriptionId),
         token: (token != null ? token.value : this.token),
-        levelId: (levelId != null ? levelId.value : this.levelId));
+        countOfGems:
+            (countOfGems != null ? countOfGems.value : this.countOfGems));
   }
 }
 

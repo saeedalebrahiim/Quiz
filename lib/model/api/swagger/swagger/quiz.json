@@ -2776,7 +2776,7 @@
             "type": "string",
             "nullable": true
           },
-          "levelId": {
+          "countOfGems": {
             "type": "integer",
             "format": "int32"
           }

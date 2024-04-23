@@ -13,6 +13,8 @@ class WordGameState extends ChangeNotifier {
   bool isRight3 = false;
   bool isRight4 = false;
 
+  String word = "";
+
   startGame() {
     gameStarted = true;
     canFirstGuess = false;
@@ -20,6 +22,7 @@ class WordGameState extends ChangeNotifier {
     canThirdGuess = false;
     canFourthGuess = false;
     endTheGame = false;
+    word = "";
     notifyListeners();
   }
 
@@ -29,22 +32,36 @@ class WordGameState extends ChangeNotifier {
   }
 
   openSecond() {
-    canSecondGuess = true;
+    if (!endTheGame) {
+      canSecondGuess = true;
+    }
     notifyListeners();
   }
 
   openThird() {
-    canThirdGuess = true;
+    if (!endTheGame) {
+      canThirdGuess = true;
+    }
     notifyListeners();
   }
 
   openFourth() {
-    canFourthGuess = true;
+    if (!endTheGame) {
+      canFourthGuess = true;
+    }
     notifyListeners();
   }
 
   endGame() {
     endTheGame = true;
+    notifyListeners();
+  }
+
+  getWord(String val) {
+    if (word.isEmpty) {
+      word = val;
+      endGame();
+    }
     notifyListeners();
   }
 
