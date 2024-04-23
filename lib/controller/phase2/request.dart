@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:bilgimizde/controller/profile/profile.dart';
+import 'package:bilgimizde/model/dto/transactions.dart';
+import 'package:bilgimizde/provider/request_state.dart';
 import 'package:bilgimizde/view/home/quiz/end_quiz_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +29,19 @@ class RequestController {
         print(res);
         print(body);
 
-        if (res["isSuccess"] == true) {}
+        if (res["isSuccess"] == true) {
+          List data = body;
+          List<TransactionDto> values = [];
+          print("in succ");
+          print(data);
+
+          for (var v in data) {
+            TransactionDto value = TransactionDto.fromJson(v);
+            values.add(value);
+          }
+          print("after");
+          context.read<RequestState>().getRequestList(val: values);
+        }
       });
     } catch (e) {
       print(e);

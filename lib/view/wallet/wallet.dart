@@ -266,8 +266,13 @@ class _WalleteScreenState extends State<WalleteScreen> {
                 return Column(
                   children: [
                     for (var index = 0; index < value.requests.length; index++)
-                      SizedBox()
-                    // TransAction(),
+                      TransAction(
+                        amount: value.requests[index].price.toString(),
+                        date: value.requests[index].createDate.toString(),
+                        state: value.requests[index].isPayed == false
+                            ? "pending"
+                            : "Competition prize",
+                      ),
                   ],
                 );
 
@@ -355,7 +360,7 @@ class TransAction extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      '$date',
+                      '${date.split("T")[0]}',
                       style: const TextStyle(
                           color: Colors.grey,
                           fontWeight: FontWeight.bold,
