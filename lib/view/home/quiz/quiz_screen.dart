@@ -254,7 +254,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                 Countdown(
                                   seconds: 20,
                                   build: (BuildContext context, double time) {
-                                    if (time == 12) {
+                                    if (time == 7) {
                                       StartQuizController.hintPercent(
                                           reduceCoin: true,
                                           questionId: context

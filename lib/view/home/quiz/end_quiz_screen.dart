@@ -335,6 +335,7 @@ class _EndQuizScreenState extends State<EndQuizScreen> {
                               ),
                               const Text(
                                 'Ay sonunda ödülü alan ilk 50 kişiden olmak için denemeye devam et.',
+                                textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: Colors.orange,
                                     fontWeight: FontWeight.w600,

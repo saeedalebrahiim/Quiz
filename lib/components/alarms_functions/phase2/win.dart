@@ -53,7 +53,7 @@ win(BuildContext context) {
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   color: Colors.black,
-                  fontSize: 16,
+                  fontSize: 12,
                 ),
               ),
             ),

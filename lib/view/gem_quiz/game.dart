@@ -415,47 +415,47 @@ class _WordGameState extends State<WordGame> {
                   const SizedBox(
                     height: 3.0,
                   ),
-                  Container(
-                    width: 340,
-                    height: 113,
-                    decoration: BoxDecoration(
-                        color: Colors.black87,
-                        borderRadius: BorderRadius.circular(27)),
-                    child: Center(
-                      child: Text(
-                        "Bir kelimenin bir harfini vereceğiz ve siz kelimeyi tahmin etmeye çalışacaksınız.",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
+                  // Container(
+                  //   width: 340,
+                  //   height: 113,
+                  //   decoration: BoxDecoration(
+                  //       color: Colors.black87,
+                  //       borderRadius: BorderRadius.circular(27)),
+                  //   child: Center(
+                  //     child: Text(
+                  //       "Bir kelimenin bir harfini vereceğiz ve siz kelimeyi tahmin etmeye çalışacaksınız.",
+                  //       textAlign: TextAlign.center,
+                  //       style: TextStyle(color: Colors.white),
+                  //     ),
+                  //   ),
 
-                    //  Row(
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    //   children: [
-                    //     // Countdown(
-                    //     //   seconds: 15,
-                    //     //   build: (BuildContext context, double time) => Row(
-                    //     //     children: [
-                    //     //       Padding(
-                    //     //         padding: const EdgeInsets.all(4.0),
-                    //     //         child: Text(
-                    //     //           "${time.toInt()} S",
-                    //     //           style: const TextStyle(
-                    //     //               color: Colors.white, fontSize: 24),
-                    //     //         ),
-                    //     //       ),
-                    //     //     ],
-                    //     //   ),
-                    //     //   interval: const Duration(milliseconds: 100),
-                    //     //   onFinished: () {
-                    //     //     print('Timer is done!');
-                    //     //     context.read<WordGameState>().startGame();
-                    //     //     context.read<WordGameState>().openFirst();
-                    //     //   },
-                    //     // ),
-                    //   ],
-                    // ),
-                  ),
+                  //   //  Row(
+                  //   //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   //   children: [
+                  //   //     // Countdown(
+                  //   //     //   seconds: 15,
+                  //   //     //   build: (BuildContext context, double time) => Row(
+                  //   //     //     children: [
+                  //   //     //       Padding(
+                  //   //     //         padding: const EdgeInsets.all(4.0),
+                  //   //     //         child: Text(
+                  //   //     //           "${time.toInt()} S",
+                  //   //     //           style: const TextStyle(
+                  //   //     //               color: Colors.white, fontSize: 24),
+                  //   //     //         ),
+                  //   //     //       ),
+                  //   //     //     ],
+                  //   //     //   ),
+                  //   //     //   interval: const Duration(milliseconds: 100),
+                  //   //     //   onFinished: () {
+                  //   //     //     print('Timer is done!');
+                  //   //     //     context.read<WordGameState>().startGame();
+                  //   //     //     context.read<WordGameState>().openFirst();
+                  //   //     //   },
+                  //   //     // ),
+                  //   //   ],
+                  //   // ),
+                  // ),
                   const SizedBox(
                     height: 10,
                   ),
@@ -1379,54 +1379,54 @@ class _WordGameState extends State<WordGame> {
                                     ),
                                   ),
                                 ),
-                                InkWell(
-                                  onTap: () {
-                                    // StartQuizController.startQuiz(context: context);
-                                    if (!tapedPlay) {
-                                      print("tapped $tapedPlay");
-                                      tapedPlay = true;
-                                      print("tapped $tapedPlay");
+                                // InkWell(
+                                //   onTap: () {
+                                //     // StartQuizController.startQuiz(context: context);
+                                //     if (!tapedPlay) {
+                                //       print("tapped $tapedPlay");
+                                //       tapedPlay = true;
+                                //       print("tapped $tapedPlay");
 
-                                      WordController.startWordGame(
-                                          context: context,
-                                          lvlId: widget.lvlId);
+                                //       WordController.startWordGame(
+                                //           context: context,
+                                //           lvlId: widget.lvlId);
 
-                                      tapedPlay = false;
-                                    }
-                                  },
-                                  child: Container(
-                                    width: 150,
-                                    height: 48,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: const Color.fromARGB(
-                                          255, 86, 196, 90),
-                                    ),
-                                    child: const Center(
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.refresh,
-                                            color: Colors.white,
-                                            size: 20,
-                                          ),
-                                          SizedBox(
-                                            width: 3,
-                                          ),
-                                          Text(
-                                            'Again',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 16),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                                //       tapedPlay = false;
+                                //     }
+                                //   },
+                                //   child: Container(
+                                //     width: 150,
+                                //     height: 48,
+                                //     decoration: BoxDecoration(
+                                //       borderRadius: BorderRadius.circular(20),
+                                //       color: const Color.fromARGB(
+                                //           255, 86, 196, 90),
+                                //     ),
+                                //     child: const Center(
+                                //       child: Row(
+                                //         mainAxisAlignment:
+                                //             MainAxisAlignment.center,
+                                //         children: [
+                                //           Icon(
+                                //             Icons.refresh,
+                                //             color: Colors.white,
+                                //             size: 20,
+                                //           ),
+                                //           SizedBox(
+                                //             width: 3,
+                                //           ),
+                                //           Text(
+                                //             'Again',
+                                //             style: TextStyle(
+                                //                 color: Colors.white,
+                                //                 fontWeight: FontWeight.w700,
+                                //                 fontSize: 16),
+                                //           ),
+                                //         ],
+                                //       ),
+                                //     ),
+                                //   ),
+                                // ),
                               ],
                             )
                           ],

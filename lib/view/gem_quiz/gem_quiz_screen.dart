@@ -275,7 +275,7 @@ class GemListComponents extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: Text(
-                  '${price}TL Cüzdanıma ekle',
+                  '${price} TL Cüzdanıma ekle',
                   style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
