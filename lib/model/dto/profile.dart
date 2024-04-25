@@ -9,6 +9,7 @@ class ProfileDto {
   final int? userScoreBalance;
   final int? userWalletBalance;
   final int? userGemBalance;
+  final int? userCurrectAnswer_1000;
 
   ProfileDto(
       {this.fullName,
@@ -20,6 +21,7 @@ class ProfileDto {
       this.userScoreBalance,
       this.userWalletBalance,
       this.userGemBalance,
+      this.userCurrectAnswer_1000,
       this.id});
 
   static ProfileDto fromJson(json) {
@@ -33,6 +35,7 @@ class ProfileDto {
       userScoreBalance: json['userScoreBalance'],
       userWalletBalance: json['userWalletBalance'],
       userGemBalance: json['userGemBalance'],
+      userCurrectAnswer_1000: json['userCurrectAnswer_1000'],
       id: json['id'],
     );
   }

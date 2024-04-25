@@ -534,7 +534,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                           child: LinearProgressIndicator(
                                             value: (value.profile != null
                                                     ? value.profile!
-                                                        .userScoreBalance
+                                                        .userCurrectAnswer_1000
                                                     : 0)! /
                                                 1000,
                                             color: Colors.red,
@@ -548,7 +548,8 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                         ),
                                         Text(
                                           value.profile != null
-                                              ? value.profile!.userScoreBalance
+                                              ? value.profile!
+                                                  .userCurrectAnswer_1000
                                                   .toString()
                                               : "0",
                                           style: const TextStyle(

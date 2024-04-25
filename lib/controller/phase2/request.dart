@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:bilgimizde/components/alarms_functions/phase2/cant_withdraw.dart';
 import 'package:bilgimizde/controller/profile/profile.dart';
 import 'package:bilgimizde/model/dto/transactions.dart';
 import 'package:bilgimizde/provider/request_state.dart';
@@ -60,9 +61,12 @@ class RequestController {
         final res = jsonDecode(postResult.bodyString);
         print(res);
         print(body);
-        QuickAlert.show(
-            context: context, type: QuickAlertType.info, title: res["message"]);
-        if (res["isSuccess"] == true) {}
+        // QuickAlert.show(
+        //     context: context, type: QuickAlertType.info, title: res["message"]);
+        // if (res["isSuccess"] == true) {}
+        if (res["isSuccess"] == false) {
+          cantWithdraw(context);
+        }
       });
     } catch (e) {
       print(e);

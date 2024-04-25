@@ -71,7 +71,7 @@ class _WalleteScreenState extends State<WalleteScreen> {
                               color: const Color.fromARGB(255, 10, 21, 94),
                               borderRadius: BorderRadius.circular(30)),
                           child: Icon(
-                            Icons.arrow_back_ios,
+                            Icons.diamond,
                             color: Colors.white,
                             size: 24,
                           ),

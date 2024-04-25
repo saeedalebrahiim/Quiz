@@ -133,7 +133,7 @@ class ScoreController {
       await api
           .apiV1StartQuizAnsweredCountInMonthListGet(
         selecteddatetime:
-            DateTime(DateTime.now().year, DateTime.now().month, 1),
+            DateTime(DateTime.now().year, DateTime.now().month + 1, 1),
       )
           .then((postResult) {
         print("called Month");

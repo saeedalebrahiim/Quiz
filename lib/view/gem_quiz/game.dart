@@ -691,7 +691,7 @@ class _WordGameState extends State<WordGame> {
                               children: [
                                 value.canSecondGuess == true
                                     ? Countdown(
-                                        seconds: 15,
+                                        seconds: 10,
                                         build: (BuildContext context,
                                                 double time) =>
                                             Row(
@@ -861,7 +861,7 @@ class _WordGameState extends State<WordGame> {
                               children: [
                                 value.canThirdGuess == true
                                     ? Countdown(
-                                        seconds: 15,
+                                        seconds: 10,
                                         build: (BuildContext context,
                                                 double time) =>
                                             Row(
@@ -1031,7 +1031,7 @@ class _WordGameState extends State<WordGame> {
                               children: [
                                 value.canFourthGuess == true
                                     ? Countdown(
-                                        seconds: 15,
+                                        seconds: 10,
                                         build: (BuildContext context,
                                                 double time) =>
                                             Row(

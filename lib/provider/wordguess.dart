@@ -8,10 +8,10 @@ class WordGameState extends ChangeNotifier {
   bool canFourthGuess = false;
   bool endTheGame = false;
 
-  bool isRight1 = false;
-  bool isRight2 = false;
-  bool isRight3 = false;
-  bool isRight4 = false;
+  bool? isRight1;
+  bool? isRight2;
+  bool? isRight3;
+  bool? isRight4;
 
   String word = "";
 
@@ -23,6 +23,11 @@ class WordGameState extends ChangeNotifier {
     canFourthGuess = false;
     endTheGame = false;
     word = "";
+    isRight1 = null;
+    isRight2 = null;
+    isRight3 = null;
+    isRight4 = null;
+
     notifyListeners();
   }
 

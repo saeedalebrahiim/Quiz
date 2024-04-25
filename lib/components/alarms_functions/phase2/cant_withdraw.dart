@@ -27,10 +27,11 @@ cantWithdraw(BuildContext context) {
               padding: EdgeInsets.all(8),
               child: Text(
                 "Your wallet is empty, you cannot withdraw",
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   color: Colors.black,
-                  fontSize: 16,
+                  fontSize: 14,
                 ),
               ),
             ),

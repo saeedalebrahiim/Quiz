@@ -13,7 +13,7 @@ win(BuildContext context) {
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(20)),
         width: MediaQuery.of(context).size.width - 50,
-        height: 250,
+        height: 350,
         child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -49,6 +49,7 @@ win(BuildContext context) {
               padding: EdgeInsets.all(8),
               child: Text(
                 "I congratulate you on your success",
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   color: Colors.black,
