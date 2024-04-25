@@ -8,6 +8,7 @@ import 'package:bilgimizde/provider/request_state.dart';
 import 'package:bilgimizde/services/internet_listener.dart';
 import 'package:bilgimizde/view/buycoin/buy_coin_screen.dart';
 import 'package:bilgimizde/view/buycoin/gem_buy.dart';
+import 'package:bilgimizde/view/gem_quiz/gem_quiz_screen.dart';
 import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
 import 'package:bilgimizde/view/profile/profile_screen.dart';
 import 'package:bilgimizde/view/rules/rules_screen.dart';
@@ -62,7 +63,20 @@ class _WalleteScreenState extends State<WalleteScreen> {
                       child: InkWell(
                         onTap: () {
                           // Navigator.pop(context);
-                          Navigator.of(context).pop();
+                          Navigator.of(context).pushAndRemoveUntil(
+                            PageRouteBuilder(
+                              pageBuilder: (_, __, ___) =>
+                                  const GemQuizScreen(),
+                              transitionDuration:
+                                  const Duration(milliseconds: 500),
+                              transitionsBuilder: (_, a, __, c) =>
+                                  FadeTransition(
+                                opacity: a,
+                                child: c,
+                              ),
+                            ),
+                            (route) => false,
+                          );
                         },
                         child: Container(
                           width: 50,
@@ -239,7 +253,7 @@ class _WalleteScreenState extends State<WalleteScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     const Text(
-                      'Kazanıyorlar',
+                      'Transfer',
                       style: TextStyle(color: Colors.white),
                     ),
                     const SizedBox(),
@@ -254,7 +268,7 @@ class _WalleteScreenState extends State<WalleteScreen> {
                                       'lib/assets/images/allprize.png'))),
                         ),
                         const Text(
-                          'Ödül',
+                          'Recently',
                           style: TextStyle(color: Colors.white, fontSize: 12),
                         ),
                       ],
@@ -271,7 +285,7 @@ class _WalleteScreenState extends State<WalleteScreen> {
                         date: value.requests[index].createDate.toString(),
                         state: value.requests[index].isPayed == false
                             ? "pending"
-                            : "Competition prize",
+                            : "cash withdrawal",
                       ),
                   ],
                 );

@@ -14,6 +14,8 @@ class WordGameState extends ChangeNotifier {
   bool? isRight4;
 
   String word = "";
+  String helpChar = "";
+  int indexLock3 = -1;
 
   startGame() {
     gameStarted = true;
@@ -28,6 +30,8 @@ class WordGameState extends ChangeNotifier {
     isRight3 = null;
     isRight4 = null;
 
+    helpChar = "";
+    indexLock3 = -1;
     notifyListeners();
   }
 
@@ -67,6 +71,12 @@ class WordGameState extends ChangeNotifier {
       word = val;
       endGame();
     }
+    notifyListeners();
+  }
+
+  getThirdHelp({required int index, required String char}) {
+    helpChar = char;
+    indexLock3 = index;
     notifyListeners();
   }
 

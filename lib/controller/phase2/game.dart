@@ -65,6 +65,7 @@ class WordController {
   static Future<String?> guessWordGame({
     required String word,
     required int index,
+    required String prevHelp,
     required BuildContext context,
   }) async {
     final api = Quiz.create(interceptors: [TokenIndicator()]);
@@ -83,10 +84,42 @@ class WordController {
           context.read<WordGameState>().getWord(word);
         } else {
           context.read<WordGameState>().wrongAnswerd(index: index);
-          if (index == 4) {
+          if (res["message"].toString().contains("Yarış") == true) {
+            lost(context);
+            getLastWord(context: context).then((v) {
+              context.read<WordGameState>().getWord(v);
+            });
+          }
+          if (res["message"].toString().contains("Wrong") == false &&
+              res["message"].toString().contains("Yarış") == false &&
+              res["message"].toString().contains(" ") == false &&
+              res["message"].toString().contains("-") == false) {
             lost(context);
             context.read<WordGameState>().getWord(res['message']);
           }
+          if (index == 3) {
+            print(prevHelp);
+            String newWord = res['message'];
+            String char = newWord.replaceAll("-", "");
+            char = char.replaceAll(prevHelp, "");
+
+            String newS = newWord.replaceAll(prevHelp, "-");
+            int indexNew = -1;
+            for (var i = 0; i < newS.length; i++) {
+              if (newS[i] != "-") {
+                indexNew = i;
+              }
+            }
+
+            context.read<WordGameState>().getThirdHelp(
+                  char: char,
+                  index: indexNew,
+                );
+          }
+          // if (index == 4) {
+          //   lost(context);
+          //   context.read<WordGameState>().getWord(res['message']);
+          // }
         }
         // res["isSuccess"] == true
         //     ? context.read<WordGameState>().rightAnswerd(index: index)
@@ -96,6 +129,29 @@ class WordController {
         // }
 
         if (res["isSuccess"] == true) {}
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  static Future<dynamic> getLastWord({
+    required BuildContext context,
+  }) async {
+    final api = Quiz.create(interceptors: [TokenIndicator()]);
+    try {
+      await api.apiV1WordGameViewUserLastWordGameGet().then((postResult) {
+        final String body = jsonDecode(postResult.bodyString)["data"];
+        final res = jsonDecode(postResult.bodyString);
+        print(res);
+        print(body);
+
+        if (res["isSuccess"] == true) {
+          List lis = List.from(jsonDecode(postResult.bodyString)["data"]);
+          String word = lis.last;
+
+          return word.split(":")[1];
+        }
       });
     } catch (e) {
       print(e);

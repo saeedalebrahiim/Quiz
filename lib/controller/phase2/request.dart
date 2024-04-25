@@ -65,6 +65,7 @@ class RequestController {
         //     context: context, type: QuickAlertType.info, title: res["message"]);
         // if (res["isSuccess"] == true) {}
         ProfileController.getProfile(context: context);
+        requestList(context: context);
         if (res["isSuccess"] == false) {
           cantWithdraw(context);
         }

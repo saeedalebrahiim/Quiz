@@ -10,6 +10,7 @@ import 'package:bilgimizde/provider/wordguess.dart';
 import 'package:bilgimizde/services/internet_listener.dart';
 import 'package:bilgimizde/view/buycoin/buy_coin_screen.dart';
 import 'package:bilgimizde/view/buycoin/gem_buy.dart';
+import 'package:bilgimizde/view/gem_quiz/gem_quiz_screen.dart';
 import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
 import 'package:bilgimizde/view/profile/profile_screen.dart';
 import 'package:bilgimizde/view/rules/rules_screen.dart';
@@ -37,6 +38,7 @@ class _WordGameState extends State<WordGame> {
   final focusNode3 = FocusNode();
   final focusNode4 = FocusNode();
   int lockNumber = -1;
+  String char = "";
   List<FocusNode> foc1 = [
     FocusNode(),
     FocusNode(),
@@ -127,6 +129,7 @@ class _WordGameState extends State<WordGame> {
       if (widget.word.split('')[i] != "-") {
         controller1[i].text = widget.word.split('')[i];
         print(widget.word.split('')[i]);
+        char = widget.word.split('')[i];
         controller2[i].text = widget.word.split('')[i];
         controller3[i].text = widget.word.split('')[i];
         controller4[i].text = widget.word.split('')[i];
@@ -134,6 +137,8 @@ class _WordGameState extends State<WordGame> {
         setState(() {});
       }
     }
+    context.read<WordGameState>().startGame();
+    context.read<WordGameState>().openFirst();
   }
 
   bool tapedPlay = false;
@@ -416,32 +421,40 @@ class _WordGameState extends State<WordGame> {
                     decoration: BoxDecoration(
                         color: Colors.black87,
                         borderRadius: BorderRadius.circular(27)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Countdown(
-                          seconds: 15,
-                          build: (BuildContext context, double time) => Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: Text(
-                                  "${time.toInt()} S",
-                                  style: const TextStyle(
-                                      color: Colors.white, fontSize: 24),
-                                ),
-                              ),
-                            ],
-                          ),
-                          interval: const Duration(milliseconds: 100),
-                          onFinished: () {
-                            print('Timer is done!');
-                            context.read<WordGameState>().startGame();
-                            context.read<WordGameState>().openFirst();
-                          },
-                        ),
-                      ],
+                    child: Center(
+                      child: Text(
+                        "Bir kelimenin bir harfini vereceğiz ve siz kelimeyi tahmin etmeye çalışacaksınız.",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
+
+                    //  Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     // Countdown(
+                    //     //   seconds: 15,
+                    //     //   build: (BuildContext context, double time) => Row(
+                    //     //     children: [
+                    //     //       Padding(
+                    //     //         padding: const EdgeInsets.all(4.0),
+                    //     //         child: Text(
+                    //     //           "${time.toInt()} S",
+                    //     //           style: const TextStyle(
+                    //     //               color: Colors.white, fontSize: 24),
+                    //     //         ),
+                    //     //       ),
+                    //     //     ],
+                    //     //   ),
+                    //     //   interval: const Duration(milliseconds: 100),
+                    //     //   onFinished: () {
+                    //     //     print('Timer is done!');
+                    //     //     context.read<WordGameState>().startGame();
+                    //     //     context.read<WordGameState>().openFirst();
+                    //     //   },
+                    //     // ),
+                    //   ],
+                    // ),
                   ),
                   const SizedBox(
                     height: 10,
@@ -466,7 +479,8 @@ class _WordGameState extends State<WordGame> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                value.canFirstGuess == true
+                                value.canFirstGuess == true &&
+                                        value.endTheGame == false
                                     ? Countdown(
                                         seconds: 10,
                                         build: (BuildContext context,
@@ -499,6 +513,7 @@ class _WordGameState extends State<WordGame> {
                                                 .read<WordGameState>()
                                                 .openSecond();
                                             WordController.guessWordGame(
+                                                prevHelp: char,
                                                 index: 1,
                                                 word: word,
                                                 context: context);
@@ -568,7 +583,7 @@ class _WordGameState extends State<WordGame> {
                                           focusNode: foc1[index],
                                           autofocus: false,
                                           showCursor: true,
-                                          onChanged: (value) {
+                                          onChanged: (v) {
                                             if (controller1[index]
                                                 .text
                                                 .isNotEmpty) {
@@ -579,23 +594,26 @@ class _WordGameState extends State<WordGame> {
                                             } else {
                                               foc1[index].previousFocus();
                                             }
-                                            if (index == 5 ||
-                                                (index == 4 &&
-                                                    lockNumber == 5)) {
-                                              String word = '';
-                                              controller1.forEach(
-                                                (element) =>
-                                                    word += element.text,
-                                              );
-                                              context
-                                                  .read<WordGameState>()
-                                                  .openSecond();
-                                              WordController.guessWordGame(
-                                                  index: 1,
-                                                  word: word,
-                                                  context: context);
+                                            if (value.endTheGame == false) {
+                                              if (index == 5 ||
+                                                  (index == 4 &&
+                                                      lockNumber == 5)) {
+                                                String word = '';
+                                                controller1.forEach(
+                                                  (element) =>
+                                                      word += element.text,
+                                                );
+                                                context
+                                                    .read<WordGameState>()
+                                                    .openSecond();
+                                                WordController.guessWordGame(
+                                                    prevHelp: char,
+                                                    index: 1,
+                                                    word: word,
+                                                    context: context);
 
-                                              print(word);
+                                                print(word);
+                                              }
                                             }
                                           },
                                           readOnly: index == lockNumber,
@@ -689,7 +707,8 @@ class _WordGameState extends State<WordGame> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                value.canSecondGuess == true
+                                value.canSecondGuess == true &&
+                                        value.endTheGame == false
                                     ? Countdown(
                                         seconds: 10,
                                         build: (BuildContext context,
@@ -721,6 +740,7 @@ class _WordGameState extends State<WordGame> {
                                                 .read<WordGameState>()
                                                 .openThird();
                                             WordController.guessWordGame(
+                                                prevHelp: char,
                                                 index: 2,
                                                 word: word,
                                                 context: context);
@@ -790,7 +810,7 @@ class _WordGameState extends State<WordGame> {
                                           focusNode: foc2[index],
                                           autofocus: false,
                                           showCursor: true,
-                                          onChanged: (value) {
+                                          onChanged: (v) {
                                             if (controller2[index]
                                                 .text
                                                 .isNotEmpty) {
@@ -801,23 +821,26 @@ class _WordGameState extends State<WordGame> {
                                             } else {
                                               foc2[index].previousFocus();
                                             }
-                                            if (index == 5 ||
-                                                (index == 4 &&
-                                                    lockNumber == 5)) {
-                                              String word = '';
-                                              controller2.forEach(
-                                                (element) =>
-                                                    word += element.text,
-                                              );
-                                              context
-                                                  .read<WordGameState>()
-                                                  .openThird();
-                                              WordController.guessWordGame(
-                                                  index: 2,
-                                                  word: word,
-                                                  context: context);
+                                            if (value.endTheGame == false) {
+                                              if (index == 5 ||
+                                                  (index == 4 &&
+                                                      lockNumber == 5)) {
+                                                String word = '';
+                                                controller2.forEach(
+                                                  (element) =>
+                                                      word += element.text,
+                                                );
+                                                context
+                                                    .read<WordGameState>()
+                                                    .openThird();
+                                                WordController.guessWordGame(
+                                                    prevHelp: char,
+                                                    index: 2,
+                                                    word: word,
+                                                    context: context);
 
-                                              print(word);
+                                                print(word);
+                                              }
                                             }
                                           },
                                           readOnly: index == lockNumber,
@@ -859,7 +882,8 @@ class _WordGameState extends State<WordGame> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                value.canThirdGuess == true
+                                value.canThirdGuess == true &&
+                                        value.endTheGame == false
                                     ? Countdown(
                                         seconds: 10,
                                         build: (BuildContext context,
@@ -891,6 +915,7 @@ class _WordGameState extends State<WordGame> {
                                                 .read<WordGameState>()
                                                 .openFourth();
                                             WordController.guessWordGame(
+                                                prevHelp: char,
                                                 index: 3,
                                                 word: word,
                                                 context: context);
@@ -960,7 +985,7 @@ class _WordGameState extends State<WordGame> {
                                           focusNode: foc3[index],
                                           autofocus: false,
                                           showCursor: true,
-                                          onChanged: (value) {
+                                          onChanged: (v) {
                                             if (controller3[index]
                                                 .text
                                                 .isNotEmpty) {
@@ -971,23 +996,26 @@ class _WordGameState extends State<WordGame> {
                                             } else {
                                               foc3[index].previousFocus();
                                             }
-                                            if (index == 5 ||
-                                                (index == 4 &&
-                                                    lockNumber == 5)) {
-                                              String word = '';
-                                              controller3.forEach(
-                                                (element) =>
-                                                    word += element.text,
-                                              );
-                                              context
-                                                  .read<WordGameState>()
-                                                  .openFourth();
-                                              WordController.guessWordGame(
-                                                  index: 3,
-                                                  word: word,
-                                                  context: context);
+                                            if (value.endTheGame == false) {
+                                              if (index == 5 ||
+                                                  (index == 4 &&
+                                                      lockNumber == 5)) {
+                                                String word = '';
+                                                controller3.forEach(
+                                                  (element) =>
+                                                      word += element.text,
+                                                );
+                                                context
+                                                    .read<WordGameState>()
+                                                    .openFourth();
+                                                WordController.guessWordGame(
+                                                    prevHelp: char,
+                                                    index: 3,
+                                                    word: word,
+                                                    context: context);
 
-                                              print(word);
+                                                print(word);
+                                              }
                                             }
                                           },
                                           readOnly: index == lockNumber,
@@ -1029,7 +1057,8 @@ class _WordGameState extends State<WordGame> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                value.canFourthGuess == true
+                                value.canFourthGuess == true &&
+                                        value.endTheGame == false
                                     ? Countdown(
                                         seconds: 10,
                                         build: (BuildContext context,
@@ -1061,6 +1090,7 @@ class _WordGameState extends State<WordGame> {
                                                 .read<WordGameState>()
                                                 .endGame();
                                             WordController.guessWordGame(
+                                                prevHelp: char,
                                                 index: 4,
                                                 word: word,
                                                 context: context);
@@ -1102,74 +1132,83 @@ class _WordGameState extends State<WordGame> {
                             ),
                           ),
                           Row(
-                            children: List.generate(
-                                6,
-                                (index) => Padding(
-                                      padding: const EdgeInsets.all(3.0),
-                                      child: Container(
-                                        width: 50,
-                                        height: 50,
-                                        decoration: index == lockNumber
-                                            ? lockTheme
-                                            : (value.endTheGame == true &&
-                                                    value.isRight4 == false)
-                                                ? redTheme
-                                                : (value.endTheGame == true &&
-                                                        value.isRight4 == true)
-                                                    ? successTheme
-                                                    : normalTheme,
-                                        child: TextFormField(
-                                          controller: controller4[index],
-                                          maxLength: 1,
-                                          textAlign: TextAlign.center,
-                                          style: const TextStyle(
-                                            fontSize: 22,
-                                            color: Colors.white,
-                                          ),
-                                          focusNode: foc4[index],
-                                          autofocus: false,
-                                          showCursor: true,
-                                          onChanged: (value) {
-                                            if (controller4[index]
-                                                .text
-                                                .isNotEmpty) {
-                                              foc4[index].nextFocus();
-                                              if (index + 1 == lockNumber) {
-                                                foc4[index].nextFocus();
-                                              }
-                                            } else {
-                                              foc4[index].previousFocus();
-                                            }
-                                            if (index == 5 ||
-                                                (index == 4 &&
-                                                    lockNumber == 5)) {
-                                              String word = '';
-                                              controller4.forEach(
-                                                (element) =>
-                                                    word += element.text,
-                                              );
-                                              context
-                                                  .read<WordGameState>()
-                                                  .endGame();
-                                              WordController.guessWordGame(
-                                                  index: 4,
-                                                  word: word,
-                                                  context: context);
+                            children: List.generate(6, (index) {
+                              if (index == value.indexLock3) {
+                                print(value.helpChar);
+                                controller4[value.indexLock3].text =
+                                    value.helpChar;
+                              }
+                              return Padding(
+                                padding: const EdgeInsets.all(3.0),
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: index == lockNumber ||
+                                          index == value.indexLock3
+                                      ? lockTheme
+                                      : (value.endTheGame == true &&
+                                              value.isRight4 == false)
+                                          ? redTheme
+                                          : (value.endTheGame == true &&
+                                                  value.isRight4 == true)
+                                              ? successTheme
+                                              : normalTheme,
+                                  child: TextFormField(
+                                    controller: controller4[index],
+                                    maxLength: 1,
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                      fontSize: 22,
+                                      color: Colors.white,
+                                    ),
+                                    focusNode: foc4[index],
+                                    autofocus: false,
+                                    showCursor: true,
+                                    onChanged: (v) {
+                                      if (controller4[index].text.isNotEmpty) {
+                                        foc4[index].nextFocus();
+                                        if (index + 1 == lockNumber ||
+                                            index == value.indexLock3) {
+                                          foc4[index].nextFocus();
+                                        }
+                                      } else {
+                                        foc4[index].previousFocus();
+                                      }
+                                      if (value.endTheGame == false) {
+                                        if (index == 5 ||
+                                            (index == 4 &&
+                                                (lockNumber == 5 ||
+                                                    value.indexLock3 == 4))) {
+                                          String word = '';
+                                          controller4.forEach(
+                                            (element) => word += element.text,
+                                          );
+                                          context
+                                              .read<WordGameState>()
+                                              .endGame();
+                                          WordController.guessWordGame(
+                                              prevHelp: char,
+                                              index: 4,
+                                              word: word,
+                                              context: context);
 
-                                              print(word);
-                                            }
-                                          },
-                                          readOnly: index == lockNumber,
-                                          contextMenuBuilder:
-                                              (context, editableTextState) =>
-                                                  SizedBox(),
-                                          decoration: InputDecoration(
-                                            counterText: "",
-                                            border: InputBorder.none,
-                                          ),
-                                        ),
-                                      ),
-                                    )),
+                                          print(word);
+                                        }
+                                      }
+                                    },
+                                    readOnly: index == lockNumber ||
+                                        index == value.indexLock3,
+                                    contextMenuBuilder:
+                                        (context, editableTextState) =>
+                                            SizedBox(),
+                                    decoration: InputDecoration(
+                                      counterText: "",
+                                      border: InputBorder.none,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }),
                           ),
                         ],
                       ),
@@ -1282,6 +1321,20 @@ class _WordGameState extends State<WordGame> {
                               children: [
                                 InkWell(
                                   onTap: () {
+                                    Navigator.of(context).pushAndRemoveUntil(
+                                      PageRouteBuilder(
+                                        pageBuilder: (_, __, ___) =>
+                                            const GemQuizScreen(),
+                                        transitionDuration:
+                                            const Duration(milliseconds: 500),
+                                        transitionsBuilder: (_, a, __, c) =>
+                                            FadeTransition(
+                                          opacity: a,
+                                          child: c,
+                                        ),
+                                      ),
+                                      (route) => false,
+                                    );
                                     // StartQuizController.startQuiz(context: context);
                                     // if (!tapedPlay) {
                                     //   print("tapped $tapedPlay");

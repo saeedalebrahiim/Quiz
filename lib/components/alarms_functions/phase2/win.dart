@@ -18,7 +18,7 @@ win(BuildContext context) {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsets.all(8),
+              padding: EdgeInsets.only(top: 10),
               child: Text(
                 "End of The test",
                 style: TextStyle(
@@ -29,24 +29,24 @@ win(BuildContext context) {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(8),
+              padding: EdgeInsets.all(4),
               child: Image(
                 image: AssetImage("lib/assets/images/win.png"),
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(8),
+              padding: EdgeInsets.all(4),
               child: Text(
                 "CONGRATS!",
                 style: TextStyle(
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.bold,
                   color: Colors.amber,
                   fontSize: 18,
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(8),
+              padding: EdgeInsets.all(4),
               child: Text(
                 "I congratulate you on your success",
                 textAlign: TextAlign.center,
