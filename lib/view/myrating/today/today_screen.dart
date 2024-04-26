@@ -1,4 +1,5 @@
 import 'package:bilgimizde/services/admob.dart';
+import 'package:bilgimizde/view/buycoin/buy_coin_test.dart';
 import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
 import 'package:bilgimizde/view/rules/rules_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -127,7 +128,7 @@ class _TodayScreenState extends State<TodayScreen> {
                           Navigator.of(context).push(
                             PageRouteBuilder(
                                 pageBuilder: (_, __, ___) =>
-                                    const BuyCoinScreen(),
+                                    const BuyCoin(),
                                 transitionDuration:
                                     const Duration(milliseconds: 500),
                                 transitionsBuilder: (_, a, __, c) =>

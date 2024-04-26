@@ -1,4 +1,5 @@
 import 'package:bilgimizde/view/buycoin/buy_coin_screen.dart';
+import 'package:bilgimizde/view/buycoin/buy_coin_test.dart';
 import 'package:flutter/material.dart';
 
 noCoinAlert(BuildContext context) {
@@ -77,8 +78,7 @@ noCoinAlert(BuildContext context) {
                       onTap: () {
                         Navigator.of(context).push(
                           PageRouteBuilder(
-                              pageBuilder: (_, __, ___) =>
-                                  const BuyCoinScreen(),
+                              pageBuilder: (_, __, ___) => const BuyCoin(),
                               transitionDuration:
                                   const Duration(milliseconds: 500),
                               transitionsBuilder: (_, a, __, c) =>

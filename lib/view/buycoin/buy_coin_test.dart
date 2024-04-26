@@ -433,8 +433,7 @@ class BuyCoinState extends State<BuyCoin> {
                         ),
                       ),
                       Text(
-                        productDetails.title
-                            .replaceAll("(Bilgimizde | Bil para kazan)", ""),
+                        productDetails.id.replaceAll(".p", ""),
                         style: TextStyle(color: Colors.white),
                       ),
                     ],

@@ -1,3 +1,4 @@
+import 'package:bilgimizde/view/buycoin/buy_coin_test.dart';
 import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
 import 'package:bilgimizde/view/rules/rules_screen.dart';
 import 'package:flutter/material.dart';
@@ -103,7 +104,7 @@ class _OneMonthScreenState extends State<OneMonthScreen> {
                           Navigator.of(context).push(
                             PageRouteBuilder(
                                 pageBuilder: (_, __, ___) =>
-                                    const BuyCoinScreen(),
+                                    const BuyCoin(),
                                 transitionDuration:
                                     const Duration(milliseconds: 500),
                                 transitionsBuilder: (_, a, __, c) =>
