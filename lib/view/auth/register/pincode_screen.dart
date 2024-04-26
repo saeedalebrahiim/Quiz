@@ -175,7 +175,9 @@ class _PinCodeScreenState extends State<PinCodeScreen> {
                       child: const Center(
                           child: Text(
                         'sonraki',
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
                       )),
                     ),
                   ),

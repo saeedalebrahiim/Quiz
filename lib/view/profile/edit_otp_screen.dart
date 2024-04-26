@@ -167,7 +167,7 @@ class _EditPwOtpScreenState extends State<EditPwOtpScreen> {
                           child: Text(
                         'sonraki',
                         style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold),
+                            color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18),
                       )),
                     ),
                   )

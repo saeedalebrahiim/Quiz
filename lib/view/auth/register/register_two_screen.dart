@@ -245,7 +245,7 @@ class _RegisterStepTwoScreenState extends State<RegisterStepTwoScreen> {
                     child: const Center(
                         child: Text(
                       'sonraki',
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.white, fontSize: 18),
                     )),
                   ),
                 )

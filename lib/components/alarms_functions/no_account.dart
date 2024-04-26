@@ -69,7 +69,7 @@ noAccountAlarm(BuildContext context) {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              'bu numara ile herhangi bir hesap yok',
+                              'bu numara ile herhangi \n bir hesap yok',
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w600,

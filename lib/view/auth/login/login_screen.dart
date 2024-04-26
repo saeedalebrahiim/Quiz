@@ -282,7 +282,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: const Center(
                           child: Text(
                         'sonraki',
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.white, fontSize: 18),
                       )),
                     ),
                   ),

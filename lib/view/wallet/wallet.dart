@@ -297,9 +297,9 @@ class _WalleteScreenState extends State<WalleteScreen> {
                 Consumer<RequestState>(builder: (context, value, child) {
                   return Column(
                     children: [
-                      for (var index = 0;
-                          index < value.requests.length;
-                          index++)
+                      for (var index = value.requests.length - 1;
+                          index >= 0;
+                          index--)
                         TransAction(
                           amount: value.requests[index].price.toString(),
                           date: value.requests[index].createDate.toString(),

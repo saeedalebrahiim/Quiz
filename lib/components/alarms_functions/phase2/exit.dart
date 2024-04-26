@@ -1,3 +1,4 @@
+import 'package:bilgimizde/view/gem_quiz/gem_quiz_screen.dart';
 import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
 import 'package:bilgimizde/view/myrating/all/all_screen.dart.dart';
 import 'package:bilgimizde/view/myrating/today/today_screen.dart';
@@ -96,7 +97,7 @@ exitAlarm2(BuildContext context) {
                     Navigator.pushAndRemoveUntil(
                         context,
                         PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => const HomeScreen(),
+                          pageBuilder: (_, __, ___) => const GemQuizScreen(),
                           transitionDuration: const Duration(milliseconds: 500),
                           transitionsBuilder: (_, a, __, c) => FadeTransition(
                             opacity: a,

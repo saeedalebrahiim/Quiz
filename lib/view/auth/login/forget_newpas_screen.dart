@@ -232,7 +232,7 @@ class _ForgetNewPasScreenState extends State<ForgetNewPasScreen> {
                     child: const Center(
                         child: Text(
                       'sonraki',
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.white, fontSize: 18),
                     )),
                   ),
                 )

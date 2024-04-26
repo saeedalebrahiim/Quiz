@@ -153,7 +153,7 @@ class _ForgetPwPinCodeScreenState extends State<ForgetPwPinCodeScreen> {
                     child: const Center(
                         child: Text(
                       'sonraki',
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.white, fontSize: 18),
                     )),
                   ),
                 )

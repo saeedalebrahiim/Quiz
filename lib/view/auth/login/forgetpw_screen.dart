@@ -165,7 +165,9 @@ class _ForgetPwScreenState extends State<ForgetPwScreen> {
                       child: const Center(
                           child: Text(
                         'sonraki',
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
                       )),
                     ),
                   ),

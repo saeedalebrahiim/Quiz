@@ -69,17 +69,17 @@ class GemQuizScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 23),
                       child: InkWell(
                         onTap: () {
-                          Navigator.of(context).push(
-                            PageRouteBuilder(
-                                pageBuilder: (_, __, ___) => const BuyGem(),
-                                transitionDuration:
-                                    const Duration(milliseconds: 500),
-                                transitionsBuilder: (_, a, __, c) =>
-                                    FadeTransition(
-                                      opacity: a,
-                                      child: c,
-                                    )),
-                          );
+                          // Navigator.of(context).push(
+                          //   PageRouteBuilder(
+                          //       pageBuilder: (_, __, ___) => const BuyGem(),
+                          //       transitionDuration:
+                          //           const Duration(milliseconds: 500),
+                          //       transitionsBuilder: (_, a, __, c) =>
+                          //           FadeTransition(
+                          //             opacity: a,
+                          //             child: c,
+                          //           )),
+                          // );
                         },
                         child: Row(
                           mainAxisSize: MainAxisSize.min,

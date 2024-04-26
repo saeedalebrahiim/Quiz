@@ -48,7 +48,7 @@ class AuthController {
             : QuickAlert.show(
                 context: context,
                 type: QuickAlertType.error,
-                text: "Something went wrong!");
+                text: "Password or Username is wrong!");
       }
     } catch (e) {
       print(e);

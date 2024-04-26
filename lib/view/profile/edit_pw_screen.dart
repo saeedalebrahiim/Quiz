@@ -158,7 +158,9 @@ class _ChangePwScreenState extends State<ChangePwScreen> {
                           child: Text(
                         'sonraki',
                         style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold),
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18),
                       )),
                     ),
                   )

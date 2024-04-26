@@ -583,6 +583,7 @@ class _WordGameState extends State<WordGame> {
                                           focusNode: foc1[index],
                                           autofocus: false,
                                           showCursor: true,
+                                          cursorColor: Colors.white,
                                           onChanged: (v) {
                                             if (controller1[index]
                                                 .text
@@ -594,7 +595,8 @@ class _WordGameState extends State<WordGame> {
                                             } else {
                                               foc1[index].previousFocus();
                                             }
-                                            if (value.endTheGame == false) {
+                                            if (value.endTheGame == false &&
+                                                value.isRight1 == null) {
                                               if (index == 5 ||
                                                   (index == 4 &&
                                                       lockNumber == 5)) {
@@ -616,7 +618,9 @@ class _WordGameState extends State<WordGame> {
                                               }
                                             }
                                           },
-                                          readOnly: index == lockNumber,
+                                          readOnly: value.endTheGame ||
+                                              index == lockNumber ||
+                                              value.isRight1 != null,
                                           contextMenuBuilder:
                                               (context, editableTextState) =>
                                                   SizedBox(),
@@ -810,6 +814,7 @@ class _WordGameState extends State<WordGame> {
                                           focusNode: foc2[index],
                                           autofocus: false,
                                           showCursor: true,
+                                          cursorColor: Colors.white,
                                           onChanged: (v) {
                                             if (controller2[index]
                                                 .text
@@ -821,7 +826,8 @@ class _WordGameState extends State<WordGame> {
                                             } else {
                                               foc2[index].previousFocus();
                                             }
-                                            if (value.endTheGame == false) {
+                                            if (value.endTheGame == false &&
+                                                value.isRight2 == null) {
                                               if (index == 5 ||
                                                   (index == 4 &&
                                                       lockNumber == 5)) {
@@ -843,7 +849,9 @@ class _WordGameState extends State<WordGame> {
                                               }
                                             }
                                           },
-                                          readOnly: index == lockNumber,
+                                          readOnly: value.endTheGame ||
+                                              index == lockNumber ||
+                                              value.isRight2 != null,
                                           contextMenuBuilder:
                                               (context, editableTextState) =>
                                                   SizedBox(),
@@ -985,6 +993,7 @@ class _WordGameState extends State<WordGame> {
                                           focusNode: foc3[index],
                                           autofocus: false,
                                           showCursor: true,
+                                          cursorColor: Colors.white,
                                           onChanged: (v) {
                                             if (controller3[index]
                                                 .text
@@ -996,7 +1005,8 @@ class _WordGameState extends State<WordGame> {
                                             } else {
                                               foc3[index].previousFocus();
                                             }
-                                            if (value.endTheGame == false) {
+                                            if (value.endTheGame == false &&
+                                                value.isRight3 == null) {
                                               if (index == 5 ||
                                                   (index == 4 &&
                                                       lockNumber == 5)) {
@@ -1018,7 +1028,9 @@ class _WordGameState extends State<WordGame> {
                                               }
                                             }
                                           },
-                                          readOnly: index == lockNumber,
+                                          readOnly: value.endTheGame ||
+                                              index == lockNumber ||
+                                              value.isRight3 != null,
                                           contextMenuBuilder:
                                               (context, editableTextState) =>
                                                   SizedBox(),
@@ -1134,6 +1146,9 @@ class _WordGameState extends State<WordGame> {
                           Row(
                             children: List.generate(6, (index) {
                               if (index == value.indexLock3) {
+                                foc4[index].canRequestFocus = false;
+                                foc4[lockNumber].canRequestFocus = false;
+
                                 print(value.helpChar);
                                 controller4[value.indexLock3].text =
                                     value.helpChar;
@@ -1164,21 +1179,31 @@ class _WordGameState extends State<WordGame> {
                                     focusNode: foc4[index],
                                     autofocus: false,
                                     showCursor: true,
+                                    cursorColor: Colors.white,
                                     onChanged: (v) {
+                                      if (index + 1 == value.indexLock3 ||
+                                          (value.indexLock3 == lockNumber + 1 &&
+                                              index == lockNumber - 1) ||
+                                          (value.indexLock3 == lockNumber - 1 &&
+                                              index == value.indexLock3 - 1)) {
+                                        foc4[index].nextFocus();
+                                      }
+
                                       if (controller4[index].text.isNotEmpty) {
                                         foc4[index].nextFocus();
-                                        if (index + 1 == lockNumber ||
-                                            index == value.indexLock3) {
+                                        if (index + 1 == lockNumber) {
                                           foc4[index].nextFocus();
                                         }
                                       } else {
                                         foc4[index].previousFocus();
                                       }
-                                      if (value.endTheGame == false) {
+                                      if (value.endTheGame == false &&
+                                          value.isRight4 == null) {
+                                        print(value.indexLock3);
                                         if (index == 5 ||
+                                            (index == 4 && (lockNumber == 5)) ||
                                             (index == 4 &&
-                                                (lockNumber == 5 ||
-                                                    value.indexLock3 == 4))) {
+                                                value.indexLock3 == 5)) {
                                           String word = '';
                                           controller4.forEach(
                                             (element) => word += element.text,
@@ -1196,8 +1221,10 @@ class _WordGameState extends State<WordGame> {
                                         }
                                       }
                                     },
-                                    readOnly: index == lockNumber ||
-                                        index == value.indexLock3,
+                                    readOnly: value.endTheGame ||
+                                        index == lockNumber ||
+                                        index == value.indexLock3 ||
+                                        value.isRight4 != null,
                                     contextMenuBuilder:
                                         (context, editableTextState) =>
                                             SizedBox(),
@@ -1246,7 +1273,7 @@ class _WordGameState extends State<WordGame> {
                                           autofocus: false,
                                           showCursor: false,
                                           onChanged: (value) {},
-                                          readOnly: true,
+                                          readOnly: value.endTheGame || true,
                                           contextMenuBuilder:
                                               (context, editableTextState) =>
                                                   SizedBox(),

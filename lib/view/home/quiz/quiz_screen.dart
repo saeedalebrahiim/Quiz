@@ -256,7 +256,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                   build: (BuildContext context, double time) {
                                     if (time == 7) {
                                       StartQuizController.hintPercent(
-                                          reduceCoin: true,
+                                          reduceCoin: false,
                                           questionId: context
                                               .watch<QuizState>()
                                               .quiz!

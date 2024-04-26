@@ -84,12 +84,7 @@ class WordController {
           context.read<WordGameState>().getWord(word);
         } else {
           context.read<WordGameState>().wrongAnswerd(index: index);
-          if (res["message"].toString().contains("Yarış") == true) {
-            lost(context);
-            getLastWord(context: context).then((v) {
-              context.read<WordGameState>().getWord(v);
-            });
-          }
+
           if (res["message"].toString().contains("Wrong") == false &&
               res["message"].toString().contains("Yarış") == false &&
               res["message"].toString().contains(" ") == false &&
@@ -99,8 +94,10 @@ class WordController {
           }
           if (index == 3) {
             print(prevHelp);
+            prevHelp = prevHelp.toLowerCase();
             String newWord = res['message'];
             String char = newWord.replaceAll("-", "");
+            char = char.toLowerCase();
             char = char.replaceAll(prevHelp, "");
 
             String newS = newWord.replaceAll(prevHelp, "-");
@@ -115,6 +112,12 @@ class WordController {
                   char: char,
                   index: indexNew,
                 );
+          }
+          if (res["message"].toString().contains("Yarış") == true) {
+            lost(context);
+            getLastWord(context: context).then((v) {
+              context.read<WordGameState>().getWord(v);
+            });
           }
           // if (index == 4) {
           //   lost(context);
