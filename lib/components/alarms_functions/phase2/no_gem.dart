@@ -63,7 +63,7 @@ noGemAlert(BuildContext context) {
                     const Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        'Coin yetersiz. Coin toplama için reklam izleyin.',
+                        'Yetersiz GEM',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.black, fontWeight: FontWeight.w700),
@@ -92,14 +92,14 @@ noGemAlert(BuildContext context) {
                         );
                       },
                       child: Container(
-                        width: 100,
+                        width: 220,
                         height: 35,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
                             color: Colors.black),
                         child: const Center(
                           child: Text(
-                            'Coin paketleri',
+                            'GEM paketlerini incelle',
                             style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w700,

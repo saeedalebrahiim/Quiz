@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           width: 40,
                         ),
                         Text(
-                          'giriş',
+                          'Giriş',
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,

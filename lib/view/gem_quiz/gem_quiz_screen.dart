@@ -10,9 +10,15 @@ import 'package:bilgimizde/global.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-class GemQuizScreen extends StatelessWidget {
+class GemQuizScreen extends StatefulWidget {
   const GemQuizScreen({super.key});
 
+  @override
+  State<GemQuizScreen> createState() => _GemQuizScreenState();
+}
+
+class _GemQuizScreenState extends State<GemQuizScreen> {
+  bool tappedOnce = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -176,7 +182,7 @@ class GemQuizScreen extends StatelessWidget {
                         ),
                       ),
                       const Text(
-                        'go to the wallet',
+                        'Cüzdana git',
                         style: TextStyle(
                             color: Color.fromARGB(255, 246, 176, 71),
                             fontWeight: FontWeight.w600),
@@ -188,35 +194,89 @@ class GemQuizScreen extends StatelessWidget {
               const SizedBox(
                 height: 25,
               ),
-              const GemListComponents(
+              GemListComponents(
                 price: '50',
                 gemCount: '25',
                 id: 1,
+                onTap: () {
+                  if (!tappedOnce) {
+                    tappedOnce = true;
+                    WordController.startWordGame(context: context, lvlId: 1)
+                        .whenComplete(() {
+                      tappedOnce = false;
+                    });
+                  }
+                },
               ),
-              const GemListComponents(
+              GemListComponents(
                 price: '150',
                 gemCount: '60',
                 id: 2,
+                onTap: () {
+                  if (!tappedOnce) {
+                    tappedOnce = true;
+                    WordController.startWordGame(context: context, lvlId: 2)
+                        .whenComplete(() {
+                      tappedOnce = false;
+                    });
+                  }
+                },
               ),
-              const GemListComponents(
+              GemListComponents(
                 price: '350',
                 gemCount: '105',
                 id: 3,
+                onTap: () {
+                  if (!tappedOnce) {
+                    tappedOnce = true;
+                    WordController.startWordGame(context: context, lvlId: 3)
+                        .whenComplete(() {
+                      tappedOnce = false;
+                    });
+                  }
+                },
               ),
-              const GemListComponents(
+              GemListComponents(
                 price: '850',
                 gemCount: '170',
                 id: 4,
+                onTap: () {
+                  if (!tappedOnce) {
+                    tappedOnce = true;
+                    WordController.startWordGame(context: context, lvlId: 4)
+                        .whenComplete(() {
+                      tappedOnce = false;
+                    });
+                  }
+                },
               ),
-              const GemListComponents(
+              GemListComponents(
                 price: '1500',
                 gemCount: '225',
                 id: 5,
+                onTap: () {
+                  if (!tappedOnce) {
+                    tappedOnce = true;
+                    WordController.startWordGame(context: context, lvlId: 5)
+                        .whenComplete(() {
+                      tappedOnce = false;
+                    });
+                  }
+                },
               ),
-              const GemListComponents(
+              GemListComponents(
                 price: '3000',
                 gemCount: '300',
                 id: 6,
+                onTap: () {
+                  if (!tappedOnce) {
+                    tappedOnce = true;
+                    WordController.startWordGame(context: context, lvlId: 6)
+                        .whenComplete(() {
+                      tappedOnce = false;
+                    });
+                  }
+                },
               ),
               // SizedBox(
               //   width: MediaQuery.of(context).size.width - 20,
@@ -257,9 +317,11 @@ class GemListComponents extends StatelessWidget {
         vertical: 10,
       ),
       child: InkWell(
-        onTap: () {
-          WordController.startWordGame(context: context, lvlId: id);
-        },
+        onDoubleTap: () {},
+        onTap: onTap,
+        // onTap: () {
+        //   WordController.startWordGame(context: context, lvlId: id);
+        // },
         child: Container(
           height: 85,
           decoration: BoxDecoration(

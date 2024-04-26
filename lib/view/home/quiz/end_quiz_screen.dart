@@ -341,13 +341,6 @@ class _EndQuizScreenState extends State<EndQuizScreen> {
                                     fontWeight: FontWeight.w600,
                                     fontSize: 14),
                               ),
-                              const Text(
-                                'at end of the season',
-                                style: TextStyle(
-                                    color: Colors.orange,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 14),
-                              ),
                             ],
                           )
                         : const SizedBox();

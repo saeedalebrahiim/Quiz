@@ -592,7 +592,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                                 width: 4,
                                               ),
                                               Text(
-                                                "Claim 1 Gem every 1000 right answers",
+                                                "1,000 doğru karşılığı 1 GEM kazan",
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                     fontSize: 12,
@@ -627,7 +627,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                   const Padding(
                                     padding: EdgeInsets.only(top: 4.0),
                                     child: Text(
-                                      "Play",
+                                      "İstediğini seç",
                                       style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold),

@@ -56,13 +56,13 @@ exitAlarm2(BuildContext context) {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Are you sure you are about to exit ',
+                    'Bu sayfayı terk etmek mı istiyorsun? ',
                     style: TextStyle(fontWeight: FontWeight.w600),
                   ),
-                  Text(
-                    'Exit?',
-                    style: TextStyle(fontWeight: FontWeight.w600),
-                  )
+                  // Text(
+                  //   'Exit?',
+                  //   style: TextStyle(fontWeight: FontWeight.w600),
+                  // )
                 ],
               ),
             ),
@@ -85,7 +85,7 @@ exitAlarm2(BuildContext context) {
                             fit: BoxFit.fill)),
                     child: const Center(
                       child: Text(
-                        'No',
+                        'Hayır',
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold),
                       ),
@@ -115,7 +115,7 @@ exitAlarm2(BuildContext context) {
                             fit: BoxFit.fill)),
                     child: const Center(
                       child: Text(
-                        'Yes',
+                        'Evet ',
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold),
                       ),

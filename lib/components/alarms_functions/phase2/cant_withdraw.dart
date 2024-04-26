@@ -26,7 +26,7 @@ cantWithdraw(BuildContext context) {
             Padding(
               padding: EdgeInsets.all(8),
               child: Text(
-                "Your wallet is empty, you cannot withdraw",
+                "Minimum çekilebilecek miktar 100 liradır.",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontWeight: FontWeight.w600,

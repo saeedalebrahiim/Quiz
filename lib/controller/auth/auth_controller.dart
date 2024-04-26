@@ -45,10 +45,15 @@ class AuthController {
         //show error message
         body['message'] == "1"
             ? noAccountAlarm(context)
-            : QuickAlert.show(
-                context: context,
-                type: QuickAlertType.error,
-                text: "Password or Username is wrong!");
+            : body['statusCode'] == 2
+                ? QuickAlert.show(
+                    context: context,
+                    type: QuickAlertType.error,
+                    text: "Hesabınız engellendi")
+                : QuickAlert.show(
+                    context: context,
+                    type: QuickAlertType.error,
+                    text: "Şifre yanlış");
       }
     } catch (e) {
       print(e);
@@ -104,7 +109,9 @@ class AuthController {
       final postResult = await api.apiV1AuthRegisterPost(
           body: AuthDto(userName: userName, autoCode: ""));
       print(postResult);
-      if (postResult.body["isSuccess"] == true) {
+      final body = jsonDecode(postResult.bodyString);
+
+      if (body["isSuccess"] == true) {
         //send to otp confirm
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => PinCodeScreen(
@@ -116,7 +123,7 @@ class AuthController {
         QuickAlert.show(
             context: context,
             type: QuickAlertType.error,
-            text: "Something went wrong!");
+            text: "You have already registered.");
       }
     } catch (e) {
       print(e);
@@ -170,6 +177,8 @@ class AuthController {
         password: password,
       );
       print(postResult);
+      final body = jsonDecode(postResult.bodyString);
+
       if (postResult.body["isSuccess"] == true) {
         //save token
         // SharedPreferences sp = await SharedPreferences.getInstance();

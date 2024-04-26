@@ -48,7 +48,7 @@ lost(BuildContext context) {
             Padding(
               padding: EdgeInsets.all(8),
               child: Text(
-                "It's okay, try again",
+                "Malesef kazanamadın",
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   color: Colors.black,

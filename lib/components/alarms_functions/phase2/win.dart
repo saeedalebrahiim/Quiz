@@ -48,7 +48,7 @@ win(BuildContext context) {
             Padding(
               padding: EdgeInsets.all(4),
               child: Text(
-                "I congratulate you on your success",
+                "Kazandın ve cüzdan bakiyene para eklendi",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontWeight: FontWeight.w600,

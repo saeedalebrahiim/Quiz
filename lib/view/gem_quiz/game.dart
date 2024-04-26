@@ -1203,7 +1203,12 @@ class _WordGameState extends State<WordGame> {
                                         if (index == 5 ||
                                             (index == 4 && (lockNumber == 5)) ||
                                             (index == 4 &&
-                                                value.indexLock3 == 5)) {
+                                                value.indexLock3 == 5) ||
+                                            (index == 3 &&
+                                                (lockNumber == 5 ||
+                                                    lockNumber == 4) &&
+                                                (value.indexLock3 == 5 ||
+                                                    value.indexLock3 == 4))) {
                                           String word = '';
                                           controller4.forEach(
                                             (element) => word += element.text,
@@ -1330,7 +1335,7 @@ class _WordGameState extends State<WordGame> {
                                       ),
                                     ),
                                     const Text(
-                                      'go to the wallet',
+                                      'Cüzdana git',
                                       style: TextStyle(
                                           color:
                                               Color.fromARGB(255, 246, 176, 71),
@@ -1395,7 +1400,7 @@ class _WordGameState extends State<WordGame> {
                                             MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            'Gems',
+                                            'Seçenekler',
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.w700,
