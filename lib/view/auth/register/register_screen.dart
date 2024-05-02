@@ -140,8 +140,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     // login(context: context, userName: _numberController.text)
                     //     .then((value) {});
                     String number = "${crCode.code}${_numberController.text}";
-                    AuthController.register(userName: number, context: context)
-                        .then((value) => (value) => visible = true);
+                    if (_numberController.text.length >= 9) {
+                      AuthController.register(
+                              userName: number, context: context)
+                          .then((value) => (value) => visible = true);
+                    }
                   },
                   child: Visibility(
                     replacement: Container(
