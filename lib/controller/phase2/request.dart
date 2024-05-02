@@ -27,14 +27,11 @@ class RequestController {
 
         final body = jsonDecode(postResult.bodyString)["data"];
         final res = jsonDecode(postResult.bodyString);
-        print(res);
-        print(body);
 
         if (res["isSuccess"] == true) {
           List data = body;
           List<TransactionDto> values = [];
           print("in succ");
-          print(data);
 
           for (var v in data) {
             TransactionDto value = TransactionDto.fromJson(v);
@@ -59,8 +56,7 @@ class RequestController {
 
         final body = jsonDecode(postResult.bodyString)["data"];
         final res = jsonDecode(postResult.bodyString);
-        print(res);
-        print(body);
+
         // QuickAlert.show(
         //     context: context, type: QuickAlertType.info, title: res["message"]);
         // if (res["isSuccess"] == true) {}

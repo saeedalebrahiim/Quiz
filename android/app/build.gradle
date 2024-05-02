@@ -14,7 +14,7 @@ if (localPropertiesFile.exists()) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '18'
+    flutterVersionCode = '19'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
@@ -82,4 +82,5 @@ flutter {
 
 dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
+    implementation("com.google.android.ump:user-messaging-platform:2.2.0")
 }

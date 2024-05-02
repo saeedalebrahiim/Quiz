@@ -18,7 +18,7 @@ class SettingsController {
           List data = body["data"];
           List<BankDto> values = [];
           print("befor");
-          print(data);
+
           for (var v in data) {
             BankDto value = BankDto.fromJson(v);
             values.add(value);

@@ -23,11 +23,11 @@ class ProfileController {
     try {
       await api.apiV1UserManagerViewProfileGet().then((postResult) {
         final body = jsonDecode(postResult.bodyString);
-        print(body);
+
         print(body["isSuccess"]);
         if (body["isSuccess"] == true) {
           final data = body["data"];
-          print(data);
+
           print(data['fullName']);
           ProfileDto profile = ProfileDto.fromJson(data);
           print(profile.userPicUrl);
@@ -59,7 +59,7 @@ class ProfileController {
       )
           .then((postResult) {
         final body = jsonDecode(postResult.bodyString);
-        print(body);
+
         print(body["isSuccess"]);
       });
     } catch (e) {
@@ -125,7 +125,7 @@ class ProfileController {
 
       http.Response response =
           await http.Response.fromStream(await request.send());
-      print(response.body);
+
       getProfile(context: context);
     } catch (e) {
       print(e);
@@ -138,7 +138,7 @@ class ProfileController {
     try {
       await api.apiV1ScoreGetUserBalanceGet().then((postResult) {
         final body = jsonDecode(postResult.bodyString);
-        print(body);
+
         print(body["isSuccess"]);
         if (body["isSuccess"] == true) {
           context.read<ProfileState>().getUserBalance(value: body["data"]);
@@ -156,7 +156,7 @@ class ProfileController {
     try {
       await api.apiV1UserManagerAddScorePost(count: count).then((postResult) {
         final body = jsonDecode(postResult.bodyString);
-        print(body);
+
         print(body["isSuccess"]);
         if (body["isSuccess"] == true) {
           gotCoin(context, count);
@@ -174,7 +174,7 @@ class ProfileController {
     try {
       await api.apiV1ScoreAddScorePost(isWatchAds: true).then((postResult) {
         final body = jsonDecode(postResult.bodyString);
-        print(body);
+
         print(body["isSuccess"]);
         if (body["isSuccess"] == true) {
           getUserBalance(context: context);
@@ -194,7 +194,7 @@ class ProfileController {
           .apiV1UserManagerUpdatePhoneNumberGet(newPhonenumber: number)
           .then((postResult) {
         final body = jsonDecode(postResult.bodyString);
-        print(body);
+
         print(body["isSuccess"]);
         if (body["isSuccess"] == true) {
           Navigator.of(context).push(
@@ -225,7 +225,7 @@ class ProfileController {
               body: UpdatePhoneNumberDto(phoneNumber: number, verifyCode: otp))
           .then((postResult) {
         final body = jsonDecode(postResult.bodyString);
-        print(body);
+
         print(body["isSuccess"]);
         if (body["isSuccess"] == true) {
           Navigator.of(context).pushAndRemoveUntil(
@@ -253,7 +253,7 @@ class ProfileController {
     try {
       await api.apiV1UserManagerRemoveUserProfilePost().then((postResult) {
         final body = jsonDecode(postResult.bodyString);
-        print(body);
+
         print(body["isSuccess"]);
         if (body["isSuccess"] == true) {
           ret = true;

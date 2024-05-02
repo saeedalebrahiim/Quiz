@@ -33,14 +33,12 @@ class WordController {
           .then((postResult) {
         print("called start");
         ProfileController.getProfile(context: context);
-        print(postResult);
+
         if (postResult.isSuccessful == false) {
           noGemAlert(context);
         }
         final String body = jsonDecode(postResult.bodyString)["data"];
         final res = jsonDecode(postResult.bodyString);
-        print(res);
-        print(body);
 
         if (res["isSuccess"] == true) {
           Navigator.of(context).push(
@@ -76,8 +74,7 @@ class WordController {
 
         final body = jsonDecode(postResult.bodyString)["data"];
         final res = jsonDecode(postResult.bodyString);
-        print(res);
-        print(body);
+
         if (res["isSuccess"] == true) {
           context.read<WordGameState>().rightAnswerd(index: index);
           win(context);
@@ -146,8 +143,6 @@ class WordController {
       await api.apiV1WordGameViewUserLastWordGameGet().then((postResult) {
         final String body = jsonDecode(postResult.bodyString)["data"];
         final res = jsonDecode(postResult.bodyString);
-        print(res);
-        print(body);
 
         if (res["isSuccess"] == true) {
           List lis = List.from(jsonDecode(postResult.bodyString)["data"]);
@@ -178,8 +173,6 @@ class WordController {
 
         final body = jsonDecode(postResult.bodyString)["data"];
         final res = jsonDecode(postResult.bodyString);
-        print(res);
-        print(body);
 
         if (res["isSuccess"] == true) {
           ProfileController.getProfile(context: context);

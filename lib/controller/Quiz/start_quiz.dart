@@ -20,8 +20,6 @@ class StartQuizController {
 
         final body = jsonDecode(postResult.bodyString)["data"];
         final res = jsonDecode(postResult.bodyString);
-        print(res);
-        print(body);
 
         if (res["isSuccess"] == true) {
           List<QuestionsDto> questions = [];
@@ -79,8 +77,6 @@ class StartQuizController {
 
         final body = jsonDecode(postResult.bodyString)["data"];
         final res = jsonDecode(postResult.bodyString);
-        print(res);
-        print(body);
 
         // if (res["isSuccess"] == true) {
         if (isLast ?? false) {
@@ -118,8 +114,6 @@ class StartQuizController {
 
         final body = jsonDecode(postResult.bodyString)["data"];
         final res = jsonDecode(postResult.bodyString);
-        print(res);
-        print(body);
 
         if (res["isSuccess"] == true) {
           Navigator.of(context).pushReplacement(
@@ -153,8 +147,6 @@ class StartQuizController {
 
         final body = jsonDecode(postResult.bodyString)["data"];
         final res = jsonDecode(postResult.bodyString);
-        print(res);
-        print(body);
 
         if (res["isSuccess"] == true) {
           UserPercentageHint hint = UserPercentageHint.fromJson(body);
@@ -180,8 +172,7 @@ class StartQuizController {
 
         final body = jsonDecode(postResult.bodyString)["data"];
         final res = jsonDecode(postResult.bodyString);
-        print(res);
-        print(body);
+
         List n = body;
         print(n);
         if (res["isSuccess"] == true) {
@@ -207,8 +198,8 @@ class StartQuizController {
 
         final body = jsonDecode(postResult.bodyString)["data"];
         final res = jsonDecode(postResult.bodyString);
-        // print(res);
-        // print(body);
+        //
+        //
         // List n = body;
         // print(n);
         // if (res["isSuccess"] == true) {
@@ -230,8 +221,8 @@ class StartQuizController {
 
         final body = jsonDecode(postResult.bodyString)["data"];
         context.read<QuizState>().getIsTop50(value: body);
-        // print(res);
-        // print(body);
+        //
+        //
         // List n = body;
         // print(n);
         // if (res["isSuccess"] == true) {

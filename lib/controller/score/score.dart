@@ -19,8 +19,6 @@ class ScoreController {
 
         final body = jsonDecode(postResult.bodyString)["data"];
         final res = jsonDecode(postResult.bodyString);
-        print(res);
-        print(body);
 
         if (res["isSuccess"] == true) {
           context.read<ScoreState>().getuserRank(values: body);
@@ -42,8 +40,6 @@ class ScoreController {
 
         final body = jsonDecode(postResult.bodyString)["data"]["top10"];
         final res = jsonDecode(postResult.bodyString);
-        print(res);
-        print(body);
 
         if (res["isSuccess"] == true) {
           context.read<ScoreState>().resetDailyUsers();
@@ -75,8 +71,6 @@ class ScoreController {
 
         final body = jsonDecode(postResult.bodyString)["data"];
         final res = jsonDecode(postResult.bodyString);
-        print(res);
-        print(body);
 
         if (res["isSuccess"] == true) {
           context.read<ScoreState>().resetDailyRewards();
@@ -104,8 +98,6 @@ class ScoreController {
 
         final body = jsonDecode(postResult.bodyString)["data"];
         final res = jsonDecode(postResult.bodyString);
-        print(res);
-        print(body);
 
         if (res["isSuccess"] == true) {
           context.read<ScoreState>().resetMonthlyUsers();
@@ -143,8 +135,6 @@ class ScoreController {
 
         final body = jsonDecode(postResult.bodyString)["data"];
         final res = jsonDecode(postResult.bodyString);
-        print(res);
-        print(body);
 
         if (res["isSuccess"] == true) {
           context.read<ScoreState>().resetAllUsers();
@@ -179,8 +169,8 @@ class ScoreController {
 
   //       final body = jsonDecode(postResult.bodyString)["data"];
   //       final res = jsonDecode(postResult.bodyString);
-  //       print(res);
-  //       print(body);
+  //
+  //
 
   //       if (res["isSuccess"] == true) {
   //         context.read<ScoreState>().resetAllUsers();
@@ -208,8 +198,6 @@ class ScoreController {
 
         final body = jsonDecode(postResult.bodyString)["data"];
         final res = jsonDecode(postResult.bodyString);
-        print(res);
-        print(body);
 
         if (res["isSuccess"] == true) {
           context.read<ScoreState>().resetAllRewards();

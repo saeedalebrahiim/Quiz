@@ -25,14 +25,13 @@ class FAQController {
           'Authorization': 'Bearer $token'
         },
       );
-      print(response.body);
+
       final body = jsonDecode(response.body);
 
       if (body["isSuccess"] == true) {
         List data = body["data"];
         List<FAQDto> values = [];
         print("in succ");
-        print(data);
 
         for (var v in data) {
           FAQDto value = FAQDto.fromJson(v);
@@ -53,7 +52,7 @@ class FAQController {
       //   //   final data = body["data"];
       //   //   List<FAQDto> values = [];
       //   //   print("befor");
-      //   //   print(data);
+      //   //
       //   //   Map.from(data).forEach((key, v) {
       //   //     FAQDto value = FAQDto.fromJson(v);
       //   //     values.add(value);

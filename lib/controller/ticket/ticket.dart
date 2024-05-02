@@ -34,7 +34,7 @@ class TicketController {
         List data = body["data"];
         List<TicketDto> values = [];
         print("befor");
-        print(data);
+
         for (var v in data) {
           TicketDto value = TicketDto.fromJson(v);
           values.add(value);
@@ -69,7 +69,7 @@ class TicketController {
         List data = body["data"]["items"];
         List<ChatDto> values = [];
         print("befor");
-        print(data);
+
         for (var v in data) {
           ChatDto value = ChatDto.fromJson(v);
           values.add(value);
@@ -101,7 +101,7 @@ class TicketController {
               desc: desc, id: id, subject: subject)
           .then((postResult) {
         final body = jsonDecode(postResult.bodyString);
-        print(body);
+
         print(body["message"]);
 
         if (body["isSuccess"] == true) {
@@ -143,7 +143,7 @@ class TicketController {
           .apiV1TicketAddTicketAnswerByUserPost(desc: desc, id: 0, ticketId: id)
           .then((postResult) {
         final body = jsonDecode(postResult.bodyString);
-        print(body);
+
         print(body["message"]);
 
         if (body["isSuccess"] == true) {

@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:user_messaging_platform/user_messaging_platform.dart';
+
 class AdMobService {
   //bottom banner
   static String? get bannerAdUnitId {
@@ -37,5 +39,33 @@ class AdMobService {
       return '';
     }
     return null;
+  }
+
+  // Using a field to access the plugin makes access less verbose and allows
+  // replacing it with a mock for testing.
+  static final ump = UserMessagingPlatform.instance;
+
+  // Only applicable to iOS.
+  static TrackingAuthorizationStatus? trackingAuthorizationStatus;
+
+  // The latest consent info.
+  static ConsentInformation? consentInformation;
+  // Settings for ConsentRequestParameters
+  static bool tagAsUnderAgeOfConsent = false;
+  static bool debugSettings = false;
+  static String? testDeviceId;
+
+  static Future<void> loadTrackingAuthorizationStatus() {
+    return ump.getTrackingAuthorizationStatus().then((status) {
+      trackingAuthorizationStatus = status;
+    });
+  }
+
+  static Future<void> loadConsentInfo() {
+    print("loaded");
+    return ump.getConsentInfo().then((info) {
+      consentInformation = info;
+      print("loaded $info");
+    });
   }
 }

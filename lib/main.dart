@@ -3,6 +3,7 @@ import 'package:bilgimizde/provider/request_state.dart';
 import 'package:bilgimizde/provider/wordguess.dart';
 import 'package:bilgimizde/services/admob.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -23,6 +24,13 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 
 AppOpenAd? _appOpenAd;
 _createAppOpenAd() {
+  if (defaultTargetPlatform == TargetPlatform.iOS) {
+    AdMobService.loadTrackingAuthorizationStatus();
+  }
+
+  // Load the latest `ConsentInformation`. This will always work but does
+  // not request the latest info from the UMP backend.
+  AdMobService.loadConsentInfo();
   try {
     AppOpenAd.load(
       adUnitId: AdMobService.appOpenAdUnitId!,

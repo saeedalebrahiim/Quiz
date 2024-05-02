@@ -24,10 +24,8 @@ class AuthController {
     try {
       final postResult = await api.apiV1AuthTokenPost(
           username: userName, password: password, userRole: 2);
-      print(postResult);
-      final body = jsonDecode(postResult.bodyString);
 
-      print(body['message']);
+      final body = jsonDecode(postResult.bodyString);
 
       if (postResult.isSuccessful == true) {
         //save token
@@ -113,7 +111,7 @@ class AuthController {
     try {
       final postResult = await api.apiV1AuthRegisterPost(
           body: AuthDto(userName: userName, autoCode: ""));
-      print(postResult);
+
       final body = jsonDecode(postResult.bodyString);
 
       if (body["isSuccess"] == true) {
@@ -144,7 +142,7 @@ class AuthController {
       final postResult = await api.apiV1AuthAccountVerificationPost(
           body: AuthConfirmDto(
               userName: userName, verificationCode: verificationCode, id: 0));
-      print(postResult);
+
       if (postResult.body["access_token"] != "") {
         //send to select password
         SharedPreferences sp = await SharedPreferences.getInstance();
@@ -181,7 +179,7 @@ class AuthController {
         confirmPassword: confirmPassword,
         password: password,
       );
-      print(postResult);
+
       final body = jsonDecode(postResult.bodyString);
 
       if (postResult.body["isSuccess"] == true) {
@@ -215,7 +213,7 @@ class AuthController {
     try {
       final postResult =
           await api.apiV1AuthForgotPasswordPost(userName: userName);
-      print(postResult);
+
       final body = jsonDecode(postResult.bodyString);
 
       if (body["isSuccess"] == true) {
@@ -255,7 +253,7 @@ class AuthController {
           confirmPassword: confirmPassword,
           password: password,
           verificationCode: verificationCode);
-      print(postResult);
+
       if (postResult.isSuccessful == true) {
         //navigate
         Navigator.of(context).pushAndRemoveUntil(
@@ -282,10 +280,7 @@ class AuthController {
   }) async {
     final api = Quiz.create(interceptors: [TokenIndicator()]);
     try {
-      print(" this is isAuth");
-
       final postResult = await api.apiV1AuthIsAuthenticatedGet();
-      print("$postResult this is isAuth");
       if (postResult.isSuccessful == true) {
         //navigate
       } else {

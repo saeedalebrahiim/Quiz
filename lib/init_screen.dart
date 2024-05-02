@@ -26,7 +26,7 @@ class _InitScreenState extends State<InitScreen> {
     //check for admob services
     SharedPreferences sp = await SharedPreferences.getInstance();
     bool any = sp.containsKey("token");
-    print(any);
+    // print(any);
     if (any == false) {
       setState(() {
         isNeedLogin = true;
