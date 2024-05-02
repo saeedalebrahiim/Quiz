@@ -65,7 +65,6 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-
   _createAppOpenAd();
 
   await Firebase.initializeApp(
@@ -179,10 +178,12 @@ Future<void> _showNotification({
       AndroidNotificationDetails('1', 'bilgimizde',
           channelDescription: 'bilgimizde Notification Channel',
           importance: Importance.max,
+          icon: '@mipmap/ic_launcher',
           priority: Priority.high,
           ticker: 'ticker');
-  const NotificationDetails notificationDetails =
-      NotificationDetails(android: androidNotificationDetails);
+  const NotificationDetails notificationDetails = NotificationDetails(
+    android: androidNotificationDetails,
+  );
   await flutterLocalNotificationsPlugin.show(
     id,
     title,
