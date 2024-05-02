@@ -46,10 +46,15 @@ class AuthController {
         body['message'] == "1"
             ? noAccountAlarm(context)
             : body['statusCode'] == 2
-                ? QuickAlert.show(
-                    context: context,
-                    type: QuickAlertType.error,
-                    text: "Hesabınız engellendi")
+                ? body['message'].toString().contains("password")
+                    ? QuickAlert.show(
+                        context: context,
+                        type: QuickAlertType.error,
+                        text: "Yanlış şifre girdiniz")
+                    : QuickAlert.show(
+                        context: context,
+                        type: QuickAlertType.error,
+                        text: body['message'])
                 : QuickAlert.show(
                     context: context,
                     type: QuickAlertType.error,

@@ -53,7 +53,7 @@ class AllRatingCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      isRank == true ? '${score.id}.' : "$index .",
+                      isRank == true ? '${score.id + 1}.' : "$index .",
                       style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,

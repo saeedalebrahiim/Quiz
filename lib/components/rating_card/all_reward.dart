@@ -82,7 +82,10 @@ class AllReward extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    score.applicationUserFullName ?? "",
+                    score.applicationUserFullName ??
+                        (score.applicationUserUserName!
+                                .replaceRange(0, 7, "XXXXXXX") ??
+                            "-"),
                     style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
