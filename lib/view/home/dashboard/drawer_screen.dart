@@ -65,7 +65,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                   width: 10,
                                 ),
                                 Text(
-                                  'ana sayfa',
+                                  'Ana sayfa',
                                   style: TextStyle(color: Colors.white),
                                 )
                               ],

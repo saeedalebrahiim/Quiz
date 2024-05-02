@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:bilgimizde/controller/auth/auth_controller.dart';
 import 'package:bilgimizde/view/auth/login/forgetpw_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -154,19 +155,23 @@ class _LoginScreenState extends State<LoginScreen> {
                           width: 48,
                         ),
                         InkWell(
-                          onTap: () {
-                            Navigator.of(context).push(
-                              PageRouteBuilder(
-                                  pageBuilder: (_, __, ___) =>
-                                      const ForgetPwScreen(),
-                                  transitionDuration:
-                                      const Duration(milliseconds: 500),
-                                  transitionsBuilder: (_, a, __, c) =>
-                                      FadeTransition(
-                                        opacity: a,
-                                        child: c,
-                                      )),
-                            );
+                          onTap: () async {
+                            // Navigator.of(context).push(
+                            //   PageRouteBuilder(
+                            //       pageBuilder: (_, __, ___) =>
+                            //           const ForgetPwScreen(),
+                            //       transitionDuration:
+                            //           const Duration(milliseconds: 500),
+                            //       transitionsBuilder: (_, a, __, c) =>
+                            //           FadeTransition(
+                            //             opacity: a,
+                            //             child: c,
+                            //           )),
+                            // );
+                            if (!await launchUrl(Uri.parse(
+                                "https://wa.me/+905551875798?text=Merhaba%20%C5%9Eifremi%20Unuttum"))) {
+                              throw Exception('Could not launch ');
+                            }
                           },
                           child: const Text(
                             'Parolanızı mı unuttunuz',

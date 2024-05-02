@@ -45,7 +45,7 @@ class _WalleteScreenState extends State<WalleteScreen> {
       onWillPop: () async {
         Navigator.of(context).pushAndRemoveUntil(
           PageRouteBuilder(
-            pageBuilder: (_, __, ___) => const HomeScreen(),
+            pageBuilder: (_, __, ___) => const GemQuizScreen(),
             transitionDuration: const Duration(milliseconds: 500),
             transitionsBuilder: (_, a, __, c) => FadeTransition(
               opacity: a,

@@ -123,7 +123,7 @@ class AuthController {
         QuickAlert.show(
             context: context,
             type: QuickAlertType.error,
-            text: "You have already registered.");
+            text: "Sizin zaten hesabınız var");
       }
     } catch (e) {
       print(e);
@@ -211,7 +211,9 @@ class AuthController {
       final postResult =
           await api.apiV1AuthForgotPasswordPost(userName: userName);
       print(postResult);
-      if (postResult.isSuccessful == true) {
+      final body = jsonDecode(postResult.bodyString);
+
+      if (body["isSuccess"] == true) {
         //navigate
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
