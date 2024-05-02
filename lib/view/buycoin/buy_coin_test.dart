@@ -25,18 +25,27 @@ final bool _kAutoConsume = Platform.isIOS || true;
 // const String _kUpgradeId = 'upgrade';
 // const String _kSilverSubscriptionId = 'subscription_silver';
 // const String _kGoldSubscriptionId = 'subscription_gold';
-const List<String> _kProductIds = <String>[
-  "10.p",
-  "50.p",
-  "80.p",
-  "100.p",
-  "150.p",
-  "180.p",
-  // _kConsumableId,
-  // _kUpgradeId,
-  // _kSilverSubscriptionId,
-  // _kGoldSubscriptionId,
-];
+List<String> _kProductIds = Platform.isIOS
+    ? <String>[
+        "New10Coin",
+        "New50Coin",
+        "New80Coin",
+        "New100Coin",
+        "New150Coin",
+        "New180Coin",
+      ]
+    : <String>[
+        "10.p",
+        "50.p",
+        "80.p",
+        "100.p",
+        "150.p",
+        "180.p",
+        // _kConsumableId,
+        // _kUpgradeId,
+        // _kSilverSubscriptionId,
+        // _kGoldSubscriptionId,
+      ];
 
 class BuyCoin extends StatefulWidget {
   const BuyCoin({super.key});
@@ -125,14 +134,27 @@ class BuyCoinState extends State<BuyCoin> {
       return;
     }
 
-    final List<String> consumables = [
-      "10.p",
-      "50.p",
-      "80.p",
-      "100.p",
-      "150.p",
-      "180.p",
-    ];
+    final List<String> consumables = Platform.isIOS
+        ? <String>[
+            "New10Coin",
+            "New50Coin",
+            "New80Coin",
+            "New100Coin",
+            "New150Coin",
+            "New180Coin",
+          ]
+        : <String>[
+            "10.p",
+            "50.p",
+            "80.p",
+            "100.p",
+            "150.p",
+            "180.p",
+            // _kConsumableId,
+            // _kUpgradeId,
+            // _kSilverSubscriptionId,
+            // _kGoldSubscriptionId,
+          ];
     setState(() {
       _isAvailable = isAvailable;
       _products = productDetailResponse.productDetails;
@@ -568,14 +590,27 @@ class BuyCoinState extends State<BuyCoin> {
 
   Future<void> consume(String id) async {
     // await ConsumableStore.consume(id);
-    final List<String> consumables = [
-      "10.p",
-      "50.p",
-      "80.p",
-      "100.p",
-      "150.p",
-      "180.p",
-    ];
+    final List<String> consumables = Platform.isIOS
+        ? <String>[
+            "New10Coin",
+            "New50Coin",
+            "New80Coin",
+            "New100Coin",
+            "New150Coin",
+            "New180Coin",
+          ]
+        : <String>[
+            "10.p",
+            "50.p",
+            "80.p",
+            "100.p",
+            "150.p",
+            "180.p",
+            // _kConsumableId,
+            // _kUpgradeId,
+            // _kSilverSubscriptionId,
+            // _kGoldSubscriptionId,
+          ];
     setState(() {
       _consumables = consumables;
     });
@@ -591,14 +626,27 @@ class BuyCoinState extends State<BuyCoin> {
     // IMPORTANT!! Always verify purchase details before delivering the product.
     // if (purchaseDetails.productID == _kConsumableId) {
     // await ConsumableStore.save(purchaseDetails.purchaseID!);
-    final List<String> consumables = [
-      "10.p",
-      "50.p",
-      "80.p",
-      "100.p",
-      "150.p",
-      "180.p",
-    ];
+    final List<String> consumables = Platform.isIOS
+        ? <String>[
+            "New10Coin",
+            "New50Coin",
+            "New80Coin",
+            "New100Coin",
+            "New150Coin",
+            "New180Coin",
+          ]
+        : <String>[
+            "10.p",
+            "50.p",
+            "80.p",
+            "100.p",
+            "150.p",
+            "180.p",
+            // _kConsumableId,
+            // _kUpgradeId,
+            // _kSilverSubscriptionId,
+            // _kGoldSubscriptionId,
+          ];
     setState(() {
       _purchasePending = false;
       _consumables = consumables;

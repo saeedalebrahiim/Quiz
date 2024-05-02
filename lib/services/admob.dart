@@ -8,7 +8,7 @@ class AdMobService {
     if (Platform.isAndroid) {
       return 'ca-app-pub-3940256099942544/6300978111';
     } else if (Platform.isIOS) {
-      return '';
+      return 'ca-app-pub-5344393902349142/4149237845';
     }
     return null;
   }
@@ -17,7 +17,7 @@ class AdMobService {
     if (Platform.isAndroid) {
       return 'ca-app-pub-5344393902349142/9190629770';
     } else if (Platform.isIOS) {
-      return '';
+      return 'ca-app-pub-5344393902349142/3326276612';
     }
     return null;
   }
@@ -27,7 +27,7 @@ class AdMobService {
     if (Platform.isAndroid) {
       return 'ca-app-pub-5344393902349142/8395158826';
     } else if (Platform.isIOS) {
-      return '';
+      return 'ca-app-pub-5344393902349142/2920891740';
     }
     return null;
   }
@@ -36,7 +36,7 @@ class AdMobService {
     if (Platform.isAndroid) {
       return 'ca-app-pub-5344393902349142/9532980678';
     } else if (Platform.isIOS) {
-      return '';
+      return 'ca-app-pub-5344393902349142/8263883618';
     }
     return null;
   }

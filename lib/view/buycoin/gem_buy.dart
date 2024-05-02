@@ -26,15 +26,25 @@ final bool _kAutoConsume = Platform.isIOS || true;
 // const String _kUpgradeId = 'upgrade';
 // const String _kSilverSubscriptionId = 'subscription_silver';
 // const String _kGoldSubscriptionId = 'subscription_gold';
-const List<String> _kProductIds = <String>[
-  "50gem",
-  "100gem",
-  "200gem",
-  // _kConsumableId,
-  // _kUpgradeId,
-  // _kSilverSubscriptionId,
-  // _kGoldSubscriptionId,
-];
+List<String> _kProductIds = Platform.isIOS
+    ? <String>[
+        "gem50",
+        "gem100",
+        "gem200",
+        // _kConsumableId,
+        // _kUpgradeId,
+        // _kSilverSubscriptionId,
+        // _kGoldSubscriptionId,
+      ]
+    : <String>[
+        "50gem",
+        "100gem",
+        "200gem",
+        // _kConsumableId,
+        // _kUpgradeId,
+        // _kSilverSubscriptionId,
+        // _kGoldSubscriptionId,
+      ];
 
 class BuyGem extends StatefulWidget {
   const BuyGem({super.key});
@@ -123,11 +133,25 @@ class BuyGemState extends State<BuyGem> {
       return;
     }
 
-    final List<String> consumables = [
-      "50gem",
-      "100gem",
-      "200gem",
-    ];
+    final List<String> consumables = Platform.isIOS
+        ? <String>[
+            "gem50",
+            "gem100",
+            "gem200",
+            // _kConsumableId,
+            // _kUpgradeId,
+            // _kSilverSubscriptionId,
+            // _kGoldSubscriptionId,
+          ]
+        : <String>[
+            "50gem",
+            "100gem",
+            "200gem",
+            // _kConsumableId,
+            // _kUpgradeId,
+            // _kSilverSubscriptionId,
+            // _kGoldSubscriptionId,
+          ];
     setState(() {
       _isAvailable = isAvailable;
       _products = productDetailResponse.productDetails;
@@ -564,11 +588,25 @@ class BuyGemState extends State<BuyGem> {
 
   Future<void> consume(String id) async {
     // await ConsumableStore.consume(id);
-    final List<String> consumables = [
-      "50gem",
-      "100gem",
-      "200gem",
-    ];
+    final List<String> consumables = Platform.isIOS
+        ? <String>[
+            "gem50",
+            "gem100",
+            "gem200",
+            // _kConsumableId,
+            // _kUpgradeId,
+            // _kSilverSubscriptionId,
+            // _kGoldSubscriptionId,
+          ]
+        : <String>[
+            "50gem",
+            "100gem",
+            "200gem",
+            // _kConsumableId,
+            // _kUpgradeId,
+            // _kSilverSubscriptionId,
+            // _kGoldSubscriptionId,
+          ];
     setState(() {
       _consumables = consumables;
     });
@@ -584,11 +622,25 @@ class BuyGemState extends State<BuyGem> {
     // IMPORTANT!! Always verify purchase details before delivering the product.
     // if (purchaseDetails.productID == _kConsumableId) {
     // await ConsumableStore.save(purchaseDetails.purchaseID!);
-    final List<String> consumables = [
-      "50gem",
-      "100gem",
-      "200gem",
-    ];
+    final List<String> consumables = Platform.isIOS
+        ? <String>[
+            "gem50",
+            "gem100",
+            "gem200",
+            // _kConsumableId,
+            // _kUpgradeId,
+            // _kSilverSubscriptionId,
+            // _kGoldSubscriptionId,
+          ]
+        : <String>[
+            "50gem",
+            "100gem",
+            "200gem",
+            // _kConsumableId,
+            // _kUpgradeId,
+            // _kSilverSubscriptionId,
+            // _kGoldSubscriptionId,
+          ];
     setState(() {
       _purchasePending = false;
       _consumables = consumables;
