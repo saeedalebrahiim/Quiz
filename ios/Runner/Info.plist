@@ -47,7 +47,7 @@
 	<true/>
 
 	<key>GADApplicationIdentifier</key>
-	<string>1622558615</string>
+	<string>ca-app-pub-5344393902349142~6681562418</string>
 
 	    <!-- Permission options for the `appTrackingTransparency` -->
     <key>NSUserTrackingUsageDescription</key>
