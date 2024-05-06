@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bilgimizde/provider/ad.dart';
 import 'package:bilgimizde/provider/request_state.dart';
 import 'package:bilgimizde/provider/wordguess.dart';
@@ -68,9 +70,11 @@ void main() async {
   _createAppOpenAd();
 
   await Firebase.initializeApp(
-    options: const FirebaseOptions(
+    options: FirebaseOptions(
       apiKey: "AIzaSyAI6EsIbqUzPFByuOgFk3NSpxmKwfquXlo",
-      appId: "1:775999130252:android:d9fc09fabb9bc12ff2c9a9",
+      appId: Platform.isAndroid
+          ? "1:775999130252:android:d9fc09fabb9bc12ff2c9a9"
+          : "1:775999130252:ios:04caa03c7cbc8824f2c9a9",
       messagingSenderId: "775999130252",
       projectId: "bilgimizde-android",
     ),

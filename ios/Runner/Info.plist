@@ -49,6 +49,11 @@
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-5344393902349142~6681562418</string>
 
+	<key>NSAppTransportSecurity</key>
+	<dict>
+    	<key>NSAllowsLocalNetworking</key>
+    	<true/>
+	</dict>
 	    <!-- Permission options for the `appTrackingTransparency` -->
     <key>NSUserTrackingUsageDescription</key>
     <string>appTrackingTransparency</string>
