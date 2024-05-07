@@ -110,7 +110,10 @@ class AuthController {
     final api = Quiz.create();
     try {
       final postResult = await api.apiV1AuthRegisterPost(
-          body: AuthDto(userName: userName, autoCode: ""));
+          body: AuthDto(
+        userName: userName,
+        autoCode: "",
+      ));
 
       final body = jsonDecode(postResult.bodyString);
 
@@ -173,7 +176,7 @@ class AuthController {
       {required String password,
       required String confirmPassword,
       required BuildContext context}) async {
-    final api = Quiz.create();
+    final api = Quiz.create(interceptors: [TokenIndicator()]);
     try {
       final postResult = await api.apiV1AuthSelectPasswordPost(
         confirmPassword: confirmPassword,

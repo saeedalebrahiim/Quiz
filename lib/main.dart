@@ -187,6 +187,9 @@ Future<void> _showNotification({
           ticker: 'ticker');
   const NotificationDetails notificationDetails = NotificationDetails(
     android: androidNotificationDetails,
+    iOS: DarwinNotificationDetails(
+      
+    ),
   );
   await flutterLocalNotificationsPlugin.show(
     id,
