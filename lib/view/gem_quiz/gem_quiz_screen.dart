@@ -265,7 +265,7 @@ class _GemQuizScreenState extends State<GemQuizScreen> {
                 },
               ),
               GemListComponents(
-                price: '3000',
+                price: '3,000',
                 gemCount: '300',
                 id: 6,
                 onTap: () {

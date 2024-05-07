@@ -324,36 +324,36 @@ class BuyGemState extends State<BuyGem> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Image.asset(
-                      'lib/assets/images/buycoinimg.png',
-                      width: 200,
-                      height: 100,
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 25, right: 25),
-                      child: Text(
-                        maxLines: 10,
-                        'At Bilgimizdeh, we understand that trust is an important factor when making in-app purchases. Thats why we use Google Pay, a secure and reliable payment platform trusted by millions of users worldwide.',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 12),
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 25, right: 25, top: 10),
-                      child: Text(
-                        maxLines: 10,
-                        'At Bilgimizdeh, we understand that trust is an important factor when making in-app purchases. Thats why we use Google Pay, a secure and reliable payment platform trusted by millions of users worldwide.',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 12),
-                      ),
-                    ),
+                    // Image.asset(
+                    //   'lib/assets/images/buycoinimg.png',
+                    //   width: 200,
+                    //   height: 100,
+                    // ),
+                    // const SizedBox(
+                    //   height: 20,
+                    // ),
+                    // const Padding(
+                    //   padding: EdgeInsets.only(left: 25, right: 25),
+                    //   child: Text(
+                    //     maxLines: 10,
+                    //     'At Bilgimizdeh, we understand that trust is an important factor when making in-app purchases. Thats why we use Google Pay, a secure and reliable payment platform trusted by millions of users worldwide.',
+                    //     style: TextStyle(
+                    //         color: Colors.white,
+                    //         fontWeight: FontWeight.w600,
+                    //         fontSize: 12),
+                    //   ),
+                    // ),
+                    // const Padding(
+                    //   padding: EdgeInsets.only(left: 25, right: 25, top: 10),
+                    //   child: Text(
+                    //     maxLines: 10,
+                    //     'At Bilgimizdeh, we understand that trust is an important factor when making in-app purchases. Thats why we use Google Pay, a secure and reliable payment platform trusted by millions of users worldwide.',
+                    //     style: TextStyle(
+                    //         color: Colors.white,
+                    //         fontWeight: FontWeight.w600,
+                    //         fontSize: 12),
+                    //   ),
+                    // ),
                     const SizedBox(
                       height: 100,
                     )
