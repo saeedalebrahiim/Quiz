@@ -787,15 +787,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         // AuthController.logOut(context: context);
                         AuthController.deleteAccount(context: context);
                       },
-                      child: SizedBox(
+                      child: const SizedBox(
                         width: 100,
                         height: 34,
                         child: Row(children: [
-                          const SizedBox(
+                          SizedBox(
                             width: 5,
                           ),
-                          const Text(
-                            'Delete Account',
+                          Text(
+                            'Hesabı sil',
                             style: TextStyle(
                                 color: Colors.red, fontWeight: FontWeight.w600),
                           )

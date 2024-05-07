@@ -251,7 +251,7 @@ class _GemQuizScreenState extends State<GemQuizScreen> {
                 },
               ),
               GemListComponents(
-                price: '1500',
+                price: '1,500',
                 gemCount: '225',
                 id: 5,
                 onTap: () {
@@ -351,7 +351,7 @@ class GemListComponents extends StatelessWidget {
                     const Icon(
                       Icons.diamond,
                       size: 22,
-                      color: Colors.white,
+                      color: Colors.red,
                     ),
                     const SizedBox(
                       width: 2,
