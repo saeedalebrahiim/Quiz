@@ -1,3 +1,4 @@
+import 'package:bilgimizde/view/welcome/enter_screen.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -222,7 +223,12 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 InkWell(
                   onTap: () {
-                    Navigator.pop(context);
+                    // Navigator.pop(context);
+                    Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(
+                          builder: (context) => EnterScreen(),
+                        ),
+                        (route) => false);
                   },
                   child: Container(
                     width: 68,

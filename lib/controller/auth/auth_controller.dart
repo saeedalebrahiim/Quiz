@@ -184,12 +184,15 @@ class AuthController {
       );
 
       final body = jsonDecode(postResult.bodyString);
-
-      if (postResult.body["isSuccess"] == true) {
+      print(body);
+      if (body["access_token"] != "") {
         //save token
         // SharedPreferences sp = await SharedPreferences.getInstance();
         // String token = postResult.body["access_token"];
         // sp.setString("token", token);
+        SharedPreferences sp = await SharedPreferences.getInstance();
+        String token = postResult.body["access_token"];
+        sp.setString("token", token);
         //navigate
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(

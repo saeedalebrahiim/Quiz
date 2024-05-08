@@ -1,3 +1,4 @@
+import 'package:bilgimizde/controller/auth/auth_controller.dart';
 import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
@@ -223,16 +224,20 @@ class _RegisterStepTwoScreenState extends State<RegisterStepTwoScreen> {
                         isIgnoring: true,
                       );
                     } else {
-                      Navigator.of(context).push(
-                        PageRouteBuilder(
-                            pageBuilder: (_, __, ___) => const HomeScreen(),
-                            transitionDuration:
-                                const Duration(milliseconds: 500),
-                            transitionsBuilder: (_, a, __, c) => FadeTransition(
-                                  opacity: a,
-                                  child: c,
-                                )),
-                      );
+                      AuthController.selectPassword(
+                          password: _userPasswordController.text,
+                          confirmPassword: _confirmPasswordController.text,
+                          context: context);
+                      // Navigator.of(context).push(
+                      //   PageRouteBuilder(
+                      //       pageBuilder: (_, __, ___) => const HomeScreen(),
+                      //       transitionDuration:
+                      //           const Duration(milliseconds: 500),
+                      //       transitionsBuilder: (_, a, __, c) => FadeTransition(
+                      //             opacity: a,
+                      //             child: c,
+                      //           )),
+                      // );
                     }
                   },
                   child: Container(
