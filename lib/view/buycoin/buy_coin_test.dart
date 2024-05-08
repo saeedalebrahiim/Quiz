@@ -688,6 +688,12 @@ class BuyCoinState extends State<BuyCoin> {
           final bool valid = await _verifyPurchase(purchaseDetails);
           if (valid) {
             unawaited(deliverProduct(purchaseDetails));
+            await ProfileController.addToBalance(
+              context: context,
+              count: int.parse(
+                purchaseDetails.productID.replaceAll(".p", ""),
+              ),
+            );
           } else {
             _handleInvalidPurchase(purchaseDetails);
             return;
@@ -704,12 +710,6 @@ class BuyCoinState extends State<BuyCoin> {
         if (purchaseDetails.pendingCompletePurchase) {
           await _inAppPurchase.completePurchase(purchaseDetails);
           // print(purchaseDetails.productID.toString() + " thisis");
-          await ProfileController.addToBalance(
-            context: context,
-            count: int.parse(
-              purchaseDetails.productID.replaceAll(".p", ""),
-            ),
-          );
         }
       }
     }

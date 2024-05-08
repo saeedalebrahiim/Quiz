@@ -682,6 +682,13 @@ class BuyGemState extends State<BuyGem> {
           final bool valid = await _verifyPurchase(purchaseDetails);
           if (valid) {
             unawaited(deliverProduct(purchaseDetails));
+            int? count =
+                int.tryParse(purchaseDetails.productID.replaceAll("gem", ""));
+            WordController.addInAppPurchase(
+              context: context,
+              subscriptionId: purchaseDetails.purchaseID,
+              count: count,
+            );
           } else {
             _handleInvalidPurchase(purchaseDetails);
             return;
@@ -700,13 +707,13 @@ class BuyGemState extends State<BuyGem> {
           print(purchaseDetails.purchaseID.toString() + " this is");
           // print(purchaseDetails.productID.toString() + " thisis");
           if (purchaseDetails.status == PurchaseStatus.purchased) {
-            int? count =
-                int.tryParse(purchaseDetails.productID.replaceAll("gem", ""));
-            WordController.addInAppPurchase(
-              context: context,
-              subscriptionId: purchaseDetails.purchaseID,
-              count: count,
-            );
+            // int? count =
+            //     int.tryParse(purchaseDetails.productID.replaceAll("gem", ""));
+            // WordController.addInAppPurchase(
+            //   context: context,
+            //   subscriptionId: purchaseDetails.purchaseID,
+            //   count: count,
+            // );
           }
         }
       }
