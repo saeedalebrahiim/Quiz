@@ -699,13 +699,15 @@ class BuyGemState extends State<BuyGem> {
           await _inAppPurchase.completePurchase(purchaseDetails);
           print(purchaseDetails.purchaseID.toString() + " this is");
           // print(purchaseDetails.productID.toString() + " thisis");
-          int? count =
-              int.tryParse(purchaseDetails.productID.replaceAll("gem", ""));
-          await WordController.addInAppPurchase(
-            context: context,
-            subscriptionId: purchaseDetails.purchaseID,
-            count: count,
-          );
+          if (purchaseDetails.status == PurchaseStatus.purchased) {
+            int? count =
+                int.tryParse(purchaseDetails.productID.replaceAll("gem", ""));
+            WordController.addInAppPurchase(
+              context: context,
+              subscriptionId: purchaseDetails.purchaseID,
+              count: count,
+            );
+          }
         }
       }
     }
