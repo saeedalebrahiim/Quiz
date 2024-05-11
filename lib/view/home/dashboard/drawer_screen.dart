@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:bilgimizde/controller/settings/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:bilgimizde/controller/FAQ/faq.dart';
@@ -204,6 +205,8 @@ class _DrawerScreenState extends State<DrawerScreen> {
                           padding: const EdgeInsets.all(8.0),
                           child: InkWell(
                             onTap: () {
+                              // SettingsController.getSettings(context: context);
+
                               Navigator.of(context).push(
                                 PageRouteBuilder(
                                     pageBuilder: (_, __, ___) =>
