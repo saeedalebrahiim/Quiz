@@ -56,12 +56,12 @@
 	</dict>
 	    <!-- Permission options for the `appTrackingTransparency` -->
     <key>NSUserTrackingUsageDescription</key>
-    <string>appTrackingTransparency</string>
+    <string>This identifier will be used to deliver personalized ads to you.You have the option not to give us this permission</string>
 	    <!-- Permission options for the `camera` group -->
     <key>NSCameraUsageDescription</key>
-    <string>This app uses the camera to capture photos</string>
+    <string>Why do we request access to the camera? This is just a request to set your profile picture and is completely optional. (We guarantee the protection of your information)</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-    <string>This app uses the photo libary to attach photos</string>
+    <string>Why do we request access to the image library? This is just a request to set your profile picture and is completely optional. (We guarantee the protection of your information)</string>
 	    <!-- Permission options for the `mediaLibrary` group -->
     <key>NSAppleMusicUsageDescription</key>
     <string>Music!</string>

@@ -26,13 +26,12 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 
 AppOpenAd? _appOpenAd;
 _createAppOpenAd() {
-  if (defaultTargetPlatform == TargetPlatform.iOS) {
-    AdMobService.loadTrackingAuthorizationStatus();
-  }
-
   // Load the latest `ConsentInformation`. This will always work but does
   // not request the latest info from the UMP backend.
   AdMobService.loadConsentInfo();
+  if (defaultTargetPlatform == TargetPlatform.iOS) {
+    AdMobService.loadTrackingAuthorizationStatus();
+  }
   try {
     AppOpenAd.load(
       adUnitId: AdMobService.appOpenAdUnitId!,
@@ -187,9 +186,7 @@ Future<void> _showNotification({
           ticker: 'ticker');
   const NotificationDetails notificationDetails = NotificationDetails(
     android: androidNotificationDetails,
-    iOS: DarwinNotificationDetails(
-      
-    ),
+    iOS: DarwinNotificationDetails(),
   );
   await flutterLocalNotificationsPlugin.show(
     id,
