@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:bilgimizde/provider/ad.dart';
 import 'package:bilgimizde/provider/request_state.dart';
 import 'package:bilgimizde/provider/wordguess.dart';
@@ -28,10 +29,10 @@ AppOpenAd? _appOpenAd;
 _createAppOpenAd() {
   // Load the latest `ConsentInformation`. This will always work but does
   // not request the latest info from the UMP backend.
-  AdMobService.loadConsentInfo();
   if (defaultTargetPlatform == TargetPlatform.iOS) {
     AdMobService.loadTrackingAuthorizationStatus();
   }
+  AdMobService.loadConsentInfo();
   try {
     AppOpenAd.load(
       adUnitId: AdMobService.appOpenAdUnitId!,
@@ -61,12 +62,11 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  MobileAds.instance.initialize();
+
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  _createAppOpenAd();
 
   await Firebase.initializeApp(
     options: FirebaseOptions(
@@ -101,6 +101,12 @@ void main() async {
       print('Message also contained a notification: ${message.notification}');
     }
   });
+
+  // Show tracking authorization dialog and ask for permission
+  final status = await AppTrackingTransparency.requestTrackingAuthorization();
+  MobileAds.instance.initialize();
+
+  _createAppOpenAd();
 
   runApp(
     MultiProvider(
