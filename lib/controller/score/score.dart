@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:bilgimizde/provider/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:bilgimizde/model/api/swagger/generated/quiz.swagger.dart';
@@ -54,6 +55,7 @@ class ScoreController {
               jsonDecode(postResult.bodyString)["data"]["userScore"];
           UserScore usScore = UserScore.fromJson(userScore);
           context.read<ScoreState>().getUserDay(value: usScore);
+          context.read<ProfileState>().getUserRank(value: usScore);
         }
       });
     } catch (e) {

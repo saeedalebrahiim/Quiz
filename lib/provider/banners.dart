@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 class BannersState extends ChangeNotifier {
   List<String> banners = [
-    "lib/assets/images/mainburger.png",
-    "lib/assets/images/mainburger.png",
-    "lib/assets/images/mainburger.png"
+    // "lib/assets/images/mainburger.png",
+    "",
+    "",
+    ""
   ];
   List<String> bannersURL = ["", "", ""];
   changeBanners(

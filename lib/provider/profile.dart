@@ -1,3 +1,4 @@
+import 'package:bilgimizde/model/dto/score.dart';
 import 'package:flutter/material.dart';
 import 'package:bilgimizde/model/dto/profile.dart';
 
@@ -13,6 +14,13 @@ class ProfileState extends ChangeNotifier {
   int userBalance = 0;
   getUserBalance({required int value}) {
     userBalance = value;
+    notifyListeners();
+  }
+
+  UserScore? userScore;
+
+  getUserRank({required UserScore value}) {
+    userScore = value;
     notifyListeners();
   }
 }

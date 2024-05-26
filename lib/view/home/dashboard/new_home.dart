@@ -1,6 +1,7 @@
 import 'package:bilgimizde/components/alarms_functions/no_coin.dart';
 import 'package:bilgimizde/components/alarms_functions/wifi_alarm.dart';
 import 'package:bilgimizde/controller/auth/auth_controller.dart';
+import 'package:bilgimizde/controller/score/score.dart';
 import 'package:bilgimizde/provider/quiz.dart';
 import 'package:bilgimizde/provider/wordguess.dart';
 import 'package:bilgimizde/services/internet_listener.dart';
@@ -8,6 +9,7 @@ import 'package:bilgimizde/view/buycoin/buy_coin_screen.dart';
 import 'package:bilgimizde/view/buycoin/buy_coin_test.dart';
 import 'package:bilgimizde/view/gem_quiz/gem_quiz_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_count_timer/easy_count_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -22,6 +24,7 @@ import 'package:bilgimizde/provider/drawer_state.dart';
 import 'package:bilgimizde/provider/profile.dart';
 import 'package:bilgimizde/services/admob.dart';
 import 'package:bilgimizde/view/profile/profile_screen.dart';
+import 'package:timer_count_down/timer_count_down.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NewMainScreen extends StatefulWidget {
@@ -57,6 +60,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
     BannersController.getBanners(context: context);
     ProfileController.getProfile(context: context);
     ProfileController.getUserBalance(context: context);
+    ScoreController.getUserChangeScoreDay(context: context);
     context.read<DrawerState>().changeVisibleTwo();
   }
 
@@ -615,166 +619,318 @@ class _NewMainScreenState extends State<NewMainScreen> {
                           ),
 
                           Consumer<ProfileState>(
-                            builder: (context, value, child) => Container(
-                              width: 342,
-                              height: 156,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Column(
-                                children: [
-                                  const Padding(
-                                    padding: EdgeInsets.only(top: 4.0),
-                                    child: Text(
-                                      "İstediğini seç",
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
+                            builder: (context, value, child) {
+                              //  int second = 0;
+                              print(value.userScore!.changes.toString() +
+                                  "changes");
+
+                              int time = DateTime.now().hour + 1;
+                              int state = time < 5
+                                  ? 1
+                                  : time < 10 && time >= 5
+                                      ? 2
+                                      : time < 15 && time >= 10
+                                          ? 3
+                                          : time < 20 && time >= 15
+                                              ? 4
+                                              : 0;
+                              int change = state == 1
+                                  ? 250
+                                  : state == 2
+                                      ? 500
+                                      : state == 3
+                                          ? 750
+                                          : state == 4
+                                              ? 1000
+                                              : 100000000;
+
+                              bool canPlay = false;
+                              if (value.userScore != null) {
+                                canPlay = value.userScore!.changes < change;
+                                print(canPlay);
+                              }
+
+                              // int sec = time < 6
+                              //     ? (21600) -
+                              //         (((DateTime.now().hour * 60) +
+                              //                 (DateTime.now().minute)) *
+                              //             60)
+                              //     : time < 12 && time >= 6
+                              //         ? (43200) -
+                              //             (((DateTime.now().hour * 60) +
+                              //                     (DateTime.now().minute)) *
+                              //                 60)
+                              //         : time < 18 && time >= 12
+                              //             ? (64800) -
+                              //                 (((DateTime.now().hour * 60) +
+                              //                         (DateTime.now().minute)) *
+                              //                     60)
+                              //             : time < 24 && time >= 18
+                              //                 ? (86400) -
+                              //                     (((DateTime.now().hour * 60) +
+                              //                             (DateTime.now()
+                              //                                 .minute)) *
+                              //                         60)
+                              //                 : 0;
+
+                              return Container(
+                                width: 342,
+                                height: 156,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Column(
+                                  children: [
+                                    const Padding(
+                                      padding: EdgeInsets.only(top: 4.0),
+                                      child: Text(
+                                        "İstediğini seç",
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                     ),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            InkWell(
-                                              onDoubleTap: () {},
-                                              onTap: () {
-                                                // Navigator.of(context).push(
-                                                //   PageRouteBuilder(
-                                                //       pageBuilder: (_, __, ___) =>
-                                                //           const QuizScreen(),
-                                                //       transitionDuration:
-                                                //           const Duration(milliseconds: 500),
-                                                //       transitionsBuilder: (_, a, __, c) =>
-                                                //           FadeTransition(
-                                                //             opacity: a,
-                                                //             child: c,
-                                                //           )),
-                                                // );
-                                                if (!tapedPlay) {
-                                                  print("tapped $tapedPlay");
-                                                  tapedPlay = true;
-                                                  print("tapped $tapedPlay");
-                                                  ConnectionStatusListener()
-                                                      .checkConnection()
-                                                      .then((value) {
-                                                    if (!value) {
-                                                      wifiAlarm(context);
-                                                    }
-                                                  });
-                                                  if (value.userBalance >= 2) {
-                                                    context
-                                                        .read<QuizState>()
-                                                        .resetCount();
-                                                    StartQuizController
-                                                            .startQuiz(
-                                                                context:
-                                                                    context)
-                                                        .then((value) {
-                                                      ProfileController
-                                                          .getUserBalance(
-                                                              context: context);
-                                                      tapedPlay = false;
-                                                    });
-                                                  } else {
-                                                    noCoinAlert(context);
-                                                    tapedPlay = false;
-                                                  }
-                                                }
-                                              },
-                                              child: Container(
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        value.userScore != null
+                                            ? Padding(
                                                 padding:
-                                                    const EdgeInsets.all(12),
-                                                decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      color: Colors.amber,
-                                                      width: 2),
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
+                                                    const EdgeInsets.all(8.0),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    !canPlay
+                                                        ? CountTimer(
+                                                            format: CountTimerFormat
+                                                                .hoursMinutesSeconds,
+                                                            timeTextStyle:
+                                                                const TextStyle(
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize:
+                                                                        12),
+                                                            colonsTextStyle:
+                                                                const TextStyle(
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize:
+                                                                        12),
+                                                            descriptionTextStyle:
+                                                                const TextStyle(
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize:
+                                                                        8),
+                                                            enableDescriptions:
+                                                                true,
+                                                            controller:
+                                                                CountTimerController(
+                                                              endTime: DateTime(
+                                                                  DateTime.now()
+                                                                      .year,
+                                                                  DateTime.now()
+                                                                      .month,
+                                                                  DateTime.now()
+                                                                      .day,
+                                                                  state == 1
+                                                                      ? 5
+                                                                      : state ==
+                                                                              2
+                                                                          ? 10
+                                                                          : state == 3
+                                                                              ? 15
+                                                                              : state == 4
+                                                                                  ? 20
+                                                                                  : 23,
+                                                                  59,
+                                                                  59),
+
+                                                              //  DateTime.now().add(
+                                                              //   const Duration(
+                                                              //     days: 5,
+                                                              //     hours: 14,
+                                                              //     minutes: 27,
+                                                              //     seconds: 34,
+                                                              //   ),
+                                                              // ),
+                                                            ),
+                                                            onEnd: () {
+                                                              print(
+                                                                  "Timer finished");
+                                                              canPlay = true;
+                                                              setState(() {});
+                                                            },
+                                                          )
+                                                        : InkWell(
+                                                            onDoubleTap: () {},
+                                                            onTap: () {
+                                                              // Navigator.of(context).push(
+                                                              //   PageRouteBuilder(
+                                                              //       pageBuilder: (_, __, ___) =>
+                                                              //           const QuizScreen(),
+                                                              //       transitionDuration:
+                                                              //           const Duration(milliseconds: 500),
+                                                              //       transitionsBuilder: (_, a, __, c) =>
+                                                              //           FadeTransition(
+                                                              //             opacity: a,
+                                                              //             child: c,
+                                                              //           )),
+                                                              // );
+                                                              if (!tapedPlay) {
+                                                                print(
+                                                                    "tapped $tapedPlay");
+                                                                tapedPlay =
+                                                                    true;
+                                                                print(
+                                                                    "tapped $tapedPlay");
+                                                                ConnectionStatusListener()
+                                                                    .checkConnection()
+                                                                    .then(
+                                                                        (value) {
+                                                                  if (!value) {
+                                                                    wifiAlarm(
+                                                                        context);
+                                                                  }
+                                                                });
+                                                                if (value
+                                                                        .userBalance >=
+                                                                    2) {
+                                                                  context
+                                                                      .read<
+                                                                          QuizState>()
+                                                                      .resetCount();
+                                                                  StartQuizController.startQuiz(
+                                                                          context:
+                                                                              context)
+                                                                      .then(
+                                                                          (value) {
+                                                                    ProfileController.getUserBalance(
+                                                                        context:
+                                                                            context);
+                                                                    tapedPlay =
+                                                                        false;
+                                                                  });
+                                                                } else {
+                                                                  noCoinAlert(
+                                                                      context);
+                                                                  tapedPlay =
+                                                                      false;
+                                                                }
+                                                              }
+                                                            },
+                                                            child: Container(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(12),
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                border: Border.all(
+                                                                    color: Colors
+                                                                        .amber,
+                                                                    width: 2),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            10),
+                                                              ),
+                                                              child: const Icon(
+                                                                Icons
+                                                                    .question_mark,
+                                                                color: Colors
+                                                                    .amber,
+                                                                size: 40,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                    const SizedBox(
+                                                      height: 4,
+                                                    ),
+                                                    canPlay
+                                                        ? const Text(
+                                                            "Günlük ve aylık para",
+                                                            style: TextStyle(
+                                                              fontSize: 14,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                          )
+                                                        : const Text(
+                                                            "Beklemelisin",
+                                                            style: TextStyle(
+                                                              fontSize: 14,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                          )
+                                                  ],
                                                 ),
-                                                child: const Icon(
-                                                  Icons.question_mark,
-                                                  color: Colors.amber,
-                                                  size: 40,
-                                                ),
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              height: 4,
-                                            ),
-                                            const Text(
-                                              "Günlük ve aylık para",
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            InkWell(
-                                              onTap: () {
-                                                context
-                                                    .read<WordGameState>()
-                                                    .startGame();
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        GemQuizScreen(),
+                                              )
+                                            : CircularProgressIndicator(),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              InkWell(
+                                                onTap: () {
+                                                  context
+                                                      .read<WordGameState>()
+                                                      .startGame();
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          GemQuizScreen(),
+                                                    ),
+                                                  );
+                                                },
+                                                child: Container(
+                                                  padding:
+                                                      const EdgeInsets.all(12),
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                        color: Colors.red,
+                                                        width: 2),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
                                                   ),
-                                                );
-                                              },
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.all(12),
-                                                decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      color: Colors.red,
-                                                      width: 2),
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                ),
-                                                child: const Icon(
-                                                  Icons.text_rotate_up_rounded,
-                                                  color: Colors.red,
-                                                  size: 40,
+                                                  child: const Icon(
+                                                    Icons
+                                                        .text_rotate_up_rounded,
+                                                    color: Colors.red,
+                                                    size: 40,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                            const SizedBox(
-                                              height: 4,
-                                            ),
-                                            const Text(
-                                              "Anlık para",
-                                              style: TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold,
+                                              const SizedBox(
+                                                height: 4,
                                               ),
-                                            )
-                                          ],
+                                              const Text(
+                                                "Anlık para",
+                                                style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              )
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
                           ),
                           // Consumer<ProfileState>(
                           //   builder: (context, value, child) => Padding(
