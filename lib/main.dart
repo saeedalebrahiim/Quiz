@@ -164,10 +164,33 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: const WelcomeScreen(),
       theme: ThemeData(
-          fontFamily: "PlusJakartaSans",
-          bottomSheetTheme:
-              const BottomSheetThemeData(backgroundColor: Colors.transparent)),
+        fontFamily: "PlusJakartaSans",
+        bottomSheetTheme:
+            const BottomSheetThemeData(backgroundColor: Colors.transparent),
+      ),
+      builder: (BuildContext context, Widget? widget) {
+        ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
+          return const CustomError();
+        };
+        return widget!;
+      },
     );
+  }
+}
+
+class CustomError extends StatelessWidget {
+  const CustomError({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+        backgroundColor: Colors.white,
+        body: Center(
+          child: SizedBox(
+              height: 100, width: 100, child: CircularProgressIndicator()),
+        ));
   }
 }
 
