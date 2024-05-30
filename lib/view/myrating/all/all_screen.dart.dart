@@ -1,8 +1,8 @@
 import 'package:bilgimizde/view/buycoin/buy_coin_test.dart';
 import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
 import 'package:bilgimizde/view/rules/rules_screen.dart';
-import 'package:easy_count_timer/easy_count_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:bilgimizde/components/rating_card/all_reward.dart';
@@ -290,8 +290,8 @@ class _AllScreenState extends State<AllScreen> {
                                       style: TextStyle(
                                           color: Colors.yellow, fontSize: 12),
                                     ),
-                                    CountTimer(
-                                      format: CountTimerFormat
+                                    TimerCountdown(
+                                      format: CountDownTimerFormat
                                           .daysHoursMinutesSeconds,
                                       timeTextStyle: const TextStyle(
                                           color: Colors.white, fontSize: 28),
@@ -300,26 +300,34 @@ class _AllScreenState extends State<AllScreen> {
                                       descriptionTextStyle: const TextStyle(
                                           color: Colors.white, fontSize: 12),
                                       enableDescriptions: true,
-                                      controller: CountTimerController(
-                                        endTime: DateTime(
-                                            DateTime.now().year,
-                                            DateTime.now().month,
-                                            DateTime(DateTime.now().year,
-                                                    DateTime.now().month + 1, 0)
-                                                .day,
-                                            23,
-                                            59,
-                                            59),
-
-                                        //  DateTime.now().add(
-                                        //   const Duration(
-                                        //     days: 5,
-                                        //     hours: 14,
-                                        //     minutes: 27,
-                                        //     seconds: 34,
-                                        //   ),
-                                        // ),
-                                      ),
+                                      endTime: DateTime(
+                                          DateTime.now().year,
+                                          DateTime.now().month,
+                                          DateTime(DateTime.now().year,
+                                                  DateTime.now().month + 1, 0)
+                                              .day,
+                                          23,
+                                          59,
+                                          59),
+                                      // controller: CountTimerController(
+                                      //   endTime: DateTime(
+                                      //       DateTime.now().year,
+                                      //       DateTime.now().month,
+                                      //       DateTime(DateTime.now().year,
+                                      //               DateTime.now().month + 1, 0)
+                                      //           .day,
+                                      //       23,
+                                      //       59,
+                                      //       59),
+                                      //   //  DateTime.now().add(
+                                      //   //   const Duration(
+                                      //   //     days: 5,
+                                      //   //     hours: 14,
+                                      //   //     minutes: 27,
+                                      //   //     seconds: 34,
+                                      //   //   ),
+                                      //   // ),
+                                      // ),
                                       onEnd: () {
                                         print("Timer finished");
                                       },

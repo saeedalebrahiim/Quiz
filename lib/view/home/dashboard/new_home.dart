@@ -9,9 +9,9 @@ import 'package:bilgimizde/view/buycoin/buy_coin_screen.dart';
 import 'package:bilgimizde/view/buycoin/buy_coin_test.dart';
 import 'package:bilgimizde/view/gem_quiz/gem_quiz_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:easy_count_timer/easy_count_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -493,7 +493,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                           SizedBox(
                                             width: 180,
                                             child: LinearProgressIndicator(
-                                              value: value.userBalance / 500,
+                                              value: value.userBalance / 100,
                                               color: value.userBalance >= 500
                                                   ? Colors.red
                                                   : Colors.amber,
@@ -705,22 +705,22 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.center,
                                                   children: [
-                                                    !canPlay
-                                                        ? CountTimer(
-                                                            format: CountTimerFormat
+                                                    canPlay
+                                                        ? TimerCountdown(
+                                                            format: CountDownTimerFormat
                                                                 .hoursMinutesSeconds,
                                                             timeTextStyle:
                                                                 const TextStyle(
                                                                     color: Colors
                                                                         .black,
                                                                     fontSize:
-                                                                        12),
+                                                                        20),
                                                             colonsTextStyle:
                                                                 const TextStyle(
                                                                     color: Colors
                                                                         .black,
                                                                     fontSize:
-                                                                        12),
+                                                                        18),
                                                             descriptionTextStyle:
                                                                 const TextStyle(
                                                                     color: Colors
@@ -728,38 +728,58 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                                                     fontSize:
                                                                         8),
                                                             enableDescriptions:
-                                                                true,
-                                                            controller:
-                                                                CountTimerController(
-                                                              endTime: DateTime(
-                                                                  DateTime.now()
-                                                                      .year,
-                                                                  DateTime.now()
-                                                                      .month,
-                                                                  DateTime.now()
-                                                                      .day,
-                                                                  state == 1
-                                                                      ? 5
-                                                                      : state ==
-                                                                              2
-                                                                          ? 10
-                                                                          : state == 3
-                                                                              ? 15
-                                                                              : state == 4
-                                                                                  ? 20
-                                                                                  : 23,
-                                                                  59,
-                                                                  59),
+                                                                false,
+                                                            spacerWidth: 2,
+                                                            endTime: DateTime(
+                                                                DateTime.now()
+                                                                    .year,
+                                                                DateTime.now()
+                                                                    .month,
+                                                                DateTime.now()
+                                                                    .day,
+                                                                state == 1
+                                                                    ? 5
+                                                                    : state == 2
+                                                                        ? 10
+                                                                        : state ==
+                                                                                3
+                                                                            ? 15
+                                                                            : state == 4
+                                                                                ? 20
+                                                                                : 23,
+                                                                59,
+                                                                59),
+                                                            // controller:
+                                                            //     CountTimerController(
+                                                            //   endTime: DateTime(
+                                                            //       DateTime.now()
+                                                            //           .year,
+                                                            //       DateTime.now()
+                                                            //           .month,
+                                                            //       DateTime.now()
+                                                            //           .day,
+                                                            //       state == 1
+                                                            //           ? 5
+                                                            //           : state ==
+                                                            //                   2
+                                                            //               ? 10
+                                                            //               : state == 3
+                                                            //                   ? 15
+                                                            //                   : state == 4
+                                                            //                       ? 20
+                                                            //                       : 23,
+                                                            //       59,
+                                                            //       59),
 
-                                                              //  DateTime.now().add(
-                                                              //   const Duration(
-                                                              //     days: 5,
-                                                              //     hours: 14,
-                                                              //     minutes: 27,
-                                                              //     seconds: 34,
-                                                              //   ),
-                                                              // ),
-                                                            ),
+                                                            //   //  DateTime.now().add(
+                                                            //   //   const Duration(
+                                                            //   //     days: 5,
+                                                            //   //     hours: 14,
+                                                            //   //     minutes: 27,
+                                                            //   //     seconds: 34,
+                                                            //   //   ),
+                                                            //   // ),
+                                                            // ),
                                                             onEnd: () {
                                                               print(
                                                                   "Timer finished");

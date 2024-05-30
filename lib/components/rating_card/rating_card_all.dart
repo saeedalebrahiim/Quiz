@@ -180,18 +180,18 @@ class AllRatingCard extends StatelessWidget {
                 ],
               ),
               const SizedBox(
-                width: 45,
+                width: 25,
               ),
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(right: 12.0),
+            padding: const EdgeInsets.only(right: 22.0),
             child: Row(
               children: [
                 isPrice == true
                     ? const SizedBox()
                     : const Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(0.0),
                         child: Icon(
                           Icons.circle,
                           color: Colors.green,
@@ -200,7 +200,7 @@ class AllRatingCard extends StatelessWidget {
                       ),
                 Text(
                   isPrice == true
-                      ? '${price ?? ""} ${price != null && price != "" ? "TL" : ""}'
+                      ? '${price ?? ""}'
                       : '${score.sumCurrectAnswer}',
                   style: const TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),

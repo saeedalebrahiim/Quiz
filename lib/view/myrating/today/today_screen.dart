@@ -3,8 +3,8 @@ import 'package:bilgimizde/view/buycoin/buy_coin_test.dart';
 import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
 import 'package:bilgimizde/view/rules/rules_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:easy_count_timer/easy_count_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -127,8 +127,7 @@ class _TodayScreenState extends State<TodayScreen> {
                         onTap: () {
                           Navigator.of(context).push(
                             PageRouteBuilder(
-                                pageBuilder: (_, __, ___) =>
-                                    const BuyCoin(),
+                                pageBuilder: (_, __, ___) => const BuyCoin(),
                                 transitionDuration:
                                     const Duration(milliseconds: 500),
                                 transitionsBuilder: (_, a, __, c) =>
@@ -423,8 +422,9 @@ class _TodayScreenState extends State<TodayScreen> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              CountTimer(
-                                format: CountTimerFormat.hoursMinutesSeconds,
+                              TimerCountdown(
+                                format:
+                                    CountDownTimerFormat.hoursMinutesSeconds,
                                 timeTextStyle: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 20,
@@ -438,24 +438,31 @@ class _TodayScreenState extends State<TodayScreen> {
                                     const TextStyle(color: Colors.white),
                                 enableDescriptions: false,
                                 spacerWidth: 2,
-                                controller: CountTimerController(
-                                  endTime: DateTime(
-                                      DateTime.now().year,
-                                      DateTime.now().month,
-                                      DateTime.now().day,
-                                      23,
-                                      59,
-                                      59),
+                                endTime: DateTime(
+                                    DateTime.now().year,
+                                    DateTime.now().month,
+                                    DateTime.now().day,
+                                    23,
+                                    59,
+                                    59),
+                                // controller: CountTimerController(
+                                //   endTime: DateTime(
+                                //       DateTime.now().year,
+                                //       DateTime.now().month,
+                                //       DateTime.now().day,
+                                //       23,
+                                //       59,
+                                //       59),
 
-                                  //  DateTime.now().add(
-                                  //   const Duration(
-                                  //     days: 5,
-                                  //     hours: 14,
-                                  //     minutes: 27,
-                                  //     seconds: 34,
-                                  //   ),
-                                  // ),
-                                ),
+                                //   //  DateTime.now().add(
+                                //   //   const Duration(
+                                //   //     days: 5,
+                                //   //     hours: 14,
+                                //   //     minutes: 27,
+                                //   //     seconds: 34,
+                                //   //   ),
+                                //   // ),
+                                // ),
                                 onEnd: () {
                                   print("Timer finished");
                                 },
@@ -540,7 +547,9 @@ class _TodayScreenState extends State<TodayScreen> {
                                               : ""),
                                       score: value.dailyScores[index],
                                       index: index + 1,
-                                      price: value.rewards[index] ?? "0"),
+                                      price: value.rewards[index].isNotEmpty
+                                          ? value.rewards[index] + "TL"
+                                          : "5 Gem"),
                                 ),
                             ],
                           ),

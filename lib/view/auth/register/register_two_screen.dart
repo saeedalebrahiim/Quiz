@@ -58,7 +58,7 @@ class _RegisterStepTwoScreenState extends State<RegisterStepTwoScreen> {
                           width: 40,
                         ),
                         Text(
-                          'Tayp Password',
+                          'Şifre belirlemek',
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.grey,
@@ -99,7 +99,7 @@ class _RegisterStepTwoScreenState extends State<RegisterStepTwoScreen> {
                                             )),
                                 ),
                               ),
-                              hintText: 'Password',
+                              hintText: 'Şifre ',
                               border: OutlineInputBorder(
                                   borderSide: BorderSide.none,
                                   borderRadius: BorderRadius.circular(30)),
@@ -140,7 +140,7 @@ class _RegisterStepTwoScreenState extends State<RegisterStepTwoScreen> {
                                             )),
                                 ),
                               ),
-                              hintText: 'Comfrem Password',
+                              hintText: 'Şifreyi önayla',
                               border: OutlineInputBorder(
                                   borderSide: BorderSide.none,
                                   borderRadius: BorderRadius.circular(30)),

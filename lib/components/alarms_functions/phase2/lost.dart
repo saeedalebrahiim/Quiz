@@ -13,7 +13,7 @@ lost(BuildContext context) {
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(20)),
         width: MediaQuery.of(context).size.width - 50,
-        height: 250,
+        height: 350,
         child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -48,7 +48,7 @@ lost(BuildContext context) {
             Padding(
               padding: EdgeInsets.all(8),
               child: Text(
-                "Malesef kazanamadın",
+                "Eğer sistemin seçtiği kelime Türkçe dilinde yoksa, ekran görüntüsü alıp bizimle paylaştığınız takdirde GEM iadesi talep edebilirsiniz",
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   color: Colors.black,

@@ -348,60 +348,60 @@ class _EndQuizScreenState extends State<EndQuizScreen> {
                   const SizedBox(
                     height: 10,
                   ),
-                  Consumer<ProfileState>(
-                    builder: (context, value, child) => InkWell(
-                      onTap: () {
-                        // StartQuizController.startQuiz(context: context);
-                        if (!tapedPlay) {
-                          print("tapped $tapedPlay");
-                          tapedPlay = true;
-                          print("tapped $tapedPlay");
+                  // Consumer<ProfileState>(
+                  //   builder: (context, value, child) => InkWell(
+                  //     onTap: () {
+                  //       // StartQuizController.startQuiz(context: context);
+                  //       if (!tapedPlay) {
+                  //         print("tapped $tapedPlay");
+                  //         tapedPlay = true;
+                  //         print("tapped $tapedPlay");
 
-                          if (value.userBalance >= 2) {
-                            context.read<QuizState>().resetCount();
-                            StartQuizController.startQuiz(context: context)
-                                .then((value) {
-                              ProfileController.getUserBalance(
-                                  context: context);
-                              tapedPlay = false;
-                            });
-                          } else {
-                            noCoinAlert(context);
-                          }
-                        }
-                      },
-                      child: Container(
-                        width: 221,
-                        height: 48,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: const Color.fromARGB(255, 86, 196, 90),
-                        ),
-                        child: const Center(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.refresh,
-                                color: Colors.white,
-                                size: 20,
-                              ),
-                              SizedBox(
-                                width: 3,
-                              ),
-                              Text(
-                                'Again',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 16),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  //         if (value.userBalance >= 2) {
+                  //           context.read<QuizState>().resetCount();
+                  //           StartQuizController.startQuiz(context: context)
+                  //               .then((value) {
+                  //             ProfileController.getUserBalance(
+                  //                 context: context);
+                  //             tapedPlay = false;
+                  //           });
+                  //         } else {
+                  //           noCoinAlert(context);
+                  //         }
+                  //       }
+                  //     },
+                  //     child: Container(
+                  //       width: 221,
+                  //       height: 48,
+                  //       decoration: BoxDecoration(
+                  //         borderRadius: BorderRadius.circular(20),
+                  //         color: const Color.fromARGB(255, 86, 196, 90),
+                  //       ),
+                  //       child: const Center(
+                  //         child: Row(
+                  //           mainAxisAlignment: MainAxisAlignment.center,
+                  //           children: [
+                  //             Icon(
+                  //               Icons.refresh,
+                  //               color: Colors.white,
+                  //               size: 20,
+                  //             ),
+                  //             SizedBox(
+                  //               width: 3,
+                  //             ),
+                  //             Text(
+                  //               'Again',
+                  //               style: TextStyle(
+                  //                   color: Colors.white,
+                  //                   fontWeight: FontWeight.w700,
+                  //                   fontSize: 16),
+                  //             ),
+                  //           ],
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   const SizedBox(
                     height: 15,
                   ),

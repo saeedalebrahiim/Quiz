@@ -62,7 +62,7 @@ class _ForgetNewPasScreenState extends State<ForgetNewPasScreen> {
                           width: 40,
                         ),
                         Text(
-                          'Tayp Password',
+                          'Şifre belirlemek',
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.grey,
@@ -103,7 +103,7 @@ class _ForgetNewPasScreenState extends State<ForgetNewPasScreen> {
                                             )),
                                 ),
                               ),
-                              hintText: 'Password',
+                              hintText: 'Şifre ',
                               border: OutlineInputBorder(
                                   borderSide: BorderSide.none,
                                   borderRadius: BorderRadius.circular(30)),
@@ -120,7 +120,7 @@ class _ForgetNewPasScreenState extends State<ForgetNewPasScreen> {
                           obscureText: true,
                           controller: _confirmPasswordController,
                           decoration: InputDecoration(
-                              hintText: 'Comfrem Password',
+                              hintText: 'Şifreyi önayla ',
                               border: OutlineInputBorder(
                                   borderSide: BorderSide.none,
                                   borderRadius: BorderRadius.circular(30)),
