@@ -494,7 +494,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                             width: 180,
                                             child: LinearProgressIndicator(
                                               value: value.userBalance / 100,
-                                              color: value.userBalance >= 500
+                                              color: value.userBalance >= 100
                                                   ? Colors.red
                                                   : Colors.amber,
                                               minHeight: 8,
