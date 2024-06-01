@@ -512,7 +512,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                                 fontWeight: FontWeight.bold),
                                           ),
                                           const Text(
-                                            "/ 500",
+                                            "/ 100",
                                             style: TextStyle(
                                               color: Color.fromARGB(
                                                   145, 255, 255, 255),
@@ -624,7 +624,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                               print(value.userScore!.changes.toString() +
                                   "changes");
 
-                              int time = DateTime.now().hour + 1;
+                              int time = DateTime.now().hour;
                               int state = time < 5
                                   ? 1
                                   : time < 10 && time >= 5
@@ -705,7 +705,7 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.center,
                                                   children: [
-                                                    canPlay
+                                                    !canPlay
                                                         ? TimerCountdown(
                                                             format: CountDownTimerFormat
                                                                 .hoursMinutesSeconds,
@@ -747,8 +747,8 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                                                             : state == 4
                                                                                 ? 20
                                                                                 : 23,
-                                                                59,
-                                                                59),
+                                                                0,
+                                                                0),
                                                             // controller:
                                                             //     CountTimerController(
                                                             //   endTime: DateTime(
@@ -868,8 +868,8 @@ class _NewMainScreenState extends State<NewMainScreen> {
                                                               ),
                                                             ),
                                                           ),
-                                                    const SizedBox(
-                                                      height: 4,
+                                                    SizedBox(
+                                                      height: canPlay ? 4 : 15,
                                                     ),
                                                     canPlay
                                                         ? const Text(

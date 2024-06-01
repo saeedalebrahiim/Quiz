@@ -548,8 +548,8 @@ class _TodayScreenState extends State<TodayScreen> {
                                       score: value.dailyScores[index],
                                       index: index + 1,
                                       price: value.rewards[index].isNotEmpty
-                                          ? value.rewards[index] + "TL"
-                                          : "5 Gem"),
+                                          ? value.rewards[index] + " TL"
+                                          : "5 GEM"),
                                 ),
                             ],
                           ),

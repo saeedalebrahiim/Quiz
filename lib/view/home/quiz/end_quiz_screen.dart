@@ -6,6 +6,7 @@ import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
 import 'package:bilgimizde/view/myrating/all/all_screen.dart.dart';
 import 'package:bilgimizde/view/myrating/today/today_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:bilgimizde/provider/profile.dart';
@@ -347,6 +348,178 @@ class _EndQuizScreenState extends State<EndQuizScreen> {
                   }),
                   const SizedBox(
                     height: 10,
+                  ),
+                  Consumer<ProfileState>(
+                    builder: (context, value, child) {
+                      //  int second = 0;
+                      print(value.userScore!.changes.toString() + "changes");
+
+                      int time = DateTime.now().hour;
+                      int state = time < 5
+                          ? 1
+                          : time < 10 && time >= 5
+                              ? 2
+                              : time < 15 && time >= 10
+                                  ? 3
+                                  : time < 20 && time >= 15
+                                      ? 4
+                                      : 0;
+                      int change = state == 1
+                          ? 250
+                          : state == 2
+                              ? 500
+                              : state == 3
+                                  ? 750
+                                  : state == 4
+                                      ? 1000
+                                      : 100000000;
+
+                      bool canPlay = false;
+                      if (value.userScore != null) {
+                        canPlay = value.userScore!.changes < change;
+                        print(canPlay);
+                      }
+
+                      // int sec = time < 6
+                      //     ? (21600) -
+                      //         (((DateTime.now().hour * 60) +
+                      //                 (DateTime.now().minute)) *
+                      //             60)
+                      //     : time < 12 && time >= 6
+                      //         ? (43200) -
+                      //             (((DateTime.now().hour * 60) +
+                      //                     (DateTime.now().minute)) *
+                      //                 60)
+                      //         : time < 18 && time >= 12
+                      //             ? (64800) -
+                      //                 (((DateTime.now().hour * 60) +
+                      //                         (DateTime.now().minute)) *
+                      //                     60)
+                      //             : time < 24 && time >= 18
+                      //                 ? (86400) -
+                      //                     (((DateTime.now().hour * 60) +
+                      //                             (DateTime.now()
+                      //                                 .minute)) *
+                      //                         60)
+                      //                 : 0;
+
+                      return !canPlay
+                          ? TimerCountdown(
+                              format: CountDownTimerFormat.hoursMinutesSeconds,
+                              timeTextStyle: const TextStyle(
+                                  color: Colors.black, fontSize: 20),
+                              colonsTextStyle: const TextStyle(
+                                  color: Colors.black, fontSize: 18),
+                              descriptionTextStyle: const TextStyle(
+                                  color: Colors.black, fontSize: 8),
+                              enableDescriptions: false,
+                              spacerWidth: 2,
+                              endTime: DateTime(
+                                  DateTime.now().year,
+                                  DateTime.now().month,
+                                  DateTime.now().day,
+                                  state == 1
+                                      ? 5
+                                      : state == 2
+                                          ? 10
+                                          : state == 3
+                                              ? 15
+                                              : state == 4
+                                                  ? 20
+                                                  : 23,
+                                  0,
+                                  0),
+                              // controller:
+                              //     CountTimerController(
+                              //   endTime: DateTime(
+                              //       DateTime.now()
+                              //           .year,
+                              //       DateTime.now()
+                              //           .month,
+                              //       DateTime.now()
+                              //           .day,
+                              //       state == 1
+                              //           ? 5
+                              //           : state ==
+                              //                   2
+                              //               ? 10
+                              //               : state == 3
+                              //                   ? 15
+                              //                   : state == 4
+                              //                       ? 20
+                              //                       : 23,
+                              //       59,
+                              //       59),
+
+                              //   //  DateTime.now().add(
+                              //   //   const Duration(
+                              //   //     days: 5,
+                              //   //     hours: 14,
+                              //   //     minutes: 27,
+                              //   //     seconds: 34,
+                              //   //   ),
+                              //   // ),
+                              // ),
+                              onEnd: () {
+                                print("Timer finished");
+                                canPlay = true;
+                                setState(() {});
+                              },
+                            )
+                          : InkWell(
+                              onTap: () {
+                                // StartQuizController.startQuiz(context: context);
+                                if (!tapedPlay) {
+                                  print("tapped $tapedPlay");
+                                  tapedPlay = true;
+                                  print("tapped $tapedPlay");
+
+                                  if (value.userBalance >= 2) {
+                                    context.read<QuizState>().resetCount();
+                                    StartQuizController.startQuiz(
+                                            context: context)
+                                        .then((value) {
+                                      ProfileController.getUserBalance(
+                                          context: context);
+                                      tapedPlay = false;
+                                    });
+                                  } else {
+                                    noCoinAlert(context);
+                                  }
+                                }
+                              },
+                              child: Container(
+                                width: 221,
+                                height: 48,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: const Color.fromARGB(255, 86, 196, 90),
+                                ),
+                                child: const Center(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.refresh,
+                                        color: Colors.white,
+                                        size: 20,
+                                      ),
+                                      SizedBox(
+                                        width: 3,
+                                      ),
+                                      Text(
+                                        'Again',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 16),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                    },
                   ),
                   // Consumer<ProfileState>(
                   //   builder: (context, value, child) => InkWell(
