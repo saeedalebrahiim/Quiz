@@ -1,5 +1,7 @@
+import 'package:bilgimizde/services/cuper_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:bilgimizde/init_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -13,6 +15,16 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   void initState() {
     super.initState();
     navigate();
+    getALert();
+  }
+
+  getALert() async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    bool flg = sp.containsKey("iosOpen");
+
+    if (!flg) {
+      alertCup();
+    }
   }
 
   navigate() async {

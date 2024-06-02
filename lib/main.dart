@@ -5,6 +5,7 @@ import 'package:bilgimizde/provider/ad.dart';
 import 'package:bilgimizde/provider/request_state.dart';
 import 'package:bilgimizde/provider/wordguess.dart';
 import 'package:bilgimizde/services/admob.dart';
+import 'package:bilgimizde/services/cuper_alert.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +25,10 @@ import 'package:bilgimizde/route/routes.dart';
 import 'package:bilgimizde/view/welcome/welcome_screen.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 AppOpenAd? _appOpenAd;
+
 _createAppOpenAd() {
   // Load the latest `ConsentInformation`. This will always work but does
   // not request the latest info from the UMP backend.
