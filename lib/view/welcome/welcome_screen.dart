@@ -20,7 +20,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   getALert() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
-    bool flg = sp.containsKey("iosOpen");
+    bool flg = sp.getBool("iosOpen") ?? false;
 
     if (!flg) {
       alertCup();
