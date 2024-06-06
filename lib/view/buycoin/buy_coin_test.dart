@@ -317,13 +317,13 @@ class BuyCoinState extends State<BuyCoin> {
                       height: 20,
                     ),
                     // for (var prod in stack) ...[prod],
-                    const Text(
-                      'How trust us?',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 20),
-                    ),
+                    // const Text(
+                    //   'How trust us?',
+                    //   style: TextStyle(
+                    //       color: Colors.white,
+                    //       fontWeight: FontWeight.w600,
+                    //       fontSize: 20),
+                    // ),
                     const SizedBox(
                       height: 10,
                     ),
