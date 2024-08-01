@@ -170,7 +170,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             //           )),
                             // );
                             if (!await launchUrl(Uri.parse(
-                                "https://wa.me/+905551875798?text=Merhaba%20%C5%9Eifremi%20Unuttum"))) {
+                                "https://t.me/+905551875798?text=Şifremi%20unuttum,%20yeni%20şifre%20alabilir%20miyim"))) {
                               throw Exception('Could not launch ');
                             }
                           },

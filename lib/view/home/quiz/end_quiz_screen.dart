@@ -1,6 +1,7 @@
 import 'package:bilgimizde/components/alarms_functions/no_coin.dart';
 import 'package:bilgimizde/controller/Quiz/start_quiz.dart';
 import 'package:bilgimizde/controller/profile/profile.dart';
+import 'package:bilgimizde/controller/score/score.dart';
 import 'package:bilgimizde/provider/quiz.dart';
 import 'package:bilgimizde/view/home/dashboard/home_screen.dart';
 import 'package:bilgimizde/view/myrating/all/all_screen.dart.dart';
@@ -28,6 +29,7 @@ class _EndQuizScreenState extends State<EndQuizScreen> {
 
   getData() {
     StartQuizController.getIsTop50(context: context);
+    ScoreController.getUserChangeScoreDay(context: context);
   }
 
   @override
